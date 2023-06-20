@@ -185,7 +185,7 @@ while($row = fetch_row($result)){
 	}
 	if($x=="ndevice"){
 		$act='<a title="Overview" class="dttbl" href="JavaScript:;" data-fancybox data-type="iframe" data-src="device'.$ext.'?h='.$row[0].'">'.$row[0].'</a>';
-		//$row[2].=($is_ticket&&$row[2]=='DOWN')?' <button class="btn" onclick="ticks(\''.$row[1].'\',\''.$row[4].'\');"><i class="fas fa-arrow-right"></i></button>':'';
+		$row[2].=($is_ticket&&$row[2]=='DOWN')?' <a href="#" title="Create Ticket" class="btn" onclick="ticks(\''.$row[1].'\',\''.$row[4].'\');"><i class="fas fa-arrow-right"></i></a>':'';
 		$row[0]=$act;
 		$xx='-';
 	}
