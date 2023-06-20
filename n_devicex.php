@@ -102,11 +102,11 @@ disconnect($conn);
 									<tr>
 										<th>Host</th>
 										<th>Name</th>
+										<th>Status</th>
 										<th>Network</th>
 										<th>Location</th>
 										<th>Group</th>
 										<th>Type</th>
-										<th>Status</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -118,6 +118,126 @@ disconnect($conn);
 
 	</div>
 </div><!-- end app-content-->
+
+<!-- Modal-->
+<div id="myModal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left modal_form">
+  <div role="document" class="modal-dialog modal-lg">
+	<div class="modal-content">
+	  <div class="modal-header"><strong id="exampleModalLabel" class="modal-title"><?php echo $modal_title?></strong>
+		<button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick=""><span aria-hidden="true">x</span></button>
+	  </div>
+	  <div class="modal-body">
+		<!--p>Lorem ipsum dolor sit amet consectetur.</p-->
+		<form id="myf" class="form-horizontal">
+<!--hidden-->
+<input type="hidden" name="rowid" id="rowid" value="0">
+<input type="hidden" name="mnu" value="tick">
+<input type="hidden" id="sv" name="sv" />
+<input type="hidden" name="cols" value="dtm,loc,h,d,cat,svc" />
+<input type="hidden" name="tname" value="tick_ets" />
+		
+		  <div class="row mb-3">
+			<div class="form-group col-md-6">
+				<label>Ticket#</label>
+				<input type="text" readonly id="ticketno" name="ticketno" placeholder="auto" class="form-control">
+			</div>
+			<div class="form-group col-md-6">
+				<label>Report Date/Time</label>
+				<input type="text" id="dtm" name="dtm" placeholder="..." class="form-control datetimepicker">
+			</div>
+		  </div>
+		  <div class="row mb-3">
+			<div class="form-group col-md-6">
+				<label>Subject</label>
+				<input type="text" id="h" name="h" placeholder="..." class="form-control">
+			</div>
+			<div class="form-group col-md-6">
+				<label>Desc</label>
+				<textarea id="d" name="d" placeholder="..." class="form-control"></textarea>
+			</div>
+		  </div>
+		  <div class="row mb-3">
+			<div class="form-group col-md-6">
+				<label>Location</label>
+				<select class="form-control " id="locf" name="loc">
+					<option value="">-</option>
+					<?php echo options($o_loc)?>
+				</select>
+			</div>
+			<div class="form-group col-md-6">
+				<label>Service</label>
+				<select class="form-control " id="svc" name="svc">
+					<option value="">-</option>
+					<?php echo options($o_serv)?>
+				</select>
+			</div>
+		  </div>
+		  <div class="row mb-3">
+			<div class="form-group col-md-6">
+				<label>Category</label>
+				<select class="form-control " id="cat" name="cat">
+					<option value="">-</option>
+					<?php echo options($o_cat)?>
+				</select>
+			</div>
+			<div class="form-group col-md-6 hidden">
+				<label>Status</label>
+				<select class="form-control " id="stts" name="stts">
+					<option value="">-</option>
+					<?php echo options($o_tikstts)?>
+				</select>
+			</div>
+		  </div>
+		  <div class="row mb-3 hidden">
+			<div class="form-group col-md-6">
+				<label>Group</label>
+				<select class="form-control " id="grp" name="grp">
+					<option value="">-</option>
+					<?php echo options($o_tikgrp)?>
+				</select>
+			</div>
+		  </div>
+		  <hr />
+		  <div class="row mb-3 hidden">
+			<div class="form-group col-md-6">
+				<label>Notes</label>
+				<textarea id="note" name="notes" placeholder="..." class="form-control"></textarea>
+			</div>
+			<div class="form-group col-md-6">
+				<label>Attachment</label>
+				<input type="file" id="attc" name="attc" placeholder="..." class="form-control">
+			</div>
+		  </div>
+		  
+		  <div class="row mb-3 hidden">
+			<div class="form-group col-md-6">
+				<label>Purchased</label>
+				<div class="input-group">
+					<input type="text" id="gr" name="gr" placeholder="" class="form-control datepicker">
+					<div class="input-group-append"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
+				</div>
+			</div>
+			<div class="form-group col-md-6">
+				<label>Warranty Expired</label>
+				<div class="input-group">
+					<input type="text" id="warexp" name="warexp" placeholder="" class="form-control datepicker">
+					<div class="input-group-append"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
+				</div>
+			</div>
+		  </div>
+		  
+		</form>
+	  </div>
+	  <div class="modal-footer">
+		<button type="button" onclick="$('#modal_notes').modal('show');mytblx.ajax.reload();" class="btn btn-warning hidden">History</button>
+	    <button type="button" class="btn btn-danger hidden" id="bdel"  onclick="confirmDelete();">Delete</button>
+		<button type="button" class="btn btn-success" onclick="saveData();">Save</button>
+		<button type="button" data-dismiss="modal" class="btn btn-default" onclick="">Close</button>
+		
+	  </div>
+	</div>
+  </div>
+</div>
 
 <?php 
 include "inc.foot.php";
@@ -132,7 +252,7 @@ $prov=get("prov")==""?"1=1":"prov='".get("prov")."'";
 $where = "$loc and $status and $prov";
 
 $tname="core_node n left join core_status s on n.host=s.host left join core_location l on n.loc=l.locid";
-$cols="n.host,n.name,net,loc,grp,typ,if(status=1,'UP','DOWN') as stt,n.rowid";
+$cols="n.host,n.name,if(status=1,'UP','DOWN') as stt,net,loc,grp,typ,n.rowid";
 $csrc="n.host,n.name,net,loc,grp,typ";
 $grpby="";
 
@@ -192,6 +312,14 @@ $(document).ready(function(){
 
 function reloadtbl(){
 	mytbl.ajax.reload();
+}
+
+function ticks(nm,loc){
+	$("#myf")[0].reset();
+	$("#myModal").modal("show");
+	jvalidate.resetForm();
+	$("#locf").val(loc);
+	$("#h").val(nm);
 }
 
 </script>

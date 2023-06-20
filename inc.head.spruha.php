@@ -59,7 +59,7 @@
 
 	</head>
 
-	<body class="ltr main-body leftmenu">
+	<body class="ltr main-body leftmenu dark-theme">
 
 		<!-- Loader -->
 		<div id="global-loader">
