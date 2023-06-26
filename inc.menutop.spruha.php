@@ -177,8 +177,9 @@
 						</a>
 						<ul class="nav-sub">
 							<li class="side-menu-label1"><a href="javascript:void(0)">Reports</a></li>
-							<li class="nav-sub-item"><a class="nav-sub-link mlov" href="r_ticksum<?php echo $ext?>">Summary</a></li>
-							<li class="nav-sub-item"><a class="nav-sub-link muser" href="r_tick<?php echo $ext?>?o=1">Tickets</a></li>
+							<li class="nav-sub-item"><a class="nav-sub-link " href="r_ticksum<?php echo $ext?>">Summary</a></li>
+							<li class="nav-sub-item"><a class="nav-sub-link " href="r_tick<?php echo $ext?>">Tickets</a></li>
+							<li class="nav-sub-item"><a class="nav-sub-link " href="r_mttr<?php echo $ext?>">MTTR</a></li>
 						</ul>
 					</li>
 					<?php }?>
