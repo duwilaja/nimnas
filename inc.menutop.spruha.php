@@ -219,6 +219,7 @@
 				</ul>
 				<!-- END menu -->
 				</div>
+				</div>
 			</div>
 		</div>
 		<!-- End Sidemenu -->
