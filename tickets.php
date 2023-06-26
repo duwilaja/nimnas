@@ -241,7 +241,8 @@ include "inc.menutop.php";
 		</form>
 	  </div>
 	  <div class="modal-footer">
-		<button type="button" onclick="$('#modal_notes').modal('show');mytblx.ajax.reload();" class="btn btn-warning hideme">History</a>
+		<!--button type="button" onclick="$('#modal_notes').modal('show');mytblx.ajax.reload();" class="btn btn-warning hideme">History</a-->
+	    <button type="button" onclick="panci();" class="btn btn-warning hideme">History</button>
 	    <button type="button" class="btn btn-danger" id="bdel"  onclick="confirmDelete();">Delete</button>
 		<button type="button" class="btn btn-success" onclick="b4sef(); saveData();">Save</button>
 		<button type="button" data-dismiss="modal" class="btn btn-default" onclick="togglehide(1);">Close</button>
@@ -460,6 +461,18 @@ function b4sef(){
 		$("#stts").val("new");
 	}
 	if($("#myf").valid()){ $(".hideme").show(); }
+}
+
+function panci(){
+	$.fancybox.open(
+	  {
+		src: "tickhis"+ext+'?id='+$("#ticketno").val(),
+		type: "iframe",
+		preload: false,
+//		width: 600,
+//		height: 300,
+	  },
+	);
 }
 </script>
 
