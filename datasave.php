@@ -4,7 +4,40 @@ include "inc.common.php";
 include "inc.session.php";
 include 'inc.db.php';
 
-require_once('lib/SubnetCalculator.php');
+//require_once('lib/SubnetCalculator.php');
+
+function itung($conn,$tik,$dtm){
+	$s="";
+	$r=fetch_alla(exec_qry($conn,"select * from tick_note where ticketno='$tik' order by dtm,rowid"));
+	$new=0; $open=0; $prog=0; $solv=0; $pend=0; $avg=0; $pas=0; $usr='';
+	for($i=0;$i<count($r);$i++){
+		if($s!=$r[$i]["stts"]){
+			switch($s){
+				case "": $new+=(strtotime($r[$i]["dtm"])-$dtm); break;
+				case "new": $new+=(strtotime($r[$i]["dtm"])-$dtm); break;
+				case "open": $open+=(strtotime($r[$i]["dtm"])-$dtm);
+						$usr=($usr==''||$usr=='system')?$r[$i]['updby']:$usr; $solv=0;
+						break;
+				case "progress": $prog+=(strtotime($r[$i]["dtm"])-$dtm);
+						$usr=($usr==''||$usr=='system')?$r[$i]['updby']:$usr; $solv=0;
+						break;
+				case "solved": $solv+=(strtotime($r[$i]["dtm"])-$dtm);
+						$usr=($usr==''||$usr=='system')?$r[$i]['updby']:$usr;
+						break;
+				case "pending": $pend+=(strtotime($r[$i]["dtm"])-$dtm); break;
+			}
+			$s=$r[$i]["stts"];
+			$dtm=strtotime($r[$i]["dtm"]);
+		}
+		$pas+=($r[$i]["updby"]=='system')?1:0;
+		//$avg+=($r[$i]["updby"]!='system'&&$r[$i]["s"]=='progress')?1:0;
+	}
+	$avg=($avg==0)?0:($prog/$avg);
+	$sql="update tick_ets set snew='$new',sopen='$open',sprogress='$prog',ssolved='$solv',spending='$pend' where ticketno='$tik'";
+	//echo $sql."<br />";
+	$rs=exec_qry($conn,$sql);
+	return $sql;
+}
 
 $code='404';
 $ttl='Error';
@@ -130,7 +163,8 @@ if($mn=='mserv'){
 }
 if($mn=='tick'){
 	if(post('sv')=='NEW'){
-		$fcols='ticketno,creby,updby,created'; $fvals="'".date('YmdHis')."','$s_ID','$s_ID',NOW()";
+		$cat=post("cat");
+		$fcols='ticketno,creby,updby,created'; $fvals="'$cat".date('YmdHis')."','$s_ID','$s_ID',NOW()";
 		$res=crud($conn,"$fcols","$fvals");
 	}else{
 		if(post('sv')=='UPD'){
@@ -141,6 +175,7 @@ if($mn=='tick'){
 		}
 		$fcols='updby,updated'; $fvals="'$s_ID',NOW()";
 		$res=crud($conn,"$fcols","$fvals");
+		if(post('stts')=='closed'){ $x=itung($conn,post('ticketno'),strtotime(post('created'))); }
 	}
 	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
 }

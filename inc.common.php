@@ -62,7 +62,7 @@ $o_assstts=[
 
 $o_tikstts=[
 	["new","new"],
-	["open","open"],
+//	["open","open"],
 	["progress","progress"],
 	["pending","pending"],
 	["solved","solved"],

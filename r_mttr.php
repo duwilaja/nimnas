@@ -3,7 +3,7 @@ include "inc.common.php";
 include "inc.session.php";
 
 $page_icon="fa fa-table";
-$page_title="Tickets";
+$page_title="MTTR";
 $modal_title="";
 $card_title="Tickets Report";
 
@@ -53,13 +53,12 @@ disconnect($conn);
 					<input type="text" id="dt" placeholder="" class="form-control datepicker">
 					<div class="input-group-append"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
 				</div></div>
-				
-				<div class="col-xl-2">
+				<div class="col-xl-2 hidden"><input type="hidden" id="fstts" value="closed">
 					<div class="small text-white text-opacity-50 mb-2"><b>STATUS</b></div>
-					<select id="fstts" class="form-select">
+					<!--select id="fstts" class="form-select">
 						<option value="">ALL STATUS</option>
 						<?php echo options($o_tikstts)?>
-					</select>
+					</select-->
 				</div>
 				<div class="col-xl-2">
 					<div class="small text-white text-opacity-50 mb-2"><b>SERVICE</b></div>
@@ -75,7 +74,7 @@ disconnect($conn);
 						<?php echo options($o_cat)?>
 					</select>
 				</div>
-				<div class="col-xl-2">
+				<div class="col-xl-2 hidden">
 					<div class="small text-white text-opacity-50 mb-2"><b>GROUP</b></div>
 					<select id="fgrp" class="form-select">
 						<option value="">All GROUP</option>
@@ -104,22 +103,19 @@ disconnect($conn);
 									<tr>
 										<th>Ticket#</th>
 										<th>Date/Time</th>
-										<th>Location</th>
 										<th>Subject</th>
 										<th>Detail</th>
 										<th>Category</th>
 										<th>Service</th>
-										<th>Group</th>
-										<th>Status</th>
 										<th>Created</th>
 										<th>CreateBy</th>
-										<th>Solved</th>
-										<th>SolveBy</th>
 										<th>Closed</th>
 										<th>Closeby</th>
-										<th>Updated</th>
-										<th>UpdateBy</th>
-										<th>LastNote</th>
+										<th>New</th>
+										<th>Progress</th>
+										<th>Solved</th>
+										<th>Pending</th>
+										<th>Total</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -138,8 +134,8 @@ include "inc.js.php";
 
 
 $tname="tick_ets";
-$cols="ticketno,dtm,loc,h,d,cat,svc,grp,stts,created,creby,solved,solby,closed,clsby,updated,updby,notes,rowid";
-$csrc="ticketno,h,d,loc";
+$cols="ticketno,dtm,h,d,cat,svc,created,creby,closed,clsby,MY_SECTOTIME(snew),MY_SECTOTIME(sprogress),MY_SECTOTIME(ssolved),MY_SECTOTIME(spending),MY_SECTOTIME(TIMESTAMPDIFF(SECOND, created, closed)),rowid";
+$csrc="ticketno,h,d";
 $grpby="";
 
 ?>

@@ -115,6 +115,7 @@ include "inc.menutop.php";
 										<th>Subject</th>
 										<th>Detail</th>
 										<th>Status</th>
+										<th>Category</th>
 										<th>Group</th>
 										
 									</tr>
@@ -145,6 +146,7 @@ include "inc.menutop.php";
 <input type="hidden" id="sv" name="sv" />
 <input type="hidden" name="cols" value="dtm,loc,h,d,cat,svc,stts,grp,notes" />
 <input type="hidden" name="tname" value="tick_ets" />
+<input type="hidden" name="created" id="created" value="" />
 		
 		  <div class="row mb-3">
 			<div class="form-group col-md-6">
@@ -284,7 +286,6 @@ include "inc.menutop.php";
 </div>
 <!-- End Modal Notes -->
 
-
 <!-- Modal Batch -->
 <div class="modal fade modal_form" id="modal_batch" tabindex="-1" role="dialog" aria-labelledby="formModalLabelBatch" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
@@ -332,7 +333,7 @@ include "inc.foot.php";
 include "inc.js.php";
 
 $tname="tick_ets";
-$cols="ticketno,dtm,loc,h,d,stts,grp,rowid";
+$cols="ticketno,dtm,loc,h,d,stts,cat,grp,rowid";
 $csrc="ticketno,h";
 
 ?>
