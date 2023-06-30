@@ -20,6 +20,8 @@ include "inc.db.php";
 $conn=connect();
 $rs=exec_qry($conn,"select val,txt from core_lov where typ='group' order by txt");
 $o_grp=fetch_all($rs);
+$rs=exec_qry($conn,"select locid,name from core_location order by name");
+$o_loc=fetch_all($rs);
 disconnect($conn);
 
 ?>
@@ -58,8 +60,11 @@ disconnect($conn);
 									<tr>
 										<th>ID</th>
 										<th>Name</th>
+										<th>Mail</th>
 										<th>Level</th>
-										<th>Group</th>
+										<th>NMS Group</th>
+										<th>Location</th>
+										<th>Ticketing Group</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -86,7 +91,7 @@ disconnect($conn);
 <input type="hidden" name="rowid" id="rowid" value="0">
 <input type="hidden" name="mnu" value="<?php echo $menu?>">
 <input type="hidden" id="sv" name="sv" />
-<input type="hidden" name="cols" value="uid,uname,ulvl,ugrp" />
+<input type="hidden" name="cols" value="uid,uname,ulvl,ugrp,uloc,utick,umail" />
 <input type="hidden" name="tname" value="core_user" />
 		
 		  <div class="row">
@@ -108,7 +113,7 @@ disconnect($conn);
 				</select>
 			</div>
 			<div class="form-group col-md-6">
-				<label>Group</label>
+				<label>NMS Group</label>
 				<select class="form-control " id="ugrp" name="ugrp">
 					<option value=""></option>
 					<?php echo options($o_grp)?>
@@ -116,6 +121,26 @@ disconnect($conn);
 			</div>
 		  </div>
 		  <div class="row">
+			<div class="form-group col-md-6">
+				<label>Location</label>
+				<select class="form-control " id="uloc" name="uloc">
+					<option value=""></option>
+					<?php echo options($o_loc)?>
+				</select>
+			</div>
+			<div class="form-group col-md-6">
+				<label>Ticketing Group</label>
+				<select class="form-control " id="utick" name="utick">
+					<option value="">-</option>
+					<?php echo options($o_tikgrp)?>
+				</select>
+			</div>
+		  </div>
+		  <div class="row">
+			<div class="form-group col-md-6">
+				<label>Email</label>
+				<input type="text" id="umail" name="umail" placeholder="..." class="form-control">
+			</div>
 			<div class="form-group col-md-6">
 				<label>Set Password</label>
 				<input type="password" id="pwd" name="pwd" placeholder="..." class="form-control">
@@ -138,7 +163,7 @@ include "inc.foot.php";
 include "inc.js.php";
 
 $tname="core_user";
-$cols="uid,uname,ulvl,ugrp,rowid";
+$cols="uid,uname,umail,ulvl,ugrp,uloc,utick,rowid";
 $csrc="uid,uname";
 
 ?>
@@ -176,7 +201,14 @@ $(document).ready(function(){
 		"uname" : {
 			required : true
 		},
+		"umail" : {
+			required : true,
+			email: true
+		},
 		"ulvl" : {
+			required : true
+		},
+		"utick" : {
 			required : true
 		},
 		"pwd" : {

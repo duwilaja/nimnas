@@ -72,6 +72,7 @@ switch($q){
 	case 'orgs': $sql="select distinct grp from core_node where grp<>'' and $whr"; break;
 	case 'odatas': $sql="select rowid,host,name,grp from core_node where $whr"; break;
 	
+	case 'ticknot': $sql="select TRIM(umail) as v,uname as t from core_user where utick='$id' and uid<>'$s_ID' and TRIM(umail)<>''"; break;
 }
 
 //echo $sql;

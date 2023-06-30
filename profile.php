@@ -58,7 +58,17 @@ include "inc.menutop.php";
 										  </div>
 										  <div class="row">
 											<div class="form-group col-md-6">
-												<label>Group</label>
+												<label>Location</label>
+												<input type="text" readonly id="uloc" name="uloc" placeholder="..." class="form-control">
+											</div>
+											<div class="form-group col-md-6">
+												<label>Ticketing Group</label>
+												<input type="text" id="utick" name="utick" placeholder="..." class="form-control">
+											</div>
+										  </div>
+										  <div class="row">
+											<div class="form-group col-md-6">
+												<label>NMS Group</label>
 												<input readonly type="text" id="ugrp" name="ugrp" placeholder="..." class="form-control">
 											</div>
 											<div class="form-group col-md-6">

@@ -6,6 +6,61 @@ include 'inc.db.php';
 
 //require_once('lib/SubnetCalculator.php');
 
+
+require 'phpmailer/Exception.php';
+require 'phpmailer/PHPMailer.php';
+require 'phpmailer/SMTP.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
+
+
+function sendmail($to,$sub,$bod){
+	
+	//Create an instance; passing `true` enables exceptions
+	$mail = new PHPMailer(true);
+
+	try {
+		//Server settings
+		//$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+		$mail->isSMTP();                                            //Send using SMTP
+		$mail->Host       = 'mail.netter-universe.com';                     //Set the SMTP server to send through
+		$mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+		$mail->Username   = 'neo@netter-universe.com';                     //SMTP username
+		$mail->Password   = 'Letmein2k22!.';                               //SMTP password
+		$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+		$mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+		//Recipients
+		$mail->setFrom('neo@netter-universe.com', 'NMS');
+		//$mail->addAddress('joe@example.net', 'Joe User');     //Add a recipient
+		$tos=explode(";",$to);
+		foreach($tos as $t){
+			$mail->addAddress($t);               //Name is optional
+		}
+		//$mail->addReplyTo('info@example.com', 'Information');
+		//$mail->addCC('cc@example.com');
+		//$mail->addBCC('bcc@example.com');
+
+		//Attachments
+		//$mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+		//$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+
+		//Content
+		$mail->isHTML(true);                                  //Set email format to HTML
+		$mail->Subject = $sub;//'Here is the subject';
+		$mail->Body    = $bod;//'This is the HTML message body <b>in bold!</b>';
+		//$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+		$mail->send();
+		return 'Message has been sent to $tod';
+	} catch (Exception $e) {
+		return "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+	}
+	
+}
+
 function itung($conn,$tik,$dtm){
 	$s="";
 	$r=fetch_alla(exec_qry($conn,"select * from tick_note where ticketno='$tik' order by dtm,rowid"));
@@ -162,6 +217,8 @@ if($mn=='mserv'){
 	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
 }
 if($mn=='tick'){
+	$mmail='';
+	
 	if(post('sv')=='NEW'){
 		$cat=post("cat");
 		$fcols='ticketno,creby,updby,created'; $fvals="'$cat".date('YmdHis')."','$s_ID','$s_ID',NOW()";
@@ -176,8 +233,11 @@ if($mn=='tick'){
 		$fcols='updby,updated'; $fvals="'$s_ID',NOW()";
 		$res=crud($conn,"$fcols","$fvals");
 		if(post('stts')=='closed'){ $x=itung($conn,post('ticketno'),strtotime(post('created'))); }
+		if(post('stts')=='pending' && post('usr')!=''){
+			$mmail=sendmail(post('usr'),'Notification Pending Ticket# '.post('ticketno'),post('notes'));
+		}
 	}
-	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
+	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2].'. '.$mmail;
 }
 
 

@@ -250,10 +250,12 @@
 										<a class="dropdown-item border-top" href="profile<?php echo $ext?>">
 											<i class="fe fe-user"></i> My Profile
 										</a>
-										<!--a class="dropdown-item" href="profile.html">
-											<i class="fe fe-edit"></i> Edit Profile
+										<?php if($s_LVL==0){?>
+										<a class="dropdown-item" href="m_user<?php echo $ext?>">
+											<i class="fe fe-users"></i> User List
 										</a>
-										<a class="dropdown-item" href="profile.html">
+										<?php }?>
+										<!--a class="dropdown-item" href="profile.html">
 											<i class="fe fe-settings"></i> Account Settings
 										</a>
 										<a class="dropdown-item" href="profile.html">

@@ -101,6 +101,7 @@
 							<li class="nav-sub-item"><a class="nav-sub-link rtraffic" href="r_traffic<?php echo $ext?>">Traffic</a></li>
 						</ul>
 					</li>
+					<?php if($s_LVL==0||$s_LVL==1){?>
 					<li class="nav-item">
 						<a class="nav-link with-sub" href="javascript:void(0)">
 							<span class="shape1"></span>
@@ -112,7 +113,7 @@
 							<li class="side-menu-label1"><a href="javascript:void(0)">Setup</a></li>
 							<?php if($s_LVL==0){?>
 							<li class="nav-sub-item"><a class="nav-sub-link mlov" href="m_lov<?php echo $ext?>">LoV</a></li>
-							<li class="nav-sub-item"><a class="nav-sub-link muser" href="m_user<?php echo $ext?>">User</a></li>
+							<!--li class="nav-sub-item"><a class="nav-sub-link muser" href="m_user<?php echo $ext?>">User</a></li-->
 							<?php }?>
 							<li class="nav-sub-item"><a class="nav-sub-link mlov" href="m_device<?php echo $ext?>">Devices</a></li>
 							<li class="nav-sub-item"><a class="nav-sub-link muser" href="m_loc<?php echo $ext?>">Locations</a></li>
@@ -123,6 +124,7 @@
 							<li class="nav-sub-item"><a class="nav-sub-link muser" href="m_bg<?php echo $ext?>">Controls</a></li>
 						</ul>
 					</li>
+					<?php }?>
 					<li class="nav-item">
 						<a class="nav-link with-sub" href="javascript:void(0)">
 							<span class="shape1"></span>

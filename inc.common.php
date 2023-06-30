@@ -69,9 +69,11 @@ $o_tikstts=[
 	["closed","closed"]
 ];
 $o_tikgrp=[
-	["EOS","EOS"],
-	["L1","L1"],
-	["L2","L2"]
+	["EOS","EOS/L1"],
+	["L2","L2"],
+	["L3","L3"],
+	["EU","End User"],
+	["MGMT","Management"]
 ];
 
 /*common php functions*/
