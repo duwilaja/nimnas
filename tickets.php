@@ -1,5 +1,5 @@
 <?php 
-$restrict_lvl=array("0","1");
+//$restrict_lvl=array("0","1");
 
 include "inc.common.php";
 include "inc.session.php";
@@ -21,7 +21,7 @@ $o_lovtyp=[
 
 include "inc.db.php";
 $conn=connect();
-$rs=exec_qry($conn,"select locid,name from core_location order by name");
+$rs=exec_qry($conn,"select locid,name from core_location where locid like '%$s_LOC%' order by name");
 $o_loc=fetch_all($rs);
 $rs=exec_qry($conn,"select servid,servname from tick_serv order by servname");
 $o_serv=fetch_all($rs);
@@ -30,13 +30,18 @@ $o_cat=fetch_all($rs);
 disconnect($conn);
 
 $ox=get("o");
-$where=""; $clso="";
+$where="1=1"; $clso="";
 if($ox=="1"){
 	$clso="hidden";
 	$page_title="Open Tickets";
 	$where="stts not in ('solved','closed')";
 }
-
+if($s_LOC!=''){
+	$where.= " AND loc='$s_LOC'";
+}
+if($s_TICK!=''){
+	$where.= " AND grp='$s_TICK'";
+}
 
 include "inc.head.php";
 include "inc.menutop.php";
@@ -60,6 +65,17 @@ include "inc.menutop.php";
 		</div>
 		<!--End Page header-->
 		<div class="row <?php echo $clso;?>">
+				<div class="col-md-2"><div class="small text-white text-opacity-50 mb-2"><b>FROM</b></div>
+					<div class="input-group">
+					<input type="text" id="df" placeholder="" class="form-control datepicker">
+					<div class="input-group-append"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
+				</div></div>
+				<div class="col-md-2"><div class="small text-white text-opacity-50 mb-2"><b>TO</b></div>
+					<div class="input-group">
+					<input type="text" id="dt" placeholder="" class="form-control datepicker">
+					<div class="input-group-append"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
+				</div></div>
+				
 				<div class="col-xl-2">
 					<div class="small text-white text-opacity-50 mb-2"><b>STATUS</b></div>
 					<select id="fstts" class="form-select">
@@ -194,7 +210,7 @@ include "inc.menutop.php";
 			</div>
 			<div class="form-group col-md-6 hideme">
 				<label>Status</label>
-				<select class="form-control " id="stts" name="stts">
+				<select class="form-control " id="stts" name="stts" onchange="notip();">
 					<option value="">-</option>
 					<?php echo options($o_tikstts)?>
 				</select>
@@ -203,11 +219,18 @@ include "inc.menutop.php";
 		  <div class="row mb-3 hideme">
 			<div class="form-group col-md-6">
 				<label>Group</label>
-				<select class="form-control " id="grp" name="grp">
+				<select class="form-control " id="grp" name="grp" onchange="notip();">
 					<option value="">-</option>
 					<?php echo options($o_tikgrp)?>
 				</select>
 			</div>
+			<div class="form-group col-md-6 notipme hidden">
+				<label>Send notification to</label>
+				<select class="form-control " id="usr" name="usr">
+					<option value="">-</option>
+				</select>
+			</div>
+			
 		  </div>
 		  <hr />
 		  <div class="row mb-3 hideme">
@@ -373,7 +396,7 @@ $(document).ready(function(){
 			//dttbl_buttons(); //for ajax call
 		}
 	});
-	mytblx = $("#mytblx").DataTable({
+	/*mytblx = $("#mytblx").DataTable({
 		serverSide: true,
 		processing: true,
 		searching: false,
@@ -393,7 +416,7 @@ $(document).ready(function(){
 		initComplete: function(){
 			//dttbl_buttons(); //for ajax call
 		}
-	});
+	});*/
 	//dttbl_buttons(); //remark this if ajax dttbl call
 	jvalidate = $("#myf").validate({
     ignore: ":hidden:not(.selectpicker)",
@@ -415,6 +438,13 @@ $(document).ready(function(){
 		},
 		"dtm" : {
 			required : true
+		},
+		"usr" : {
+			required : function(){
+				if($("#stts").val()=="pending") return true;
+				
+				return false;
+			}
 		},
 		"grp" : {
 			required : function(){
@@ -473,6 +503,18 @@ function panci(){
 //		height: 300,
 	  },
 	);
+}
+
+function notip(){
+	var s=$("#stts").val();
+	var g=$("#grp").val();
+	if(s=='pending'){
+		$(".notipme").show();
+		getCombo("dataget"+ext,'ticknot',g,"#usr");
+	}else{
+		$(".notipme").hide();
+		$("#usr").find('option').remove();
+	}
 }
 </script>
 

@@ -10,7 +10,7 @@ $x=get('x');
 
 if($user!=''&&$passwd!=''){
 	$conn=connect();
-	$sql="select uid, uname, ulvl, ugrp, uprof, uavatar from core_user where (md5(uid)=md5('$user')) and upwd=MD5('$passwd')";
+	$sql="select uid, uname, ulvl, ugrp, uprof, uavatar, uloc, utick from core_user where (md5(uid)=md5('$user')) and upwd=MD5('$passwd')";
 	$rs = exec_qry($conn,$sql);
 	if ($row = fetch_row($rs)) {
 		session_start();
@@ -21,6 +21,8 @@ if($user!=''&&$passwd!=''){
 		$_SESSION['s_GRP'] = $row[3];
 		$_SESSION['s_PROF'] = $row[4];
 		$_SESSION['s_AVATAR'] = $row[5];
+		$_SESSION['s_LOC'] = $row[6];
+		$_SESSION['s_TICK'] = $row[7];
 		
 		$loggedin=true;
 	}else{

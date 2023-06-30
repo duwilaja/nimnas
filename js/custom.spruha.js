@@ -372,3 +372,41 @@ function getData(q,lnk='dataget',id=0,html=true,selector="."){
 		}
 	});
 }
+
+function getCombo(u,q,id,tgt,dv='',blnk=''){
+	var url=u;
+	var mtd='POST';
+	var frmdata={q:q,id:id};
+	
+	//alert(frmdata);
+	
+	$.ajax({
+		type: mtd,
+		url: url,
+		data: frmdata,
+		success: function(data){
+			var json=JSON.parse(data);
+			//console.log(json);
+			$(tgt).find('option').remove();
+			var s='<option value="">'+blnk+'</option>';
+			for(i=0;i<json['msgs'].length;i++){
+				v="";t="";
+				$.each(json['msgs'][i],function (key,val){
+					if(key=='v'){v=val;}
+					if(key=='t'){t=val;}
+				});
+				if(v==dv){
+					s+='<option selected value="'+v+'">'+t+'</option>';
+				}else{
+					s+='<option value="'+v+'">'+t+'</option>';
+				}
+			}
+			//log(s);
+			$(tgt).append(s);
+			if($(tgt).hasClass("select2")) $(tgt).trigger("change");
+		},
+		error: function(xhr){
+			console.log("Error:"+xhr);
+		}
+	});
+}

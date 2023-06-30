@@ -7,6 +7,8 @@ $s_LVL = isset($_SESSION['s_LVL'])? $_SESSION['s_LVL'] : "";
 $s_GRP = isset($_SESSION['s_GRP'])? $_SESSION['s_GRP'] : "";
 $s_AVATAR = isset($_SESSION['s_AVATAR'])? $_SESSION['s_AVATAR'] : "";
 $s_PROF = isset($_SESSION['s_PROF'])? $_SESSION['s_PROF'] : "";
+$s_LOC = isset($_SESSION['s_LOC'])? $_SESSION['s_LOC'] : "";
+$s_TICK = isset($_SESSION['s_TICK'])? $_SESSION['s_TICK'] : "";
 
 $redir=isset($redirect)?$redirect:true;
 $dttbl=isset($datatable)?$datatable:false;
