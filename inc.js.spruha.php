@@ -18,6 +18,9 @@
 		<!-- Sticky js -->
 		<script src="spruha/assets/js/sticky.js"></script>
 
+		<!-- Owl Carousel js-->
+		<script src="spruha/assets/plugins/owl-carousel/owl.carousel.js"></script>
+		 
 		<!-- Custom js -->
 		<script src="spruha/assets/js/custom.js"></script>
 	<!-- ================== END spruha core-js ================== -->
@@ -54,6 +57,8 @@
     <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
     <script src="vendor/jquery-fancybox/jquery.fancybox.min.js"></script>
     <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="vendor/morris/raphael.min.js"></script>
+    <script src="vendor/morris/morris.min.js"></script>
     
 	<script src="vendor/leaflet/leaflet.js"></script>
     <script src="vendor/leaflet/leaflet.markercluster.js"></script>
