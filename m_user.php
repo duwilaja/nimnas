@@ -208,9 +208,6 @@ $(document).ready(function(){
 		"ulvl" : {
 			required : true
 		},
-		"utick" : {
-			required : true
-		},
 		"pwd" : {
 			required : function(){
 				if($("#rowid").val()=="0"){
