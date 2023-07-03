@@ -51,6 +51,9 @@ switch($q){
 		$sql="select lat,lng,concat(l.name,'\n',l.addr) as name,locid,count(a.stts) as cnt,a.stts from $tname where $where group by $grpby"; break;
 	case 'tickcat': $sql="select cat,count(cat) as tot from tick_ets  group by cat"; break;
 	case 'ticksvc': $sql="select svc,count(svc) as tot from tick_ets group by svc"; break;
+	case 'tickstt': $sql="select DATE_FORMAT(dtm,'%Y-%m') as bul,DATE_FORMAT(dtm,'%b-%Y') as bln,stts,count(stts) as tot from tick_ets 
+				where stts in ('progress','pending','closed') and 
+				dtm >= DATE_SUB(DATE_ADD(LAST_DAY(NOW()), INTERVAL 1 DAY), INTERVAL 1 YEAR) group by bul,bln,stts order by bul"; break;
 	
 	case 'profile': $sql="select * from core_user where uid='$id'"; break;
 	

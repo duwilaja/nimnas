@@ -20,6 +20,8 @@
 		<link href="spruha/assets/plugins/web-fonts/icons.css" rel="stylesheet"/>
 		<link href="spruha/assets/plugins/web-fonts/font-awesome/font-awesome.min.css" rel="stylesheet">
 		<link href="spruha/assets/plugins/web-fonts/plugin.css" rel="stylesheet"/>
+		<!-- Owl-carousel css-->
+		<link href="spruha/assets/plugins/owl-carousel/owl.carousel.css" rel="stylesheet" />
 
 		<!-- Style css-->
 		<link href="spruha/assets/css/style.css" rel="stylesheet">
