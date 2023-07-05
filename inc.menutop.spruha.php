@@ -61,7 +61,7 @@
 						<ul class="nav-sub">
 							<li class="side-menu-label1"><a href="javascript:void(0)">Asset</a></li>
 							<li class="nav-sub-item"><a class="nav-sub-link ass" href="ass_hom<?php echo $ext?>">Dashboard</a></li>
-							<li class="nav-sub-item"><a class="nav-sub-link asetloc" href="ass_mapsx<?php echo $ext?>">Map View</a></li>
+							<li class="nav-sub-item hidden"><a class="nav-sub-link asetloc" href="ass_mapsx<?php echo $ext?>">Map View</a></li>
 						</ul>
 					</li>
 					<?php }?>

@@ -28,108 +28,60 @@ include "inc.menutop.php";
 			</div>
 			<!--End Page header-->
 			
-		
-			<!-- ROW OPEN -->
-			<div class="row">
-				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-2">
-					<div class="card">
+			<!-- Row -->
+			<div class="row row-sm">
+				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+					<div class="card custom-card">
 						<div class="card-body">
-							<div class="card-order">
-								<div class="row">
-									<div class="col">
-										<div class="">Total</div>
-										<div class="h3 mt-2 mb-2 xtot">0 <span class="text-success fs-13 ml-2"></span></div>
-									</div>
-									<div class="feature hidden">
-										<a href="n_location<?php echo $ext?>">
-											<i class="si si-screen-desktop primary feature-icon bg-secondary"></i>
-										</a>
-									</div>
-								</div>
-								<!--
-								<p class="mb-0 text-muted">Monthly users</p>
-								-->
+							<div class="card-order ">
+								<label class="main-content-label mb-3 pt-1">Total Asset</label>
+								<h2 class="text-end card-item-icon card-icon">
+								<i class="mdi mdi-account-multiple icon-size float-start text-primary"></i><span class="font-weight-bold xtot">0</span></h2>
+								<!--p class="mb-0 mt-4 text-muted">Monthly users<span class="float-end">50%</span></p-->
 							</div>
 						</div>
 					</div>
-				</div><!-- COL END -->
-				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-2">
-					<div class="card ">
+				</div>
+				<!-- COL END -->
+				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+					<div class="card custom-card">
 						<div class="card-body">
 							<div class="card-order">
-								<div class="row">
-									<div class="col">
-										<div class="">Active</div>
-										<div class="h3 mt-2 mb-2 xactive">0 <span class="text-success fs-13 ml-2"></span></div>
-									</div>
-									<div class="feature hidden">
-										<a href="n_location<?php echo $ext?>?status=1">
-											<i class="si si-arrow-up-circle success feature-icon bg-success"></i>
-										</a>
-									</div>
-								</div>
+								<label class="main-content-label mb-3 pt-1">Active</label>
+								<h2 class="text-end"><i class="mdi mdi-cube icon-size float-start text-primary"></i><span class="font-weight-bold xactive">0</span></h2>
+								<!--p class="mb-0 mt-4 text-muted">Monthly Income<span class="float-end">$7,893</span></p-->
 							</div>
 						</div>
 					</div>
-				</div><!-- COL END -->
-				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-2">
-					<div class="card">
+				</div>
+				<!-- COL END -->
+				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+					<div class="card custom-card">
 						<div class="card-body">
 							<div class="card-order">
-								<div class="row">
-									<div class="col">
-										<div class="">Standby</div>
-										<div class="h3 mt-2 mb-2 xstandby">0 <span class="text-success fs-13 ml-2"></span></div>
-									</div>
-									<div class="feature hidden">
-										<a href="n_location<?php echo $ext?>?status=0">
-											<i class="si si-arrow-down-circle danger feature-icon bg-danger"></i>
-										</a>
-									</div>
-								</div>
+								<label class="main-content-label mb-3 pt-1">Inactive</label>
+								<h2 class="text-end"><i class="icon-size mdi mdi-poll-box   float-start text-primary"></i><span class="font-weight-bold xinactive"></span></h2>
+								<!--p class="mb-0 mt-4 text-muted">Monthly Profit<span class="float-end">$4,678</span></p-->
 							</div>
 						</div>
 					</div>
-				</div><!-- COL END -->
-				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-2">
-					<div class="card">
+				</div>
+				<!-- COL END -->
+				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+					<div class="card custom-card">
 						<div class="card-body">
 							<div class="card-order">
-								<div class="row">
-									<div class="col">
-										<div class="">Inactive</div>
-										<div class="h3 mt-2 mb-2 xinactive">0 <span class="text-success fs-13 ml-2"></span></div>
-									</div>
-									<div class="feature hidden">
-										<a href="n_location<?php echo $ext?>?status=0">
-											<i class="si si-arrow-down-circle danger feature-icon bg-danger"></i>
-										</a>
-									</div>
-								</div>
+								<label class="main-content-label mb-3 pt-1">Standby</label>
+								<h2 class="text-end"><i class="mdi mdi-cart icon-size float-start text-primary"></i><span class="font-weight-bold xstandby">0</span></h2>
+								<!--p class="mb-0 mt-4 text-muted">Monthly Sales<span class="float-end">3,756</span></p-->
 							</div>
 						</div>
 					</div>
-				</div><!-- COL END -->
-				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
-					<div class="card ">
-						<div class="card-body">
-							<div class="card-order">
-								<div class="row">
-									<div class="col">
-										<div id="tgl" class="">January 1, 1970</div>
-										<div class="h3 mt-2 mb-2"><b id="jam">00:00:00</b><span id="zone" class="text-success fs-13 ml-2">UTC</span></div>
-									</div>
-									<div class="feature">
-										<i class="si si-clock secondary feature-icon bg-primary"></i>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div><!-- COL END -->
+				</div>
+				<!-- COL END -->
 			</div>
 			<!-- End Row -->
-			<br />
+		
 			<div class="row">
 				<!-- BEGIN col-4 -->
 				<div class="col-xl-6">
@@ -180,7 +132,7 @@ include "inc.menutop.php";
 				</div>
 				<!-- END col-4 -->
 			</div>
-			<div class="row">
+			<div class="row hidden">
 				<!-- BEGIN col-4 -->
 				<div class="col-xl-4">
 					<!-- BEGIN card -->
@@ -283,8 +235,18 @@ include "inc.menutop.php";
 				</div>
 				<!-- END col-4 -->
 			</div>
+			<div class="row">
+				<div class="col-12">
+					<div class="card">
+						<div class="card-body">
+							<div id="map" style="height:450px; z-index: 1;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
 			<br /><br />
-		
+			
+			
 		</div>
 	</div><!-- end app-content-->
 				
@@ -297,16 +259,16 @@ var mytbl1, mytbl2, mytbl3, mytbl4, mytbl5, mytbl6, mytbl7, mytbl8, mytbl9, barC
 
 $(document).ready(function(){
 	page_ready();
-	displayClock();
+	//displayClock();
 	gettot();
 	
-	mytbl1 = loadTable('#topold','<?php echo base64_encode("assname,loc,gr"); ?>','<?php echo base64_encode("ass_ets"); ?>','<?php echo base64_encode("");?>','<?php echo base64_encode("");?>',[[ 2, "asc" ]],'-');
-	mytbl2 = loadTable('#toppro','<?php echo base64_encode("brand,count(brand) as cnt"); ?>','<?php echo base64_encode("ass_ets"); ?>','<?php echo base64_encode("stts='inactive'");?>','<?php echo base64_encode("brand");?>',[[ 1, "desc" ]],'-');
-	mytbl3 = loadTable('#topwar','<?php echo base64_encode("assname,loc,warexp"); ?>','<?php echo base64_encode("ass_ets"); ?>','<?php echo base64_encode("");?>','<?php echo base64_encode("");?>',[[ 2, "asc" ]],'-');
+	//mytbl1 = loadTable('#topold','<?php echo base64_encode("assname,loc,gr"); ?>','<?php echo base64_encode("ass_ets"); ?>','<?php echo base64_encode("");?>','<?php echo base64_encode("");?>',[[ 2, "asc" ]],'-');
+	//mytbl2 = loadTable('#toppro','<?php echo base64_encode("brand,count(brand) as cnt"); ?>','<?php echo base64_encode("ass_ets"); ?>','<?php echo base64_encode("stts='inactive'");?>','<?php echo base64_encode("brand");?>',[[ 1, "desc" ]],'-');
+	//mytbl3 = loadTable('#topwar','<?php echo base64_encode("assname,loc,warexp"); ?>','<?php echo base64_encode("ass_ets"); ?>','<?php echo base64_encode("");?>','<?php echo base64_encode("");?>',[[ 2, "asc" ]],'-');
 	
 	//markers=null;
 	//getData('onoff','maps-onoff');
-	//widget_map();
+	widget_map();
 	getDataChart('asscat');
 	getDataChart('brasscat');
 	
@@ -314,18 +276,42 @@ $(document).ready(function(){
 function randomColor(){
 	return "#"+(Math.random().toString(16)+"000000").slice(2, 8).toUpperCase();
 }
+// to check the value is hexa or not
+const isValidHex = (hexValue) => /^#([A-Fa-f0-9]{3,4}){1,2}$/.test(hexValue)
+
+const getChunksFromString = (st, chunkSize) => st.match(new RegExp(`.{${chunkSize}}`, "g"))
+// convert hex value to 256
+const convertHexUnitTo256 = (hexStr) => parseInt(hexStr.repeat(2 / hexStr.length), 16)
+// get alpha value is equla to 1 if there was no value is asigned to alpha in function
+const getAlphafloat = (a, alpha) => {
+	if (typeof a !== "undefined") { return a / 255 }
+	if ((typeof alpha != "number") || alpha < 0 || alpha > 1) {
+		return 1
+	}
+	return alpha
+}
+// convertion of hex code to rgba code
+function hexToRgba(hexValue, alpha) {
+	if (!isValidHex(hexValue)) { return null }
+	const chunkSize = Math.floor((hexValue.length - 1) / 3)
+	const hexArr = getChunksFromString(hexValue.slice(1), chunkSize)
+	const [r, g, b, a] = hexArr.map(convertHexUnitTo256)
+	return `rgba(${r}, ${g}, ${b}, ${getAlphafloat(a, alpha)})`
+}
 function pieChart(databar){
 	var label=[], datas=[], colors=[];
+	var myVarVal="#6259ca";
 	//log(databar);
 	for(var i=0;i<databar.length;i++){
 		label.push(databar[i]['cat']);
 		datas.push(parseInt(databar[i]['tot']));
-		colors.push(randomColor());
+		//colors.push(randomColor());
+		colors.push(hexToRgba(myVarVal,(1-(i*0.1))));
 	}
 	
 	var ctx5 = document.getElementById('break-ass-class');
 	pieChart = new Chart(ctx5, {
-		type: 'pie',
+		type: 'doughnut',
 		data: {
 			labels: label,//['Total Visitor', 'New Visitor', 'Returning Visitor'],
 			datasets: [{
@@ -338,6 +324,7 @@ function pieChart(databar){
 		}
 	});
 }
+
 function getDataChart(q=''){
 	var datachart=null;
 	$.ajax({
@@ -364,6 +351,7 @@ function getDataChart(q=''){
 	});
 }
 function barChart(databar){
+	var myVarVal="#6259ca";
 	if(databar!=null){
 		var label=[], datas=[];
 		//log(databar);
@@ -381,8 +369,8 @@ function barChart(databar){
 				datasets: [{
 					label: 'Total',
 					data: datas,//[37,31,36,34,43,31],
-					backgroundColor: 'rgba('+ randomColor() +', .5)',
-					borderColor: randomColor(),
+					backgroundColor: hexToRgba(myVarVal,0.5),
+					//borderColor: randomColor(),
 					borderWidth: 1.5
 				}]
 			}
@@ -483,7 +471,7 @@ function get_loc(){
 	$.ajax({
 		type: 'POST',
 		url: 'dataget'+ext,
-		data: {q:'asetloc',id:$("#status").val()},
+		data: {q:'asetloc',id:''},
 		success: function(data){
 			var json = JSON.parse(data);
 			if(json['code']=='200'){
@@ -508,7 +496,7 @@ function draw_map(data){
 		for (var i = 0; i < data.length; i++) {
 			var a = data[i];
 			var title = a['name']+'\nTotal: '+a['cnt'];
-			var color = a['cnt']>0?"green":"red";
+			var color = a['cnt']>0?"green":"green";
 			var icon = L.AwesomeMarkers.icon({icon: 'server', prefix: 'fa', markerColor: color});
 			
 			if(isNaN(data[i]['lat'])||isNaN(data[i]['lng'])){
