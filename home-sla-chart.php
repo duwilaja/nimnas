@@ -40,12 +40,12 @@ disconnect($conn);
             datasets: [ {
 				label: 'Overall SLA Daily',
 				data: <?php echo json_encode(array_values($slas))?>,//[ 19,  43, 45, 60, 54, 41, 45, 26, 45, 21, 45, 64, 35, 65, 34, 34, 43, 46, 24, 23],
-				backgroundColor: gradientStroke,
+				//backgroundColor: gradientStroke,
 				borderColor: '#4a32d4',
-				pointBackgroundColor:'#fff',
+				/*pointBackgroundColor:'#fff',
 				pointHoverBackgroundColor:gradientStroke,
 				pointBorderColor :'#007adf',
-				pointHoverBorderColor :gradientStroke,
+				pointHoverBorderColor :gradientStroke,*/
 				pointBorderWidth :0,
 				pointRadius :0,
 				pointHoverRadius :0,
