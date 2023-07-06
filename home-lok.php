@@ -20,7 +20,7 @@ $lists=fetch_alla($rs);
 disconnect($conn);
 
 foreach($lists as $dat){
-	$val = ceil(intval($dat['cnt']/$tot*100)/5)*5;
+	$val = ceil(ceil($dat['cnt']/$tot*100)/5)*5;
 	?>
 		<div class="row mt-4">
 			<div class="col-6">
