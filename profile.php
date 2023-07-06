@@ -63,7 +63,7 @@ include "inc.menutop.php";
 											</div>
 											<div class="form-group col-md-6">
 												<label>Ticketing Group</label>
-												<input type="text" id="utick" name="utick" placeholder="..." class="form-control">
+												<input type="text" readonly id="utick" name="utick" placeholder="..." class="form-control">
 											</div>
 										  </div>
 										  <div class="row">

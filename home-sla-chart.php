@@ -42,10 +42,10 @@ disconnect($conn);
 				data: <?php echo json_encode(array_values($slas))?>,//[ 19,  43, 45, 60, 54, 41, 45, 26, 45, 21, 45, 64, 35, 65, 34, 34, 43, 46, 24, 23],
 				//backgroundColor: gradientStroke,
 				borderColor: '#4a32d4',
-				/*pointBackgroundColor:'#fff',
+				pointBackgroundColor:'#fff',
 				pointHoverBackgroundColor:gradientStroke,
 				pointBorderColor :'#007adf',
-				pointHoverBorderColor :gradientStroke,*/
+				pointHoverBorderColor :gradientStroke,
 				pointBorderWidth :0,
 				pointRadius :0,
 				pointHoverRadius :0,
@@ -74,43 +74,6 @@ disconnect($conn);
 				labels: {
 					usePointStyle: false,
 				},
-			},
-			scales: {
-				xAxes: [{
-					
-					display: true,
-					gridLines: {
-						display: false,
-						drawBorder: false
-					},
-					ticks: {
-                            fontColor: '#b0bac9',
-                            autoSkip: true,
-                            maxTicksLimit: 9,
-                            maxRotation: 0,
-                            labelOffset: 10
-                        },
-					scaleLabel: {
-						display: false,
-						labelString: 'Week',
-						fontColor: 'transparent'
-					}
-				}],
-				yAxes: [{
-					ticks: {
-						fontColor: "#b0bac9",
-					 },
-					display: true,
-					gridLines: {
-						display: false,
-						drawBorder: false
-					},
-					scaleLabel: {
-						display: false,
-						labelString: 'sales',
-						fontColor: 'transparent'
-					}
-				}]
 			},
 			title: {
 				display: false,
