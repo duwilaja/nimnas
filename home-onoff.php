@@ -63,8 +63,8 @@ $off_class=compare_class($all,$off,'<span class="text-success fs-13 ml-2">(','<s
 $out=array(
 "tdev"=>$all,
 "dtot"=>'<b>'.$all.'</b>',//.$all_class."100%)</span>",//$all_perc, 
-"don"=>'<b>'.$on.'</b>'.$on_class.(round($on/$all*100,2))."%)</span>",//$on_class.//$on_perc, 
-"doff"=>'<b>'.$off.'</b>'.$off_class.(round($off/$all*100,2))."%)</span>"//$off_perc
+"don"=>'<b>'.$on.'</b>',//.$on_class.(round($on/$all*100,2))."%)</span>",//$on_class.//$on_perc, 
+"doff"=>'<b>'.$off.'</b>' //.$off_class.(round($off/$all*100,2))."%)</span>"//$off_perc
 );
 
 $msgs = array($out);
