@@ -20,7 +20,7 @@ $lists=fetch_alla($rs);
 disconnect($conn);
 
 foreach($lists as $dat){
-	$val = intval($dat['cnt']/$tot*100);
+	$val = round(intval($dat['cnt']/$tot*100)/5)*5;
 	?>
 		<div class="row mt-4">
 			<div class="col-6">
