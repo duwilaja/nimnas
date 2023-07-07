@@ -31,7 +31,7 @@
 							<li class="nav-sub-item"><a class="nav-sub-link ncategory" href="n_category<?php echo $ext?>">Category View</a></li>
 							<li class="nav-sub-item"><a class="nav-sub-link org" href="org<?php echo $ext?>">Business View</a></li>
 							<li class="nav-sub-item"><a class="nav-sub-link topo" href="topo<?php echo $ext?>">Topology View</a></li>
-							<li class="nav-sub-item"><a class="nav-sub-link maps" href="maps<?php echo $ext?>">Map View</a></li>
+							<li class="nav-sub-item hidden"><a class="nav-sub-link maps" href="maps<?php echo $ext?>">Map View</a></li>
 						</ul>
 					</li>
 					<?php }?>
