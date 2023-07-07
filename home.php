@@ -212,6 +212,15 @@ include "inc.menutop.php";
 			</div>
 			<!--End row-->
 	
+			<div class="row">
+				<div class="col-12">
+					<div class="card">
+						<div class="card-body">
+							<div id="map" style="height:450px; z-index: 1;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
 		
 			<!--Row-->
 			<div class="row">
@@ -562,7 +571,7 @@ include "inc.js.php";
 <script>
 $(document).ready(function(){
 	page_ready();
-	displayClock();
+	//displayClock();
 	
 	getData('home1','home-onoff');
 	get_content("home-lok<?php echo $ext?>",{},".ldr-propinsi","#lokation");
@@ -571,6 +580,8 @@ $(document).ready(function(){
 	//getData('sla','home-sla');
 	get_content("home-sla-chart<?php echo $ext?>",{},".ldr-sla","#isi-sla");
 	get_content("home-down<?php echo $ext?>",{},".ldr-ketam","#isi-ketam");
+	
+	widget_map();
 	
 });
 
@@ -587,6 +598,83 @@ function displayClock(){
 	
 	
 	setTimeout(displayClock,1000);
+}
+
+markerClickFunction = function(id) {
+		return function(e) {
+			e.cancelBubble = true;
+		e.returnValue = false;
+		if (e.stopPropagation) {
+		  e.stopPropagation();
+		  e.preventDefault();
+		}
+		//if(id=="0"){
+			location.href="n_device"+ext+"?loc="+id;
+		//}else{
+		//	location.href="device.php?id="+id;
+		//	}
+	}}
+
+var map;
+var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var err='';
+
+function widget_map(){
+	map = L.map('map').setView([-2, 118], 5);
+
+	L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+	}).addTo(map);
+	
+	//L.geoJSON(indonesia).addTo(map);
+	get_loc();
+}
+
+function get_loc(){
+	$.ajax({
+		type: 'POST',
+		url: 'dataget'+ext,
+		data: {q:'map',id:0},
+		success: function(data){
+			var json = JSON.parse(data);
+			if(json['code']=='200'){
+				draw_map(json['msgs']);
+			}else{
+				log(json['msgs']);
+			}
+		},
+		error: function(xhr){
+			log('Please check your connection'+xhr);
+		}
+	});
+}
+
+function draw_map(data){
+	var markers = L.markerClusterGroup();
+		
+		for (var i = 0; i < data.length; i++) {
+			var a = data[i];
+			var title = a['name']+'\nTotal: '+a['cnt']+'\nON: '+a['onoff']+'\nOFF: '+a['off'];;
+			var color = a['onoff']>0?"green":"red";
+			var icon = L.AwesomeMarkers.icon({icon: 'server', prefix: 'fa', markerColor: color});
+			
+			if(isNaN(data[i]['lat'])||isNaN(data[i]['lng'])){
+				err+=data[i]['name']+'/';
+			}else{
+				var marker = L.marker(new L.LatLng(a['lat'], a['lng']), { title: title, icon: icon });
+				
+				var fn=markerClickFunction(a['locid']);
+				marker.on('click', fn);
+				
+				markers.addLayer(marker);
+			}
+		}
+
+		map.addLayer(markers);
+		
+		if(err!='') {
+			alert('Error: '+err);
+		}
 }
 
 </script>
