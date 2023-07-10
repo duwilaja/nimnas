@@ -160,7 +160,7 @@ include "inc.menutop.php";
 <input type="hidden" name="rowid" id="rowid" value="0">
 <input type="hidden" name="mnu" value="<?php echo $menu?>">
 <input type="hidden" id="sv" name="sv" />
-<input type="hidden" name="cols" value="dtm,loc,h,d,cat,svc,stts,grp,notes" />
+<input type="hidden" name="cols" value="dtm,loc,h,d,cat,svc,stts,grp,notes,sn" />
 <input type="hidden" name="tname" value="tick_ets" />
 <input type="hidden" name="created" id="created" value="" />
 		
@@ -218,6 +218,16 @@ include "inc.menutop.php";
 		  </div>
 		  <div class="row mb-3 hideme">
 			<div class="form-group col-md-6">
+				<label>Created By</label>
+				<input type="text" readonly id="creby" name="creby" placeholder="auto" class="form-control">
+			</div>
+			<div class="form-group col-md-6">
+				<label>SN</label>
+				<input type="text" id="sn" name="sn" placeholder="..." class="form-control">
+			</div>
+		  </div>
+		  <div class="row mb-3 hideme">
+			<div class="form-group col-md-6">
 				<label>Group</label>
 				<select class="form-control " id="grp" name="grp" onchange="notip();">
 					<option value="">-</option>
@@ -230,7 +240,6 @@ include "inc.menutop.php";
 					<option value="">-</option>
 				</select>
 			</div>
-			
 		  </div>
 		  <hr />
 		  <div class="row mb-3 hideme">
@@ -476,6 +485,10 @@ $(document).ready(function(){
 
 function reloadtbl(){
 	mytbl.ajax.reload();
+}
+
+function openformcallback(q,json){
+	notip();
 }
 
 function togglehide(id){
