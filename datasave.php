@@ -200,7 +200,14 @@ if($mn=='mascat'){
 	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
 }
 if($mn=='mass'){
-	$res=crud($conn);
+	$upload=upload_file("imgx","assimg/");
+	$img1=$upload[0]?$upload[1]:"";
+	$img1=$img1==""?post("img1"):$img1;
+	$upload=upload_file("imgy","assimg/");
+	$img2=$upload[0]?$upload[1]:"";
+	$img2=$img2==""?post("img2"):$img2;
+	
+	$res=crud($conn,"img1,img2","'$img1','$img2'");
 	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
 }
 if($mn=='mass_batch'){

@@ -16,7 +16,7 @@ include "inc.head.php";
 include "inc.db.php";
 
 $conn=connect();
-$sql="select DATE_FORMAT(dtm,'%a, %e %b') as d,DATE_FORMAT(dtm,'%H:%i') as t,uname,uavatar,notes,stts 
+$sql="select DATE_FORMAT(dtm,'%a, %e %b') as d,DATE_FORMAT(dtm,'%H:%i') as t,uname,uavatar,notes,stts,attc 
 from tick_note n left join core_user u on u.uid=n.updby where ticketno='$tick' order by dtm desc";
 $recs=fetch_alla(exec_qry($conn,$sql));
 disconnect($conn);
@@ -51,7 +51,8 @@ disconnect($conn);
 										<div class="media-body ms-3 d-flex"> 
 											<div class=""> 
 												<p class="tx-14 text-dark mb-0 tx-semibold"><?php echo $rec['uname']?></p>
-												<p class="mb-0 tx-13 text-muted"><?php echo $rec['notes']?></p>
+												<p class="mb-0 tx-13 text-muted"><?php echo $rec['notes']?></p><br />
+												<p><?php if($rec['attc']<>'') echo '<img src="tickattc/'.$rec['attc'].'" />';?></p>
 											</div> 
 											<div class="notify-time"> <p class="mb-0 text-muted tx-11"><?php echo $rec['stts']?></p></div> 
 										</div> 

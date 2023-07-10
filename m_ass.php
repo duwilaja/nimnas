@@ -57,7 +57,7 @@ include "inc.menutop.php";
 						<div class="card-title"><?php echo $card_title?></div>
 						<div class="card-options ">
 							<a href="#" onclick="$('#datas').val('');" data-toggle="modal" data-target="#modal_batch" title="Batch" class=""><i class="fe fe-upload"></i></a>
-							<a href="#" onclick="openForm(0);" data-toggle="modal" data-target="#myModal" title="Add" class=""><i class="fe fe-plus"></i></a>
+							<a href="#" onclick="openForm(0);togglehide(0);" data-toggle="modal" data-target="#myModal" title="Add" class=""><i class="fe fe-plus"></i></a>
 							<a href="#" title="Expand/Collapse" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
 							<!--a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a-->
 						</div>
@@ -172,11 +172,25 @@ include "inc.menutop.php";
 				</div>
 			</div>
 		  </div>
-		  
+		  <div class="row mb-3">
+			<div class="form-group col-md-6">
+				<label>Image 1</label>
+				<input type="file" id="imgx" name="imgx" placeholder="..." class="form-control">
+			</div>
+			<div class="form-group col-md-6">
+				<label>Image 2</label>
+				<input type="file" id="imgy" name="imgy" placeholder="..." class="form-control">
+			</div>
+			<input type="hidden" id="img1" name="img1" value="" />
+			<input type="hidden" id="img2" name="img2" value="" />
+			
+		  </div>
 		</form>
 	  </div>
 	  <div class="modal-footer">
-	    <button type="button" class="btn btn-danger" id="bdel"  onclick="confirmDelete();">Delete</button>
+	    <button type="button" onclick="panci();" class="btn btn-warning hideme">Preview</button>
+	    
+		<button type="button" class="btn btn-danger" id="bdel"  onclick="confirmDelete();">Delete</button>
 		<button type="button" class="btn btn-success" onclick="saveData();">Save</button>
 		<button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
 		
@@ -279,6 +293,40 @@ $(document).ready(function(){
 
 function reloadtbl(){
 	mytbl.ajax.reload();
+}
+
+function openformcallback(q,json){
+	togglehide($("#rowid").val());
+}
+function togglehide(id){
+	if(id==0){
+		$(".hideme").hide();
+	}else{
+		$(".hideme").show();
+	}
+}
+
+function panci(){
+	$.fancybox.open(
+	  {
+		src: "assvw"+ext+'?id='+$("#assid").val(),
+		type: "iframe",
+		preload: false,
+//		width: 600,
+//		height: 300,
+	  },
+	);
+}
+function pancix(tno){
+	$.fancybox.open(
+	  {
+		src: "tickhis"+ext+'?id='+tno,
+		type: "iframe",
+		preload: false,
+//		width: 600,
+//		height: 300,
+	  },
+	);
 }
 </script>
 
