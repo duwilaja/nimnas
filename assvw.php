@@ -18,8 +18,10 @@ include "inc.db.php";
 $conn=connect();
 $sql="select * from ass_ets where assid='$ass'";
 $recs=fetch_alla(exec_qry($conn,$sql));
-$sql="select * from ass_ets where assid='$ass'";
-//$recs=fetch_alla(exec_qry($conn,$sql));
+if(count($recs)<1){ disconnect($conn); header("Location: error$ext?m=No data found."); }
+
+$sql="select ticketno,stts from tick_ets where sn='".$recs[0]['sn']."' order by dtm desc";
+$hist=fetch_alla(exec_qry($conn,$sql));
 disconnect($conn);
 ?>
 
@@ -134,8 +136,18 @@ disconnect($conn);
 									</div>
 								</div>
 							</div>
+							<div class="col-xl-8 col-lg-12 col-md-12">
+								<div class="card custom-card overflow-hidden">
+									<div class="card-body px-4 pt-4">
+									<?php for($i=0;$i<count($hist);$i++){?>
+										<button class="btn btn-ripple btn-primary" onclick="panci('<?php echo $hist[$i]['ticketno']?>');"><?php echo $hist[$i]['ticketno']?>
+										<span class="badge bg-dark"><?php echo $hist[$i]['stts']?></span></button>&nbsp;
+									<?php }?>
+									</div>
+								</div>
+							</div>
 						</div>
-					<!-- End Row -->
+						<!-- End Row -->
 						
 					</div>
 				</div><!-- end app-content-->
@@ -150,6 +162,19 @@ include "inc.js.php";
 $(document).ready(function(){
 	page_ready();
 })
+
+function panci(tno){
+	$.fancybox.open(
+	  {
+		src: "tickhis"+ext+'?id='+tno,
+		type: "iframe",
+		preload: false,
+//		width: 600,
+//		height: 300,
+	  },
+	);
+}
+
 </script>
 
   </body>

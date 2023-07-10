@@ -188,7 +188,7 @@ include "inc.menutop.php";
 		</form>
 	  </div>
 	  <div class="modal-footer">
-	    <button type="button" onclick="panci();" class="btn btn-warning hideme">Preview</button>
+	    <button type="button" onclick="panci();" class="btn btn-warning hideme">History</button>
 	    
 		<button type="button" class="btn btn-danger" id="bdel"  onclick="confirmDelete();">Delete</button>
 		<button type="button" class="btn btn-success" onclick="saveData();">Save</button>
@@ -310,17 +310,6 @@ function panci(){
 	$.fancybox.open(
 	  {
 		src: "assvw"+ext+'?id='+$("#assid").val(),
-		type: "iframe",
-		preload: false,
-//		width: 600,
-//		height: 300,
-	  },
-	);
-}
-function pancix(tno){
-	$.fancybox.open(
-	  {
-		src: "tickhis"+ext+'?id='+tno,
 		type: "iframe",
 		preload: false,
 //		width: 600,
