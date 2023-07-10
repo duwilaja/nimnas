@@ -139,9 +139,15 @@ disconnect($conn);
 							<div class="col-xl-8 col-lg-12 col-md-12">
 								<div class="card custom-card overflow-hidden">
 									<div class="card-body px-4 pt-4">
-									<?php for($i=0;$i<count($hist);$i++){?>
+									<h5 class="mb-3">Ticket History</h5>
+									<?php for($i=0;$i<count($hist);$i++){
+										$stts="bg-warning";
+										if($hist[$i]['stts']=='pending') $stts='bg-danger';
+										if($hist[$i]['stts']=='closed') $stts='bg-dark';
+										if($hist[$i]['stts']=='solvd') $stts='bg-success';
+										?>
 										<button class="btn btn-ripple btn-primary" onclick="panci('<?php echo $hist[$i]['ticketno']?>');"><?php echo $hist[$i]['ticketno']?>
-										<span class="badge bg-dark"><?php echo $hist[$i]['stts']?></span></button>&nbsp;
+										<span class="badge <?php echo $stts?>"><?php echo $hist[$i]['stts']?></span></button>&nbsp;
 									<?php }?>
 									</div>
 								</div>
