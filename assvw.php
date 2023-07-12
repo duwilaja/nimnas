@@ -144,7 +144,7 @@ disconnect($conn);
 										$stts="bg-warning";
 										if($hist[$i]['stts']=='pending') $stts='bg-danger';
 										if($hist[$i]['stts']=='closed') $stts='bg-dark';
-										if($hist[$i]['stts']=='solvd') $stts='bg-success';
+										if($hist[$i]['stts']=='solved') $stts='bg-success';
 										?>
 										<button class="btn btn-ripple btn-primary" onclick="panci('<?php echo $hist[$i]['ticketno']?>');"><?php echo $hist[$i]['ticketno']?>
 										<span class="badge <?php echo $stts?>"><?php echo $hist[$i]['stts']?></span></button>&nbsp;
