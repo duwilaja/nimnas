@@ -1,4 +1,6 @@
 <?php 
+$redirect=false;
+$cleartext=true;
 include "inc.common.php";
 include "inc.session.php";
 
