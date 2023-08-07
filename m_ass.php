@@ -249,6 +249,11 @@ $tname="ass_ets a left join ass_brand b on brid=brand left join ass_cat c on cat
 $cols="assid,assname,brname,catname,name,warexp,a.rowid";
 $csrc="assname";
 
+$where="";
+$loc=get("loc");
+if($loc!=""){
+	$where = "locid='$loc'";
+}
 ?>
 
 <script>
@@ -267,6 +272,7 @@ $(document).ready(function(){
 				d.cols= '<?php echo base64_encode($cols); ?>',
 				d.tname= '<?php echo base64_encode($tname); ?>',
 				d.csrc= '<?php echo base64_encode($csrc); ?>',
+				d.where= '<?php echo base64_encode($where); ?>',
 				d.x= '<?php echo $menu?>';
 			}
 		},

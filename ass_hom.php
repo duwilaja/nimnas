@@ -504,8 +504,8 @@ function draw_map(data){
 			}else{
 				var marker = L.marker(new L.LatLng(a['lat'], a['lng']), { title: title, icon: icon });
 				
-				//var fn=markerClickFunction(a['locid']);
-				//marker.on('click', fn);
+				var fn=markerClickFunction(a['locid']);
+				marker.on('click', fn);
 				
 				markers.addLayer(marker);
 			}
@@ -517,6 +517,21 @@ function draw_map(data){
 			alert('Error: '+err);
 		}
 }
+
+markerClickFunction = function(id,s) {
+		return function(e) {
+			e.cancelBubble = true;
+		e.returnValue = false;
+		if (e.stopPropagation) {
+		  e.stopPropagation();
+		  e.preventDefault();
+		}
+		//if(id=="0"){
+			location.href="m_ass"+ext+"?loc="+id;
+		//}else{
+		//	location.href="device.php?id="+id;
+		//	}
+	}}
 
 </script>
 
