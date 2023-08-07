@@ -43,6 +43,17 @@ if($s_TICK!=''){
 	$where.= " AND grp='$s_TICK'";
 }
 
+$loc=get("loc");
+$s=get("s");
+if($loc!=''){
+	$where.= " AND loc='$loc'";
+	$clso="hidden";
+}
+if($s!=''){
+	$where.= " AND stts='$s'";
+	$clso="hidden";
+}
+
 include "inc.head.php";
 include "inc.menutop.php";
 
