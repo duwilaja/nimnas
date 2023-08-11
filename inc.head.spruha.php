@@ -57,11 +57,30 @@
 		.text-whitex{
 			color: #aaa;
 		}
+		.notification::before{
+			background: var(--primary-transparentcolor);
+		}
+		
+		.newx{
+			color: var(--primary);
+		}
+		.progressx{
+			color: var(--success);
+		}
+		.pendingx{
+			color: var(--danger);
+		}
+		.solvedx{
+			color: var(--warning);
+		}
+		.closedx{
+			color: var(--secondary);
+		}
 		</style>
 
 	</head>
 
-	<body class="ltr main-body leftmenu dark-theme">
+	<body class="ltr main-body leftmenu">
 
 		<!-- Loader -->
 		<div id="global-loader">

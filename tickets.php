@@ -137,13 +137,13 @@ include "inc.menutop.php";
 								<thead>
 									<tr>
 										<th>Ticket#</th>
-										<th>Date/Time</th>
+										<th>Status</th>
 										<th>Location</th>
 										<th>Subject</th>
 										<th>Detail</th>
-										<th>Status</th>
 										<th>Category</th>
 										<th>Group</th>
+										<th>Date/Time</th>
 										
 									</tr>
 								</thead>
@@ -198,7 +198,7 @@ include "inc.menutop.php";
 		  <div class="row mb-3">
 			<div class="form-group col-md-6">
 				<label>Location</label>
-				<select class="form-control " id="loc" name="loc">
+				<select class="form-control " id="loc" name="loc" onchange="getsn(this.value);">
 					<option value="">-</option>
 					<?php echo options($o_loc)?>
 				</select>
@@ -221,7 +221,7 @@ include "inc.menutop.php";
 			</div>
 			<div class="form-group col-md-6 hideme">
 				<label>Status</label>
-				<select class="form-control " id="stts" name="stts" onchange="notip();">
+				<select class="form-control " id="stts" name="stts">
 					<option value="">-</option>
 					<?php echo options($o_tikstts)?>
 				</select>
@@ -233,24 +233,27 @@ include "inc.menutop.php";
 				<input type="text" readonly id="creby" name="creby" placeholder="auto" class="form-control">
 			</div>
 			<div class="form-group col-md-6">
-				<label>SN</label>
-				<input type="text" id="sn" name="sn" placeholder="..." class="form-control">
+				<label>Asset</label>
+				<select class="form-control " id="sn" name="sn">
+					<option value="">-</option>
+				</select>
+				<!--input type="text" id="sn" name="sn" placeholder="..." class="form-control"-->
 			</div>
 		  </div>
 		  <div class="row mb-3 hideme">
 			<div class="form-group col-md-6">
-				<label>Group</label>
-				<select class="form-control " id="grp" name="grp" onchange="notip();">
+				<label>Assigned To</label>
+				<select class="form-control " id="grp" name="grp">
 					<option value="">-</option>
 					<?php echo options($o_tikgrp)?>
 				</select>
 			</div>
-			<div class="form-group col-md-6 notipme hidden">
+			<!--div class="form-group col-md-6 notipme hidden">
 				<label>Send notification to</label>
 				<select class="form-control " id="usr" name="usr">
 					<option value="">-</option>
 				</select>
-			</div>
+			</div-->
 		  </div>
 		  <hr />
 		  <div class="row mb-3 hideme">
@@ -286,7 +289,9 @@ include "inc.menutop.php";
 	  <div class="modal-footer">
 		<!--button type="button" onclick="$('#modal_notes').modal('show');mytblx.ajax.reload();" class="btn btn-warning hideme">History</a-->
 	    <button type="button" onclick="panci();" class="btn btn-warning hideme">History</button>
+		<?php if($s_LVL==0){?>
 	    <button type="button" class="btn btn-danger" id="bdel"  onclick="confirmDelete();">Delete</button>
+		<?php }?>
 		<button type="button" class="btn btn-success" onclick="b4sef(); saveData();">Save</button>
 		<button type="button" data-dismiss="modal" class="btn btn-default" onclick="togglehide(1);">Close</button>
 		
@@ -376,9 +381,9 @@ include "inc.menutop.php";
 include "inc.foot.php";
 include "inc.js.php";
 
-$tname="tick_ets";
-$cols="ticketno,dtm,loc,h,d,stts,cat,grp,rowid";
-$csrc="ticketno,h";
+$tname="tick_ets t left join tick_cat c on t.cat=c.catid";
+$cols="ticketno,stts,loc,h,d,catname,grp,dtm,t.rowid";
+$csrc="ticketno,h,loc";
 
 ?>
 
@@ -498,8 +503,13 @@ function reloadtbl(){
 	mytbl.ajax.reload();
 }
 
-function openformcallback(q,json){
-	notip();
+function openformcallback(q,json=''){
+	var dv='';
+	var loc=$("#loc").val();
+	if(json!=''){
+		dv=json['msgs'][0]['sn'];
+	}
+	getsn(loc,dv);
 }
 
 function togglehide(id){
@@ -527,6 +537,10 @@ function panci(){
 //		height: 300,
 	  },
 	);
+}
+
+function getsn(loc,dv=''){
+	getCombo("dataget"+ext,'assno',loc,"#sn",dv);
 }
 
 function notip(){
