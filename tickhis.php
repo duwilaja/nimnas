@@ -21,7 +21,6 @@ from tick_note n left join core_user u on u.uid=n.updby where ticketno='$tick' o
 $recs=fetch_alla(exec_qry($conn,$sql));
 disconnect($conn);
 ?>
-
 				<div class="app-content page-body">
 					<div class="container">
 
@@ -41,20 +40,22 @@ disconnect($conn);
 						<?php foreach($recs as  $rec){?>
 							<li>
 								<div class="notification-time text-white"> <span class="date"><?php echo $rec['d']?></span> <span class="time"><?php echo $rec['t']?></span> </div> 
-								<div class="notification-icon"> </div> 
+								<div class="notification-icon"><a href="javascript:void(0);"></a></div> 
 								<div class="notification-time-date mb-2 d-block d-md-none text-white"> 
 									<span class="date"><?php echo $rec['d']?></span> <span class="time ms-2"><?php echo $rec['t']?></span> 
 								</div> 
 								<div class="notification-body"> 
 									<div class="media mt-0"> 
-										<div class="main-avatar avatar-md"> <img alt="avatar" class="rounded-6" src="avatars/<?php echo ($rec['uavatar']=='')?'logo.jpg':$rec['uavatar'];?>"> </div> 
+										<div class="avatar-md">
+											<img alt="avatar" class="rounded-6" src="avatars/<?php echo ($rec['uavatar']=='')?'logo.jpg':$rec['uavatar'];?>">
+										</div> 
 										<div class="media-body ms-3 d-flex"> 
 											<div class=""> 
 												<p class="tx-14 text-dark mb-0 tx-semibold"><?php echo $rec['uname']?></p>
 												<p class="mb-0 tx-13 text-muted"><?php echo $rec['notes']?></p><br />
 												<p><?php if($rec['attc']<>'') echo '<img src="tickattc/'.$rec['attc'].'" />';?></p>
 											</div> 
-											<div class="notify-time"> <p class="mb-0 text-muted tx-11"><?php echo $rec['stts']?></p></div> 
+											<div class="notify-time"> <p class="mb-0 tx-11 <?php echo $rec['stts']?>x"><?php echo $rec['stts']?></p></div> 
 										</div> 
 									</div> 
 								</div> 

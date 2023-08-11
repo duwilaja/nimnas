@@ -47,6 +47,7 @@ switch($q){
 		$sql="select lat,lng,concat(l.name,'\n',l.addr) as name,locid,count(a.stts) as cnt from $tname where $where group by $grpby"; break;
 	case 'asshom': $sql="select stts,count(stts) as tot from ass_ets  group by stts"; break;
 	case 'asscat': $sql="select cat,count(cat) as tot from ass_ets  group by cat"; break;
+	case 'assno': $sql="select assid as v,assname as t from ass_ets where loc='$id' order by assname"; break;
 	case 'brasscat': $sql="select cat,count(cat) as tot from ass_ets where stts='inactive' group by cat"; break;
 	
 	case 'tick': $sql="select * from tick_ets where rowid='$id'"; break;

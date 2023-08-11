@@ -112,7 +112,7 @@ disconnect($conn);
 					<?php echo options($o_ulvl)?>
 				</select>
 			</div>
-			<div class="form-group col-md-6">
+			<div class="form-group col-md-6 hidden">
 				<label>NMS Group</label>
 				<select class="form-control " id="ugrp" name="ugrp">
 					<option value=""></option>
