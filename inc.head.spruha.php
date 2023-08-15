@@ -80,7 +80,7 @@
 
 	</head>
 
-	<body class="ltr main-body leftmenu">
+	<body class="ltr main-body leftmenu <?php if(isset($_SESSION['theme'])) echo $_SESSION['theme']; ?>">
 
 		<!-- Loader -->
 		<div id="global-loader">

@@ -102,6 +102,16 @@ $conn = connect();
 
 $mn=post('mnu',$conn);
 
+if($mn=='theme'){
+	$theme='';
+	if(isset($_SESSION['theme'])) $theme=$_SESSION['theme'];
+	
+	if($theme==''){
+		$_SESSION['theme']='dark-theme';
+	}else{
+		$_SESSION['theme']='';
+	}
+}
 if($mn=='passwd'){
 	$opwd=post('op',$conn);
 	$npwd=post('np',$conn);
