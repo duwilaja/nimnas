@@ -106,7 +106,7 @@
 								<!-- Search -->
 								<!-- Theme-Layout -->
 								<div class="dropdown d-flex main-header-theme">
-									<a class="nav-link icon layout-setting">
+									<a class="nav-link icon layout-setting" onclick="toggle_dark();">
 										<span class="dark-layout">
 											<i class="fe fe-sun header-icons"></i>
 										</span>
