@@ -11,6 +11,8 @@ $template="spruha"; //hud , spruha , aronox
 $theme="hor-skin/horizontal-dark.css"; //hor-skin/hor-skin1.css
 $theme="hor-skin/hor-skin1.css";
 
+$app_url="http://localhost/nimnas/";
+
 $lib_url="http://localhost:8080/api/v0/";
 $lib_token="8997ec42d0c502a67cce02e2be64f333";
 

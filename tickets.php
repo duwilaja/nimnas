@@ -30,27 +30,35 @@ $o_cat=fetch_all($rs);
 disconnect($conn);
 
 $ox=get("o");
+$myg=get("g");
+$mine=get("m");
+
 $where="1=1"; $clso="";
 if($ox=="1"){
-	$clso="hidden";
-	$page_title="Open Tickets";
+	//$clso="hidden";
+	$page_title="Tickets in Progress";
 	$where="stts not in ('solved','closed')";
 }
-if($s_LOC!=''){
+if($s_LOC!=''){ //session loc
 	$where.= " AND loc='$s_LOC'";
 }
-if($s_TICK!=''){
+if($myg=="1"){
+	$page_title="My Group";
 	$where.= " AND grp='$s_TICK'";
+}
+if($mine=="1"){
+	$page_title="My Tickets";
+	$where.= " AND (updby='$s_ID' OR creby='$s_ID')";
 }
 
 $loc=get("loc");
-$s=get("s");
+$stt=get("s");
 if($loc!=''){
 	$where.= " AND loc='$loc'";
 	$clso="hidden";
 }
-if($s!=''){
-	$where.= " AND stts='$s'";
+if($stt!=''){
+	$where.= " AND stts='$stt'";
 	$clso="hidden";
 }
 

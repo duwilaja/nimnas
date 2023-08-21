@@ -250,8 +250,11 @@ if($mn=='tick'){
 		$fcols='updby,updated'; $fvals="'$s_ID',NOW()";
 		$res=crud($conn,"$fcols","$fvals");
 		if(post('stts')=='closed'){ $x=itung($conn,post('ticketno'),strtotime(post('created'))); }
-		if(post('stts')=='pending' && post('usr')!=''){
-			$mmail=sendmail(post('usr'),'Notification Pending Ticket# '.post('ticketno'),post('notes'));
+		if(post('stts')=='pending'){
+			$mailto=fetch_alla(exec_qry($conn,"select mailto from core_events where eventid='ticket_pending' and TRIM(mailto)<>''"));
+			if(count($mailto)>0){
+				$mmail=sendmail($mailto[0]['mailto'],'Notification Pending Ticket# '.post('ticketno'),post('notes'));
+			}
 		}
 	}
 	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2].'. '.$mmail;

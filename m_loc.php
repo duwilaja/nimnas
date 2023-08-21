@@ -13,6 +13,12 @@ $menu="location";
 
 $breadcrumb="Setup/$page_title";
 
+include "inc.db.php";
+$conn=connect();
+$rs=exec_qry($conn,"select iso,name from core_province order by name");
+$o_prov=fetch_all($rs);
+disconnect($conn);
+
 include "inc.head.php";
 include "inc.menutop.php";
 ?>
@@ -68,7 +74,7 @@ include "inc.menutop.php";
 
 <!-- Modal-->
 <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left modal_form">
-  <div role="document" class="modal-dialog">
+  <div role="document" class="modal-dialog modal-lg">
 	<div class="modal-content">
 	  <div class="modal-header"><strong id="exampleModalLabel" class="modal-title"><?php echo $modal_title?></strong>
 		<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">x</span></button>
@@ -93,38 +99,49 @@ include "inc.menutop.php";
 				<input type="text" id="name" name="name" placeholder="..." class="form-control">
 			</div>
 		  </div>
-		  <div class="form-group mb-3">
-			<label>Address</label>
-			<input type="text" id="addr" name="addr" placeholder="..." class="form-control">
-		  </div>
 		  <div class="row mb-3">
-			<div class="form-group col-md-6">
-				<label>City</label>
-				<input type="text" id="city" name="city" placeholder="..." class="form-control">
-			</div>
 			<div class="form-group col-md-6">
 				<label>Province</label>
-				<input type="text" id="prov" name="prov" placeholder="..." class="form-control">
+				<!--input type="text" id="prov" name="prov" placeholder="..." class="form-control"-->
+				<select class="form-control " id="prov" name="prov" onchange="getkabkot(this.value);">
+					<option value="">-</option>
+					<?php echo options($o_prov)?>
+				</select>
+			</div>
+			<div class="form-group col-md-6">
+				<label>City</label>
+				<!--input type="text" id="city" name="city" placeholder="..." class="form-control"-->
+				<select class="form-control " id="city" name="city">
+					<option value="">-</option>
+				</select>
 			</div>
 		  </div>
 		  <div class="row mb-3">
-			<div class="form-group col-md-6">
+			<div class="form-group col-md-9">
+				<label>Address</label>
+				<input type="text" id="addr" name="addr" placeholder="..." class="form-control">
+			</div>
+			<div class="form-group col-md-3">
 				<label>Postal Code</label>
 				<input type="text" id="postal" name="postal" placeholder="..." class="form-control">
 			</div>
-			<div class="form-group col-md-6">
+		  </div>
+		  <div class="form-group mb-3 hidden">
 				<label>Area</label>
 				<input type="text" id="area" name="area" placeholder="..." class="form-control">
-			</div>
 		  </div>
 		  <div class="row mb-3">
-			<div class="form-group col-md-6">
+			<div class="form-group col-md-5">
 				<label>Latitude</label>
 				<input type="text" id="lat" name="lat" placeholder="..." class="form-control">
 			</div>
-			<div class="form-group col-md-6 mb-3">
+			<div class="form-group col-md-5 mb-3">
 				<label>Longitude</label>
 				<input type="text" id="lng" name="lng" placeholder="..." class="form-control">
+			</div>
+			<div class="form-group col-md-2 mb-3">
+				<label>&nbsp;</label><br />
+				<button onclick="mappicker('#lat','#lng');" class="btn btn-info"><i class="fa fa-map-pin"></i></button>
 			</div>
 		  </div>
 		  
@@ -234,6 +251,23 @@ $(document).ready(function(){
 
 function reloadtbl(){
 	mytbl.ajax.reload();
+}
+
+function mappicker(lat,lng){
+	window.open("map"+ext+"?lat="+$(lat).val()+"&lng="+$(lng).val(),"MapWindow","width=830,height=500,location=no").focus();
+}
+
+function getkabkot(prov,dv=''){
+	getCombo("dataget"+ext,'kabkot',prov,"#city",dv);
+}
+
+function openformcallback(q,json=''){
+	var dv='';
+	var prov=$("#prov").val();
+	if(json!=''){
+		dv=json['msgs'][0]['city'];
+	}
+	getkabkot(prov,dv);
 }
 </script>
 

@@ -76,6 +76,9 @@
 		.closedx{
 			color: var(--secondary);
 		}
+		.main-notification-list .media:hover, .main-notification-list .media:focus{
+			cursor: auto;
+		}
 		</style>
 
 	</head>

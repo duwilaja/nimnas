@@ -37,6 +37,8 @@ switch($q){
 	case 'mbg': $sql="select *,if(running='1','Running',if(startnow='1','Starting','Stopped')) as status from core_bgjob where rowid='$id'"; break;
 	case 'mev': $sql="select * from core_events where rowid='$id'"; break;
 	
+	case 'kabkot': $sql="select kabkotid as v,concat(name,' (',kabkot,')') as t from core_kabkot where prov='$id' order by name"; break;
+	
 	case 'mbrand': $sql="select * from ass_brand where rowid='$id'"; break;
 	case 'mascat': $sql="select * from ass_cat where rowid='$id'"; break;
 	case 'mass': $sql="select * from ass_ets where rowid='$id'"; break;
@@ -86,6 +88,10 @@ switch($q){
 	case 'odatas': $sql="select rowid,host,name,grp from core_node where $whr"; break;
 	
 	case 'ticknot': $sql="select TRIM(umail) as v,uname as t from core_user where utick='$id' and uid<>'$s_ID' and TRIM(umail)<>''"; break;
+	
+	case 'notify': $sql="select DATE_FORMAT(created,'%a, %e %b %H:%i') as dtm,uname,uavatar as avatar,ticketno,
+			concat('Ticket#',ticketno,'. ',h,'. status ',stts) as msg
+			from tick_ets n left join core_user u on u.uid=n.creby where stts='new' order by created desc"; break;
 }
 
 //echo $sql;

@@ -59,7 +59,7 @@
 							<li class="nav-sub-item"><a class="nav-sub-link sub-with-sub" href="javascript:void(0)">Tickets</a>
 							<ul class="sub-nav-sub">
 								<li class="nav-sub-item"><a class="nav-sub-link" href="tickets<?php echo $ext?>">All</a></li>
-								<li class="nav-sub-item"><a class="nav-sub-link" href="tickets<?php echo $ext?>?o=1">Open</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="tickets<?php echo $ext?>?o=1">Progress</a></li>
 								<li class="nav-sub-item"><a class="nav-sub-link" href="tickets<?php echo $ext?>?m=1">My Tickets</a></li>
 								<li class="nav-sub-item"><a class="nav-sub-link" href="tickets<?php echo $ext?>?g=1">My Group</a></li>
 							</ul>
@@ -128,6 +128,7 @@
 						</a>
 						<ul class="nav-sub">
 							<li class="nav-sub-item"><a class="nav-sub-link muser" href="m_loc<?php echo $ext?>">Locations</a></li>
+							<li class="nav-sub-item"><a class="nav-sub-link muser" href="m_events<?php echo $ext?>">Events</a></li>
 							<li class="nav-sub-item"><a class="nav-sub-link sub-with-sub" href="javascript:void(0)">Monitoring</a>
 							<ul class="sub-nav-sub">
 								<?php if($s_LVL==0){?>
@@ -138,7 +139,6 @@
 								<li class="nav-sub-item"><a class="nav-sub-link mlov" href="m_topo<?php echo $ext?>">Topology</a></li>
 								<li class="nav-sub-item"><a class="nav-sub-link muser" href="m_sla<?php echo $ext?>">SLA</a></li>
 								<li class="nav-sub-item"><a class="nav-sub-link mlov" href="m_severity<?php echo $ext?>">Severity</a></li>
-								<li class="nav-sub-item"><a class="nav-sub-link muser" href="m_events<?php echo $ext?>">Events</a></li>
 								<li class="nav-sub-item"><a class="nav-sub-link muser" href="m_bg<?php echo $ext?>">Controls</a></li>
 							</ul>
 							</li>

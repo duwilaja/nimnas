@@ -180,48 +180,21 @@
 									</a>
 								</div>
 								<!-- Full screen -->
-								<!-- Notification --
+								<!-- Notification -->
 								<div class="dropdown main-header-notification">
 									<a class="nav-link icon" href="">
 										<i class="fe fe-bell header-icons"></i>
-										<span class="badge bg-danger nav-link-badge">4</span>
+										<span class="badge bg-danger nav-link-badge hidden lonceng">0</span>
 									</a>
 									<div class="dropdown-menu">
-										<div class="header-navheading">
+										<!--div class="header-navheading">
 											<p class="main-notification-text">You have 1 unread notification<span
 													class="badge bg-pill bg-primary ms-3">View all</span></p>
+										</div-->
+										<div class="main-notification-list isilonceng">
+											
 										</div>
-										<div class="main-notification-list">
-											<div class="media new">
-												<div class="main-img-user online"><img alt="avatar"
-														src="spruha/assets/img/users/5.jpg"></div>
-												<div class="media-body">
-													<p>Congratulate <strong>Olivia James</strong> for New template
-														start</p>
-													<span>Oct 15 12:32pm</span>
-												</div>
-											</div>
-											<div class="media">
-												<div class="main-img-user"><img alt="avatar"
-														src="spruha/assets/img/users/2.jpg">
-												</div>
-												<div class="media-body">
-													<p><strong>Joshua Gray</strong> New Message Received</p>
-													<span>Oct 13
-														02:56am</span>
-												</div>
-											</div>
-											<div class="media">
-												<div class="main-img-user online"><img alt="avatar"
-														src="spruha/assets/img/users/3.jpg"></div>
-												<div class="media-body">
-													<p><strong>Elizabeth Lewis</strong> added new schedule realease
-													</p><span>Oct
-														12 10:40pm</span>
-												</div>
-											</div>
-										</div>
-										<div class="dropdown-footer">
+										<div class="dropdown-footer hidden">
 											<a href="javascript:void(0)">View All Notifications</a>
 										</div>
 									</div>
