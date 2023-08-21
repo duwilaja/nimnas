@@ -32,7 +32,9 @@ disconnect($conn);
 									<?php echo breadcrumb($breadcrumb)?>
 								</ol>
 							</div>
-
+							<div class="d-flex">
+								<a target="_blank" href="tickdown<?php echo $ext?>?t=<?php echo $tick?>" class="btn btn-primary"> <i class="fe fe-download-cloud me-2"></i> Download </a>
+							</div>
 						</div>
 						<!--End Page header-->
 						

@@ -140,24 +140,42 @@ function getMultipleValues(theid,sep=',',fix=''){
 /*to do notify: get data and show, call timer*/
 function notify(){
 var isi='';
+var tot=0;
+$(".lonceng").hide();
 
-isi+=''+
-'<a href="#" class="dropdown-item d-flex pb-3">'+
-'	<div class="notifyimg bg-danger">'+ //bgxxx
-'		<i class="fa fa-server"></i>'+ //fa fa-server  / fe fe-hard-drive
-'	</div>'+
-'	<div>'+
-'		<div>Message Sent.</div>'+
-'		<div class="small text-muted">3 hours ago</div>'+
-'	</div>'+
-'</a>';
+$.ajax({
+	type: 'POST',
+	url: 'dataget'+ext,
+	data: {q:'notify'},
+	success: function(result){
+		
+		var json = JSON.parse(result);
+		if(json['code']=='200'){
+			for(var i=0;i<json['msgs'].length;i++){
+				var avtr=(json['msgs'][i]['avatar']==''||json['msgs'][i]['avatar']==null)?'logo.jpg':json['msgs'][i]['avatar'];
+				var msg=json['msgs'][i]['msg'];
+				var dtm=json['msgs'][i]['dtm'];
+				isi+=''+
+					'<div class="media">'+
+					'	<div class="main-img-user"><img alt="avatar" src="avatars/'+avtr+'"></div>'+
+					'	<div class="media-body">'+
+					'		<p>'+msg+'</p>'+
+					'		<span>'+dtm+'</span>'+
+					'	</div>'+
+					'</div>';
+				tot++;
+			}
+			if(tot>0) $(".lonceng").html(tot).show();
+			$(".isilonceng").html(isi);
+		}
+	},
+	error: function(xhr){
+		$(".isilonceng").html(isi);
+		
+	}
+});
 
-//all msgs link
-//isi+='<a href="#" class="dropdown-item text-center message"> <strong>See All Messages <i class="fa fa-angle-right"></i></strong></a>';
-
-$(".pulse").show();
-$("#isilonceng").html(isi);
-$("#lonceng").show();
+setTimeout(notify,2*60*1000);
 
 }
 
