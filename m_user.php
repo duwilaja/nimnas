@@ -62,7 +62,7 @@ disconnect($conn);
 										<th>Name</th>
 										<th>Mail</th>
 										<th>Level</th>
-										<th>NMS Group</th>
+										<!--th>NMS Group</th-->
 										<th>Location</th>
 										<th>Ticketing Group</th>
 									</tr>
@@ -163,7 +163,7 @@ include "inc.foot.php";
 include "inc.js.php";
 
 $tname="core_user";
-$cols="uid,uname,umail,ulvl,ugrp,uloc,utick,rowid";
+$cols="uid,uname,umail,ulvl,uloc,utick,rowid";
 $csrc="uid,uname";
 
 ?>
