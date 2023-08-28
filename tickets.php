@@ -37,7 +37,7 @@ $where="1=1"; $clso="";
 if($ox=="1"){
 	//$clso="hidden";
 	$page_title="Tickets in Progress";
-	$where="stts not in ('solved','closed')";
+	$where="stts in ('progress','pending')";
 }
 if($s_LOC!=''){ //session loc
 	$where.= " AND loc='$s_LOC'";
