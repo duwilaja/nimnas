@@ -43,48 +43,48 @@ disconnect($conn);
 			</div-->
 		</div>
 		<!--End Page header-->
-			<div  class="row">
+			<div class="row pb-4">
 				<div class="col-xl-2">
-					<div class="small text-white text-opacity-50 mb-2"><b>GROUP</b></div>
-					<select class="form-select" id="grp">
+					<div class="small text-opacity-50 mb-2 "><b>GROUP</b></div>
+					<select class="form-control select2" id="grp">
 						<option value="">All Group</option>
 						<?php echo options($o_grp)?>
 					</select>
 				</div>
 				<div class="col-xl-2">
-					<div class="small text-white text-opacity-50 mb-2"><b>LOCATION</b></div>
-					<select class="form-select" id="loc">
+					<div class="small text-opacity-50 mb-2 "><b>LOCATION</b></div>
+					<select class="form-control select2" id="loc">
 						<option value="">All Location</option>
 						<?php echo options($o_loc)?>
 					</select>
 				</div>
 				<div class="col-xl-2">
-					<div class="small text-white text-opacity-50 mb-2"><b>NETWORK</b></div>
-					<select class="form-select" id="net">
+					<div class="small text-opacity-50 mb-2 "><b>NETWORK</b></div>
+					<select class="form-control select2" id="net">
 						<option value="">All Network</option>
 						<?php echo options($o_net)?>
 					</select>
 				</div>
 				<div class="col-xl-2">
-					<div class="small text-white text-opacity-50 mb-2"><b>TYPE</b></div>
-					<select class="form-select" id="typ">
+					<div class="small text-opacity-50 mb-2 "><b>TYPE</b></div>
+					<select class="form-control select2" id="typ">
 						<option value="">All Type</option>
 						<?php echo options($o_typ)?>
 					</select>
 				</div>
 				<div class="col-xl-2">
-					<div class="small text-white text-opacity-50 mb-2"><b>STATUS</b></div>
-					<select class="form-select" id="status">
+					<div class="small text-opacity-50 mb-2 "><b>STATUS</b></div>
+					<select class="form-control select2" id="status">
 						<option value="">All STATUS</option>
 						<option value="1">UP</option>
 						<option value="0">DOWN</option>
 					</select>
 				</div>
-				<div class="col-xl-2">
-					<div class="small text-white text-opacity-50 mb-2"><b>&nbsp;</b></div>
-					<button type="button" onclick="reloadtbl()" class="btn btn-success"><i class="fas fa-refresh"></i></button>
+				<div class="col-xl-2 pt-3">
+					<button type="button" onclick="reloadtbl();" class="btn btn-primary my-2 btn-icon-text">Filter</button>
 				</div>
 			</div>
+		
 			<div>&nbsp;</div>
 				<div class="card">
 					<div class="card-header hidden">
