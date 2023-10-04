@@ -165,13 +165,13 @@ while($row = fetch_row($result)){
 	if($x=="psnmpd"){
 		$h=$row[0];
 		$idx=$row[$col-1];
-		$act='<a title="Overview" class="dttbl" href="JavaScript:;" data-fancybox data-type="iframe" data-src="lib_device'.$ext.'?h='.$h.'&idx='.$idx.'">'.$h.'</a>';
+		$act='<a title="Overview" class="btn btn-sm btn-primary ripple" href="JavaScript:;" data-fancybox data-type="iframe" data-src="lib_device'.$ext.'?h='.$h.'&idx='.$idx.'">'.$h.'</a>';
 		$row[0]=$act;
 		$xx='-';
 	}
 	
 	if($x!="-"&&$xx!="-"){ //- means no need to modify first column
-		$row[0]='<a href="#" class="dttbl"  title="Open" data-toggle="modal" data-target="#myModal" onclick="openForm(\''.$x.'\',\''.$row[$col-1].'\');">'.$row[0].'&nbsp;</a>';
+		$row[0]='<a href="#" class="btn btn-sm btn-primary ripple"  title="Open" data-toggle="modal" data-target="#myModal" onclick="openForm(\''.$x.'\',\''.$row[$col-1].'\');">'.$row[0].'&nbsp;</a>';
 	}
 	
 	$output["data"][] = $row ;

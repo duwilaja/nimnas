@@ -174,30 +174,35 @@ while($row = fetch_row($result)){
 		$xx='-';
 	}
 	if($x=="nlocation"){
-		$act='<a title="Devices" class="dttbl" href="n_device'.$ext.'?loc='.$row[0].'">'.$row[0].'</a>';
+		$act='<a title="Devices" class="btn btn-sm btn-primary ripple" href="n_device'.$ext.'?loc='.$row[0].'">'.$row[0].'</a>';
 		$row[0]=$act;
 		$xx='-';
 	}
 	if($x=="ncategory"){
-		$act='<a title="Devices" class="dttbl" href="n_device'.$ext.'?typ='.$row[0].'">'.$row[0].'</a>';
+		$act='<a title="Devices" class="btn btn-sm btn-primary ripple" href="n_device'.$ext.'?typ='.$row[0].'">'.$row[0].'</a>';
 		$row[0]=$act;
 		$xx='-';
 	}
 	if($x=="ndevice"){
-		$act='<a title="Overview" class="dttbl" href="JavaScript:;" data-fancybox data-type="iframe" data-src="device'.$ext.'?h='.$row[0].'">'.$row[0].'</a>';
+		$act='<a title="Overview" class="btn btn-sm btn-primary ripple" href="JavaScript:;" data-fancybox data-type="iframe" data-src="device'.$ext.'?h='.$row[0].'">'.$row[0].'</a>';
 		$row[2].=($is_ticket&&$row[2]=='DOWN')?' <a href="#" title="Create Ticket" class="btn" onclick="ticks(\''.$row[1].'\',\''.$row[4].'\');"><i class="fas fa-arrow-right"></i></a>':'';
+		
 		$row[0]=$act;
 		$xx='-';
 	}
 	if($x=="ticknotes"){
-		$act='<a title="Attachment" class="dttbl" href="JavaScript:;" data-fancybox data-type="iframe" data-src="tickattc/'.$row[4].'">'.$row[4].'</a>';
+		$act='<a title="Attachment" class="btn btn-sm btn-primary ripple" href="JavaScript:;" data-fancybox data-type="iframe" data-src="tickattc/'.$row[4].'">'.$row[4].'</a>';
 		$row[4]=$act;
 		$xx='-';
 	}
 	
 	if($x!="-"&&$xx!="-"){ //- means no need to modify first column
-		if($template=="aronox"){$row[0]='<a href="#" class="dttbl"  title="Open" data-toggle="modal" data-target="#myModal" onclick="openForm(\''.$x.'\',\''.$row[$col-1].'\');">'.$row[0].'&nbsp;</a>';
-		}else{$row[0]='<a href="#" class="dttbl"  title="Open" data-bs-toggle="modal" data-bs-target="#myModal" onclick="openForm(\''.$x.'\',\''.$row[$col-1].'\');">'.$row[0].'&nbsp;</a>';
+		if($template=="aronox"){
+			$row[0]='<a href="#" class="dttbl"  title="Open" data-toggle="modal" data-target="#myModal" onclick="openForm(\''.$x.'\',\''.$row[$col-1].'\');">'.$row[0].'&nbsp;</a>';
+		}elseif($template=='spruha'){
+			$row[0]='<a href="#" class="btn btn-sm btn-primary ripple"  title="Open" data-bs-toggle="modal" data-bs-target="#myModal" onclick="openForm(\''.$x.'\',\''.$row[$col-1].'\');">'.$row[0].'&nbsp;</a>';
+		}else{
+			$row[0]='<a href="#" class="dttbl"  title="Open" data-bs-toggle="modal" data-bs-target="#myModal" onclick="openForm(\''.$x.'\',\''.$row[$col-1].'\');">'.$row[0].'&nbsp;</a>';
 		}
 	}
 	
