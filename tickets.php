@@ -11,7 +11,7 @@ $card_title="$page_title";
 
 $menu="tick";
 
-$breadcrumb="Master/$page_title";
+$breadcrumb="Ticketing/$page_title";
 
 $o_lovtyp=[
 	["group","Group"],
@@ -84,51 +84,61 @@ include "inc.menutop.php";
 		</div>
 		<!--End Page header-->
 		<div class="row <?php echo $clso;?>">
-				<div class="col-md-2"><div class="small text-white text-opacity-50 mb-2"><b>FROM</b></div>
+				<div class="col-md-2"><div class="small text-opacity-50 mb-2"><b>FROM</b></div>
 					<div class="input-group">
 					<input type="text" id="df" placeholder="" class="form-control datepicker">
 					<div class="input-group-append"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
 				</div></div>
-				<div class="col-md-2"><div class="small text-white text-opacity-50 mb-2"><b>TO</b></div>
+				<div class="col-md-2"><div class="small text-opacity-50 mb-2"><b>TO</b></div>
 					<div class="input-group">
 					<input type="text" id="dt" placeholder="" class="form-control datepicker">
 					<div class="input-group-append"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
 				</div></div>
-				
-				<div class="col-xl-2">
-					<div class="small text-white text-opacity-50 mb-2"><b>STATUS</b></div>
-					<select id="fstts" class="form-select">
-						<option value="">ALL STATUS</option>
-						<?php echo options($o_tikstts)?>
-					</select>
-				</div>
-				<div class="col-xl-2">
-					<div class="small text-white text-opacity-50 mb-2"><b>SERVICE</b></div>
-					<select id="fsvc" class="form-select">
-						<option value="">All SERVICE</option>
-						<?php echo options($o_serv)?>
-					</select>
-				</div>
-				<div class="col-xl-2">
-					<div class="small text-white text-opacity-50 mb-2"><b>CATEGORY</b></div>
-					<select id="fcat" class="form-select">
-						<option value="">All CATEGORY</option>
-						<?php echo options($o_cat)?>
-					</select>
-				</div>
-				<div class="col-xl-2">
-					<div class="small text-white text-opacity-50 mb-2"><b>GROUP</b></div>
-					<select id="fgrp" class="form-select">
-						<option value="">All GROUP</option>
-						<?php echo options($o_tikgrp)?>
-					</select>
-				</div>
-				<div class="col-xl-2">
-					<div class="small text-white text-opacity-50 mb-2"><b>&nbsp;</b></div>
-					<button class="btn btn-success" onclick="reloadtbl()"><i class="fa fa-refresh"></i></button>
+				<div class="col-xl-2 pt-3">
+					<button type="button" onclick="reloadtbl()" class="btn btn-primary my-2 btn-icon-text">Filter</button>
 				</div>
 		</div>
-		<br /><br />
+		<div class="row <?php echo $clso;?>">
+			<div class="col-xl-2">
+				<div class="small text-opacity-50 mb-2"><b>STATUS</b></div>
+				<select class="form-control select2" id="fstts">
+					<option value="">All STATUS</option>
+					<?php echo options($o_tikstts)?>
+				</select>
+			</div>
+			<div class="col-xl-2">
+				<div class="small text-opacity-50 mb-2"><b>SERVICE</b></div>
+				<select id="fsvc" class="form-control select2">
+					<option value="">All SERVICE</option>
+					<?php echo options($o_serv)?>
+				</select>
+			</div>
+			<div class="col-xl-2">
+				<div class="small text-opacity-50 mb-2"><b>CATEGORY</b></div>
+				<select id="fcat" class="form-control select2">
+					<option value="">All CATEGORY</option>
+					<?php echo options($o_cat)?>
+				</select>
+			</div>
+			<div class="col-xl-2">
+				<div class="small text-opacity-50 mb-2"><b>GROUP</b></div>
+				<select id="fgrp" class="form-control select2">
+					<option value="">All GROUP</option>
+					<?php echo options($o_tikgrp)?>
+				</select>
+			</div>
+			<div class="col-xl-2">
+				<div class="small text-opacity-50 mb-2"><b>LOCATION</b></div>
+				<select id="floc" class="form-control select2">
+					<option value="">All LOCATION</option>
+					<?php echo options($o_loc)?>
+				</select>
+			</div>
+			<div class="col-xl-2 pt-3">
+				<button type="button" onclick="reloadtbl()" class="btn btn-primary my-2 btn-icon-text">Filter</button>
+			</div>
+		</div>
+		<br />
 				<div class="card">
 					<div class="card-header">
 						<div class="card-title"><?php echo $card_title?></div>
@@ -417,11 +427,14 @@ $(document).ready(function(){
 				d.tname= '<?php echo base64_encode($tname); ?>',
 				d.csrc= '<?php echo base64_encode($csrc); ?>',
 				d.where= '<?php echo base64_encode($where); ?>',
-				d.filtereq= 'grp,cat,svc,stts',
+				d.filtereq= 'grp,cat,svc,stts,loc',
 				d.cat= $("#fcat").val(),
 				d.grp= $("#fgrp").val(),
 				d.svc= $("#fsvc").val(),
 				d.stts= $("#fstts").val(),
+				d.loc= $("#floc").val(),
+				d.fdtmf= $("#df").val(),
+				d.fdtmt= $("#dt").val(),
 				d.x= '<?php echo $menu?>';
 			}
 		},
@@ -505,6 +518,8 @@ $(document).ready(function(){
 	datepicker(true);
 	datetimepicker();
 	//selectpicker(true);
+	
+	menus();
 });
 
 function reloadtbl(){
@@ -560,6 +575,22 @@ function notip(){
 	}else{
 		$(".notipme").hide();
 		$("#usr").find('option').remove();
+	}
+}
+
+var ox='<?php echo $ox;?>';
+var myg='<?php echo $myg;?>';
+var mine='<?php echo $mine;?>';
+function menus(){
+	$(".tickets").removeClass("active");
+	if(ox=='1'){
+		$(".prgrs").addClass("active");
+	}
+	if(mine=='1'){
+		$(".mytix").addClass("active");
+	}
+	if(myg=='1'){
+		$(".mygrp").addClass("active");
 	}
 }
 </script>

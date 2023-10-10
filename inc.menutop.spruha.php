@@ -58,10 +58,10 @@
 							<!--li class="nav-sub-item"><a class="nav-sub-link tickloc" href="tick_mapsx<?php echo $ext?>">Map View</a></li-->
 							<li class="nav-sub-item"><a class="nav-sub-link sub-with-sub" href="javascript:void(0)">Tickets</a>
 							<ul class="sub-nav-sub">
-								<li class="nav-sub-item"><a class="nav-sub-link" href="tickets<?php echo $ext?>">All</a></li>
-								<li class="nav-sub-item"><a class="nav-sub-link" href="tickets<?php echo $ext?>?o=1">Progress</a></li>
-								<li class="nav-sub-item"><a class="nav-sub-link" href="tickets<?php echo $ext?>?m=1">My Tickets</a></li>
-								<li class="nav-sub-item"><a class="nav-sub-link" href="tickets<?php echo $ext?>?g=1">My Group</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link tickets altix" href="tickets<?php echo $ext?>">All</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link tickets prgrs" href="tickets<?php echo $ext?>?o=1">Progress</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link tickets mytix" href="tickets<?php echo $ext?>?m=1">My Tickets</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link tickets mygrp" href="tickets<?php echo $ext?>?g=1">My Group</a></li>
 							</ul>
 							</li>
 						</ul>
