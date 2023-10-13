@@ -21,7 +21,8 @@ $o_lovtyp=[
 
 include "inc.db.php";
 $conn=connect();
-$rs=exec_qry($conn,"select locid,name from core_location where locid like '%$s_LOC%' order by name");
+$wherloc=$mys_LOC==''?'':"where locid in ('$mys_LOC')";
+$rs=exec_qry($conn,"select locid,name from core_location $wherloc order by name");
 $o_loc=fetch_all($rs);
 $rs=exec_qry($conn,"select servid,servname from tick_serv order by servname");
 $o_serv=fetch_all($rs);
@@ -582,15 +583,19 @@ var ox='<?php echo $ox;?>';
 var myg='<?php echo $myg;?>';
 var mine='<?php echo $mine;?>';
 function menus(){
+	var  act=false;
 	$(".tickets").removeClass("active");
 	if(ox=='1'){
-		$(".prgrs").addClass("active");
+		$(".prgrs").addClass("active"); act=true;
 	}
 	if(mine=='1'){
-		$(".mytix").addClass("active");
+		$(".mytix").addClass("active"); act=true;
 	}
 	if(myg=='1'){
-		$(".mygrp").addClass("active");
+		$(".mygrp").addClass("active"); act=true;
+	}
+	if(!act){
+		$(".altix").addClass("active");
 	}
 }
 </script>
