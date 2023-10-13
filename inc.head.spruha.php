@@ -22,6 +22,8 @@
 		<link href="spruha/assets/plugins/web-fonts/plugin.css" rel="stylesheet"/>
 		<!-- Owl-carousel css-->
 		<link href="spruha/assets/plugins/owl-carousel/owl.carousel.css" rel="stylesheet" />
+		<!-- select2 css-->
+		<link href="spruha/assets/plugins/select2/css/select2.min.css" rel="stylesheet" />
 
 		<!-- Style css-->
 		<link href="spruha/assets/css/style.css" rel="stylesheet">
