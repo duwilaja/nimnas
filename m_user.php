@@ -105,12 +105,13 @@ disconnect($conn);
 			</div>
 		  </div>
 		  <div class="row">
-			<div class="form-group col-md-6">
-				<label>Level</label>
-				<select class="form-control " id="ulvl" name="ulvl">
-					<option value="">-</option>
-					<?php echo options($o_ulvl)?>
+			<div class="form-group col-md-12">
+				<label>Location</label>
+				<select class="form-control select2" multiple id="ulocx" name="ulocx">
+					<!--option value=""></option-->
+					<?php echo options($o_loc)?>
 				</select>
+				<input type="hidden" name="uloc" id="uloc" value="">
 			</div>
 			<div class="form-group col-md-6 hidden">
 				<label>NMS Group</label>
@@ -122,10 +123,10 @@ disconnect($conn);
 		  </div>
 		  <div class="row">
 			<div class="form-group col-md-6">
-				<label>Location</label>
-				<select class="form-control " id="uloc" name="uloc">
-					<option value=""></option>
-					<?php echo options($o_loc)?>
+				<label>Level</label>
+				<select class="form-control " id="ulvl" name="ulvl">
+					<option value="">-</option>
+					<?php echo options($o_ulvl)?>
 				</select>
 			</div>
 			<div class="form-group col-md-6">
@@ -150,7 +151,7 @@ disconnect($conn);
 	  </div>
 	  <div class="modal-footer">
 	    <button type="button" class="btn btn-danger" id="bdel"  onclick="confirmDelete();">Delete</button>
-		<button type="button" class="btn btn-success" onclick="saveData();">Save</button>
+		<button type="button" class="btn btn-success" onclick="mysave();">Save</button>
 		<button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
 		
 	  </div>
@@ -221,11 +222,24 @@ $(document).ready(function(){
 	
 	//datepicker();
 	//timepicker();
-	selectpicker(true);
+	//selectpicker(true);
+	$(".select2").select2({allowClear:true,closeOnSelect:false});
 });
 
 function reloadtbl(){
 	mytbl.ajax.reload();
+}
+
+function mysave(){
+	$("#uloc").val(getMultipleValues("#ulocx"));
+	saveData();
+}
+function openformcallback(q='',json=''){
+	$("#select2").val("");
+	if(json!=''){
+		$("#ulocx").val($("#uloc").val().split(","));
+	}
+	$(".select2").trigger("change");
 }
 </script>
 

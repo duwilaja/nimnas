@@ -39,8 +39,8 @@ if($ox=="1"){
 	$page_title="Tickets in Progress";
 	$where="stts in ('progress','pending')";
 }
-if($s_LOC!=''){ //session loc
-	$where.= " AND loc='$s_LOC'";
+if($mys_LOC!=''){ //session loc
+	$where.= " AND loc in ('$mys_LOC')";
 }
 if($myg=="1"){
 	$page_title="My Group";

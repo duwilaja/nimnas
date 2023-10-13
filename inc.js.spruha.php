@@ -20,15 +20,17 @@
 
 		<!-- Owl Carousel js-->
 		<script src="spruha/assets/plugins/owl-carousel/owl.carousel.js"></script>
+		<!-- Owl Carousel js-->
+		<script src="spruha/assets/plugins/select2/js/select2.min.js"></script>
 		 
 		<!-- Custom js -->
 		<script src="spruha/assets/js/custom.js"></script>
 	<!-- ================== END spruha core-js ================== -->
 	
-	<!--Othercharts js-->
+	<!--Othercharts js--
 	<script src="aronox/assets/plugins/othercharts/jquery.sparkline.min.js"></script>
 
-	<!-- Circle-progress js-->
+	<!-- Circle-progress js--
 	<script src="aronox/assets/js/vendors/circle-progress.min.js"></script>
 
 	<!--Horizontal js--
@@ -37,7 +39,7 @@
 	<!-- P-scroll js--
 	<script src="aronox/assets/plugins/p-scroll/perfect-scrollbar.js"></script-->
 	
-	<!-- Peitychart js-->
+	<!-- Peitychart js--
 	<script src="aronox/assets/plugins/peitychart/jquery.peity.min.js"></script>
 	
 	<!-- Custom js--

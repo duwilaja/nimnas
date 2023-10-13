@@ -10,6 +10,11 @@ $s_PROF = isset($_SESSION['s_PROF'])? $_SESSION['s_PROF'] : "";
 $s_LOC = isset($_SESSION['s_LOC'])? $_SESSION['s_LOC'] : "";
 $s_TICK = isset($_SESSION['s_TICK'])? $_SESSION['s_TICK'] : "";
 
+$mys_LOC="";
+if($s_LOC!=''){
+	$mys_LOC=implode("','",explode(",",str_replace("'","''",$s_LOC)));
+}
+
 $redir=isset($redirect)?$redirect:true;
 $dttbl=isset($datatable)?$datatable:false;
 $noformat=isset($cleartext)?$cleartext:false;
