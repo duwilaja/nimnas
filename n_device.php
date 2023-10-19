@@ -16,7 +16,8 @@ include "inc.menutop.php";
 
 include "inc.db.php";
 $conn=connect();
-$rs=exec_qry($conn,"select locid,name from core_location order by name");
+$wherloc=$mys_LOC==''?'':"where locid in ('$mys_LOC')";
+$rs=exec_qry($conn,"select locid,name from core_location $wherloc order by name");
 $o_loc=fetch_all($rs);
 $rs=exec_qry($conn,"select servid,servname from tick_serv order by servname");
 $o_serv=fetch_all($rs);
@@ -211,8 +212,11 @@ $cols="n.host,n.name,if(status=1,'UP','DOWN') as stt,net,loc,grp,typ,n.rowid";
 $csrc="n.host,name,net,loc,grp,typ";
 $grpby="";
 
-
 $cari=post("cari");
+
+if($mys_LOC!=''){ //session loc
+	$where.= " AND loc in ('$mys_LOC')";
+}
 
 ?>
 

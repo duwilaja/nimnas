@@ -78,6 +78,11 @@ $cols="locid,l.name,l.addr,city,prov,count(s.host) as t, sum(s.status) as u, cou
 $csrc="locid,l.name,l.addr,city,prov";
 $grpby="locid,l.name,l.addr,city,prov";
 
+$where="";
+if($mys_LOC!=''){ //session loc
+	$where.= "locid in ('$mys_LOC')";
+}
+
 ?>
 
 <script>
@@ -97,6 +102,7 @@ $(document).ready(function(){
 				d.cols= '<?php echo base64_encode($cols); ?>',
 				d.tname= '<?php echo base64_encode($tname); ?>',
 				d.csrc= '<?php echo base64_encode($csrc); ?>',
+				d.where= '<?php echo base64_encode($where); ?>',
 				d.grpby= '<?php echo base64_encode($grpby); ?>',
 				d.having= '<?php echo base64_encode($having); ?>',
 				d.x= '<?php echo $menu?>';

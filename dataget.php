@@ -13,12 +13,14 @@ $sql="";
 $code="200";
 $ttl="OK";
 
-$isgrp=($s_GRP=='')?false:true;
-$whr=$isgrp?"(grp='$s_GRP')":"(1=1)";
+$whr="(1=1)";
+if($mys_LOC!=''){ //session loc
+	$whr= "loc in ('$mys_LOC')";
+}
 
 $wtik="(1=1)";
-if($s_LOC!=''){
-	$wtik.= " AND loc='$s_LOC'";
+if($mys_LOC!=''){
+	$wtik.= " AND loc in ('$s_LOC')";
 }
 if($s_TICK!=''){
 	$wtik.= " AND grp='$s_TICK'";
@@ -70,7 +72,7 @@ switch($q){
 	case 'profile': $sql="select * from core_user where uid='$id'"; break;
 	
 	case 'home1': $sql="select count(host) as tdev, sum(status) as tdup, count(host)-sum(status) as tdon from core_status"; 
-			if($isgrp) $sql.=" where host in (select host from core_node where $whr)"; 
+			if($mys_LOC!='') $sql.=" where host in (select host from core_node where $whr)"; 
 			break;
 	
 	case 'map': $tname="core_location l join core_node n on l.locid=n.loc join core_status s on n.host=s.host";
@@ -80,8 +82,10 @@ switch($q){
 	case 'nodes': $sql="select n.rowid as id, n.host as label, concat(n.host,'/',name) as title, concat('icon/',lower(typ),'.png') as image, 'image' as shape,
 					if(status=1,'#ffffff','#ff0000') as fc from core_node n join core_status s on s.host=n.host where $whr"; break;
 	case 'edges': $sql="select n1.rowid as `from`, n2.rowid as `to`, 50 as `length` from core_netdiagram d 
-				join core_node n1 on n1.host=d.dari join core_node n2 on n2.host=d.ke"; 
-				if($isgrp) $sql.=" where n1.grp='$grp'";
+				join core_node n1 on n1.host=d.dari join core_node n2 on n2.host=d.ke";
+				if($mys_LOC!=''){
+					$sql.=" where n1.loc in ('$mys_LOC') and n2.loc in ('$mys_LOC')";
+				}
 				break;
 				
 	case 'orgs': $sql="select distinct grp from core_node where grp<>'' and $whr"; break;
@@ -91,7 +95,7 @@ switch($q){
 	
 	case 'notify': $sql="select DATE_FORMAT(created,'%a, %e %b %H:%i') as dtm,uname,uavatar as avatar,ticketno,
 			concat('Ticket#',ticketno,'. ',h,'. status ',stts) as msg
-			from tick_ets n left join core_user u on u.uid=n.creby where stts='new' order by created desc"; break;
+			from tick_ets n left join core_user u on u.uid=n.creby where stts='new' and $wtik order by created desc"; break;
 }
 
 //echo $sql;

@@ -21,7 +21,8 @@ $o_lovtyp=[
 
 include "inc.db.php";
 $conn=connect();
-$rs=exec_qry($conn,"select locid,name from core_location order by name");
+$wherloc=$mys_LOC==''?'':"where locid in ('$mys_LOC')";
+$rs=exec_qry($conn,"select locid,name from core_location $wherloc order by name");
 $o_loc=fetch_all($rs);
 $rs=exec_qry($conn,"select brid,brname from ass_brand order by brname");
 $o_brn=fetch_all($rs);
@@ -249,11 +250,15 @@ $tname="ass_ets a left join ass_brand b on brid=brand left join ass_cat c on cat
 $cols="assid,assname,brname,catname,name,warexp,a.rowid";
 $csrc="assname";
 
-$where="";
+$where="1=1";
 $loc=get("loc");
 if($loc!=""){
-	$where = "locid='$loc'";
+	$where = "loc='$loc'";
 }
+if($mys_LOC!=''){ //session loc
+	$where.= " AND loc in ('$mys_LOC')";
+}
+
 ?>
 
 <script>

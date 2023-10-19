@@ -78,6 +78,9 @@ $cols="hostname,name,sysName,sysDescr,sysContact,os,concat(upper(status_reason),
 $csrc="hostname,sysName,name";
 $grpby="";
 
+if($mys_LOC!=''){ //session loc
+	$where= "loc in ('$mys_LOC')";
+}
 ?>
 
 <script>

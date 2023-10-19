@@ -3,11 +3,11 @@ include "inc.common.php";
 include "inc.session.php";
 
 $page_icon="fa fa-home";
-$page_title="Dashboard";
+$page_title="Ticketing Dashboard";
 $modal_title="Title of Modal";
 $menu="ticks";
 
-$breadcrumb="Overview/Ticketing/$page_title";
+$breadcrumb="Ticketing/Dashboard";
 
 include "inc.head.php";
 include "inc.menutop.php";
@@ -24,139 +24,294 @@ include "inc.menutop.php";
 						<?php echo breadcrumb($breadcrumb)?>
 					</ol>
 				</div>
-
+				<div class="d-flex">
+					<div class="justify-content-center">
+						<div class="d-flex mt-4 mt-lg-0">
+							<form action="form-validation.html" id="selectForm" name="selectForm">
+								<div class="d-sm-flex">
+									<div class="parsley-select wd-sm-250" id="slWrapper">
+										<select class="form-control select2" data-parsley-class-handler="#slWrapper" data-parsley-errors-container="#slErrorContainer" data-placeholder="DAERAH" required="">
+											<option label="DAERAH">
+											</option>
+											<option value="ALL">
+												ALL
+											</option>
+											<option value="JABAR">
+												JAWA BARAT
+											</option>
+											<option value="JATENG">
+												JAWA TENGAH
+											</option>
+											<option value="JATIM">
+												JAWA TIMUR
+											</option>
+											<option value="ACEH">
+												ACEH
+											</option>
+											<option value="SUMSEL">
+												SUMATERA SELATAN
+											</option>
+										</select>
+										<div id="slErrorContainer"></div>
+									</div>
+									<div class="parsley-select wd-sm-250" id="slWrapper">
+										<select class="form-control select2" data-parsley-class-handler="#slWrapper" data-parsley-errors-container="#slErrorContainer" data-placeholder="LOKASI" required="">
+											<option label="">
+											</option>
+											<option value="ALL">
+												ALL
+											</option>
+											<option value="Firefox">
+												BBGP BANDUNG
+											</option>
+											<option value="Chrome">
+												BBGP BOGOR
+											</option>
+											<option value="Safari">
+												BBGP DEPOK
+											</option>
+											<option value="Opera">
+												BBGP PURWAKARTA
+											</option>
+											<option value="Internet Explorer">
+												BBGP CIANJUR
+											</option>
+										</select>
+										<div id="slErrorContainer"></div>
+									</div>
+									<div class="mg-sm-l-10 mg-t-10 mg-sm-t-0 ">
+										<button class="btn ripple btn-primary pd-x-20" type="submit" value="5">Filter</button>
+									</div>
+								</div>
+							</form>
+						</div>
+						
+					</div>
+					
+				</div>
+							
 			</div>
 			<!--End Page header-->
 			
 		
 			<!-- row opened -->
 			<div class="row row-sm">
-				<div class="owl-carousel  owl-theme">
-					<div class="item">
-						<div class="card custom-card">
-							<div class="card-body">
-								<div class="d-flex no-block align-items-center">
-									<div>
-										<span class="text-muted tx-13 mb-3">New</span>
-										<h3 class="m-0 mt-2 xnew">0</h3>
-									</div>
-									<div class="ms-auto mt-auto">
-										<img src="spruha/assets/img/svgs/crypto-currencies/btc.svg" class="wd-30 hd-30 me-2" alt="">
-									</div>
-								</div>
+				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+					<div class="card custom-card bg-danger blink">
+						<div class="card-body">
+							<div class="card-order">
+								<label class="main-content-label mb-3 pt-1 text-light">New Tickets</label>
+								<h2 class="text-end card-item-icon">
+									<span class="font-weight-bold xnew">0</span>
+								<i class="fe fe-alert-triangle icon-size float-start text-danger"></i></h2>
+								
 							</div>
 						</div>
 					</div>
-					<div class="item">
-						<div class="card custom-card">
-							<div class="card-body">
-								<div class="d-flex no-block align-items-center">
-									<div>
-										<span class="text-muted tx-13 mb-3">Progress</span>
-										<h3 class="m-0 mt-2 xprogress">0</h3>
-									</div>
-									<div class="ms-auto mt-auto">
-										<img src="spruha/assets/img/svgs/crypto-currencies/eth.svg" class="wd-30 hd-30 me-2" alt="">
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card custom-card">
-							<div class="card-body">
-								<div class="d-flex no-block align-items-center">
-									<div>
-										<span class="text-muted tx-13 mb-3">Pending</span>
-										<h3 class="m-0 mt-2 xpending">0</h3>
-									</div>
-									<div class="ms-auto mt-auto">
-										<img src="spruha/assets/img/svgs/crypto-currencies/xrp.svg" class="wd-30 hd-30 me-2" alt="">
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card custom-card">
-							<div class="card-body">
-								<div class="d-flex no-block align-items-center">
-									<div>
-										<span class="text-muted tx-13 mb-3">Solved</span>
-										<h3 class="m-0 mt-2 xsolved">0</h3>
-									</div>
-									<div class="ms-auto mt-auto">
-										<img src="spruha/assets/img/svgs/crypto-currencies/ltc.svg" class="wd-30 hd-30 me-2" alt="">
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card custom-card">
-							<div class="card-body">
-								<div class="d-flex no-block align-items-center">
-									<div>
-										<span class="text-muted tx-13 mb-3">Closed</span>
-										<h3 class="m-0 mt-2 xclosed">0</h3>
-									</div>
-									<div class="ms-auto mt-auto">
-										<img src="spruha/assets/img/svgs/crypto-currencies/dash.svg" class="wd-30 hd-30 me-2" alt="">
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!--div class="item">
-						<div class="card custom-card">
-							<div class="card-body">
-								<div class="d-flex no-block align-items-center">
-									<div>
-										<span class="text-muted tx-13 mb-3">Monero  XMR</span>
-										<h3 class="m-0 mt-2">5,34578</h3>
-									</div>
-									<div class="ms-auto mt-auto">
-										<img src="spruha/assets/img/svgs/crypto-currencies/xmr.svg" class="wd-30 hd-30 me-2" alt="">
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card custom-card">
-							<div class="card-body">
-								<div class="d-flex no-block align-items-center">
-									<div>
-										<span class="text-muted tx-13 mb-3">Neo  NEO</span>
-										<h3 class="m-0 mt-2">4,435456</h3>
-									</div>
-									<div class="ms-auto mt-auto">
-										<img src="spruha/assets/img/svgs/crypto-currencies/neo.svg" class="wd-30 hd-30 me-2" alt="">
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="item">
-						<div class="card custom-card">
-							<div class="card-body">
-								<div class="d-flex no-block align-items-center">
-									<div>
-										<span class="text-muted tx-13 mb-3">Steem STEEM</span>
-										<h3 class="m-0 mt-2">2,345467</h3>
-									</div>
-									<div class="ms-auto mt-auto">
-										<img src="spruha/assets/img/svgs/crypto-currencies/steem.svg" class="wd-30 hd-30 me-2" alt="">
-									</div>
-								</div>
-							</div>
-						</div>
-					</div-->
 				</div>
+				<!-- COL END -->
+				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-2">
+					<div class="card custom-card">
+						<div class="card-body">
+							<div class="card-order">
+								<label class="main-content-label mb-3 pt-1">Progress</label>
+								<h2 class="text-end"><i class="fe fe-trending-up icon-size float-start text-info"></i>
+								<span class="font-weight-bold xprogres">0</span></h2>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- COL END -->
+				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-2">
+					<div class="card custom-card">
+						<div class="card-body">
+							<div class="card-order">
+								<label class="main-content-label mb-3 pt-1">Pending</label>
+								<h2 class="text-end"><i class="icon-size fe fe-clock float-start text-warning"></i>
+								<span class="font-weight-bold xpending">0</span></h2>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- COL END -->
+				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-2">
+					<div class="card custom-card">
+						<div class="card-body">
+							<div class="card-order">
+								<label class="main-content-label mb-3 pt-1">Closed</label>
+								<h2 class="text-end"><i class="fe fe-thumbs-up icon-size float-start text-success"></i>
+								<span class="font-weight-bold xclosed">0</span></h2>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- COL END -->
+				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-2">
+					<div class="card custom-card bg-primary">
+						<div class="card-body">
+							<div class="card-order">
+								<label class="main-content-label mb-3 pt-1 text-light" id="tgl">27 Sep 2023</label>
+								<h2><span class="font-weight-bold" id="jam">10:00:00</span></h2>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- COL END -->
 			</div>
 			<!-- row closed -->
 			<br />
-			<div class="row">
+			
+			<!-- row opened -->
+			<div class="row row-sm">
+				<div class="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-4">
+					<div class="card custom-card wallet-1">
+						<div class="card-header border-bottom-0">
+							<label class="main-content-label my-auto pt-2 mb-1">Total Tickets</label>
+						</div>
+						<div class="card-body crypto-wallet" style="padding:10px !important" >
+							<div class=""><canvas id="tick-cat" class="ht-180" style="max-height:270px !important"></canvas></div>
+							<div class="chart-circle-value circle-style" style="top:79px; !important">
+								<h6 style="padding-top: 10px; margin-bottom: 0px;!important">Total Tickets</h6>
+								<div class="tx-20 font-weight-bold totik" style="line-height:30px; !important">0</div>
+							</div>
+						</div>
+						<div class="table-responsive border-0">
+							<table class="table border-0 mg-b-0 text-nowrap text-md-nowrap">
+								<tbody>
+									<tr>
+										<td class="d-flex">
+										<div class="cryp-icon bg-danger my-auto me-2"> <i class="fe fe-activity"></i> </div>
+											<div class="media-body ms-3">
+												<!-- <p class="mb-1 text-muted font-weight-normal tx-15">Bitcoin BTC</p> -->
+												<span class="tx-15 font-weight-semibold my-auto">Problem Ticket </span>
+											</div>
+										</td>
+										<td>( PT )</td>
+										<td class="">2,500</td>
+										<td>25%</td>
+										<td>
+											<div class="button-list">
+												<a href="#" class="btn"><i class="fe fe-eye"></i></a>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td class="d-flex">
+										<div class="cryp-icon bg-danger my-auto me-2"> <i class="fe fe-refresh-cw"></i> </div>
+											<div class="media-body ms-3">
+												<!-- <p class="mb-1 text-muted font-weight-normal tx-15">Ethereum ETH</p> -->
+												<span class="tx-15 font-weight-semibold my-auto">Change Request </span>
+											</div>
+										</td>
+										<td>( CRT )</td>
+										<td class="">2,500</td>
+										<td>25%</td>
+										<td>
+											<div class="button-list">
+												<a href="#" class="btn"><i class="fe fe-eye"></i></a>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td class="d-flex">
+										<div class="cryp-icon bg-danger my-auto me-2"> <i class="fe fe-info"></i> </div>
+											<div class="media-body ms-3">
+												<!-- <p class="mb-1 text-muted font-weight-normal tx-15">Dash DASH</p> -->
+												<span class="tx-15 font-weight-semibold my-auto">Information</span>
+											</div>
+										</td>
+										<td>( IRT )</td>
+										<td class="">5,000</td>
+										<td>50%</td>
+										<td>
+											<div class="button-list">
+												<a href="#" class="btn"><i class="fe fe-eye"></i></a>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					
+					<div class="card custom-card">
+						<div class="card-header  border-bottom-0 pb-0">
+							<div class="d-flex">
+								<label class="main-content-label my-auto pt-2">Top 3 Tickets</label>
+							</div>
+						</div>
+						<div class="card-body">
+							<div class="card-header border-bottom pt-0 ps-0 pe-0 d-flex"></div>
+							<div class="table-responsive tasks">
+								<table class="table card-table table-vcenter text-nowrap mb-0 ">
+									<thead>
+										<tr class="border-bottom">
+											<th class="wd-lg-10p  text-bold">Location</th>
+											<th class="wd-lg-20p  text-bold">Total</th>
+											<th class="wd-lg-20p  text-bold">PT</th>
+											<th class="wd-lg-20p  text-bold">CRT</th>
+											<th class="wd-lg-20p  text-bold">IRT</th>
+											<th class="wd-lg-20p  text-bold">Detail</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td class="font-weight-semibold d-flex"><span class="mt-1">BBGP JABAR</span></td>
+											<td>35</td>
+											<td>13</td>
+											<td>2</td>
+											<td>20</td>
+											<td>
+												<div class="button-list">
+													<a href="#" class="btn"><i class="fe fe-eye"></i></a>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td class="font-weight-semibold d-flex"><span class="mt-1">BBGP JATENG</span></td>
+											<td>35</td>
+											<td>13</td>
+											<td>2</td>
+											<td>20</td>
+											<td>
+												<div class="button-list">
+													<a href="#" class="btn"><i class="fe fe-eye"></i></a>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td class="font-weight-semibold d-flex"><span class="mt-1">BBGP JATIM</span></td>
+											<td>35</td>
+											<td>13</td>
+											<td>2</td>
+											<td>20</td>
+											<td>
+												<div class="button-list">
+													<a href="#" class="btn"><i class="fe fe-eye"></i></a>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xxl-8 col-xl-12 col-md-12 col-lg-12">
+					<div class="card custom-card">
+						<div class="card-body">
+							<div>
+								<h6 class="main-content-label mb-1">Ticket Mapping</h6>
+							</div>
+							<div class="ht-300 ht-lg-400" style="height: 680px; !important;" id="map"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- row closed -->
+
+			
+			<div class="row hidden">
 				<!-- BEGIN col-4 -->
 				<div class="col-xl-6">
 					<!-- BEGIN card -->
@@ -207,115 +362,12 @@ include "inc.menutop.php";
 				</div>
 				<!-- END col-4 -->
 			</div>
+			
 			<div class="row hidden">
-				<!-- BEGIN col-4 -->
-				<div class="col-xl-4">
-					<!-- BEGIN card -->
-					<div class="card mb-3">
-						<!-- BEGIN card-body -->
-						<div class="card-body">
-							<!-- BEGIN title -->
-							<div class="d-flex fw-bold small mb-3">
-								<span class="flex-grow-1">Oldest Assets</span>
-								<a href="#" data-toggle="card-expand" class="text-white text-opacity-50 text-decoration-none"><i class="bi bi-fullscreen"></i></a>
-							</div>
-							<!-- END title -->
-							<!-- BEGIN table -->
-							<div class="table-responsive">
-								<table id="topold" class="table table-striped table-borderless mb-2px small text-nowrap">
-									<thead>
-										<tr>
-											<th>Name</th>
-											<th>Location</th>
-											<th>Purchased</th>
-										</tr>
-									</thead>
-									<tbody>
-									</tbody>
-								</table>
-							</div>
-							<!-- END table -->
-						</div>
-						<!-- END card-body -->
-						
-					</div>
-					<!-- END card -->
-				</div>
-				<!-- END col-4 -->
-				<!-- BEGIN col-4 -->
-				<div class="col-xl-4">
-					<!-- BEGIN card -->
-					<div class="card mb-3">
-						<!-- BEGIN card-body -->
-						<div class="card-body">
-							<!-- BEGIN title -->
-							<div class="d-flex fw-bold small mb-3">
-								<span class="flex-grow-1">Brand Problem</span>
-								<a href="#" data-toggle="card-expand" class="text-white text-opacity-50 text-decoration-none"><i class="bi bi-fullscreen"></i></a>
-							</div>
-							<!-- END title -->
-							<!-- BEGIN table -->
-							<div class="table-responsive">
-								<table id="toppro" class="table table-striped table-borderless mb-2px small text-nowrap">
-									<thead>
-										<tr>
-											<th>Brand</th>
-											<th>Total</th>
-										</tr>
-									</thead>
-									<tbody>
-									</tbody>
-								</table>
-							</div>
-							<!-- END table -->
-						</div>
-						<!-- END card-body -->
-						
-					</div>
-					<!-- END card -->
-				</div>
-				<!-- END col-4 -->
-				<!-- BEGIN col-4 -->
-				<div class="col-xl-4">
-					<!-- BEGIN card -->
-					<div class="card mb-3">
-						<!-- BEGIN card-body -->
-						<div class="card-body">
-							<!-- BEGIN title -->
-							<div class="d-flex fw-bold small mb-3">
-								<span class="flex-grow-1">Warranty Warning</span>
-								<a href="#" data-toggle="card-expand" class="text-white text-opacity-50 text-decoration-none"><i class="bi bi-fullscreen"></i></a>
-							</div>
-							<!-- END title -->
-							<!-- BEGIN table -->
-							<div class="table-responsive">
-								<table id="topwar" class="table table-striped table-borderless mb-2px small text-nowrap">
-									<thead>
-										<tr>
-											<th>Name</th>
-											<th>Location</th>
-											<th>Expired</th>
-										</tr>
-									</thead>
-									<tbody>
-									</tbody>
-								</table>
-							</div>
-							<!-- END table -->
-						</div>
-						<!-- END card-body -->
-						
-					</div>
-					<!-- END card -->
-				</div>
-				<!-- END col-4 -->
-			</div>
-			<br /><br />
-			<div class="row">
 				<div class="col-12">
 					<div class="card">
 						<div class="card-body">
-							<div id="map" style="height:450px; z-index: 1;"></div>
+							<div id="mapx" style="height:450px; z-index: 1;"></div>
 						</div>
 					</div>
 				</div>
@@ -344,9 +396,11 @@ $(document).ready(function(){
 	markers=null;
 	//getData('onoff','maps-onoff');
 	widget_map();
-	getDataChart('tickstt');
-	getDataChart('ticksvc');
-	karousel();
+	//getDataChart('tickstt');
+	//getDataChart('ticksvc');
+	//karousel();
+	
+	getDataChart('tickcat');
 	
 });
 function randomColor(){
@@ -377,15 +431,19 @@ function hexToRgba(hexValue, alpha) {
 function pieChart(databar){
 	var label=[], datas=[], colors=[];
 	var myVarVal="#6259ca";
+	var totik=0;
 	//log(databar);
 	for(var i=0;i<databar.length;i++){
-		label.push(databar[i]['svc']);
+		label.push(databar[i]['cat']);
 		datas.push(parseInt(databar[i]['tot']));
 		//colors.push(randomColor());
 		colors.push(hexToRgba(myVarVal,(1-(i*0.1))));
+		totik+=parseInt(databar[i]['tot']);
 	}
 	
-	var ctx5 = document.getElementById('tick-svc');
+	$(".totik").html(totik);
+	
+	var ctx5 = document.getElementById('tick-cat');
 	pieChart = new Chart(ctx5, {
 		type: 'doughnut',
 		data: {
@@ -397,6 +455,13 @@ function pieChart(databar){
 				//hoverBackgroundColor: ['rgba('+ app.color.greenRgb +', 1)', 'rgba('+ app.color.whiteRgb +', 1)', 'rgba('+ app.color.gray500Rgb +', 1)'],
 				borderWidth: 0
 			}]
+		},
+		options: {
+			plugins: {
+				legend: {
+					display: false
+				},
+			}
 		}
 	});
 }
@@ -414,6 +479,9 @@ function getDataChart(q=''){
 					stackedbarChart(datachart);
 				}
 				if(q=='ticksvc'){
+					pieChart(datachart);
+				}
+				if(q=='tickcat'){
 					pieChart(datachart);
 				}
 			}else{
@@ -541,9 +609,14 @@ function gettot(){
 				for(var i=0;i<json['msgs'].length;i++){
 					var d=json['msgs'][i];
 					$(".x"+d['stts']).html(d['tot']);
-					tot+=parseInt(d['tot']);
+					if(d['stts']!='new'&&d['stts']!='closed'&&d['stts']!='pending') tot+=parseInt(d['tot']);
 				}
-				//$(".tot").html(tot);
+				if(parseInt($(".xnew").html())>0){
+					if($(".blink").hasClass("bg-danger")) $(".blink").removeClass("bg-danger").addClass("blink-bg");
+				}else{
+					if($(".blink").hasClass("blink-bg")) $(".blink").addClass("bg-danger").removeClass("blink-bg");
+				}
+				$(".xprogres").html(tot);
 			}else{
 				log(json['msgs']);
 			}
@@ -592,14 +665,14 @@ var mytbl=$(divid).DataTable({
 
 
 var map, markers;
-var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 var err='';
 
 function displayClock(){
 	var d=new Date();
 	var zone=d.toString().match(/([\+-][0-9]+)\s/)[1];
 	$("#zone").text('('+zone+')');
-	var tgl=months[d.getMonth()]+" "+d.getDate()+", "+d.getFullYear();
+	var tgl=d.getDate()+" "+months[d.getMonth()]+" "+d.getFullYear();
 	$("#tgl").text(tgl);
 	var jam=d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
 	$("#jam").text(jam);
