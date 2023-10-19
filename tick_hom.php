@@ -14,7 +14,7 @@ include "inc.menutop.php";
 ?>
 
 	<div class="app-content page-body">
-		<div class="container">
+		<div class="">
 
 			<!--Page header-->
 			<div class="page-header">
