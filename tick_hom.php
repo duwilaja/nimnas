@@ -163,7 +163,7 @@ include "inc.menutop.php";
 			
 			<!-- row opened -->
 			<div class="row row-sm">
-				<div class="col-md-12 col-sm-12 col-lg-12 col-xl-12 col-xxl-4">
+				<div class="col-md-12 col-sm-12 col-lg-4 col-xl-4 col-xxl-4">
 					<div class="card custom-card wallet-1">
 						<div class="card-header border-bottom-0">
 							<label class="main-content-label my-auto pt-2 mb-1">Total Tickets</label>
@@ -297,7 +297,7 @@ include "inc.menutop.php";
 						</div>
 					</div>
 				</div>
-				<div class="col-xxl-8 col-xl-12 col-md-12 col-lg-12">
+				<div class="col-xxl-8 col-xl-8 col-md-12 col-lg-8">
 					<div class="card custom-card">
 						<div class="card-body">
 							<div>
