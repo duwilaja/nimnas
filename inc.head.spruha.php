@@ -81,6 +81,16 @@
 		.main-notification-list .media:hover, .main-notification-list .media:focus{
 			cursor: auto;
 		}
+		.blink-bg{
+			animation: blinkingBackground 2s infinite;
+		}
+		@keyframes blinkingBackground{
+			0%		{ background-color: #10c018;}
+			25%		{ background-color: #1056c0;}
+			50%		{ background-color: #ef0a1a;}
+			75%		{ background-color: #254878;}
+			100%	{ background-color: #04a1d5;}
+		}
 		</style>
 
 	</head>

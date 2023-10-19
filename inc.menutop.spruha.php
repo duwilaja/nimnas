@@ -119,6 +119,7 @@
 						</ul>
 					</li>
 					<?php if($s_LVL==0||$s_LVL==1){?>
+					<li class="nav-header"><span class="nav-label">Setup & Tools</span></li>
 					<li class="nav-item">
 						<a class="nav-link with-sub" href="javascript:void(0)">
 							<span class="shape1"></span>

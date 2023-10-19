@@ -47,6 +47,7 @@ include "inc.menutop.php";
 								<thead>
 									<tr>
 										<th>Host</th>
+										<th>Name</th>
 										<th>sysName</th>
 										<th>sysDescr</th>
 										<th>App</th>
@@ -72,10 +73,14 @@ include "inc.db.php";
 
 $where="";//get("loc")==""?"":"loc='".get("loc")."'";
 
-$tname="devices d inner join applications a on a.device_id=d.device_id";
-$cols="hostname,sysName,sysDescr,app_type,app_state";
-$csrc="hostname,sysName,app_type";
+$tname="devices d inner join applications a on a.device_id=d.device_id join nimdb.core_node on host=hostname";
+$cols="hostname,name,sysName,sysDescr,app_type,app_state";
+$csrc="hostname,name,sysName,app_type";
 $grpby="";
+
+if($mys_LOC!=''){ //session loc
+	$where= "loc in ('$mys_LOC')";
+}
 
 ?>
 

@@ -11,7 +11,7 @@ $all=0;
 $on=0;
 $off=0;
 
-$whr=($s_GRP=='')?"1=1":"(grp='$s_GRP')";
+$whr=($mys_LOC=='')?"1=1":" loc in ('$mys_LOC')";
 
 //today
 $sql="select count(host),sum(status) from core_status";
