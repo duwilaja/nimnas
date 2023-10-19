@@ -96,7 +96,7 @@ include "inc.menutop.php";
 		
 			<!-- row opened -->
 			<div class="row row-sm">
-				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
+				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
 					<div class="card custom-card bg-danger blink">
 						<div class="card-body">
 							<div class="card-order">
@@ -146,7 +146,7 @@ include "inc.menutop.php";
 					</div>
 				</div>
 				<!-- COL END -->
-				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-2">
+				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
 					<div class="card custom-card bg-primary">
 						<div class="card-body">
 							<div class="card-order">
