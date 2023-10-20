@@ -95,6 +95,8 @@
 		}
 	});
 	}
+	
+	$(".container").removeClass("container");
 	</script>
 	<!-- my own custom js -->
 	<script src="js/custom.spruha.js"></script>
