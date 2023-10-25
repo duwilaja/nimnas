@@ -52,6 +52,7 @@ if($mine=="1"){
 	$where.= " AND (updby='$s_ID' OR creby='$s_ID')";
 }
 
+$prov=get("prov");
 $loc=get("loc");
 $stt=get("s");
 if($loc!=''){
@@ -60,6 +61,10 @@ if($loc!=''){
 }
 if($stt!=''){
 	$where.= " AND stts='$stt'";
+	$clso="hidden";
+}
+if($prov!=''){
+	$where.=" AND loc in (select locid from core_location where prov='$prov')";
 	$clso="hidden";
 }
 

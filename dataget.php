@@ -18,9 +18,10 @@ if($mys_LOC!=''){ //session loc
 	$whr= "loc in ('$mys_LOC')";
 }
 
-$wtik="(1=1)";
+$wtik="(1=1)"; $wloc="";
 if($mys_LOC!=''){
-	$wtik.= " AND loc in ('$s_LOC')";
+	$wtik.= " AND loc in ('$mys_LOC')";
+	$wloc=" AND locid in ('$mys_LOC')";
 }
 if($s_TICK!=''){
 	$wtik.= " AND grp='$s_TICK'";
@@ -57,13 +58,25 @@ switch($q){
 	case 'tick': $sql="select * from tick_ets where rowid='$id'"; break;
 	case 'mticat': $sql="select * from tick_cat where rowid='$id'"; break;
 	case 'mserv': $sql="select * from tick_serv where rowid='$id'"; break;
-	case 'tikhom': $sql="select stts,count(stts) as tot from tick_ets where  $wtik group by stts"; break;
+	
+	case 'tikhom': 
+		$wtik.=post('prov')==''?'':" AND loc in (select locid from core_location where prov='".post('prov')."')";
+		$wtik.=post('loc')==''?'':" AND loc='".post('loc')."'";
+		$sql="select stts,count(stts) as tot from tick_ets where  $wtik group by stts"; break;
+	case 'tikprov': $sql="select locid as v, name as t from core_location where prov like '$id' $wloc"; break;
 	case 'tikloc': 
+			$wtik="(1=1)";
+			if($mys_LOC!=''){ $wtik.= " AND loc in ('$mys_LOC')"; }
+			$wtik.=post('prov')==''?'':" AND prov='".post('prov')."'";
+			$wtik.=post('loc')==''?'':" AND loc='".post('loc')."'";
 			$tname="core_location l join tick_ets a on l.locid=a.loc";
 			$grpby="lat,lng,concat(l.name,'\n',l.addr),stts,locid";
 			$where="lat<>'' and lng<>'' and stts<>'closed' and $wtik";
 		$sql="select lat,lng,concat(l.name,'\n',l.addr) as name,locid,count(a.stts) as cnt,a.stts from $tname where $where group by $grpby"; break;
-	case 'tickcat': $sql="select cat,count(cat) as tot from tick_ets  where  $wtik group by cat"; break;
+	case 'tickcat': 
+		$wtik.=post('prov')==''?'':" AND loc in (select locid from core_location where prov='".post('prov')."')";
+		$wtik.=post('loc')==''?'':" AND loc='".post('loc')."'";
+		$sql="select cat,count(cat) as tot from tick_ets  where  $wtik group by cat"; break;
 	case 'ticksvc': $sql="select svc,count(svc) as tot from tick_ets where  $wtik group by svc"; break;
 	case 'tickstt': $sql="select DATE_FORMAT(dtm,'%Y-%m') as bul,DATE_FORMAT(dtm,'%b-%Y') as bln,stts,count(stts) as tot from tick_ets 
 				where stts in ('progress','pending','closed') and $wtik  and 
