@@ -17,17 +17,26 @@ $sql="select loc,name,count(loc) as tot from tick_ets t left join core_location 
 
 $rs=fetch_alla(exec_qry($conn,$sql));
 
+$sql="select loc,cat,count(loc) as tot from tick_ets where $wtik group by loc,cat order by loc,cat";
+$rsx=fetch_alla(exec_qry($conn,$sql));
+
 disconnect($conn);
 
 $tot=0;
 for($i=0;$i<count($rs);$i++){
+	$pt=0; $crt=0; $irt=0;
+	for($j=0;$j<count($rsx);$j++){
+		if($rsx[$j]['loc']==$rs[$i]['loc']&&$rsx[$j]['cat']=='PT'){ $pt+=$rsx[$j]['tot']; }
+		if($rsx[$j]['loc']==$rs[$i]['loc']&&$rsx[$j]['cat']=='CRT'){ $crt+=$rsx[$j]['tot']; }
+		if($rsx[$j]['loc']==$rs[$i]['loc']&&$rsx[$j]['cat']=='IRT'){ $irt+=$rsx[$j]['tot']; }
+	}
 
-echo	'<tr>
+	echo '<tr>
 			<td class="font-weight-semibold d-flex"><span class="mt-1">'.$rs[$i]['name'].'</span></td>
 			<td>'.$rs[$i]['tot'].'</td>
-			<td>0</td>
-			<td>0</td>
-			<td>0</td>
+			<td>'.$pt.'</td>
+			<td>'.$crt.'</td>
+			<td>'.$irt.'</td>
 			<td>
 				<div class="button-list">
 					<a href="#" class="btn"><i class="fe fe-eye"></i></a>
