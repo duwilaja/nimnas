@@ -13,7 +13,7 @@ if($mys_LOC!=''){
 }
 $wtik.=post('prov')==''?'':" AND prov='".post('prov')."'";
 $wtik.=post('loc')==''?'':" AND loc='".post('loc')."'";
-$sql="select loc,name,count(loc) as tot from tick_ets t left join core_location l on t.loc=l.locid where $wtik group by loc,name order by tot desc";
+$sql="select loc,name,count(loc) as tot from tick_ets t left join core_location l on t.loc=l.locid where $wtik group by loc,name order by tot desc limit 3";
 
 $rs=fetch_alla(exec_qry($conn,$sql));
 
