@@ -11,6 +11,14 @@ $breadcrumb="Ticketing/Dashboard";
 
 include "inc.head.php";
 include "inc.menutop.php";
+
+include "inc.db.php";
+$conn=connect();
+$wherloc=$mys_LOC==''?'':"where locid in ('$mys_LOC')";
+$rs=exec_qry($conn,"SELECT distinct prov,p.name FROM core_location l JOIN core_province p on p.iso=l.prov $wherloc order by name");
+$o_prov=fetch_all($rs);
+disconnect($conn);
+
 ?>
 
 	<div class="app-content page-body">
@@ -27,60 +35,21 @@ include "inc.menutop.php";
 				<div class="d-flex">
 					<div class="justify-content-center">
 						<div class="d-flex mt-4 mt-lg-0">
-							<form action="form-validation.html" id="selectForm" name="selectForm">
+							<form action="" id="selectForm" name="selectForm">
 								<div class="d-sm-flex">
 									<div class="parsley-select wd-sm-250" id="slWrapper">
-										<select class="form-control select2" data-parsley-class-handler="#slWrapper" data-parsley-errors-container="#slErrorContainer" data-placeholder="DAERAH" required="">
-											<option label="DAERAH">
-											</option>
-											<option value="ALL">
-												ALL
-											</option>
-											<option value="JABAR">
-												JAWA BARAT
-											</option>
-											<option value="JATENG">
-												JAWA TENGAH
-											</option>
-											<option value="JATIM">
-												JAWA TIMUR
-											</option>
-											<option value="ACEH">
-												ACEH
-											</option>
-											<option value="SUMSEL">
-												SUMATERA SELATAN
-											</option>
+										<select id="fprov" class="form-control select2" onchange="getloc(this.value);">
+											<option value="">ALL</option>
+											<?php echo options($o_prov) ?>
 										</select>
-										<div id="slErrorContainer"></div>
 									</div>
 									<div class="parsley-select wd-sm-250" id="slWrapper">
-										<select class="form-control select2" data-parsley-class-handler="#slWrapper" data-parsley-errors-container="#slErrorContainer" data-placeholder="LOKASI" required="">
-											<option label="">
-											</option>
-											<option value="ALL">
-												ALL
-											</option>
-											<option value="Firefox">
-												BBGP BANDUNG
-											</option>
-											<option value="Chrome">
-												BBGP BOGOR
-											</option>
-											<option value="Safari">
-												BBGP DEPOK
-											</option>
-											<option value="Opera">
-												BBGP PURWAKARTA
-											</option>
-											<option value="Internet Explorer">
-												BBGP CIANJUR
-											</option>
+										<select id="floc" class="form-control select2">
+											<option value="">ALL</option>
 										</select>
-										<div id="slErrorContainer"></div>
 									</div>
 									<div class="mg-sm-l-10 mg-t-10 mg-sm-t-0 ">
-										<button class="btn ripple btn-primary pd-x-20" type="submit" value="5">Filter</button>
+										<button class="btn ripple btn-primary pd-x-20" type="button" onclick="applyfilter()">Filter</button>
 									</div>
 								</div>
 							</form>
@@ -97,12 +66,12 @@ include "inc.menutop.php";
 			<!-- row opened -->
 			<div class="row row-sm">
 				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
-					<div class="card custom-card bg-danger blink">
+					<div class="card custom-card bg-danger blink divlnk" onclick="tickets('new');">
 						<div class="card-body">
 							<div class="card-order">
 								<label class="main-content-label mb-3 pt-1 text-light">New Tickets</label>
 								<h2 class="text-end card-item-icon">
-									<span class="font-weight-bold xnew">0</span>
+									<span class="font-weight-bold xnew xtot">0</span>
 								<i class="fe fe-alert-triangle icon-size float-start text-danger"></i></h2>
 								
 							</div>
@@ -111,36 +80,36 @@ include "inc.menutop.php";
 				</div>
 				<!-- COL END -->
 				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-2">
-					<div class="card custom-card">
+					<div class="card custom-card divlnk" onclick="tickets('progress');">
 						<div class="card-body">
 							<div class="card-order">
 								<label class="main-content-label mb-3 pt-1">Progress</label>
 								<h2 class="text-end"><i class="fe fe-trending-up icon-size float-start text-info"></i>
-								<span class="font-weight-bold xprogres">0</span></h2>
+								<span class="font-weight-bold xprogres xtot">0</span></h2>
 							</div>
 						</div>
 					</div>
 				</div>
 				<!-- COL END -->
 				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-2">
-					<div class="card custom-card">
+					<div class="card custom-card divlnk" onclick="tickets('pending');">
 						<div class="card-body">
 							<div class="card-order">
 								<label class="main-content-label mb-3 pt-1">Pending</label>
 								<h2 class="text-end"><i class="icon-size fe fe-clock float-start text-warning"></i>
-								<span class="font-weight-bold xpending">0</span></h2>
+								<span class="font-weight-bold xpending xtot">0</span></h2>
 							</div>
 						</div>
 					</div>
 				</div>
 				<!-- COL END -->
 				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-2">
-					<div class="card custom-card">
+					<div class="card custom-card divlnk" onclick="tickets('solved');">
 						<div class="card-body">
 							<div class="card-order">
-								<label class="main-content-label mb-3 pt-1">Closed</label>
+								<label class="main-content-label mb-3 pt-1">Solved</label>
 								<h2 class="text-end"><i class="fe fe-thumbs-up icon-size float-start text-success"></i>
-								<span class="font-weight-bold xclosed">0</span></h2>
+								<span class="font-weight-bold xsolved xtot">0</span></h2>
 							</div>
 						</div>
 					</div>
@@ -177,58 +146,7 @@ include "inc.menutop.php";
 						</div>
 						<div class="table-responsive border-0">
 							<table class="table border-0 mg-b-0 text-nowrap text-md-nowrap">
-								<tbody>
-									<tr>
-										<td class="d-flex">
-										<div class="cryp-icon bg-danger my-auto me-2"> <i class="fe fe-activity"></i> </div>
-											<div class="media-body ms-3">
-												<!-- <p class="mb-1 text-muted font-weight-normal tx-15">Bitcoin BTC</p> -->
-												<span class="tx-15 font-weight-semibold my-auto">Problem Ticket </span>
-											</div>
-										</td>
-										<td>( PT )</td>
-										<td class="">2,500</td>
-										<td>25%</td>
-										<td>
-											<div class="button-list">
-												<a href="#" class="btn"><i class="fe fe-eye"></i></a>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="d-flex">
-										<div class="cryp-icon bg-danger my-auto me-2"> <i class="fe fe-refresh-cw"></i> </div>
-											<div class="media-body ms-3">
-												<!-- <p class="mb-1 text-muted font-weight-normal tx-15">Ethereum ETH</p> -->
-												<span class="tx-15 font-weight-semibold my-auto">Change Request </span>
-											</div>
-										</td>
-										<td>( CRT )</td>
-										<td class="">2,500</td>
-										<td>25%</td>
-										<td>
-											<div class="button-list">
-												<a href="#" class="btn"><i class="fe fe-eye"></i></a>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td class="d-flex">
-										<div class="cryp-icon bg-danger my-auto me-2"> <i class="fe fe-info"></i> </div>
-											<div class="media-body ms-3">
-												<!-- <p class="mb-1 text-muted font-weight-normal tx-15">Dash DASH</p> -->
-												<span class="tx-15 font-weight-semibold my-auto">Information</span>
-											</div>
-										</td>
-										<td>( IRT )</td>
-										<td class="">5,000</td>
-										<td>50%</td>
-										<td>
-											<div class="button-list">
-												<a href="#" class="btn"><i class="fe fe-eye"></i></a>
-											</div>
-										</td>
-									</tr>
+								<tbody id="ticat">
 								</tbody>
 							</table>
 						</div>
@@ -254,43 +172,7 @@ include "inc.menutop.php";
 											<th class="wd-lg-20p  text-bold">Detail</th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
-											<td class="font-weight-semibold d-flex"><span class="mt-1">BBGP JABAR</span></td>
-											<td>35</td>
-											<td>13</td>
-											<td>2</td>
-											<td>20</td>
-											<td>
-												<div class="button-list">
-													<a href="#" class="btn"><i class="fe fe-eye"></i></a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td class="font-weight-semibold d-flex"><span class="mt-1">BBGP JATENG</span></td>
-											<td>35</td>
-											<td>13</td>
-											<td>2</td>
-											<td>20</td>
-											<td>
-												<div class="button-list">
-													<a href="#" class="btn"><i class="fe fe-eye"></i></a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td class="font-weight-semibold d-flex"><span class="mt-1">BBGP JATIM</span></td>
-											<td>35</td>
-											<td>13</td>
-											<td>2</td>
-											<td>20</td>
-											<td>
-												<div class="button-list">
-													<a href="#" class="btn"><i class="fe fe-eye"></i></a>
-												</div>
-											</td>
-										</tr>
+									<tbody id="titop">
 									</tbody>
 								</table>
 							</div>
@@ -399,10 +281,30 @@ $(document).ready(function(){
 	//getDataChart('tickstt');
 	//getDataChart('ticksvc');
 	//karousel();
+	pieChart=null;
 	
 	getDataChart('tickcat');
+	$(".select2").select2();
+	
+	get_content("tick_hom_cat<?php echo $ext?>",{},".ldr-","#ticat");
+	get_content("tick_hom_top<?php echo $ext?>",{},".ldr-","#titop");
 	
 });
+function applyfilter(){
+	$(".xtot").html(0);
+	gettot();
+	getDataChart('tickcat');
+	get_loc();
+	get_content("tick_hom_cat<?php echo $ext?>",{prov:$('#fprov').val(),loc:$('#floc').val()},".ldr-","#ticat");
+	get_content("tick_hom_top<?php echo $ext?>",{prov:$('#fprov').val(),loc:$('#floc').val()},".ldr-","#titop");
+}
+
+function tickets(s){
+	var loc=$("#floc").val();
+	var prov=$("#fprov").val();
+	document.location.href='tickets'+ext+'?s='+s+'&loc='+loc+'&prov='+prov;
+}
+
 function randomColor(){
 	return "#"+(Math.random().toString(16)+"000000").slice(2, 8).toUpperCase();
 }
@@ -428,7 +330,7 @@ function hexToRgba(hexValue, alpha) {
 	const [r, g, b, a] = hexArr.map(convertHexUnitTo256)
 	return `rgba(${r}, ${g}, ${b}, ${getAlphafloat(a, alpha)})`
 }
-function pieChart(databar){
+function chartPie(databar){
 	var label=[], datas=[], colors=[];
 	var myVarVal="#6259ca";
 	var totik=0;
@@ -442,6 +344,10 @@ function pieChart(databar){
 	}
 	
 	$(".totik").html(totik);
+	
+	if(pieChart!=null){
+		pieChart.destroy();
+	}
 	
 	var ctx5 = document.getElementById('tick-cat');
 	pieChart = new Chart(ctx5, {
@@ -470,7 +376,7 @@ function getDataChart(q=''){
 	$.ajax({
 		type: 'POST',
 		url: 'dataget'+ext,
-		data: {q:q},
+		data: {q:q,prov:$('#fprov').val(),loc:$('#floc').val()},
 		success: function(data){
 			var json = JSON.parse(data);
 			if(json['code']=='200'){
@@ -479,10 +385,10 @@ function getDataChart(q=''){
 					stackedbarChart(datachart);
 				}
 				if(q=='ticksvc'){
-					pieChart(datachart);
+					chartPie(datachart);
 				}
 				if(q=='tickcat'){
-					pieChart(datachart);
+					chartPie(datachart);
 				}
 			}else{
 				log(json['msgs']);
@@ -601,7 +507,7 @@ function gettot(){
 	$.ajax({
 		type: 'POST',
 		url: 'dataget'+ext,
-		data: {q:'tikhom'},
+		data: {q:'tikhom',prov:$('#fprov').val(),loc:$('#floc').val()},
 		success: function(data){
 			var json = JSON.parse(data);
 			if(json['code']=='200'){
@@ -663,7 +569,6 @@ var mytbl=$(divid).DataTable({
 	return mytbl;
 }
 
-
 var map, markers;
 var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 var err='';
@@ -695,7 +600,7 @@ function get_loc(){
 	$.ajax({
 		type: 'POST',
 		url: 'dataget'+ext,
-		data: {q:'tikloc'},
+		data: {q:'tikloc',prov:$('#fprov').val(),loc:$('#floc').val()},
 		success: function(data){
 			var json = JSON.parse(data);
 			if(json['code']=='200'){
@@ -797,6 +702,10 @@ function karousel(){
   }
   $('.owl-nav').css('display', 'none');
   setTimeout(setSpeed, 1000);
+}
+
+function getloc(prov){
+	getCombo("dataget"+ext,'tikprov',prov,"#floc",'','ALL');
 }
 </script>
 
