@@ -141,7 +141,7 @@ include "inc.menutop.php";
 			</div>
 			<div class="form-group col-md-2 mb-3">
 				<label>&nbsp;</label><br />
-				<button onclick="mappicker('#lat','#lng');" class="btn btn-info"><i class="fa fa-map-pin"></i></button>
+				<button type="button" onclick="mappicker('#lat','#lng');" class="btn btn-info"><i class="fa fa-map-pin"></i></button>
 			</div>
 		  </div>
 		  
