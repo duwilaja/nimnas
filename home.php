@@ -3,11 +3,11 @@ include "inc.common.php";
 include "inc.session.php";
 
 $page_icon="fa fa-home";
-$page_title="Summary";
+$page_title="Monitoring Dashboard";
 $modal_title="Title of Modal";
 $menu="home";
 
-$breadcrumb="Overview/$page_title";
+$breadcrumb="Overview/Dashboard";
 
 include "inc.head.php";
 include "inc.menutop.php";
@@ -111,112 +111,56 @@ include "inc.menutop.php";
 			<!-- End Row -->
 			
 			<!--Row-->
-			<div class="row row-sm">
-				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
-					<div class="card custom-card">
-						<div class="card-body">
-							<div class="card-item">
-								<div class="card-item-icon card-icon">
-									<svg class="text-primary" xmlns="http://www.w3.org/2000/svg"
-										enable-background="new 0 0 24 24" height="24"
-										viewBox="0 0 24 24" width="24">
-										<g>
-											<rect height="14" opacity=".3" width="14" x="5" y="5" />
-											<g>
-												<rect fill="none" height="24" width="24" />
-												<g>
-													<path
-														d="M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3z M19,19H5V5h14V19z" />
-													<rect height="5" width="2" x="7" y="12" />
-													<rect height="10" width="2" x="15" y="7" />
-													<rect height="3" width="2" x="11" y="14" />
-													<rect height="2" width="2" x="11" y="10" />
-												</g>
-											</g>
-										</g>
-									</svg>
-								</div>
-								<div class="card-item-title mb-2">
-									<label class="main-content-label tx-13 font-weight-bold mb-1">Total
-										Device</label>
-									<span class="d-block tx-12 mb-0 text-muted">All device monitored</span>
-								</div>
-								<div class="card-item-body">
-									<div class="card-item-stat">
-										<h4 class="font-weight-bold dtot">0</h4>
-										<!--small><b class="text-success">55%</b> higher</small-->
-									</div>
+				<div class="row row-sm">
+					<div class="col-sm-12 col-md-6 col-lg-6 col-xl-4"><a href="n_device<?php echo $ext?>">
+						<div class="card custom-card">
+							<div class="card-body">
+								<div class="card-order">
+									<label class="main-content-label mb-3 pt-1">Total Device</label>
+									<h2 class="text-end card-item-icon card-icon">
+										<span class="font-weight-bold dtot"></span>
+									<i class="fe fe-server icon-size float-start text-info"></i></h2>
+									
 								</div>
 							</div>
-						</div>
+						</div></a>
 					</div>
-				</div>
-				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-4">
-					<div class="card custom-card">
-						<div class="card-body">
-							<div class="card-item">
-								<div class="card-item-icon card-icon">
-									<svg xmlns="http://www.w3.org/2000/svg" height="24"
-										viewBox="0 0 24 24" width="24">
-										<path d="M0 0h24v24H0V0z" fill="none" />
-										<path
-											d="M12 4c-4.41 0-8 3.59-8 8 0 1.82.62 3.49 1.64 4.83 1.43-1.74 4.9-2.33 6.36-2.33s4.93.59 6.36 2.33C19.38 15.49 20 13.82 20 12c0-4.41-3.59-8-8-8zm0 9c-1.94 0-3.5-1.56-3.5-3.5S10.06 6 12 6s3.5 1.56 3.5 3.5S13.94 13 12 13z"
-											opacity=".3" />
-										<path
-											d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM7.07 18.28c.43-.9 3.05-1.78 4.93-1.78s4.51.88 4.93 1.78C15.57 19.36 13.86 20 12 20s-3.57-.64-4.93-1.72zm11.29-1.45c-1.43-1.74-4.9-2.33-6.36-2.33s-4.93.59-6.36 2.33C4.62 15.49 4 13.82 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8c0 1.82-.62 3.49-1.64 4.83zM12 6c-1.94 0-3.5 1.56-3.5 3.5S10.06 13 12 13s3.5-1.56 3.5-3.5S13.94 6 12 6zm0 5c-.83 0-1.5-.67-1.5-1.5S11.17 8 12 8s1.5.67 1.5 1.5S12.83 11 12 11z" />
-									</svg>
-								</div>
-								<div class="card-item-title mb-2">
-									<label class="main-content-label tx-13 font-weight-bold mb-1">On</label>
-									<span class="d-block tx-12 mb-0 text-muted">Device On</span>
-								</div>
-								<div class="card-item-body">
-									<div class="card-item-stat">
-										<h4 class="font-weight-bold don">0</h4>
-										<!--small><b class="text-success">5%</b> Increased</small-->
-									</div>
+					<!-- COL END -->
+					<div class="col-sm-12 col-md-6 col-lg-6 col-xl-4"><a href="n_device<?php echo $ext?>?status=1">
+						<div class="card custom-card">
+							<div class="card-body">
+								<div class="card-order">
+									<label class="main-content-label mb-3 pt-1">Device ON</label>
+									<h2 class="text-end"><i class="fe fe-arrow-up-circle icon-size float-start text-success"></i><span class="font-weight-bold don">0</span></h2>
 								</div>
 							</div>
-						</div>
+						</div></a>
 					</div>
-				</div>
-				<div class="col-sm-12 col-md-12 col-lg-12 col-xl-4">
-					<div class="card custom-card">
-						<div class="card-body">
-							<div class="card-item">
-								<div class="card-item-icon card-icon">
-									<svg class="text-primary" xmlns="http://www.w3.org/2000/svg"
-										height="24" viewBox="0 0 24 24" width="24">
-										<path d="M0 0h24v24H0V0z" fill="none" />
-										<path
-											d="M12 4c-4.41 0-8 3.59-8 8s3.59 8 8 8 8-3.59 8-8-3.59-8-8-8zm1.23 13.33V19H10.9v-1.69c-1.5-.31-2.77-1.28-2.86-2.97h1.71c.09.92.72 1.64 2.32 1.64 1.71 0 2.1-.86 2.1-1.39 0-.73-.39-1.41-2.34-1.87-2.17-.53-3.66-1.42-3.66-3.21 0-1.51 1.22-2.48 2.72-2.81V5h2.34v1.71c1.63.39 2.44 1.63 2.49 2.97h-1.71c-.04-.97-.56-1.64-1.94-1.64-1.31 0-2.1.59-2.1 1.43 0 .73.57 1.22 2.34 1.67 1.77.46 3.66 1.22 3.66 3.42-.01 1.6-1.21 2.48-2.74 2.77z"
-											opacity=".3" />
-										<path
-											d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.31-8.86c-1.77-.45-2.34-.94-2.34-1.67 0-.84.79-1.43 2.1-1.43 1.38 0 1.9.66 1.94 1.64h1.71c-.05-1.34-.87-2.57-2.49-2.97V5H10.9v1.69c-1.51.32-2.72 1.3-2.72 2.81 0 1.79 1.49 2.69 3.66 3.21 1.95.46 2.34 1.15 2.34 1.87 0 .53-.39 1.39-2.1 1.39-1.6 0-2.23-.72-2.32-1.64H8.04c.1 1.7 1.36 2.66 2.86 2.97V19h2.34v-1.67c1.52-.29 2.72-1.16 2.73-2.77-.01-2.2-1.9-2.96-3.66-3.42z" />
-									</svg>
-								</div>
-								<div class="card-item-title  mb-2">
-									<label class="main-content-label tx-13 font-weight-bold mb-1">Off</label>
-									<span class="d-block tx-12 mb-0 text-muted">Device Off</span>
-								</div>
-								<div class="card-item-body">
-									<div class="card-item-stat">
-										<h4 class="font-weight-bold doff">0</h4>
-										<!--small><b class="text-danger">12%</b> decrease</small-->
-									</div>
+					<!-- COL END -->
+					<div class="col-sm-12 col-md-6 col-lg-6 col-xl-4"><a href="n_device<?php echo $ext?>?status=0">
+						<div class="card custom-card">
+							<div class="card-body">
+								<div class="card-order">
+									<label class="main-content-label mb-3 pt-1">Device OFF</label>
+									<h2 class="text-end"><i class="icon-size fe fe-arrow-down-circle float-start text-danger"></i><span class="font-weight-bold doff">0</span></h2>
 								</div>
 							</div>
-						</div>
+						</div></a>
 					</div>
+					<!-- COL END -->
 				</div>
-			</div>
 			<!--End row-->
 	
-			<div class="row">
-				<div class="col-12">
-					<div class="card">
+			<div class="row row-sm">
+				<div class="col-lg-12">
+					<div class="card custom-card overflow-hidden">
 						<div class="card-body">
-							<div id="map" style="height:450px; z-index: 1;"></div>
+							<div>
+								<h6 class="main-content-label mb-1">Device Location</h6>
+							</div>
+							<div class="mapcontainer1">
+								<div id="map" style="height:450px; z-index: 1;"></div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -224,313 +168,70 @@ include "inc.menutop.php";
 		
 			<!--Row-->
 			<div class="row">
-				<div class="col-xl-4 col-md-12 col-lg-12">
-					<div class="card mb-3">
-						<div class="card-header">
-							<!-- BEGIN title -->
-							<div class="d-flex fw-bold small">
-								<span class="flex-grow-1">SLOWEST RTT</span>
-								<a href="#" data-toggle="card-expand" class="text-white text-opacity-50 text-decoration-none"><i class="bi bi-fullscreen"></i></a>
-							</div>
-							<!-- END title -->
-						</div>
-						<div class="card-body p-0">
-							<div id="isi-speed"></div>
-							<div class="dimmer active ldr-speed">
-								<div class="sk-cube-grid">
-									<div class="sk-cube sk-cube1"></div>
-									<div class="sk-cube sk-cube2"></div>
-									<div class="sk-cube sk-cube3"></div>
-									<div class="sk-cube sk-cube4"></div>
-									<div class="sk-cube sk-cube5"></div>
-									<div class="sk-cube sk-cube6"></div>
-									<div class="sk-cube sk-cube7"></div>
-									<div class="sk-cube sk-cube8"></div>
-									<div class="sk-cube sk-cube9"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-8 col-md-12 col-lg-12">
-					<div class="card mb-3">
-						<div class="card-header">
-							<!-- BEGIN title -->
-							<div class="d-flex fw-bold small">
-								<span class="flex-grow-1">DEVICE LOCATION</span>
-								<a href="#" data-toggle="card-expand" class="text-white text-opacity-100 text-decoration-none"><i class="bi bi-fullscreen"></i></a>
-							</div>
-							<!-- END title -->
-						</div>
-						<div class="card-body">
-							<div class="card custom-card"><div class="card-body">
-								<div id="lokation"></div>
-							</div></div>
-						</div>
-					</div>
-				</div>
+				<div class="col-xl-5 col-xxl-5 col-md-12 col-lg-5">
 
-			</div>
-			<!-- row closed -->
-			
-			
-			<!--Row-->
-			<div class="row hidden">
-				<div class="col-xl-5 col-md-12 col-lg-5">
-					<div class="card mb-3">
-						<div class="card-header">
-							<!-- BEGIN title -->
-							<div class="d-flex fw-bold small">
-								<span class="flex-grow-1">CURRENT ALERT</span>
-								<a href="#" data-toggle="card-expand" class="text-white text-opacity-50 text-decoration-none"><i class="bi bi-fullscreen"></i></a>
-							</div>
-							<!-- END title -->
-						</div>
-						<div class="card-body">
-							<div class="row" id="isi-alert"></div>
-							<div class="dimmer active ldr-alert">
-								<div class="sk-cube-grid">
-									<div class="sk-cube sk-cube1"></div>
-									<div class="sk-cube sk-cube2"></div>
-									<div class="sk-cube sk-cube3"></div>
-									<div class="sk-cube sk-cube4"></div>
-									<div class="sk-cube sk-cube5"></div>
-									<div class="sk-cube sk-cube6"></div>
-									<div class="sk-cube sk-cube7"></div>
-									<div class="sk-cube sk-cube8"></div>
-									<div class="sk-cube sk-cube9"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="card mb-3">
-						<div class="card-body">
-							<div class="">
-								<h5>Total Critical</h5>
-							</div>
-							<h2 class="mb-2 font-weight-semibold"><span id="critthismonth">0</span>
-							<span class="sparkline_bar31 float-right"></span></h2>
-							<div class="text-muted mb-0">
-								<i class="critsign"></i>
-								<span id="critcompare">-</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-7 col-md-12 col-lg-7">
-					<div class="card mb-3">
-						<div class="card-header">
-							<!-- BEGIN title -->
-							<div class="d-flex fw-bold small">
-								<span class="flex-grow-1">WEEKLY ALERT</span>
-								<a href="#" data-toggle="card-expand" class="text-white text-opacity-50 text-decoration-none"><i class="bi bi-fullscreen"></i></a>
-							</div>
-							<!-- END title -->
-						</div>
-						<div class="card-body">
-							<div class="row">
-								<div class="col-xl-4 col-lg-4 col-md-12 mb-3">
-									<p class=" mb-0 "> Critical</p>
-									<h2 class="mb-0 font-weight-semibold"><span id="critthisweek">0</span></h2>
-									<span id="critlastweek" class="fs-12 text-muted"><span class="text-success mr-1"> 0%</span>last week</span></h2>
-								</div>
-								<div class="col-xl-4 col-lg-4 col-md-12 mb-3">
-									<p class=" mb-0 "> Major </p>
-									<h2 class="mb-0 font-weight-semibold"><span id="majorthisweek">0</span></h2>
-									<span id="majorlastweek" class="fs-12 text-muted"><span class="text-success mr-1"> 0%</span>last week</span>
-								</div>
-								<div class="col-xl-4 col-lg-4 col-md-12 mb-3">
-									<p class=" mb-0 "> Minor</p>
-									<h2 class="mb-0 font-weight-semibold"><span id="minorthisweek">0</span></h2>
-									<span id="minorlastweek" class="fs-12 text-muted"><span class="text-success mr-1"> 0%</span>last week</span>
-								</div>
-							</div>
-							<div class="chart-wrapper">
-								<canvas id="salesx" class=" chartjs-render-monitor chart-dropshadow2 h-184"></canvas>
-							</div>
-							<div class="dimmer active ldr-alert">
-								<div class="sk-cube-grid">
-									<div class="sk-cube sk-cube1"></div>
-									<div class="sk-cube sk-cube2"></div>
-									<div class="sk-cube sk-cube3"></div>
-									<div class="sk-cube sk-cube4"></div>
-									<div class="sk-cube sk-cube5"></div>
-									<div class="sk-cube sk-cube6"></div>
-									<div class="sk-cube sk-cube7"></div>
-									<div class="sk-cube sk-cube8"></div>
-									<div class="sk-cube sk-cube9"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!--End row-->
-			
-			
-			<!--Row-->
-			<div class="row">
-				<div class="col-xl-8 col-md-12 col-lg-7">
-					<div class="card mb-3">
-						<div class="card-header">
-							<!-- BEGIN title -->
-							<div class="d-flex fw-bold small">
-								<span class="flex-grow-1">SLA</span>
-								<a href="#" data-toggle="card-expand" class="text-white text-opacity-50 text-decoration-none"><i class="bi bi-fullscreen"></i></a>
-							</div>
-							<!-- END title -->
-						</div>
-						<div class="card-body overflow-hidden">
-							<!--div id="flotContainer2" class="chart-style"></div-->
-							<canvas id="sales" class=" chartjs-render-monitor chart-dropshadow2 h-184"></canvas>
-							<div class="row" id="isi-sla"></div>
-							<div class="dimmer active ldr-sla">
-								<div class="sk-cube-grid">
-									<div class="sk-cube sk-cube1"></div>
-									<div class="sk-cube sk-cube2"></div>
-									<div class="sk-cube sk-cube3"></div>
-									<div class="sk-cube sk-cube4"></div>
-									<div class="sk-cube sk-cube5"></div>
-									<div class="sk-cube sk-cube6"></div>
-									<div class="sk-cube sk-cube7"></div>
-									<div class="sk-cube sk-cube8"></div>
-									<div class="sk-cube sk-cube9"></div>
-								</div>
-							</div>
-						</div>
-						<div class="card-footer p-4">
-							<div class="row ">
-								<div class="col-xl-4 col-lg-4 col-md-12">
-									<h6 class=" mb-2 fw-light">OverAll Device</h6>
-									<h2 class="mb-0"><span class="fw-bold sla_all">0</span>%</h2>
-									<span class="fs-12 text-muted sla_all_perc"><span class="text-success mr-1"> 0%</span> vs yesterday</span>
-									<!-- <div class="progress progress-xs mt-3 h-1 sla_all_progress">
-										<div class="progress-bar bg-primary w-0 " role="progressbar"></div>
-									</div> -->
-									<div class="progress h-5px bg-white-transparent-2 mt-2 sla_all_progress">
-										<div class="progress-bar bg-success" role="progressbar"></div>
-									</div>
-								</div>
-								<div class="col-xl-4 col-lg-4 col-md-12  mt-5 mt-xl-0 mt-lg-0">
-									<h6 class=" mb-2 fw-light">Online Device</h6>
-									<h2 class="mb-0"><span class="font-weight-semibold sla_on">0</span>%</h2>
-									<span class="fs-12 text-muted sla_on_perc"><span class="text-success mr-1"> 0%</span> vs yesterday</span>
-									<!-- <div class="progress progress-xs mt-3 h-1 sla_on_progress">
-										<div class="progress-bar bg-success w-0 " role="progressbar"></div>
-									</div> -->
-									<div class="progress h-5px bg-white-transparent-2 mt-2 sla_on_progress">
-										<div class="progress-bar bg-theme" role="progressbar"></div>
-									</div>
-								</div>
-								<div class="col-xl-4 col-lg-4 col-md-12  mt-5 mt-xl-0 mt-lg-0">
-									<h6 class=" mb-2 fw-light">Offline Device</h6>
-									<h2 class="mb-0"><span class="font-weight-semibold sla_off">0</span></h2>
-									<span class="fs-12 text-muted sla_off_perc"><span class="text-success mr-1"> 0%</span> vs yesterday</span>
-									<!-- <div class="progress progress-xs mt-3 h-1 sla_off_progress">
-										<div class="progress-bar bg-danger w-0 " role="progressbar"></div>
-									</div> -->
-									<div class="progress h-5px bg-white-transparent-2 mt-2 sla_off_progress">
-										<div class="progress-bar bg-danger" role="progressbar"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-4 col-md-12 col-lg-5 hidden">
-					<div class="card mb-3">
-						<div class="card-header pt-2 pb-0 border-bottom-0">
-							<!-- BEGIN title -->
-							<div class="d-flex fw-bold small mb-4">
-								<span class="flex-grow-1">BEST DEVICE PERFORMANCE</span>
-								<a href="#" data-toggle="card-expand" class="text-white text-opacity-100 text-decoration-none"><i class="bi bi-fullscreen"></i></a>
-							</div>
-							<!-- END title -->
-							<div class="card-options">
-							</div>
-						</div>
-						<div class="card-body pt-0">
-							<h2 class="mb-1 number-font"><span class="counter font-weight-semibold sla_max">0%</span></h2>
-							<div class="d-flex">
-								<small class="mb-0 number-font1 sla_max_perc"><span class="text-success">0%</span></small>
-								<small class="text-muted ml-2 fs-12"> &nbsp vs Yesterday</small>
-							</div>
-							<div class="row mt-3 dash1">
-								<div class="col  border-right">
-									<h6 class="font-weight-500 number-font1 mb-0 sla_max_w">0%</h6>
-									<span class="text-muted">Weekly</span>
-								</div>
-								<div class="col  border-right">
-									<h6 class="font-weight-500 number-font1 mb-0 sla_max_m">0%</h6>
-									<span class="text-muted">Monthly</span>
-								</div>
-								<div class="col ">
-									<p class="font-weight-500 number-font1 mb-0 sla_max_y">0%</p>
-									<span class="text-muted">Yearly</span>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="card ">
-						<div class="card-header pt-2 pb-0 border-bottom-0">
-							<!-- BEGIN title -->
-							<div class="d-flex fw-bold small mb-4">
-								<span class="flex-grow-1">WORST DEVICE PERFORMANCE</span>
-								<a href="#" data-toggle="card-expand" class="text-white text-opacity-100 text-decoration-none"><i class="bi bi-fullscreen"></i></a>
-							</div>
-							<!-- END title -->
-							<div class="card-options">
-							</div>
-						</div>
-						<div class="card-body pt-0">
-							<h2 class="mb-1 number-font"><span class="counter font-weight-semibold sla_min">0%</span></h2>
-							<div class="d-flex">
-								<small class="mb-0 number-font1 sla_min_perc"><span class="text-success">0%</span></small>
-								<small class="text-muted ml-2 fs-12"> &nbsp vs Yesterday</small>
-							</div>
-							<div class="row mt-3 dash1">
-								<div class="col  border-right">
-									<h6 class="font-weight-500 number-font1 mb-0 sla_min_w">0%</h6>
-									<span class="text-muted">Weekly</span>
-								</div>
-								<div class="col  border-right">
-									<h6 class="font-weight-500 number-font1 mb-0 sla_min_m">0%</h6>
-									<span class="text-muted">Monthly</span>
-								</div>
-								<div class="col ">
-									<p class="font-weight-500 number-font1 mb-0 sla_min_y">0%</p>
-									<span class="text-muted">Yearly</span>
-								</div>
-							</div>
+					<div class="card custom-card wallet-1">
+						<div class="card custom-card card-dashboard-calendar pb-0">
+							<label class="main-content-label mb-2 pt-1">Highest RTT</label>
+							<span class="d-block tx-12 mb-2 text-muted"></span>
+							<table class="table table-hover m-b-0 transcations mt-2">
+								<tbody id="isi-speed">
+								</tbody>
+							</table>
 						</div>
 					</div>
 					
 				</div>
-				<div class="col-xl-4 col-md-12 col-lg-12">
-					<div class="card mb-3">
-						<div class="card-header">
-							<!-- BEGIN title -->
-							<div class="d-flex fw-bold small">
-								<span class="flex-grow-1">LONGEST DOWN</span>
-								<a href="#" data-toggle="card-expand" class="text-white text-opacity-50 text-decoration-none"><i class="bi bi-fullscreen"></i></a>
-							</div>
-							<!-- END title -->
+				<div class="col-xl-7 col-xxl-7 col-md-12 col-lg-7">
+					<div class="card custom-card">
+						<div class="card-header border-bottom-0">
+							<label class="main-content-label my-auto pt-2">Highest Bandwidth Usage</label>
+							<span class="d-block tx-12 mb-3 mt-1 text-muted"></span>
 						</div>
-						<div class="card-body p-0">
-							<div id="isi-ketam"></div>
-							<div class="dimmer active ldr-ketam">
-								<div class="sk-cube-grid">
-									<div class="sk-cube sk-cube1"></div>
-									<div class="sk-cube sk-cube2"></div>
-									<div class="sk-cube sk-cube3"></div>
-									<div class="sk-cube sk-cube4"></div>
-									<div class="sk-cube sk-cube5"></div>
-									<div class="sk-cube sk-cube6"></div>
-									<div class="sk-cube sk-cube7"></div>
-									<div class="sk-cube sk-cube8"></div>
-									<div class="sk-cube sk-cube9"></div>
-								</div>
+						<div class="card-body pt-2 pb-0">
+							<div class="table-responsive tasks">
+								<table class="table card-table table-vcenter text-nowrap border">
+									<thead>
+										<tr>
+											<th class="wd-lg-10p">#</th>
+											<th class="wd-lg-10p">Host</th>
+											<th class="wd-lg-20p">Name</th>
+											<th class="wd-lg-20p">Location</th>
+											<th class="wd-lg-20p">Bandwidth</th>
+											<th class="wd-lg-20p">Type</th>
+										</tr>
+									</thead>
+									<tbody id="isi-band">
+									</tbody>
+								</table>
 							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- row closed -->
+						
+			<!--Row-->
+			<div class="row">
+				<div class="col-xl-7 col-xxl-7 col-md-12 col-lg-7">
+					<div class="card custom-card">
+						<div class="card-header border-bottom-0">
+							<label class="main-content-label my-auto pt-2">Lowest Bandwidth Usage</label>
+							<span class="d-block tx-12 mb-3 mt-1 text-muted"></span>
+						</div>
+						<div class="card-body pt-2 pb-0">
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-5 col-xxl-5 col-md-12 col-lg-5">
+					<div class="card custom-card wallet-1">
+						<div class="card custom-card card-dashboard-calendar pb-0">
+							<label class="main-content-label mb-2 pt-1">Longest Down</label>
+							<span class="d-block tx-12 mb-2 text-muted"></span>
+							<table class="table table-hover m-b-0 transcations mt-2">
+								<tbody id="isi-ketam">
+								</tbody>
+							</table>
 						</div>
 					</div>
 				</div>
@@ -543,43 +244,20 @@ include "inc.menutop.php";
 <?php 
 include "inc.foot.php";
 include "inc.js.php";
-?>
-		
-		<!-- ECharts js-->
-		<!-- <script src="aronox/assets/plugins/echarts/echarts.js"></script> -->
-		<!--Morris Charts js -->
-		<!-- <script src="aronox/assets/plugins/morris/raphael-min.js"></script>
-		<script src="aronox/assets/plugins/morris/morris.js"></script> -->
-		<!-- Flot Charts js-->
-		<!-- <script src="aronox/assets/plugins/flot/jquery.flot.js"></script>
-		<script src="aronox/assets/plugins/flot/jquery.flot.fillbetween.js"></script>
-		<script src="aronox/assets/plugins/flot/jquery.flot.pie.js"></script> -->
-		<!-- Vector js -->
-		<!-- <script src="aronox/assets/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js"></script>
-        <script src="aronox/assets/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-		<script src="aronox/assets/js/vectormap.js"></script> -->
-		
-		<!-- Peitychart init demo js-->
-		<!-- <script src="aronox/assets/plugins/peitychart/peitychart.init.js"></script> -->
-		
-		<!-- Apexchart js-->
-		<!-- <script src="aronox/assets/js/apexcharts.js"></script> -->
-		
-		<!-- Index js-->
-		<!--script src="aronox/assets/js/index4.js"></script>
-		<script src="aronox/assets/js/index1.js"></script-->
+?>		
 <script>
 $(document).ready(function(){
 	page_ready();
 	//displayClock();
 	
 	getData('home1','home-onoff');
-	get_content("home-lok<?php echo $ext?>",{},".ldr-propinsi","#lokation");
+	//get_content("home-lok<?php echo $ext?>",{},".ldr-propinsi","#lokation");
 	get_content("home-speed<?php echo $ext?>",{},".ldr-speed","#isi-speed");
 	//get_content("home-alert<?php echo $ext?>",{},".ldr-alert","#isi-alert");
 	//getData('sla','home-sla');
-	get_content("home-sla-chart<?php echo $ext?>",{},".ldr-sla","#isi-sla");
+	//get_content("home-sla-chart<?php echo $ext?>",{},".ldr-sla","#isi-sla");
 	get_content("home-down<?php echo $ext?>",{},".ldr-ketam","#isi-ketam");
+	get_content("home-band<?php echo $ext?>",{},".ldr-ketam","#isi-band");
 	
 	widget_map();
 	
