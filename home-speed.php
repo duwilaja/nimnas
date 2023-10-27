@@ -18,10 +18,7 @@ $rs=exec_qry($conn,$sql);
 $lists=fetch_all($rs);
 
 disconnect($conn);
-?>
-<table class="table table-hover m-b-0 transcations mt-2">
-<tbody>
-<?php
+
 for($i=0;$i<count($lists);$i++){
 	$list=$lists[$i];
 ?>
@@ -45,9 +42,6 @@ for($i=0;$i<count($lists);$i++){
 			</div>
 		</td>
 	</tr>
-
 <?php
 }
 ?>
-</tbody>
-</table>
