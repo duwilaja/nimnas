@@ -39,7 +39,7 @@ for($i=0;$i<count($rs);$i++){
 			<td>'.$irt.'</td>
 			<td>
 				<div class="button-list">
-					<a href="#" class="btn"><i class="fe fe-eye"></i></a>
+					<a href="#" onclick="tixlocdetil(\''.$rs[$i]['loc'].'\',\''.base64_encode($wtik).'\');" class="btn"><i class="fe fe-eye"></i></a>
 				</div>
 			</td>
 		</tr>';
