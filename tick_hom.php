@@ -191,7 +191,6 @@ disconnect($conn);
 				</div>
 			</div>
 			<!-- row closed -->
-
 			
 			<div class="row hidden">
 				<!-- BEGIN col-4 -->
@@ -255,6 +254,43 @@ disconnect($conn);
 				</div>
 			</div>
 
+<!-- Modal Notes -->
+<div class="modal fade modal_form" id="modal_notes" tabindex="1" role="dialog" aria-labelledby="formModalLabelNotes" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document" style="background: #303030; max-width: 1200px;">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="formModalLabelNotes">Tickets</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+						<div class="table-responsive">
+							<table id="mytblx" class="table table-striped table-bordered w-100">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Date/Time</th>
+										<th>Location</th>
+										<th>Desc.</th>
+										<th>Status</th>
+										<th>Category</th>
+										
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+						</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Modal Notes -->
+			
 		</div>
 	</div><!-- end app-content-->
 				
@@ -263,17 +299,16 @@ include "inc.foot.php";
 include "inc.js.php";
 ?>
 <script>
-var mytbl1, mytbl2, mytbl3, mytbl4, mytbl5, mytbl6, mytbl7, mytbl8, mytbl9, barChart, pieChart;
+var mytbl1, mytbl2, mytbl3, mytbl4, mytbl5, mytbl6, mytbl7, mytbl8, mytbl9, barChart, pieChart, mytblx, myloc, mycat, mywhere;
 
 $(document).ready(function(){
+	myloc=''; mycat=''; mywhere='';
 	page_ready();
 	displayClock();
 	
 	gettot();
 	
 	//mytbl1 = loadTable('#topold','<?php echo base64_encode("assname,loc,gr"); ?>','<?php echo base64_encode("ass_ets"); ?>','<?php echo base64_encode("");?>','<?php echo base64_encode("");?>',[[ 2, "asc" ]],'-');
-	//mytbl2 = loadTable('#toppro','<?php echo base64_encode("brand,count(brand) as cnt"); ?>','<?php echo base64_encode("ass_ets"); ?>','<?php echo base64_encode("stts='inactive'");?>','<?php echo base64_encode("brand");?>',[[ 1, "desc" ]],'-');
-	//mytbl3 = loadTable('#topwar','<?php echo base64_encode("assname,loc,warexp"); ?>','<?php echo base64_encode("ass_ets"); ?>','<?php echo base64_encode("");?>','<?php echo base64_encode("");?>',[[ 2, "asc" ]],'-');
 	
 	markers=null;
 	//getData('onoff','maps-onoff');
@@ -289,6 +324,31 @@ $(document).ready(function(){
 	get_content("tick_hom_cat<?php echo $ext?>",{},".ldr-","#ticat");
 	get_content("tick_hom_top<?php echo $ext?>",{},".ldr-","#titop");
 	
+	mytblx = $("#mytblx").DataTable({
+		serverSide: true,
+		processing: true,
+		searching: false,
+		//buttons: ['copy', 'csv'],
+		order: [[1,"desc"]],
+		ajax: {
+			type: 'POST',
+			url: 'datatable<?php echo $ext?>',
+			data: function (d) {
+				d.cols= '<?php echo base64_encode("ticketno,created,name,h,stts,cat"); ?>',
+				d.tname= '<?php echo base64_encode("tick_ets t left join core_location l on t.loc=l.locid"); ?>',
+				d.where= mywhere,
+				d.filtereq= 'loc,cat',
+				d.loc=myloc,
+				d.cat=mycat,
+				//d.prov=$("#fprov").val(),
+				d.x= '-';
+			}
+		},
+		initComplete: function(){
+			//dttbl_buttons(); //for ajax call
+		}
+	});
+	
 });
 function applyfilter(){
 	$(".xtot").html(0);
@@ -297,6 +357,21 @@ function applyfilter(){
 	get_loc();
 	get_content("tick_hom_cat<?php echo $ext?>",{prov:$('#fprov').val(),loc:$('#floc').val()},".ldr-","#ticat");
 	get_content("tick_hom_top<?php echo $ext?>",{prov:$('#fprov').val(),loc:$('#floc').val()},".ldr-","#titop");
+}
+
+function tixlocdetil(loc,wh){
+	mycat='';
+	myloc=loc;
+	mywhere=wh;
+	$("#modal_notes").modal('show');
+	mytblx.ajax.reload();
+}
+function tixcatdetil(cat,wh){
+	mycat=cat;
+	myloc='';
+	mywhere=wh;
+	$("#modal_notes").modal('show');
+	mytblx.ajax.reload();
 }
 
 function tickets(s){

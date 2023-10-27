@@ -42,7 +42,7 @@ for($i=0;$i<count($rs);$i++){
 			<td>'.round(((intval($rs[$i]['tot'])/$tot)*100),2).'%</td>
 			<td>
 				<div class="button-list">
-					<a href="#" class="btn"><i class="fe fe-eye"></i></a>
+					<a href="#" class="btn" onclick="tixcatdetil(\''.$rs[$i]['catid'].'\',\''.base64_encode($wtik).'\');"><i class="fe fe-eye"></i></a>
 				</div>
 			</td>
 		</tr>';
