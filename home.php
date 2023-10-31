@@ -220,6 +220,22 @@ include "inc.menutop.php";
 							<span class="d-block tx-12 mb-3 mt-1 text-muted"></span>
 						</div>
 						<div class="card-body pt-2 pb-0">
+							<div class="table-responsive tasks">
+								<table class="table card-table table-vcenter text-nowrap border">
+									<thead>
+										<tr>
+											<th class="wd-lg-10p">#</th>
+											<th class="wd-lg-10p">Host</th>
+											<th class="wd-lg-20p">Name</th>
+											<th class="wd-lg-20p">Location</th>
+											<th class="wd-lg-20p">Bandwidth</th>
+											<th class="wd-lg-20p">Type</th>
+										</tr>
+									</thead>
+									<tbody id="isi-bandx">
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -257,7 +273,8 @@ $(document).ready(function(){
 	//getData('sla','home-sla');
 	//get_content("home-sla-chart<?php echo $ext?>",{},".ldr-sla","#isi-sla");
 	get_content("home-down<?php echo $ext?>",{},".ldr-ketam","#isi-ketam");
-	get_content("home-band<?php echo $ext?>",{},".ldr-ketam","#isi-band");
+	get_content("home-band<?php echo $ext?>",{ord:'desc'},".ldr-ketam","#isi-band");
+	get_content("home-band<?php echo $ext?>",{ord:'asc'},".ldr-ketam","#isi-bandx");
 	
 	widget_map();
 	

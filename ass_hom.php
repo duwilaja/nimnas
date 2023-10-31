@@ -32,50 +32,50 @@ include "inc.menutop.php";
 			<div class="row row-sm">
 				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
 					<div class="card custom-card">
-						<div class="card-body">
+						<div class="card-body"><a href="m_ass<?php echo $ext?>">
 							<div class="card-order ">
 								<label class="main-content-label mb-3 pt-1">Total Asset</label>
 								<h2 class="text-end card-item-icon card-icon">
-								<i class="mdi mdi-account-multiple icon-size float-start text-primary"></i><span class="font-weight-bold xtot">0</span></h2>
+								<i class="fa fa-cubes icon-size float-start text-primary"></i><span class="font-weight-bold xtot">0</span></h2>
 								<!--p class="mb-0 mt-4 text-muted">Monthly users<span class="float-end">50%</span></p-->
 							</div>
-						</div>
+						</a></div>
 					</div>
 				</div>
 				<!-- COL END -->
 				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
 					<div class="card custom-card">
-						<div class="card-body">
+						<div class="card-body"><a href="m_ass<?php echo $ext?>?stt=active">
 							<div class="card-order">
 								<label class="main-content-label mb-3 pt-1">Active</label>
-								<h2 class="text-end"><i class="mdi mdi-cube icon-size float-start text-primary"></i><span class="font-weight-bold xactive">0</span></h2>
+								<h2 class="text-end"><i class="fa fa-hdd icon-size float-start text-success"></i><span class="font-weight-bold xactive">0</span></h2>
 								<!--p class="mb-0 mt-4 text-muted">Monthly Income<span class="float-end">$7,893</span></p-->
 							</div>
-						</div>
+						</a></div>
 					</div>
 				</div>
 				<!-- COL END -->
 				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
 					<div class="card custom-card">
-						<div class="card-body">
-							<div class="card-order">
-								<label class="main-content-label mb-3 pt-1">Inactive</label>
-								<h2 class="text-end"><i class="icon-size mdi mdi-poll-box   float-start text-primary"></i><span class="font-weight-bold xinactive"></span></h2>
-								<!--p class="mb-0 mt-4 text-muted">Monthly Profit<span class="float-end">$4,678</span></p-->
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- COL END -->
-				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
-					<div class="card custom-card">
-						<div class="card-body">
+						<div class="card-body"><a href="m_ass<?php echo $ext?>?stt=standby">
 							<div class="card-order">
 								<label class="main-content-label mb-3 pt-1">Standby</label>
-								<h2 class="text-end"><i class="mdi mdi-cart icon-size float-start text-primary"></i><span class="font-weight-bold xstandby">0</span></h2>
+								<h2 class="text-end"><i class="icon-size fa fa-hdd float-start text-warning"></i><span class="font-weight-bold xstandby">0</span></h2>
+								<!--p class="mb-0 mt-4 text-muted">Monthly Profit<span class="float-end">$4,678</span></p-->
+							</div>
+						</a></div>
+					</div>
+				</div>
+				<!-- COL END -->
+				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+					<div class="card custom-card">
+						<div class="card-body"><a href="m_ass<?php echo $ext?>?stt=inactive">
+							<div class="card-order">
+								<label class="main-content-label mb-3 pt-1">Inactive</label>
+								<h2 class="text-end"><i class="fa fa-hdd icon-size float-start text-danger"></i><span class="font-weight-bold xinactive">0</span></h2>
 								<!--p class="mb-0 mt-4 text-muted">Monthly Sales<span class="float-end">3,756</span></p-->
 							</div>
-						</div>
+						</a></div>
 					</div>
 				</div>
 				<!-- COL END -->
@@ -87,14 +87,12 @@ include "inc.menutop.php";
 				<div class="col-xl-6">
 					<!-- BEGIN card -->
 					<div class="card mb-3">
+						<div class="card-header border-bottom-0">
+							<label class="main-content-label my-auto pt-2 mb-1">ASSET CLASSIFICATION</label>
+							<span class="d-block tx-12 mb-0 mt-1 text-muted"></span>
+						</div>
 						<!-- BEGIN card-body -->
 						<div class="card-body">
-							<!-- BEGIN title -->
-							<div class="d-flex fw-bold small mb-3">
-								<span class="flex-grow-1">Asset Classification</span>
-								<a href="#" data-toggle="card-expand" class="text-white text-opacity-50 text-decoration-none"><i class="bi bi-fullscreen"></i></a>
-							</div>
-							<!-- END title -->
 							<!-- BEGIN table -->
 							<div class="overflow-hidden">
 								<canvas id="ass-class"></canvas>
@@ -111,14 +109,14 @@ include "inc.menutop.php";
 				<div class="col-xl-6">
 					<!-- BEGIN card -->
 					<div class="card mb-3">
+						
+						<div class="card-header border-bottom-0">
+							<label class="main-content-label my-auto pt-2 mb-1">BROKEN ASSET CLASSIFICATION</label>
+							<span class="d-block tx-12 mb-0 mt-1 text-muted"></span>
+						</div>
+
 						<!-- BEGIN card-body -->
 						<div class="card-body">
-							<!-- BEGIN title -->
-							<div class="d-flex fw-bold small mb-3">
-								<span class="flex-grow-1">Broken Asset Classification</span>
-								<a href="#" data-toggle="card-expand" class="text-white text-opacity-50 text-decoration-none"><i class="bi bi-fullscreen"></i></a>
-							</div>
-							<!-- END title -->
 							<!-- BEGIN table -->
 							<div class="overflow-hidden">
 								<canvas id="break-ass-class" style="max-height:230px;"></canvas>
@@ -238,6 +236,10 @@ include "inc.menutop.php";
 			<div class="row">
 				<div class="col-12">
 					<div class="card">
+						<div class="card-header border-bottom-0">
+							<label class="main-content-label my-auto pt-2 mb-1">ASSET LOCATION</label>
+							<span class="d-block tx-12 mb-0 mt-1 text-muted"></span>
+						</div>
 						<div class="card-body">
 							<div id="map" style="height:450px; z-index: 1;"></div>
 						</div>

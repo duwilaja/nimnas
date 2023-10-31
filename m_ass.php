@@ -75,7 +75,7 @@ include "inc.menutop.php";
 										<th>Category</th>
 										<th>Location</th>
 										<th>Warranty Expired</th>
-										
+										<th>Status</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -247,18 +247,21 @@ include "inc.foot.php";
 include "inc.js.php";
 
 $tname="ass_ets a left join ass_brand b on brid=brand left join ass_cat c on catid=cat left join core_location l on locid=loc";
-$cols="assid,assname,brname,catname,name,warexp,a.rowid";
+$cols="assid,assname,brname,catname,name,warexp,stts,a.rowid";
 $csrc="assname";
 
 $where="1=1";
 $loc=get("loc");
+$stts=get("stt");
 if($loc!=""){
 	$where = "loc='$loc'";
 }
 if($mys_LOC!=''){ //session loc
 	$where.= " AND loc in ('$mys_LOC')";
 }
-
+if($stts!=""){
+	$where .= " AND stts='$stts'";
+}
 ?>
 
 <script>
