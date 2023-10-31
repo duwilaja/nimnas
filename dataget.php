@@ -18,8 +18,9 @@ if($mys_LOC!=''){ //session loc
 	$whr= "loc in ('$mys_LOC')";
 }
 
-$wtik="(1=1)"; $wloc="";
+$wtik="(1=1)"; $wloc=""; $wass="(1=1)";
 if($mys_LOC!=''){
+	$wass.= " AND loc in ('$mys_LOC')";
 	$wtik.= " AND loc in ('$mys_LOC')";
 	$wloc=" AND locid in ('$mys_LOC')";
 }
@@ -49,11 +50,11 @@ switch($q){
 			$tname="core_location l join ass_ets a on l.locid=a.loc";
 			$grpby="lat,lng,concat(l.name,'\n',l.addr),locid";
 			$where=$id==""?"lat<>'' and lng<>''":"lat<>'' and lng<>'' and stts='$id'";
-		$sql="select lat,lng,concat(l.name,'\n',l.addr) as name,locid,count(a.stts) as cnt from $tname where $where group by $grpby"; break;
-	case 'asshom': $sql="select stts,count(stts) as tot from ass_ets  group by stts"; break;
-	case 'asscat': $sql="select cat,count(cat) as tot from ass_ets  group by cat"; break;
-	case 'assno': $sql="select assid as v,assname as t from ass_ets where loc='$id' order by assname"; break;
-	case 'brasscat': $sql="select cat,count(cat) as tot from ass_ets where stts='inactive' group by cat"; break;
+		$sql="select lat,lng,concat(l.name,'\n',l.addr) as name,locid,count(a.stts) as cnt from $tname where $where and $wass group by $grpby"; break;
+	case 'asshom': $sql="select stts,count(stts) as tot from ass_ets where $wass group by stts"; break;
+	case 'asscat': $sql="select cat,count(cat) as tot from ass_ets where $wass group by cat"; break;
+	case 'assno': $sql="select assid as v,assname as t from ass_ets where loc='$id' and $wass order by assname"; break;
+	case 'brasscat': $sql="select cat,count(cat) as tot from ass_ets where stts='inactive' and $wass group by cat"; break;
 	
 	case 'tick': $sql="select * from tick_ets where rowid='$id'"; break;
 	case 'mticat': $sql="select * from tick_cat where rowid='$id'"; break;
