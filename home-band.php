@@ -27,9 +27,9 @@ for($i=0;$i<count($lists);$i++){
 	$list=$lists[$i];
 ?>
 		<tr>
-			<td><?php echo ($i+1) ?></td>
+			<!--td><?php echo ($i+1) ?></td-->
 			<td class="coin_icon mt-2 d-flex">
-				<span class=" my-auto"><?php echo $list['hostname'] ?></span>
+				<span class=" my-auto"><?php echo $list['host'] ?></span>
 			</td>
 			<td><?php echo $list['name'] ?></td>
 			<td><?php echo $list['loc'] ?></td>
