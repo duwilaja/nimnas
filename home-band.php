@@ -33,8 +33,8 @@ for($i=0;$i<count($lists);$i++){
 			</td>
 			<td><?php echo $list['name'] ?></td>
 			<td><?php echo $list['loc'] ?></td>
-			<td><?php echo $list['inb'] ?></td>
-			<td><?php echo $list['outb'] ?></td>
+			<td><?php echo $list['inb'] ?>Gb</td>
+			<td><?php echo $list['outb'] ?>Gb</td>
 			<!--td><a class="btn ripple btn-info" data-bs-target="#modaldemo3" data-bs-toggle="modal" href=""><?php echo $list['inb'] ?></a></td-->
 			<td><?php echo $list['type'] ?></td>
 		</tr>

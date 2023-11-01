@@ -197,7 +197,8 @@ include "inc.menutop.php";
 											<th class="wd-lg-10p">Host</th>
 											<th class="wd-lg-20p">Name</th>
 											<th class="wd-lg-20p">Location</th>
-											<th class="wd-lg-20p">Usage</th>
+											<th class="wd-lg-20p">In</th>
+											<th class="wd-lg-20p">Out</th>
 											<th class="wd-lg-20p">Type</th>
 										</tr>
 									</thead>
@@ -228,7 +229,8 @@ include "inc.menutop.php";
 											<th class="wd-lg-10p">Host</th>
 											<th class="wd-lg-20p">Name</th>
 											<th class="wd-lg-20p">Location</th>
-											<th class="wd-lg-20p">Usage</th>
+											<th class="wd-lg-20p">In</th>
+											<th class="wd-lg-20p">Out</th>
 											<th class="wd-lg-20p">Type</th>
 										</tr>
 									</thead>
