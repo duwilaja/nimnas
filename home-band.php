@@ -12,7 +12,7 @@ $whr=($mys_LOC=='')?"1=1":" loc in ('$mys_LOC')";
 
 $ord=post("ord");
 
-$sql="select hostname,name,loc,type,round(sum(t.ifinoctets_delta)/1000000,2) as inb,round(sum(t.ifoutoctets_delta)/1000000,2) as outb 
+$sql="select hostname,name,loc,type,round(sum(t.ifinoctets_delta)/8000,2) as inb,round(sum(t.ifoutoctets_delta)/1000000,2) as outb 
 from core_traffic t join ports p on t.port_id=p.port_id join devices x on x.device_id=t.device_id join nimdb.core_node n on x.hostname=n.host 
 where date(dtm)=date(now()) and t.ifoutoctets_delta<>t.ifinoctets_delta and $whr 
 group by hostname,name,loc,type 
