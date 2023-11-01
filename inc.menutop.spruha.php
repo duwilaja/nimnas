@@ -141,6 +141,7 @@
 								<li class="nav-sub-item"><a class="nav-sub-link muser" href="m_sla<?php echo $ext?>">SLA</a></li>
 								<li class="nav-sub-item"><a class="nav-sub-link mlov" href="m_severity<?php echo $ext?>">Severity</a></li>
 								<li class="nav-sub-item"><a class="nav-sub-link muser" href="m_bg<?php echo $ext?>">Controls</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link muser" href="m_ports<?php echo $ext?>">Ports</a></li>
 							</ul>
 							</li>
 							<li class="nav-sub-item"><a class="nav-sub-link sub-with-sub" href="javascript:void(0)">Ticketing</a>
