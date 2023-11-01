@@ -189,7 +189,7 @@ include "inc.js.php";
 
 $tname="core_ports p left join core_node n on n.host=p.host";
 $cols="p.host,name,device,port,ifname,traffic,p.rowid";
-$csrc="host";
+$csrc="host,name";
 
 ?>
 
