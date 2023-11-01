@@ -225,7 +225,7 @@ include "inc.menutop.php";
 								<table class="table card-table table-vcenter text-nowrap border">
 									<thead>
 										<tr>
-											<th class="wd-lg-10p">#</th>
+											<!--th class="wd-lg-10p">#</th-->
 											<th class="wd-lg-10p">Host</th>
 											<th class="wd-lg-20p">Name</th>
 											<th class="wd-lg-20p">Location</th>
