@@ -349,8 +349,9 @@ function exec_command(q,h,c,v='',o=''){
 }
 
 function get_content(url,data,ldr,target,mthd='POST'){
-	$(target).hide();
-	$(ldr).show();
+	//$(target).hide();
+	//$(ldr).show();
+	$(target).html('<img src="spruha/assets/img/loader.svg" class="loader-img" alt="Loader">');
 	$.ajax({
 		type: mthd,
 		url: url,
