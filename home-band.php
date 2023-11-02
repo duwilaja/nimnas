@@ -12,7 +12,7 @@ $whr=($mys_LOC=='')?"1=1":" loc in ('$mys_LOC')";
 
 $ord=post("ord");
 
-$sql="select n.host,name,loc,typ,round(sum(t.ifinoctets_delta)/1000000,2) as inb,round(sum(t.ifoutoctets_delta)/1000000,2) as outb 
+$sql="select n.host,name,loc,typ,sum(t.ifinoctets_delta) as inb,sum(t.ifoutoctets_delta) as outb 
 from core_traffic t join nimdb.core_ports x on x.port=t.port_id join nimdb.core_node n on x.host=n.host 
 where date(dtm)=date(now()) and traffic='Y' and t.ifoutoctets_delta<>t.ifinoctets_delta and $whr 
 group by n.host,name,loc,typ 
@@ -23,18 +23,24 @@ $lists=fetch_alla($rs);
 
 disconnect($conn);
 
+function urai($bit){
+	$ret=round($bit/1000000000,2).'GB';
+	if($bit<1000000000) $ret=round($bit/1000000,2).'MB';
+	if($bit<1000000) $ret=round($bit/1000,2).'KB';
+	
+	return $ret;
+}
+
 for($i=0;$i<count($lists);$i++){
 	$list=$lists[$i];
 ?>
 		<tr>
 			<!--td><?php echo ($i+1) ?></td-->
-			<td class="coin_icon mt-2 d-flex">
-				<span class=" my-auto"><?php echo $list['host'] ?></span>
-			</td>
+			<td><?php echo $list['host'] ?></td>
 			<td><?php echo $list['name'] ?></td>
 			<td><?php echo $list['loc'] ?></td>
-			<td><?php echo $list['inb'] ?>MB</td>
-			<td><?php echo $list['outb'] ?>MB</td>
+			<td><?php echo urai($list['inb']) ?></td>
+			<td><?php echo urai($list['outb']) ?></td>
 			<!--td><a class="btn ripple btn-info" data-bs-target="#modaldemo3" data-bs-toggle="modal" href=""><?php echo $list['inb'] ?></a></td-->
 			<td><?php echo $list['typ'] ?></td>
 		</tr>
