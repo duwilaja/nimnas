@@ -185,7 +185,7 @@ disconnect($conn);
 							<div>
 								<h6 class="main-content-label mb-1">Ticket Mapping</h6>
 							</div>
-							<div class="ht-300 ht-lg-400" style="height: 680px; !important;" id="map"></div>
+							<div class="ht-300 ht-lg-400" style="height: 720px; !important;" id="map"></div>
 						</div>
 					</div>
 				</div>
