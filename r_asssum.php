@@ -190,7 +190,10 @@ $tname="ass_ets";
 $cols="assid,assname,assdesc,loc,sn,brand,cat,gr,warexp,stts";
 $csrc="";
 $grpby="";
-$where="";
+$where="1=1"; $clso="";
+if($mys_LOC!=''){ //session loc
+	$where.= " AND loc in ('$mys_LOC')";
+}
 ?>
 
 <script>

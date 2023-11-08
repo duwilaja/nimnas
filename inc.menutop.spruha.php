@@ -113,7 +113,7 @@
 							<li class="nav-sub-item"><a class="nav-sub-link sub-with-sub" href="javascript:void(0)">Asset</a>
 							<ul class="sub-nav-sub">
 								<li class="nav-sub-item"><a class="nav-sub-link mlov" href="r_asssum<?php echo $ext?>">Summary</a></li>
-								<li class="nav-sub-item"><a class="nav-sub-link muser" href="r_ass<?php echo $ext?>?o=1">Assets</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link muser" href="r_asss<?php echo $ext?>">Assets</a></li>
 							</ul>
 							</li>
 						</ul>

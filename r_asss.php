@@ -112,6 +112,10 @@ $tname="ass_ets";
 $cols="assid,assname,assdesc,loc,sn,brand,cat,gr,warexp,stts";
 $csrc="";
 $grpby="";
+$where="1=1"; $clso="";
+if($mys_LOC!=''){ //session loc
+	$where.= " AND loc in ('$mys_LOC')";
+}
 
 ?>
 
@@ -133,6 +137,7 @@ $(document).ready(function(){
 				d.tname= '<?php echo base64_encode($tname); ?>',
 				d.csrc= '<?php echo base64_encode($csrc); ?>',
 				d.grpby= '<?php echo base64_encode($grpby); ?>',
+				d.where= '<?php echo base64_encode($where); ?>',
 				d.x= '<?php echo $menu?>';
 			}
 		},

@@ -31,41 +31,21 @@ include "inc.menutop.php";
 			</div-->
 		</div>
 		<!--End Page header-->
-			<!--div class="row">
-				<div class="col-xl-2">
-					<div class="small text-white text-opacity-50 mb-2"><b>BRAND</b></div>
-					<select class="form-select">
-						<option selected>ALL BRAND</option>
-						<option value="1">INRICO</option>
-						<option value="2">MOTOROLA</option>
-						<option value="3">TD TECH</option>
-						<option value="4">MILLTRAC</option>
-						<option value="5">BELFONE</option>
-					</select>
+		<div class="row">
+				<div class="col-md-2"><div class="small text-opacity-50 mb-2"><b>FROM</b></div>
+					<div class="input-group">
+					<input type="text" id="df" placeholder="" class="form-control datepicker">
+					<div class="input-group-append"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
+				</div></div>
+				<div class="col-md-2"><div class="small text-opacity-50 mb-2"><b>TO</b></div>
+					<div class="input-group">
+					<input type="text" id="dt" placeholder="" class="form-control datepicker">
+					<div class="input-group-append"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
+				</div></div>
+				<div class="col-xl-2 pt-3">
+					<button type="button" onclick="reloadtbl()" class="btn btn-primary my-2 btn-icon-text">Filter</button>
 				</div>
-				<div class="col-xl-2">
-					<div class="small text-white text-opacity-50 mb-2"><b>STATUS</b></div>
-					<select class="form-select">
-						<option selected>All STATUS</option>
-						<option value="1">ACTIVE</option>
-						<option value="2">ACTIVE STANDBY</option>
-						<option value="3">STANDBY</option>
-					</select>
-				</div>
-				<div class="col-xl-2">
-					<div class="small text-white text-opacity-50 mb-2"><b>EXPIRED</b></div>
-					<select class="form-select">
-						<option selected>YEAR</option>
-						<option value="1">2024</option>
-						<option value="2">2023</option>
-						<option value="3">2022</option>
-						<option value="4">2021</option>
-					</select>
-				</div>
-				
-			</div>
-
-			<br><br-->
+		</div>
 		<div class="row" style="">
 			<div class="col-md-6">
 		
@@ -190,7 +170,12 @@ $tname="tick_ets";
 $cols="assid,assname,assdesc,loc,sn,brand,cat,gr,warexp,stts";
 $csrc="";
 $grpby="";
-$where="";
+
+$where="1=1"; $clso="";
+if($mys_LOC!=''){ //session loc
+	$where.= " AND loc in ('$mys_LOC')";
+}
+
 ?>
 
 <script>
@@ -215,8 +200,8 @@ var mytbl=$(divid).DataTable({
 				d.csrc= '',
 				d.where= where,
 				d.grpby= grpby,
-				d.df= $("#df").val(),
-				d.dt= $("#dt").val(),
+				d.fdtmf= $("#df").val(),
+				d.fdtmt= $("#dt").val(),
 				d.x= x;
 			}
 		},
@@ -268,8 +253,14 @@ $(document).ready(function(){
 	mytbl3 = loadTable('#tiga','<?php echo base64_encode("cat,count(cat) as cnt"); ?>','<?php echo base64_encode($tname); ?>','<?php echo base64_encode($where);?>','<?php echo base64_encode("cat");?>','-');
 	mytbl4 = loadTable('#empat','<?php echo base64_encode("svc,count(svc) as cnt"); ?>','<?php echo base64_encode($tname); ?>','<?php echo base64_encode($where);?>','<?php echo base64_encode("svc");?>','-');
 	
+	datepicker(true);
 });
-
+function reloadtbl(){
+	mytbl1.ajax.reload();
+	mytbl2.ajax.reload();
+	mytbl3.ajax.reload();
+	mytbl4.ajax.reload();
+}
 </script>
 
   </body>
