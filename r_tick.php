@@ -16,13 +16,20 @@ include "inc.menutop.php";
 
 include "inc.db.php";
 $conn=connect();
-$rs=exec_qry($conn,"select locid,name from core_location order by name");
+$wherloc=$mys_LOC==''?'':"where locid in ('$mys_LOC')";
+$rs=exec_qry($conn,"select locid,name from core_location $wherloc order by name");
 $o_loc=fetch_all($rs);
 $rs=exec_qry($conn,"select servid,servname from tick_serv order by servname");
 $o_serv=fetch_all($rs);
 $rs=exec_qry($conn,"select catid,catname from tick_cat order by catname");
 $o_cat=fetch_all($rs);
 disconnect($conn);
+
+
+$where="1=1"; $clso="";
+if($mys_LOC!=''){ //session loc
+	$where.= " AND loc in ('$mys_LOC')";
+}
 
 ?>
 
@@ -42,50 +49,60 @@ disconnect($conn);
 			</div-->
 		</div>
 		<!--End Page header-->
-		<div class="row">
-				<div class="col-md-2"><div class="small text-white text-opacity-50 mb-2"><b>FROM</b></div>
+		<div class="row <?php echo $clso;?>">
+				<div class="col-md-2"><div class="small text-opacity-50 mb-2"><b>FROM</b></div>
 					<div class="input-group">
 					<input type="text" id="df" placeholder="" class="form-control datepicker">
 					<div class="input-group-append"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
 				</div></div>
-				<div class="col-md-2"><div class="small text-white text-opacity-50 mb-2"><b>TO</b></div>
+				<div class="col-md-2"><div class="small text-opacity-50 mb-2"><b>TO</b></div>
 					<div class="input-group">
 					<input type="text" id="dt" placeholder="" class="form-control datepicker">
 					<div class="input-group-append"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
 				</div></div>
-				
-				<div class="col-xl-2">
-					<div class="small text-white text-opacity-50 mb-2"><b>STATUS</b></div>
-					<select id="fstts" class="form-select">
-						<option value="">ALL STATUS</option>
-						<?php echo options($o_tikstts)?>
-					</select>
+				<div class="col-xl-2 pt-3">
+					<button type="button" onclick="reloadtbl()" class="btn btn-primary my-2 btn-icon-text">Filter</button>
 				</div>
-				<div class="col-xl-2">
-					<div class="small text-white text-opacity-50 mb-2"><b>SERVICE</b></div>
-					<select id="fsvc" class="form-select">
-						<option value="">All SERVICE</option>
-						<?php echo options($o_serv)?>
-					</select>
-				</div>
-				<div class="col-xl-2">
-					<div class="small text-white text-opacity-50 mb-2"><b>CATEGORY</b></div>
-					<select id="fcat" class="form-select">
-						<option value="">All CATEGORY</option>
-						<?php echo options($o_cat)?>
-					</select>
-				</div>
-				<div class="col-xl-2">
-					<div class="small text-white text-opacity-50 mb-2"><b>GROUP</b></div>
-					<select id="fgrp" class="form-select">
-						<option value="">All GROUP</option>
-						<?php echo options($o_tikgrp)?>
-					</select>
-				</div>
-				<div class="col-xl-2">
-					<div class="small text-white text-opacity-50 mb-2"><b>&nbsp;</b></div>
-					<button class="btn btn-success" onclick="reloadtbl()"><i class="fa fa-refresh"></i></button>
-				</div>
+		</div>
+		<div class="row <?php echo $clso;?>">
+			<div class="col-xl-2">
+				<div class="small text-opacity-50 mb-2"><b>STATUS</b></div>
+				<select class="form-control select2" id="fstts">
+					<option value="">All STATUS</option>
+					<?php echo options($o_tikstts)?>
+				</select>
+			</div>
+			<div class="col-xl-2">
+				<div class="small text-opacity-50 mb-2"><b>SERVICE</b></div>
+				<select id="fsvc" class="form-control select2">
+					<option value="">All SERVICE</option>
+					<?php echo options($o_serv)?>
+				</select>
+			</div>
+			<div class="col-xl-2">
+				<div class="small text-opacity-50 mb-2"><b>CATEGORY</b></div>
+				<select id="fcat" class="form-control select2">
+					<option value="">All CATEGORY</option>
+					<?php echo options($o_cat)?>
+				</select>
+			</div>
+			<div class="col-xl-2">
+				<div class="small text-opacity-50 mb-2"><b>GROUP</b></div>
+				<select id="fgrp" class="form-control select2">
+					<option value="">All GROUP</option>
+					<?php echo options($o_tikgrp)?>
+				</select>
+			</div>
+			<div class="col-xl-2">
+				<div class="small text-opacity-50 mb-2"><b>LOCATION</b></div>
+				<select id="floc" class="form-control select2">
+					<option value="">All LOCATION</option>
+					<?php echo options($o_loc)?>
+				</select>
+			</div>
+			<div class="col-xl-2 pt-3">
+				<button type="button" onclick="reloadtbl()" class="btn btn-primary my-2 btn-icon-text">Filter</button>
+			</div>
 		</div>
 		<br /><br />
 		
@@ -163,7 +180,9 @@ $(document).ready(function(){
 				d.tname= '<?php echo base64_encode($tname); ?>',
 				d.csrc= '<?php echo base64_encode($csrc); ?>',
 				//d.grpby= '<?php echo base64_encode($grpby); ?>',
-				d.filtereq= 'grp,cat,svc,stts',
+				d.where= '<?php echo base64_encode($where); ?>',
+				d.filtereq= 'grp,cat,svc,stts,loc',
+				d.loc= $("#floc").val(),
 				d.cat= $("#fcat").val(),
 				d.grp= $("#fgrp").val(),
 				d.svc= $("#fsvc").val(),
