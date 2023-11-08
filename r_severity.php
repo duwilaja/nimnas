@@ -110,12 +110,17 @@ include "inc.js.php";
 $tname="core_node n left join core_status s on n.host=s.host";
 $tnamex="core_node n left join core_status_sla s on n.host=s.host";
 
+$where=""; $clso="";
+if($mys_LOC!=''){ //session loc
+	$where.= " and loc in ('$mys_LOC')";
+}
 ?>
 
 <script>
 var today='<?php echo date('Y-m-d')?>';
 var tname='<?php echo base64_encode($tname); ?>';
 var tnamex='<?php echo base64_encode($tnamex); ?>';
+var where='<?php echo base64_encode($where); ?>';
 
 var mytbl, jvalidate;
 $(document).ready(function(){
@@ -161,7 +166,7 @@ function get_tname(){
 	return $("#df").val()==today||$("#df").val()==''?tname:tnamex;
 }
 function getWhere(){
-	var net='';
+	var net=''; var  loc='';
 	var df=$("#df").val();
 	var dt=$("#dt").val();
 	if(df!=''&&df!=today){
@@ -171,7 +176,8 @@ function getWhere(){
 		df=''; dt='';
 	}
 	if($("#net").val()!='') net=" and net='"+$("#net").val()+"'";
-	return btoa($("#fld").val()+'>='+$("#min").val()+' and '+$("#fld").val()+'<='+$("#max").val()+net+df+dt);
+	if(where!='') loc=atob(where);
+	return btoa($("#fld").val()+'>='+$("#min").val()+' and '+$("#fld").val()+'<='+$("#max").val()+net+df+dt+loc);
 }
 function submit_r_severity(){
 	var a=$("#severity").val().split("|");

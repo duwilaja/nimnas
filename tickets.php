@@ -183,7 +183,7 @@ include "inc.menutop.php";
 
 <!-- Modal-->
 <div id="myModal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left modal_form">
-  <div role="document" class="modal-dialog modal-lg">
+  <div role="document" class="modal-dialog modal-lg modal-xxl">
 	<div class="modal-content">
 	  <div class="modal-header"><strong id="exampleModalLabel" class="modal-title"><?php echo $modal_title?></strong>
 		<button type="button" data-dismiss="modal" aria-label="Close" class="close" onclick="togglehide(1);"><span aria-hidden="true">x</span></button>
@@ -200,50 +200,54 @@ include "inc.menutop.php";
 <input type="hidden" name="created" id="created" value="" />
 		
 		  <div class="row mb-3">
-			<div class="form-group col-md-6">
+			<div class="form-group col-md-4">
 				<label>Ticket#</label>
 				<input type="text" readonly id="ticketno" name="ticketno" placeholder="auto" class="form-control">
 			</div>
-			<div class="form-group col-md-6">
+			<div class="form-group col-md-4">
 				<label>Report Date/Time</label>
 				<input type="text" id="dtm" name="dtm" placeholder="..." class="form-control datetimepicker">
 			</div>
+		  <!--/div>
+		  <div class="row mb-3"-->
+			<div class="form-group col-md-4">
+				<label>Created By</label>
+				<input type="text" readonly id="creby" name="creby" placeholder="auto" class="form-control">
+			</div>
 		  </div>
 		  <div class="row mb-3">
-			<div class="form-group col-md-6">
+			<div class="form-group col-md-4">
 				<label>Subject</label>
 				<input type="text" id="h" name="h" placeholder="..." class="form-control">
 			</div>
-			<div class="form-group col-md-6">
+			<div class="form-group col-md-4">
 				<label>Desc</label>
 				<textarea id="d" name="d" placeholder="..." class="form-control"></textarea>
 			</div>
-		  </div>
-		  <div class="row mb-3">
-			<div class="form-group col-md-6">
+			<div class="form-group col-md-4">
 				<label>Location</label>
 				<select class="form-control " id="loc" name="loc" onchange="getsn(this.value);">
 					<option value="">-</option>
 					<?php echo options($o_loc)?>
 				</select>
 			</div>
-			<div class="form-group col-md-6">
+		  </div>
+		  <div class="row mb-3">
+			<div class="form-group col-md-4">
 				<label>Service</label>
 				<select class="form-control " id="svc" name="svc">
 					<option value="">-</option>
 					<?php echo options($o_serv)?>
 				</select>
 			</div>
-		  </div>
-		  <div class="row mb-3">
-			<div class="form-group col-md-6">
+			<div class="form-group col-md-4">
 				<label>Category</label>
 				<select class="form-control " id="cat" name="cat">
 					<option value="">-</option>
 					<?php echo options($o_cat)?>
 				</select>
 			</div>
-			<div class="form-group col-md-6 hideme">
+			<div class="form-group col-md-4 hideme">
 				<label>Status</label>
 				<select class="form-control " id="stts" name="stts">
 					<option value="">-</option>
@@ -252,33 +256,29 @@ include "inc.menutop.php";
 			</div>
 		  </div>
 		  <div class="row mb-3 hideme">
-			<div class="form-group col-md-6">
-				<label>Created By</label>
-				<input type="text" readonly id="creby" name="creby" placeholder="auto" class="form-control">
-			</div>
-			<div class="form-group col-md-6">
+			<div class="form-group col-md-4">
 				<label>Asset</label>
 				<select class="form-control " id="sn" name="sn">
 					<option value="">-</option>
 				</select>
 				<!--input type="text" id="sn" name="sn" placeholder="..." class="form-control"-->
 			</div>
-		  </div>
-		  <div class="row mb-3 hideme">
-			<div class="form-group col-md-6">
+			<div class="form-group col-md-4">
 				<label>Assigned To</label>
 				<select class="form-control " id="grp" name="grp">
 					<option value="">-</option>
 					<?php echo options($o_tikgrp)?>
 				</select>
 			</div>
-			<!--div class="form-group col-md-6 notipme hidden">
+		  </div>
+		  <!--div class="row mb-3 hideme">
+			<div class="form-group col-md-6 notipme hidden">
 				<label>Send notification to</label>
 				<select class="form-control " id="usr" name="usr">
 					<option value="">-</option>
 				</select>
-			</div-->
-		  </div>
+			</div>
+		  </div-->
 		  <hr />
 		  <div class="row mb-3 hideme">
 			<div class="form-group col-md-6">

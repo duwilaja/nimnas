@@ -74,6 +74,10 @@ $tname="core_node";
 $cols="host,name,net,loc,grp,typ,sla,snmpenabled";
 $csrc="";
 $grpby="";
+$where=""; $clso="";
+if($mys_LOC!=''){ //session loc
+	$where.= "loc in ('$mys_LOC')";
+}
 
 ?>
 
@@ -95,6 +99,7 @@ $(document).ready(function(){
 				d.tname= '<?php echo base64_encode($tname); ?>',
 				d.csrc= '<?php echo base64_encode($csrc); ?>',
 				d.grpby= '<?php echo base64_encode($grpby); ?>',
+				d.where= '<?php echo base64_encode($where); ?>',
 				d.x= '-';
 			}
 		},
