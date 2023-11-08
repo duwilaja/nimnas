@@ -16,7 +16,11 @@ include "inc.menutop.php";
 
 include "lib_inc.db.php";
 $conn=connect();
-$sql="select device_id, name, hostname from devices join nimdb.core_node on hostname=host order by name";
+$where=""; $clso="";
+if($mys_LOC!=''){ //session loc
+	$where.= "where loc in ('$mys_LOC')";
+}
+$sql="select device_id, name, hostname from devices join nimdb.core_node on hostname=host $where order by name";
 $rs=fetch_all(exec_qry($conn,$sql));
 disconnect($conn);
 

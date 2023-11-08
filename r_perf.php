@@ -91,6 +91,10 @@ $tname="core_node n left join core_status s on n.host=s.host";
 $tnamex="core_node n left join core_status_sla s on n.host=s.host";
 $cols="n.host,n.name,n.net,n.typ,round(avg(rtt),2) as art, round(avg(ifnull(lost/cnt,0)*100),2) as lst";
 $grpby="n.host,n.name,n.net,n.typ";
+$where=""; $clso="";
+if($mys_LOC!=''){ //session loc
+	$where.= "loc in ('$mys_LOC')";
+}
 ?>
 
 <script>
@@ -114,6 +118,7 @@ $(document).ready(function(){
 				d.cols= '<?php echo base64_encode($cols); ?>',
 				d.tname= get_tname(),
 				d.grpby= '<?php echo base64_encode($grpby); ?>',
+				d.where= '<?php echo base64_encode($where); ?>',
 				d.fdf= get_dt($("#df").val()),
 				d.fdt= get_dt($("#dt").val()),
 				d.x= '<?php echo $menu?>';

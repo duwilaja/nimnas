@@ -72,7 +72,10 @@ $tname="core_location l left join core_node n on l.locid=n.loc left join core_st
 $cols="locid,l.name,l.addr,count(s.host) as t, sum(s.status) as u, count(s.host)-sum(s.status) as d";
 $csrc="";
 $grpby="locid,l.name,l.addr";
-
+$where=""; $clso="";
+if($mys_LOC!=''){ //session loc
+	$where.= "locid in ('$mys_LOC')";
+}
 ?>
 
 <script>
@@ -93,6 +96,7 @@ $(document).ready(function(){
 				d.tname= '<?php echo base64_encode($tname); ?>',
 				d.csrc= '<?php echo base64_encode($csrc); ?>',
 				d.grpby= '<?php echo base64_encode($grpby); ?>',
+				d.where= '<?php echo base64_encode($where); ?>',
 				d.x= '<?php echo "-"?>';
 			}
 		},

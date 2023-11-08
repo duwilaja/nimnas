@@ -88,6 +88,10 @@ include "inc.js.php";
 $tname="core_log l left join core_node n on n.host=l.host";
 $cols="l.host,n.name,l.dtm,if(status=1,'UP','DOWN') as stts";
 $grpby="";
+$where=""; $clso="";
+if($mys_LOC!=''){ //session loc
+	$where.= "loc in ('$mys_LOC')";
+}
 ?>
 
 <script>
@@ -111,6 +115,7 @@ $(document).ready(function(){
 				d.cols= '<?php echo base64_encode($cols); ?>',
 				d.tname= tname,
 				d.grpby= '<?php echo base64_encode($grpby); ?>',
+				d.where= '<?php echo base64_encode($where); ?>',
 				d.fdtmf= get_dt($("#df").val()),
 				d.fdtmt= get_dt($("#dt").val()),
 				d.x= '<?php echo $menu?>';
