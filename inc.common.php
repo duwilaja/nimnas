@@ -88,8 +88,10 @@ function getVal($k,$kv){
 }
 function options($kv){
 	$ret="";
+	if(is_array($kv)){
 	for($i=0;$i<count($kv);$i++){
 		$ret.='<option value="'.$kv[$i][0].'">'.$kv[$i][1].'</option>';
+	}
 	}
 	return $ret;
 }

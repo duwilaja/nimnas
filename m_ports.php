@@ -6,7 +6,7 @@ include "inc.session.php";
 
 $page_icon="fa fa-table";
 $page_title="Ports";
-$modal_title="LoV";
+$modal_title="Ports";
 $card_title="Master $page_title";
 
 $menu="mport";
