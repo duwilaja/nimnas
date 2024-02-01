@@ -167,7 +167,9 @@ include "inc.menutop.php";
 										<th>Detail</th>
 										<th>Category</th>
 										<th>Group</th>
-										<th>Date/Time</th>
+										<th>Report Date/Time</th>
+										<th>Created</th>
+										<th>By</th>
 										
 									</tr>
 								</thead>
@@ -406,7 +408,7 @@ include "inc.foot.php";
 include "inc.js.php";
 
 $tname="tick_ets t left join tick_cat c on t.cat=c.catid";
-$cols="ticketno,stts,loc,h,d,catname,grp,dtm,t.rowid";
+$cols="ticketno,stts,loc,h,d,catname,grp,dtm,created,creby,t.rowid";
 $csrc="ticketno,h,loc";
 
 ?>
