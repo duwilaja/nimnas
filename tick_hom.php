@@ -85,7 +85,7 @@ disconnect($conn);
 							<div class="card-order">
 								<label class="main-content-label mb-3 pt-1">Progress</label>
 								<h2 class="text-end"><i class="fe fe-trending-up icon-size float-start text-info"></i>
-								<span class="font-weight-bold xprogres xtot">0</span></h2>
+								<span class="font-weight-bold xprogress xtot">0</span></h2>
 							</div>
 						</div>
 					</div>
@@ -590,14 +590,14 @@ function gettot(){
 				for(var i=0;i<json['msgs'].length;i++){
 					var d=json['msgs'][i];
 					$(".x"+d['stts']).html(d['tot']);
-					if(d['stts']!='new'&&d['stts']!='closed'&&d['stts']!='pending') tot+=parseInt(d['tot']);
+					//if(d['stts']!='new'&&d['stts']!='closed'&&d['stts']!='pending') tot+=parseInt(d['tot']);
 				}
 				if(parseInt($(".xnew").html())>0){
 					if($(".blink").hasClass("bg-danger")) $(".blink").removeClass("bg-danger").addClass("blink-bg");
 				}else{
 					if($(".blink").hasClass("blink-bg")) $(".blink").addClass("bg-danger").removeClass("blink-bg");
 				}
-				$(".xprogres").html(tot);
+				//$(".xprogres").html(tot);
 			}else{
 				log(json['msgs']);
 			}
