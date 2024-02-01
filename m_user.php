@@ -108,7 +108,7 @@ disconnect($conn);
 			<div class="form-group col-md-12">
 				<label>Location</label>
 				<select class="form-control select2" multiple id="ulocx" name="ulocx">
-					<!--option value=""></option-->
+					<option value="">All</option>
 					<?php echo options($o_loc)?>
 				</select>
 				<input type="hidden" name="uloc" id="uloc" value="">
