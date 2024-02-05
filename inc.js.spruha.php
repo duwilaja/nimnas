@@ -45,6 +45,8 @@
 	<!-- Custom js--
 	<script src="aronox/assets/js/custom.js"></script-->
 	
+	<script src="vendor/peitychart/jquery.peity.min.js"></script>
+	
 	<script src="vendor/bootstrap/js/moment.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap-select.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
@@ -96,7 +98,7 @@
 	});
 	}
 	
-	$(".container").removeClass("container");
+	if(page!="device") $(".container").removeClass("container");
 	</script>
 	<!-- my own custom js -->
 	<script src="js/custom.spruha.js"></script>
