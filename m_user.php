@@ -164,7 +164,7 @@ include "inc.foot.php";
 include "inc.js.php";
 
 $tname="core_user";
-$cols="uid,uname,umail,ulvl,uloc,utick,rowid";
+$cols="uid,uname,umail,case when ulvl='0' then 'Super' when ulvl='1' then 'Admin' when ulvl='11' then 'User' end,uloc,utick,rowid";
 $csrc="uid,uname";
 
 ?>
@@ -202,10 +202,10 @@ $(document).ready(function(){
 		"uname" : {
 			required : true
 		},
-		"umail" : {
-			required : true,
-			email: true
-		},
+//		"umail" : {
+//			required : true,
+//			email: true
+//		},
 		"ulvl" : {
 			required : true
 		},
