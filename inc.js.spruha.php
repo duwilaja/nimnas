@@ -98,7 +98,8 @@
 	});
 	}
 	
-	if(page!="device" && page!="libdevice") $(".container").removeClass("container");
+	var excld=["device","libdevice","lib_device"];
+	if(!excld.includes(page)) $(".container").removeClass("container");
 	</script>
 	<!-- my own custom js -->
 	<script src="js/custom.spruha.js"></script>
