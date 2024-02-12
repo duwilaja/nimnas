@@ -351,7 +351,7 @@ function draw_map(data){
 		
 		for (var i = 0; i < data.length; i++) {
 			var a = data[i];
-			var title = a['name']+'\nTotal: '+a['cnt']+'\nON: '+a['onoff']+'\nOFF: '+a['off'];;
+			var title = a['name']+'\nTotal: '+a['cnt']+'\nON: '+a['onoff']+'\nOFF: '+a['off']+'\nLink: '+a['lnk']+'\nBW: '+a['bw'];
 			var color = a['onoff']>0?"green":"red";
 			var icon = L.AwesomeMarkers.icon({icon: 'server', prefix: 'fa', markerColor: color});
 			

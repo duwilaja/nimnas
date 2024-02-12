@@ -195,6 +195,12 @@ while($row = fetch_row($result)){
 		$row[4]=$act;
 		$xx='-';
 	}
+	if($x=="tick"){
+		$color="";
+		if($row[2]=="low") $color="green";
+		if($row[2]=="high") $color="red";
+		$row[2]="<span style='color: $color'>".$row[2]."</span>";
+	}
 	
 	if($x!="-"&&$xx!="-"){ //- means no need to modify first column
 		if($template=="aronox"){

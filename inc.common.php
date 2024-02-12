@@ -77,6 +77,11 @@ $o_tikgrp=[
 	["EU","End User"],
 	["MGMT","Management"]
 ];
+$o_prio=[
+	["low","low"],
+	["normal","normal"],
+	["high","high"]
+];
 
 /*common php functions*/
 function getVal($k,$kv){

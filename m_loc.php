@@ -60,6 +60,8 @@ include "inc.menutop.php";
 										<th>Addr</th>
 										<th>City</th>
 										<th>Prov</th>
+										<th>BW</th>
+										<th>Link</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -86,7 +88,7 @@ include "inc.menutop.php";
 <input type="hidden" name="rowid" id="rowid" value="0">
 <input type="hidden" name="mnu" value="<?php echo $menu?>">
 <input type="hidden" id="sv" name="sv" />
-<input type="hidden" name="cols" value="locid,name,addr,city,prov,postal,area,lat,lng" />
+<input type="hidden" name="cols" value="locid,name,addr,city,prov,postal,area,lat,lng,lnk,bw" />
 <input type="hidden" name="tname" value="core_location" />
 		
 		  <div class="row mb-3">
@@ -142,6 +144,16 @@ include "inc.menutop.php";
 			<div class="form-group col-md-2 mb-3">
 				<label>&nbsp;</label><br />
 				<button type="button" onclick="mappicker('#lat','#lng');" class="btn btn-info"><i class="fa fa-map-pin"></i></button>
+			</div>
+		  </div>
+		  <div class="row mb-3">
+			<div class="form-group col-md-6">
+				<label>Link</label>
+				<input type="text" id="lnk" name="lnk" placeholder="..." class="form-control">
+			</div>
+			<div class="form-group col-md-6">
+				<label>Bandwidth</label>
+				<input type="text" id="bw" name="bw" placeholder="..." class="form-control">
 			</div>
 		  </div>
 		  
@@ -204,7 +216,7 @@ include "inc.foot.php";
 include "inc.js.php";
 
 $tname="core_location";
-$cols="locid,name,addr,city,prov,rowid";
+$cols="locid,name,addr,city,prov,bw,lnk,rowid";
 $csrc="name,addr,city,prov";
 
 ?>

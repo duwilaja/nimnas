@@ -27,8 +27,8 @@ for($i=0;$i<count($rs);$i++){
 	//echo '<tr><td>'.$rs[$i]['catname'].'</td></tr>';
 	$ico='fe fe-activity';
 	switch($rs[$i]['catid']){
-		case 'CRT': $ico='fe fe-refresh-cw'; break;
-		case 'IRT': $ico='fe fe-info'; break;
+		case 'CR': $ico='fe fe-refresh-cw'; break;
+		case 'IR': $ico='fe fe-info'; break;
 	}
 	echo	'<tr>
 			<td class="d-flex">
