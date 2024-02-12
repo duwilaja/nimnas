@@ -27,8 +27,8 @@ for($i=0;$i<count($rs);$i++){
 	$pt=0; $crt=0; $irt=0;
 	for($j=0;$j<count($rsx);$j++){
 		if($rsx[$j]['loc']==$rs[$i]['loc']&&$rsx[$j]['cat']=='PT'){ $pt+=$rsx[$j]['tot']; }
-		if($rsx[$j]['loc']==$rs[$i]['loc']&&$rsx[$j]['cat']=='CRT'){ $crt+=$rsx[$j]['tot']; }
-		if($rsx[$j]['loc']==$rs[$i]['loc']&&$rsx[$j]['cat']=='IRT'){ $irt+=$rsx[$j]['tot']; }
+		if($rsx[$j]['loc']==$rs[$i]['loc']&&$rsx[$j]['cat']=='CR'){ $crt+=$rsx[$j]['tot']; }
+		if($rsx[$j]['loc']==$rs[$i]['loc']&&$rsx[$j]['cat']=='IR'){ $irt+=$rsx[$j]['tot']; }
 	}
 
 	echo '<tr>

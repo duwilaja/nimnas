@@ -162,8 +162,9 @@ include "inc.menutop.php";
 									<tr>
 										<th>Ticket#</th>
 										<th>Status</th>
+										<th>Priority</th>
 										<th>Location</th>
-										<th>Subject</th>
+										<th>Suspect</th>
 										<th>Detail</th>
 										<th>Category</th>
 										<th>Group</th>
@@ -197,12 +198,12 @@ include "inc.menutop.php";
 <input type="hidden" name="rowid" id="rowid" value="0">
 <input type="hidden" name="mnu" value="<?php echo $menu?>">
 <input type="hidden" id="sv" name="sv" />
-<input type="hidden" name="cols" value="dtm,loc,h,d,cat,svc,stts,grp,notes,sn" />
+<input type="hidden" name="cols" value="dtm,loc,h,d,cat,svc,stts,grp,notes,sn,prio" />
 <input type="hidden" name="tname" value="tick_ets" />
 <input type="hidden" name="created" id="created" value="" />
 		
 		  <div class="row mb-3">
-			<div class="form-group col-md-4">
+			<div class="form-group col-md-4 hideme">
 				<label>Ticket#</label>
 				<input type="text" readonly id="ticketno" name="ticketno" placeholder="auto" class="form-control">
 			</div>
@@ -212,14 +213,14 @@ include "inc.menutop.php";
 			</div>
 		  <!--/div>
 		  <div class="row mb-3"-->
-			<div class="form-group col-md-4">
+			<div class="form-group col-md-4 hideme">
 				<label>Created By</label>
 				<input type="text" readonly id="creby" name="creby" placeholder="auto" class="form-control">
 			</div>
 		  </div>
 		  <div class="row mb-3">
 			<div class="form-group col-md-4">
-				<label>Subject</label>
+				<label>Suspect</label>
 				<input type="text" id="h" name="h" placeholder="..." class="form-control">
 			</div>
 			<div class="form-group col-md-4">
@@ -249,11 +250,11 @@ include "inc.menutop.php";
 					<?php echo options($o_cat)?>
 				</select>
 			</div>
-			<div class="form-group col-md-4 hideme">
-				<label>Status</label>
-				<select class="form-control " id="stts" name="stts">
+			<div class="form-group col-md-4">
+				<label>Priority</label>
+				<select class="form-control " id="prio" name="prio">
 					<option value="">-</option>
-					<?php echo options($o_tikstts)?>
+					<?php echo options($o_prio)?>
 				</select>
 			</div>
 		  </div>
@@ -270,6 +271,13 @@ include "inc.menutop.php";
 				<select class="form-control " id="grp" name="grp">
 					<option value="">-</option>
 					<?php echo options($o_tikgrp)?>
+				</select>
+			</div>
+			<div class="form-group col-md-4 hideme">
+				<label>Status</label>
+				<select class="form-control " id="stts" name="stts">
+					<option value="">-</option>
+					<?php echo options($o_tikstts)?>
 				</select>
 			</div>
 		  </div>
@@ -408,7 +416,7 @@ include "inc.foot.php";
 include "inc.js.php";
 
 $tname="tick_ets t left join tick_cat c on t.cat=c.catid left join core_location l on l.locid=t.loc";
-$cols="ticketno,stts,name,h,d,catname,grp,dtm,created,creby,t.rowid";
+$cols="ticketno,stts,prio,name,h,d,catname,grp,dtm,created,creby,t.rowid";
 $csrc="ticketno,h,name";
 
 ?>
@@ -435,7 +443,8 @@ $(document).ready(function(){
 				d.tname= '<?php echo base64_encode($tname); ?>',
 				d.csrc= '<?php echo base64_encode($csrc); ?>',
 				d.where= '<?php echo base64_encode($where); ?>',
-				d.filtereq= 'grp,cat,svc,stts,loc',
+				d.filtereq= 'grp,cat,svc,stts,loc,prio',
+				d.cat= $("#fprio").val(),
 				d.cat= $("#fcat").val(),
 				d.grp= $("#fgrp").val(),
 				d.svc= $("#fsvc").val(),
@@ -525,7 +534,7 @@ $(document).ready(function(){
 	
 	datepicker(true);
 	datetimepicker();
-	//selectpicker(true);
+	$(".select2").select2();
 	
 	menus();
 });
