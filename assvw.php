@@ -22,7 +22,7 @@ $sql="select * from ass_ets where assid='$ass'";
 $recs=fetch_alla(exec_qry($conn,$sql));
 if(count($recs)<1){ disconnect($conn); header("Location: error$ext?m=No data found."); }
 
-$sql="select ticketno,stts from tick_ets where sn='".$recs[0]['sn']."' order by dtm desc";
+$sql="select ticketno,stts from tick_ets where sn='$ass' order by dtm desc";
 $hist=fetch_alla(exec_qry($conn,$sql));
 disconnect($conn);
 ?>
@@ -90,7 +90,10 @@ disconnect($conn);
 																	<th scope="row">Warranty Expired</th>
 																	<td><?php echo $recs[0]["warexp"]?></td>
 																</tr>
-																
+																<tr>
+																	<th scope="row">License Expired</th>
+																	<td><?php echo $recs[0]["licexp"]?></td>
+																</tr>
 
 															</tbody>
 														</table>
