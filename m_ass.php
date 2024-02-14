@@ -74,8 +74,9 @@ include "inc.menutop.php";
 										<th>Brand</th>
 										<th>Category</th>
 										<th>Location</th>
-										<th>Warranty Expired</th>
 										<th>Status</th>
+										<th>Warranty Expired</th>
+										<th>License Expired</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -102,7 +103,7 @@ include "inc.menutop.php";
 <input type="hidden" name="rowid" id="rowid" value="0">
 <input type="hidden" name="mnu" value="<?php echo $menu?>">
 <input type="hidden" id="sv" name="sv" />
-<input type="hidden" name="cols" value="assid,assname,assdesc,loc,brand,cat,warexp,gr,stts,sn" />
+<input type="hidden" name="cols" value="assid,assname,assdesc,loc,brand,cat,warexp,gr,stts,sn,licexp" />
 <input type="hidden" name="tname" value="ass_ets" />
 		
 		  <div class="row mb-3">
@@ -158,17 +159,24 @@ include "inc.menutop.php";
 			</div>
 		  </div>
 		  <div class="row mb-3">
-			<div class="form-group col-md-6">
+			<div class="form-group col-md-4">
 				<label>Purchased</label>
 				<div class="input-group">
 					<input type="text" id="gr" name="gr" placeholder="" class="form-control datepicker">
 					<div class="input-group-append"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
 				</div>
 			</div>
-			<div class="form-group col-md-6">
+			<div class="form-group col-md-4">
 				<label>Warranty Expired</label>
 				<div class="input-group">
 					<input type="text" id="warexp" name="warexp" placeholder="" class="form-control datepicker">
+					<div class="input-group-append"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
+				</div>
+			</div>
+			<div class="form-group col-md-4">
+				<label>License Expired</label>
+				<div class="input-group">
+					<input type="text" id="licexp" name="licexp" placeholder="" class="form-control datepicker">
 					<div class="input-group-append"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
 				</div>
 			</div>
@@ -247,7 +255,7 @@ include "inc.foot.php";
 include "inc.js.php";
 
 $tname="ass_ets a left join ass_brand b on brid=brand left join ass_cat c on catid=cat left join core_location l on locid=loc";
-$cols="assid,assname,brname,catname,name,warexp,stts,a.rowid";
+$cols="assid,assname,brname,catname,name,stts,warexp,licexp,a.rowid";
 $csrc="assname";
 
 $where="1=1";
