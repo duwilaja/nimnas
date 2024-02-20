@@ -13,6 +13,15 @@ $breadcrumb="Reports/$page_title";
 
 include "inc.head.php";
 include "inc.menutop.php";
+
+include "inc.db.php";
+$conn=connect();
+
+$wherloc=$mys_LOC==''?'':"where locid in ('$mys_LOC')";
+$rs=exec_qry($conn,"select locid,name from core_location $wherloc order by name");
+$o_loc=fetch_all($rs);
+
+disconnect($conn);
 ?>
 
 <div class="app-content page-body">
@@ -66,118 +75,154 @@ include "inc.menutop.php";
 			</div>
 
 			<br><br-->
-		<div class="row" style="">
-			<div class="col-md-6">
-		
-				<div class="card">
-					<div class="card-header">
-						<div class="card-title">By Location</div>
-						<div class="card-options ">
-							<a href="#" title="Expand/Collapse" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
-							<!--a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a-->
-						</div>
-					</div>
-					<div class="card-body">
-						<div class="table-responsive">
-							<table id="satu" class="table table-striped table-bordered w-100">
-								<thead>
-									<tr>
-										<th>Location</th>
-										<th>Total</th>
-									</tr>
-								</thead>
-								<tbody>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
+			<div class="row row-sm">
 				
-			</div>
-			<div class="col-md-6">
-		
-				<div class="card">
-					<div class="card-header">
-						<div class="card-title">By Status</div>
-						<div class="card-options ">
-							<a href="#" title="Expand/Collapse" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
-							<!--a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a-->
+				<div class="col-lg-12 col-xl-12">
+					<div class="row pb-4">
+						<div class="col-xl-6">
+							<div class="small text-opacity-50 mb-2 text-whitex"><b>LOCATION</b></div>
+							<select class="form-control select2" id="loc">
+								<option value="">All Location</option>
+								<?php echo options($o_loc)?>
+							</select>
+						</div>
+						
+						<div class="col-xl-2 pt-3">
+							<button type="button" class="btn btn-primary my-2 btn-icon-text" onclick="getsum()">Filter</button>
 						</div>
 					</div>
-					<div class="card-body">
-						<div class="table-responsive">
-							<table id="dua" class="table table-striped table-bordered w-100">
-								<thead>
-									<tr>
-										<th>Status</th>
-										<th>Total</th>
-									</tr>
-								</thead>
-								<tbody>
-								</tbody>
-							</table>
+					<!-- Row -->
+					<div class="row isin">
+						
+					</div>
+					<div class="row hidden">
+						<div class="col-xl-3 col-md-4 col-sm-6">
+							<div class="card custom-card border p-0 shadow-none">
+								<div class="d-flex align-items-center px-4 pt-2">&nbsp;
+									<div class="float-end ms-auto hidden">
+										<a href="#" class="option-dots" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fe fe-more-vertical"></i></a>
+										<div class="dropdown-menu dropdown-menu-start">
+											<a class="dropdown-item" href="#"><i class="fe fe-edit me-2"></i> Edit</a>
+											<a class="dropdown-item" href="#"><i class="fe fe-share me-2"></i> Share</a>
+											<a class="dropdown-item" href="#"><i class="fe fe-download me-2"></i> Download</a>
+											<a class="dropdown-item" href="#"><i class="fe fe-trash me-2"></i> Delete</a>
+										</div>
+									</div>
+								</div>
+								<div class="card-body pt-0 text-center">
+									<a href="file-manager-list.html" class="open-file">
+										<div class="file-manger-icon">
+											<img src="img/cat/router-core.png" alt="img" class="br-7">
+										</div><br>
+										<h6 class="mb-1 font-weight-semibold mt-0">Router Core</h6>
+										<span class="text-muted">1.000 Unit</span>
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-3 col-md-4 col-sm-6">
+							<div class="card custom-card border p-0 shadow-none">
+								<div class="d-flex align-items-center px-4 pt-2">&nbsp;
+									<div class="float-end ms-auto hidden">
+										<a href="#" class="option-dots" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fe fe-more-vertical"></i></a>
+										<div class="dropdown-menu dropdown-menu-start">
+											<a class="dropdown-item" href="#"><i class="fe fe-edit me-2"></i> Edit</a>
+											<a class="dropdown-item" href="#"><i class="fe fe-share me-2"></i> Share</a>
+											<a class="dropdown-item" href="#"><i class="fe fe-download me-2"></i> Download</a>
+											<a class="dropdown-item" href="#"><i class="fe fe-trash me-2"></i> Delete</a>
+										</div>
+									</div>
+								</div>
+								<div class="card-body pt-0 text-center">
+									<a href="#" class="open-file">
+									<div class="file-manger-icon">
+										<img src="img/cat/router-gateway.png" alt="img" class="br-7">
+									</div><br>
+									<h6 class="mb-1 font-weight-semibold mt-0">Router Gateway</h6>
+									<span class="text-muted">1.000 Unit</span>
+								</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-3 col-md-4 col-sm-6">
+							<div class="card custom-card border p-0 shadow-none">
+								<div class="d-flex align-items-center px-4 pt-2">&nbsp;
+									<div class="float-end ms-auto hidden">
+										<a href="#" class="option-dots" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fe fe-more-vertical"></i></a>
+										<div class="dropdown-menu dropdown-menu-start">
+											<a class="dropdown-item" href="#"><i class="fe fe-edit me-2"></i> Edit</a>
+											<a class="dropdown-item" href="#"><i class="fe fe-share me-2"></i> Share</a>
+											<a class="dropdown-item" href="#"><i class="fe fe-download me-2"></i> Download</a>
+											<a class="dropdown-item" href="#"><i class="fe fe-trash me-2"></i> Delete</a>
+										</div>
+									</div>
+								</div>
+								<div class="card-body pt-0 text-center">
+									<a href="#" class="open-file">
+									<div class="file-manger-icon">
+										<img src="img/cat/switch-access-2.png" alt="img" class="rounded-10">
+									</div><br>
+									<h6 class="mb-1 font-weight-semibold mt-1">Switch Access</h6>
+									<span class="text-muted">1.000 Unit</span></a>
+								</div>
+							</div>
+							</div>
+						<div class="col-xl-3 col-md-4 col-sm-6">
+							<div class="card custom-card border p-0 shadow-none">
+								<div class="d-flex align-items-center px-4 pt-2">&nbsp;
+									<div class="float-end ms-auto hidden">
+										<a href="#" class="option-dots" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fe fe-more-vertical"></i></a>
+										<div class="dropdown-menu dropdown-menu-start">
+											<a class="dropdown-item" href="#"><i class="fe fe-edit me-2"></i> Edit</a>
+											<a class="dropdown-item" href="#"><i class="fe fe-share me-2"></i> Share</a>
+											<a class="dropdown-item" href="#"><i class="fe fe-download me-2"></i> Download</a>
+											<a class="dropdown-item" href="#"><i class="fe fe-trash me-2"></i> Delete</a>
+										</div>
+									</div>
+								</div>
+								<div class="card-body pt-0 text-center">
+									<a href="file-manager-list.html" class="open-file">
+									<div class="file-manger-icon">
+										<img src="img/cat/switch-distribution.png" alt="img" class="br-7">
+									</div><br>
+									<h6 class="mb-1 font-weight-semibold mt-0">Switch Distribution</h6>
+									<span class="text-muted">1.000 Unit</span></a>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-3 col-md-4 col-sm-6">
+							<div class="card custom-card border p-0 shadow-none">
+								<div class="d-flex align-items-center px-4 pt-2">&nbsp;
+									<label class="custom-control custom-checkbox">
+										<input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+										<span class="custom-control-label"></span>
+									</label>
+									<div class="float-end ms-auto hidden">
+										<a href="#" class="option-dots" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fe fe-more-vertical"></i></a>
+										<div class="dropdown-menu dropdown-menu-start">
+											<a class="dropdown-item" href="#"><i class="fe fe-edit me-2"></i> Edit</a>
+											<a class="dropdown-item" href="#"><i class="fe fe-share me-2"></i> Share</a>
+											<a class="dropdown-item" href="#"><i class="fe fe-download me-2"></i> Download</a>
+											<a class="dropdown-item" href="#"><i class="fe fe-trash me-2"></i> Delete</a>
+										</div>
+									</div>
+								</div>
+								<div class="card-body pt-0 text-center">
+									<a href="file-manager-list.html" class="open-file">
+									<div class="file-manger-icon">
+										<img src="img/cat/access-point.png" alt="img" class="br-7">
+									</div><br>
+									<h6 class="mb-1 font-weight-semibold mt-0">Access Point</h6>
+									<span class="text-muted Access-Point utxt">0 Unit</span></a>
+								</div>
+							</div>
 						</div>
 					</div>
+					<!-- End Row -->
 				</div>
-				
 			</div>
-		</div>
-		<div class="row" style="">
-			<div class="col-md-6">
-		
-				<div class="card">
-					<div class="card-header">
-						<div class="card-title">By Category</div>
-						<div class="card-options ">
-							<a href="#" title="Expand/Collapse" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
-							<!--a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a-->
-						</div>
-					</div>
-					<div class="card-body">
-						<div class="table-responsive">
-							<table id="tiga" class="table table-striped table-bordered w-100">
-								<thead>
-									<tr>
-										<th>Category</th>
-										<th>Total</th>
-									</tr>
-								</thead>
-								<tbody>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-				
-			</div>
-			<div class="col-md-6">
-		
-				<div class="card">
-					<div class="card-header">
-						<div class="card-title">By Brand</div>
-						<div class="card-options ">
-							<a href="#" title="Expand/Collapse" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
-							<!--a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a-->
-						</div>
-					</div>
-					<div class="card-body">
-						<div class="table-responsive">
-							<table id="empat" class="table table-striped table-bordered w-100">
-								<thead>
-									<tr>
-										<th>Brand</th>
-										<th>Total</th>
-									</tr>
-								</thead>
-								<tbody>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-				
-			</div>
-		</div>
+
+	
 	</div>
 </div><!-- end app-content-->
 
@@ -197,82 +242,51 @@ if($mys_LOC!=''){ //session loc
 ?>
 
 <script>
-var mytbl1, mytbl2, mytbl3, mytbl4, mytbl5, mytbl6, mytbl7, mytbl8, mytbl9, jvalidate;
-
-function loadTable(divid,cols,tname,where,grpby,x){
-var mytbl=$(divid).DataTable({
-	buttons: [
-            'copy', 'csv'
-        ],
-	searching: false,
-	serverSide: true,
-	processing: true,
-	ordering: true,
-	order: [[ 0, "asc" ]],
-		ajax: {
-			type: 'POST',
-			url: 'datatable.php',
-			data: function (d) {
-				d.cols= cols,
-				d.tname= tname,
-				d.csrc= '',
-				d.where= where,
-				d.grpby= grpby,
-				d.df= $("#df").val(),
-				d.dt= $("#dt").val(),
-				d.x= x;
-			}
-		},
-		initComplete: function(){
-			//dttbl_buttons(); //for ajax call
-		}
-	});
-	
-	return mytbl;
-}
 
 $(document).ready(function(){
 	page_ready();
-	/*mytbl = $("#mytbl").DataTable({
-		serverSide: true,
-		processing: true,
-		searching: false,
-		buttons: ['copy', 'csv'],
-		lengthMenu: [[10,50,100,500,-1],["10","50","100","500","All"]],
-		ajax: {
-			type: 'POST',
-			url: 'datatable<?php echo $ext?>',
-			data: function (d) {
-				d.cols= '<?php echo base64_encode($cols); ?>',
-				d.tname= '<?php echo base64_encode($tname); ?>',
-				d.csrc= '<?php echo base64_encode($csrc); ?>',
-				d.grpby= '<?php echo base64_encode($grpby); ?>',
-				d.x= '<?php echo $menu?>';
-			}
-		},
-		initComplete: function(){
-			dttbl_buttons(); //for ajax call
-		}
-	});*/
-	//dttbl_buttons(); //remark this if ajax dttbl call
-	//datepicker(true);
-	//timepicker();
-	/*jvalidate = $("#myf").validate({
-    rules :{
-        "tx" : {
-            required : true
-        },
-		"tm" : {
-			required : true
-		}
-    }});*/
-	mytbl1 = loadTable('#satu','<?php echo base64_encode("loc,count(loc) as cnt"); ?>','<?php echo base64_encode($tname); ?>','<?php echo base64_encode($where);?>','<?php echo base64_encode("loc");?>','-');
-	mytbl2 = loadTable('#dua','<?php echo base64_encode("stts,count(stts) as cnt"); ?>','<?php echo base64_encode($tname); ?>','<?php echo base64_encode($where);?>','<?php echo base64_encode("stts");?>','-');
-	mytbl3 = loadTable('#tiga','<?php echo base64_encode("cat,count(cat) as cnt"); ?>','<?php echo base64_encode($tname); ?>','<?php echo base64_encode($where);?>','<?php echo base64_encode("cat");?>','-');
-	mytbl4 = loadTable('#empat','<?php echo base64_encode("brand,count(brand) as cnt"); ?>','<?php echo base64_encode($tname); ?>','<?php echo base64_encode($where);?>','<?php echo base64_encode("brand");?>','-');
-	
+	$(".select2").select2();
 });
 
+function getsum(lnk='dataget',q='asssum'){
+	var id=$("#loc").val();
+	$.ajax({
+		type: 'POST',
+		url: lnk+ext,
+		data: {q:q,id:id},
+		success: function(data){
+			var json = JSON.parse(data);
+			if(json['code']=='200'){
+				var html='';
+				for(var i=0;i<json['msgs'].length;i++){
+					var d=json['msgs'][i];
+					var img=d['cat'].trim().replace(" ","-").toLowerCase();
+					html += ''+
+						'<div class="col-xl-3 col-md-4 col-sm-6">'+
+						'	<div class="card custom-card border p-0 shadow-none">'+
+						'		<div class="d-flex align-items-center px-4 pt-2">&nbsp;'+
+						'		</div>'+
+						'		<div class="card-body pt-0 text-center">'+
+						'				<div class="file-manger-icon">'+
+						'					<img src="img/cat/'+img+'.png" alt="image '+img+',png not found" class="br-7">'+
+						'				</div><br>'+
+						'				<h6 class="mb-1 font-weight-semibold mt-0">'+d['cat']+'</h6>'+
+						'				<span class="text-muted">'+d['tot']+' Unit</span>'+
+						'		</div>'+
+						'	</div>'+
+						'</div>';
+				}
+				log(html);
+				$(".isin").html(html);
+			}else{
+				log(json['msgs']);
+			}
+		},
+		error: function(xhr){
+			log('Please check your connection'+xhr);
+		}
+	});
+}
 </script>
 
   </body>
