@@ -89,6 +89,7 @@ include "inc.menutop.php";
 										<th>Category</th>
 										<th>Purchased</th>
 										<th>Warranty Expired</th>
+										<th>License Expired</th>
 										<th>Status</th>
 										
 									</tr>
@@ -109,7 +110,7 @@ include "inc.js.php";
 
 
 $tname="ass_ets";
-$cols="assid,assname,assdesc,loc,sn,brand,cat,gr,warexp,stts";
+$cols="assid,assname,assdesc,loc,sn,brand,cat,gr,warexp,licexp,stts";
 $csrc="";
 $grpby="";
 $where="1=1"; $clso="";

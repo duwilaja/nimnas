@@ -56,6 +56,7 @@ switch($q){
 	case 'asscat': $sql="select cat,count(cat) as tot from ass_ets where $wass group by cat"; break;
 	case 'assno': $sql="select assid as v,assname as t from ass_ets where loc='$id' and $wass order by assname"; break;
 	case 'brasscat': $sql="select cat,count(cat) as tot from ass_ets where stts='inactive' and $wass group by cat"; break;
+	case 'asssum': $sql="select cat,count(cat) as tot from ass_ets where $wass and loc like '%$id%' group by cat"; break;
 	
 	case 'tick': $sql="select * from tick_ets where rowid='$id'"; break;
 	case 'mticat': $sql="select * from tick_cat where rowid='$id'"; break;
@@ -94,8 +95,9 @@ switch($q){
 			$grpby="lat,lng,concat(l.name,'\n',l.addr),locid,lnk,l.bw";
 		$sql="select lat,lng,lnk,l.bw,concat(l.name,'\n',l.addr) as name,locid,sum(s.status) as onoff,count(n.host) as cnt, (count(n.host)-sum(s.status)) as off from $tname where lat<>'' and lng<>'' and $whr group by $grpby"; break;
 	
-	case 'nodes': $sql="select n.rowid as id, n.host as label, concat(n.host,'/',name) as title, concat('icon/',lower(typ),'.png') as image, 'image' as shape,
-					if(status=1,'#ffffff','#ff0000') as fc from core_node n join core_status s on s.host=n.host where $whr"; break;
+	case 'nodes': $sql="select n.rowid as id, n.host as label, concat(typ,'/',name) as title, concat('img/cat/',replace(trim(lower(typ)),' ','-'),'.png') as image, 'image' as shape,
+					if(status=1,'#ffffff','#ff0000') as fc from core_node n join core_status s on s.host=n.host where $whr and 
+					(n.host in (select dari from core_netdiagram) or n.host in (select ke from core_netdiagram))"; break;
 	case 'edges': $sql="select n1.rowid as `from`, n2.rowid as `to`, 50 as `length` from core_netdiagram d 
 				join core_node n1 on n1.host=d.dari join core_node n2 on n2.host=d.ke";
 				if($mys_LOC!=''){

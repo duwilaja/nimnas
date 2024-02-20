@@ -224,8 +224,8 @@ function openForm(q='',id=0,f='#myf',fid="#rowid"){
 			},
 			error: function(xhr){
 				setTimeout(function(){$(".modal_form").modal("hide")},500);
-				//modal('Error','Please check your connection');
-				alrt('Please check your connection','error','Error');
+				//modal('Error','Server Error');
+				alrt('Server Error','error','Error');
 			}
 		});
 	}
@@ -291,8 +291,8 @@ function sendDataFile(sv,f='#myf',fsv="#sv"){
 			}
 		},
 		error: function(xhr){
-			//modal('Error','Please check your connection');
-			alrt('Please check your connection','error','Error');
+			//modal('Error','Server Error');
+			alrt('Server Error','error','Error');
 		}
 	});
 };
@@ -307,7 +307,7 @@ function resetAvatar(){
 			alrt(json['msgs'],'error',json['ttl']);
 		},
 		error: function(xhr){
-			//modal('Error','Please check your connection');
+			//modal('Error','Server Error');
 			alrt('Could not execute command '+q,'error','Error');
 		}
 	});
@@ -340,7 +340,7 @@ function exec_command(q,h,c,v='',o=''){
 				$(r).html('<pre>'+data+'</pre>').show();
 			},
 			error: function(xhr){
-				//modal('Error','Please check your connection');
+				//modal('Error','Server Error');
 				$(".ldr").hide();
 				alrt('Could not execute command '+q,'error','Error');
 			}
@@ -387,7 +387,7 @@ function getData(q,lnk='dataget',id=0,html=true,selector="."){
 			}
 		},
 		error: function(xhr){
-			log('Please check your connection'+xhr);
+			log('Server Error'+xhr);
 		}
 	});
 }
