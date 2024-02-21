@@ -82,7 +82,6 @@
 						</ul>
 					</li>
 					<?php }?>
-					<?php if($is_nms){?>
 					
 					<li class="nav-item">
 						<a class="nav-link with-sub" href="javascript:void(0)">
@@ -92,6 +91,7 @@
 							<span class="sidemenu-label">Reports</span>
 						</a>
 						<ul class="nav-sub">
+					<?php if($is_nms){?>
 							<li class="nav-sub-item"><a class="nav-sub-link sub-with-sub" href="javascript:void(0)">Monitoring</a>
 							<ul class="sub-nav-sub">
 								<li class="nav-sub-item"><a class="nav-sub-link rdevice" href="r_device<?php echo $ext?>">Devices</a></li>
@@ -101,8 +101,11 @@
 								<li class="nav-sub-item"><a class="nav-sub-link rseverity" href="r_severity<?php echo $ext?>">Severity</a></li>
 								<li class="nav-sub-item"><a class="nav-sub-link rupdown" href="r_updown<?php echo $ext?>">UP/Down</a></li>
 								<li class="nav-sub-item"><a class="nav-sub-link rtraffic" href="r_traffic<?php echo $ext?>">Traffic</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link rtraffic" href="r_gen<?php echo $ext?>">Generate</a></li>
 							</ul>
 							</li>
+					<?php }?>
+					<?php if($is_ticket){?>
 							<li class="nav-sub-item"><a class="nav-sub-link sub-with-sub" href="javascript:void(0)">Ticketing</a>
 							<ul class="sub-nav-sub">
 								<li class="nav-sub-item"><a class="nav-sub-link " href="r_ticksum<?php echo $ext?>">Summary</a></li>
@@ -110,12 +113,15 @@
 								<li class="nav-sub-item"><a class="nav-sub-link " href="r_mttr<?php echo $ext?>">MTTR</a></li>
 							</ul>
 							</li>
+					<?php }?>
+					<?php if($is_asset){?>
 							<li class="nav-sub-item"><a class="nav-sub-link sub-with-sub" href="javascript:void(0)">Asset</a>
 							<ul class="sub-nav-sub">
 								<li class="nav-sub-item"><a class="nav-sub-link mlov" href="r_asssum<?php echo $ext?>">Summary</a></li>
 								<li class="nav-sub-item"><a class="nav-sub-link muser" href="r_asss<?php echo $ext?>">Assets</a></li>
 							</ul>
 							</li>
+					<?php }?>
 						</ul>
 					</li>
 					<?php if($s_LVL==0||$s_LVL==1){?>
@@ -173,7 +179,6 @@
 							<li class="nav-sub-item"><a class="nav-sub-link muser" href="t_snmp<?php echo $ext?>">SNMP</a></li>
 						</ul>
 					</li>
-					<?php }?>
 					
 				</ul>
 				<!-- END menu -->
