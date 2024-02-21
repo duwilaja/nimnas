@@ -201,6 +201,10 @@ while($row = fetch_row($result)){
 		if($row[2]=="high") $color="red";
 		$row[2]="<span style='color: $color'>".$row[2]."</span>";
 	}
+	if($x=='rgen'){
+		$act='<a title="View" class="dttbl" href="JavaScript:;" data-fancybox data-type="iframe" data-src="r_genshow'.$ext.'?j='.$row[7].'">'.$row[7].'</a>';
+		if($row[6]=='done') $row[7]=$act;
+	}
 	
 	if($x!="-"&&$xx!="-"){ //- means no need to modify first column
 		if($template=="aronox"){
