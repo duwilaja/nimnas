@@ -28,7 +28,7 @@ if(count($rpt)<1 && count($recs)<1) die("no data found");
 					<h6><?php echo str_ireplace("\n","<br />",$rpt[0]['dscr'])?></h6>
 						<div class="row">
 						<?php foreach($recs as $r){?>
-							<div class="col-md-12 col-sm-12">
+							<div class="col-md-6 col-sm-6">
 							<?php echo $r['host']?> - <?php echo $r['nm']?><br />
 							<img style="width:100%" src="<?php echo $rpt_dir.$r['job'].'/'.$r['host']?>.png" />
 							</div>
