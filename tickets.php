@@ -559,6 +559,7 @@ function b4sef(){
 	if($("#rowid").val()==0){
 		$("#grp").val("EOS");
 		$("#stts").val("new");
+		mytbl.order([9,"desc"]);
 	}
 	if($("#myf").valid()){ $(".hideme").show(); }
 }
