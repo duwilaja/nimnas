@@ -78,9 +78,9 @@ $o_tikgrp=[
 	["MGMT","Management"]
 ];
 $o_prio=[
-	["low","low"],
 	["normal","normal"],
-	["high","high"]
+	["high","high"],
+	["critical","critical"]
 ];
 
 /*common php functions*/
