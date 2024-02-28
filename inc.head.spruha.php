@@ -99,6 +99,9 @@
 		.divlnk{
 			cursor:pointer;
 		}
+		select[readonly] option, select[readonly] optgroup {
+			display: none;
+		}
 		</style>
 
 	</head>

@@ -198,7 +198,7 @@ include "inc.menutop.php";
 <input type="hidden" name="rowid" id="rowid" value="0">
 <input type="hidden" name="mnu" value="<?php echo $menu?>">
 <input type="hidden" id="sv" name="sv" />
-<input type="hidden" name="cols" value="dtm,loc,h,d,cat,svc,stts,grp,notes,sn,prio" />
+<input type="hidden" name="cols" value="dtm,loc,h,d,cat,svc,stts,grp,notes,sn,prio,caus,solu" />
 <input type="hidden" name="tname" value="tick_ets" />
 <input type="hidden" name="created" id="created" value="" />
 		
@@ -209,7 +209,7 @@ include "inc.menutop.php";
 			</div>
 			<div class="form-group col-md-4">
 				<label>Report Date/Time</label>
-				<input type="text" id="dtm" name="dtm" placeholder="..." class="form-control datetimepicker">
+				<input type="text" id="dtm" name="dtm" placeholder="..." class="form-control datetimepicker reado">
 			</div>
 		  <!--/div>
 		  <div class="row mb-3"-->
@@ -221,15 +221,15 @@ include "inc.menutop.php";
 		  <div class="row mb-3">
 			<div class="form-group col-md-4">
 				<label>Suspect</label>
-				<input type="text" id="h" name="h" placeholder="..." class="form-control">
+				<input type="text" id="h" name="h" placeholder="..." class="form-control reado">
 			</div>
 			<div class="form-group col-md-4">
 				<label>Desc</label>
-				<textarea id="d" name="d" placeholder="..." class="form-control"></textarea>
+				<textarea id="d" name="d" placeholder="..." class="form-control reado"></textarea>
 			</div>
 			<div class="form-group col-md-4">
 				<label>Location</label>
-				<select class="form-control " id="loc" name="loc" onchange="getsn(this.value);">
+				<select class="form-control reado" id="loc" name="loc" onchange="getsn(this.value);">
 					<option value="">-</option>
 					<?php echo options($o_loc)?>
 				</select>
@@ -301,20 +301,14 @@ include "inc.menutop.php";
 			</div>
 		  </div>
 		  
-		  <div class="row mb-3 hidden">
+		  <div class="row mb-3 hideme">
 			<div class="form-group col-md-6">
-				<label>Purchased</label>
-				<div class="input-group">
-					<input type="text" id="gr" name="gr" placeholder="" class="form-control datepicker">
-					<div class="input-group-append"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
-				</div>
+				<label>Cause</label>
+				<input type="text" id="caus" name="caus" placeholder="..." class="form-control">
 			</div>
 			<div class="form-group col-md-6">
-				<label>Warranty Expired</label>
-				<div class="input-group">
-					<input type="text" id="warexp" name="warexp" placeholder="" class="form-control datepicker">
-					<div class="input-group-append"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
-				</div>
+				<label>Solution</label>
+				<textarea id="solu" name="solu" placeholder="..." class="form-control"></textarea>
 			</div>
 		  </div>
 		  
@@ -555,8 +549,10 @@ function openformcallback(q,json=''){
 function togglehide(id){
 	if(id==0){
 		$(".hideme").hide();
+		$(".reado").attr("readonly",false);
 	}else{
 		$(".hideme").show();
+		$(".reado").attr("readonly",true);
 	}
 }
 function b4sef(){
