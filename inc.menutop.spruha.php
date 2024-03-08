@@ -122,6 +122,7 @@
 							</ul>
 							</li>
 					<?php }?>
+							<li class="nav-sub-item"><a class="nav-sub-link" href="r_absen<?php echo $ext?>">Absensi</a></li>
 						</ul>
 					</li>
 					<?php if($s_LVL==0||$s_LVL==1){?>
