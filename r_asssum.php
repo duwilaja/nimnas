@@ -268,7 +268,7 @@ function getsum(lnk='dataget',q='asssum'){
 						'		</div>'+
 						'		<div class="card-body pt-0 text-center">'+
 						'				<div class="file-manger-icon">'+
-						'					<img src="img/cat/'+img+'.png" alt="image '+img+',png not found" class="br-7">'+
+						'					<img src="img/cat/'+img+'.png" alt="image '+img+'.png not found" class="br-7">'+
 						'				</div><br>'+
 						'				<h6 class="mb-1 font-weight-semibold mt-0">'+d['cat']+'</h6>'+
 						'				<span class="text-muted">'+d['tot']+' Unit</span>'+

@@ -153,11 +153,16 @@ include "inc.menutop.php";
 	
 			<div class="row row-sm">
 				<div class="col-lg-12">
-					<div class="card custom-card overflow-hidden">
+					<div class="card custom-card">
+						<div class="card-header justify-content-between" style="display: flex;">
+							 <div class="card-title main-content-label mb-1"> Device Location </div> 
+							 <span><a title="new window" href="peta<?php echo $ext?>" target="_blank"> <i class="fe fe-copy"></i> </a>&nbsp;&nbsp;
+							 <a href="javascript:void(0);" data-bs-toggle="card-fullscreen"> <i class="fe fe-maximize"></i> </a></span>
+						</div>
 						<div class="card-body">
-							<div>
+							<!--div>
 								<h6 class="main-content-label mb-1">Device Location</h6>
-							</div>
+							</div-->
 							<div class="mapcontainer1">
 								<div id="map" style="height:450px; z-index: 1;"></div>
 							</div>
@@ -347,13 +352,14 @@ function get_loc(){
 }
 
 function draw_map(data){
-	var markers = L.markerClusterGroup();
+	//var markers = L.markerClusterGroup();
 		
 		for (var i = 0; i < data.length; i++) {
 			var a = data[i];
 			var title = a['name']+'\nTotal: '+a['cnt']+'\nON: '+a['onoff']+'\nOFF: '+a['off']+'\nLink: '+a['lnk']+'\nBW: '+a['bw'];
-			var color = a['onoff']>0?"green":"red";
-			var icon = L.AwesomeMarkers.icon({icon: 'server', prefix: 'fa', markerColor: color});
+			var color = a['onoff']>0?"1":"0";
+			//var icon = L.AwesomeMarkers.icon({icon: 'server', prefix: 'fa', markerColor: color});
+			var icon = L.icon({iconUrl:'img/'+color+'.png',iconSize:[30,30],iconAnchor:[15,30]});
 			
 			if(isNaN(data[i]['lat'])||isNaN(data[i]['lng'])){
 				err+=data[i]['name']+'/';
@@ -363,11 +369,12 @@ function draw_map(data){
 				var fn=markerClickFunction(a['locid']);
 				marker.on('click', fn);
 				
-				markers.addLayer(marker);
+				marker.addTo(map);
+				//markers.addLayer(marker);
 			}
 		}
 
-		map.addLayer(markers);
+		//map.addLayer(markers);
 		
 		if(err!='') {
 			alert('Error: '+err);
