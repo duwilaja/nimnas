@@ -94,7 +94,9 @@ switch($q){
 	
 	case 'map': $tname="core_location l join core_node n on l.locid=n.loc join core_status s on n.host=s.host";
 			$grpby="lat,lng,concat(l.name,'\n',l.addr),locid,lnk,l.bw";
-		$sql="select lat,lng,lnk,l.bw,concat(l.name,'\n',l.addr) as name,locid,sum(s.status) as onoff,count(n.host) as cnt, (count(n.host)-sum(s.status)) as off from $tname where lat<>'' and lng<>'' and $whr group by $grpby"; break;
+			$wdef=$id=="-1"?"":" and status=$id";
+			$slct="lat,lng,lnk,l.bw,concat(l.name,'\n',l.addr) as name,locid,sum(s.status) as onoff,count(n.host) as cnt, (count(n.host)-sum(s.status)) as off";
+		$sql="select $slct from $tname where lat<>'' and lng<>'' $wdef and $whr group by $grpby"; break;
 	
 	case 'nodes': $sql="select n.rowid as id, n.host as label, concat(typ,'/',name) as title, concat('img/cat/',replace(trim(lower(typ)),' ','-'),'.png') as image, 'image' as shape,
 					if(status=1,'#ffffff','#ff0000') as fc from core_node n join core_status s on s.host=n.host where $whr and 

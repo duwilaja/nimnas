@@ -199,7 +199,7 @@ while($row = fetch_row($result)){
 		$color="warning";
 		if($row[2]=="normal") $color="success";
 		if($row[2]=="critical") $color="danger";
-		$row[2]="<span class='btn btn-sm btn-$color'>".$row[2]."</span>";
+		$row[2]="<span class='btn-sm btn-$color'>".$row[2]."</span>";
 	}
 	if($x=='rgen'){
 		$act='<a title="View" class="dttbl" href="JavaScript:;" data-fancybox data-type="iframe" data-src="r_genshow'.$ext.'?j='.$row[7].'">'.$row[7].'</a>';
