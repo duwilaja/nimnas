@@ -181,10 +181,11 @@ disconnect($conn);
 				</div>
 				<div class="col-xxl-8 col-xl-8 col-md-12 col-lg-8">
 					<div class="card custom-card">
+						<div class="card-header justify-content-between border-bottom-0" style="display: flex;">
+							 <div class="card-title main-content-label mb-1">Ticket Mapping</div> 
+							 <a href="javascript:void(0);" data-bs-toggle="card-fullscreen"> <i class="fe fe-maximize"></i> </a>
+						</div>
 						<div class="card-body">
-							<div>
-								<h6 class="main-content-label mb-1">Ticket Mapping</h6>
-							</div>
 							<div class="ht-300 ht-lg-400" style="height: 760px; !important;" id="map"></div>
 						</div>
 					</div>

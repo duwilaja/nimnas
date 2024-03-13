@@ -34,7 +34,7 @@ include "inc.menutop.php";
 					<div class="card custom-card">
 						<div class="card-body"><a href="m_ass<?php echo $ext?>">
 							<div class="card-order ">
-								<label class="main-content-label mb-3 pt-1">Total Device</label>
+								<label class="main-content-label mb-3 pt-1">Total Asset</label>
 								<h2 class="text-end card-item-icon card-icon">
 								<i class="fa fa-cubes icon-size float-start text-primary"></i><span class="font-weight-bold xtot">0</span></h2>
 								<!--p class="mb-0 mt-4 text-muted">Monthly users<span class="float-end">50%</span></p-->
@@ -47,7 +47,7 @@ include "inc.menutop.php";
 					<div class="card custom-card">
 						<div class="card-body"><a href="m_ass<?php echo $ext?>?stt=active">
 							<div class="card-order">
-								<label class="main-content-label mb-3 pt-1">Total Device Active</label>
+								<label class="main-content-label mb-3 pt-1">Active</label>
 								<h2 class="text-end"><i class="fa fa-hdd icon-size float-start text-success"></i><span class="font-weight-bold xactive">0</span></h2>
 								<!--p class="mb-0 mt-4 text-muted">Monthly Income<span class="float-end">$7,893</span></p-->
 							</div>
@@ -59,7 +59,7 @@ include "inc.menutop.php";
 					<div class="card custom-card">
 						<div class="card-body"><a href="m_ass<?php echo $ext?>?stt=standby">
 							<div class="card-order">
-								<label class="main-content-label mb-3 pt-1">Total Device Active Standby</label>
+								<label class="main-content-label mb-3 pt-1">Standby</label>
 								<h2 class="text-end"><i class="icon-size fa fa-hdd float-start text-warning"></i><span class="font-weight-bold xstandby">0</span></h2>
 								<!--p class="mb-0 mt-4 text-muted">Monthly Profit<span class="float-end">$4,678</span></p-->
 							</div>
@@ -71,7 +71,7 @@ include "inc.menutop.php";
 					<div class="card custom-card">
 						<div class="card-body"><a href="m_ass<?php echo $ext?>?stt=inactive">
 							<div class="card-order">
-								<label class="main-content-label mb-3 pt-1">Total Device Inactive</label>
+								<label class="main-content-label mb-3 pt-1">Inactive</label>
 								<h2 class="text-end"><i class="fa fa-hdd icon-size float-start text-danger"></i><span class="font-weight-bold xinactive">0</span></h2>
 								<!--p class="mb-0 mt-4 text-muted">Monthly Sales<span class="float-end">3,756</span></p-->
 							</div>
@@ -84,50 +84,20 @@ include "inc.menutop.php";
 		
 			<div class="row">
 				<!-- BEGIN col-4 -->
-				<div class="col-lg-6 col-md-12">
+				<div class="col-xl-6">
 					<!-- BEGIN card -->
 					<div class="card mb-3">
 						<div class="card-header border-bottom-0">
-							<label class="main-content-label my-auto pt-2 mb-1">DEVICE CLASSIFICATION</label>
+							<label class="main-content-label my-auto pt-2 mb-1">ASSET CLASSIFICATION</label>
 							<span class="d-block tx-12 mb-0 mt-1 text-muted"></span>
 						</div>
 						<!-- BEGIN card-body -->
-						<div class="card-body crypto-wallet" style="padding:10px !important" >
-							<div class=""><canvas id="ass-cat" class="ht-180" style="max-height:270px !important"></canvas></div>
-							<div class="chart-circle-value circle-style" style="top:79px; !important">
-								<h6 style="padding-top: 10px; margin-bottom: 0px;!important">Total Device</h6>
-								<div class="tx-20 font-weight-bold xtot" style="line-height:30px; !important">0</div>
+						<div class="card-body">
+							<!-- BEGIN table -->
+							<div class="overflow-hidden">
+								<canvas id="ass-class"></canvas>
 							</div>
-						</div>
-						<div class="table-responsive border-0">
-							<table class="table border-0 mg-b-0 text-nowrap text-md-nowrap">
-								<tbody id="ascat">
-									<tr>
-										<td class="d-flex">
-										<div class="bg-primary my-auto me-2"></div>
-											<div class="my-auto me-2">
-												<p class="mb-0 d-flex justify-content-center "><span class="legend bg-primary brround"></span>Network</p>
-											</div>
-										</td>
-										<td class="">30</td>
-										<td>+12.85% </td>
-										</div>
-									</tr>
-
-									<tr>
-										<td class="d-flex">
-										<div class="bg-primary my-auto me-2"></div>
-											<div class="my-auto me-2">
-												<p class="mb-0 d-flex justify-content-center "><span class="legend bg-primary brround"></span>Electrical</p>
-											</div>
-										</td>
-										<td class="">30</td>
-										<td>+12.85% </td>
-										</div>
-									</tr>
-									
-								</tbody>
-							</table>
+							<!-- END table -->
 						</div>
 						<!-- END card-body -->
 						
@@ -136,12 +106,12 @@ include "inc.menutop.php";
 				</div>
 				<!-- END col-4 -->
 				<!-- BEGIN col-4 -->
-				<div class="col-lg-6 col-md-12">
+				<div class="col-xl-6">
 					<!-- BEGIN card -->
 					<div class="card mb-3">
 						
 						<div class="card-header border-bottom-0">
-							<label class="main-content-label my-auto pt-2 mb-1">Inactive Device CLASSIFICATION</label>
+							<label class="main-content-label my-auto pt-2 mb-1">BROKEN ASSET CLASSIFICATION</label>
 							<span class="d-block tx-12 mb-0 mt-1 text-muted"></span>
 						</div>
 
@@ -160,23 +130,9 @@ include "inc.menutop.php";
 				</div>
 				<!-- END col-4 -->
 			</div>
-			<div class="row">
-				<div class="col-12">
-					<div class="card">
-						<div class="card-header justify-content-between border-bottom-0" style="display: flex;">
-							 <div class="card-title main-content-label mb-1">MAPPING DEVICE</div> 
-							 <a href="javascript:void(0);" data-bs-toggle="card-fullscreen"> <i class="fe fe-maximize"></i> </a>
-						</div>
-						<div class="card-body">
-							<div id="map" style="height:450px; z-index: 1;"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<br /><br />
-			<div class="row">
+			<div class="row hidden">
 				<!-- BEGIN col-4 -->
-				<div class="col-xl-4 hidden">
+				<div class="col-xl-4">
 					<!-- BEGIN card -->
 					<div class="card mb-3">
 						<!-- BEGIN card-body -->
@@ -210,25 +166,24 @@ include "inc.menutop.php";
 				</div>
 				<!-- END col-4 -->
 				<!-- BEGIN col-4 -->
-				<div class="col-xl-7">
+				<div class="col-xl-4">
 					<!-- BEGIN card -->
 					<div class="card mb-3">
-						<div class="card-header border-bottom-0 d-flex">
-							<div>
-								<label class="main-content-label mb-2 pt-1">TOP 5 LOCATION WITH PROBLEM</label>
-							</div>
-						</div>
 						<!-- BEGIN card-body -->
 						<div class="card-body">
+							<!-- BEGIN title -->
+							<div class="d-flex fw-bold small mb-3">
+								<span class="flex-grow-1">Brand Problem</span>
+								<a href="#" data-toggle="card-expand" class="text-white text-opacity-50 text-decoration-none"><i class="bi bi-fullscreen"></i></a>
+							</div>
+							<!-- END title -->
 							<!-- BEGIN table -->
 							<div class="table-responsive">
 								<table id="toppro" class="table table-striped table-borderless mb-2px small text-nowrap">
 									<thead>
 										<tr>
-											<th>Location</th>
+											<th>Brand</th>
 											<th>Total</th>
-											<th>BROKEN</th>
-											<th>%</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -244,17 +199,17 @@ include "inc.menutop.php";
 				</div>
 				<!-- END col-4 -->
 				<!-- BEGIN col-4 -->
-				<div class="col-xl-5">
+				<div class="col-xl-4">
 					<!-- BEGIN card -->
 					<div class="card mb-3">
-						<div class="card-header border-bottom-0 d-flex">
-							<div>
-								<label class="main-content-label mb-2 pt-1">TOP 5 WARRANTY WARNING</label>
-							</div>
-						</div>
-						
 						<!-- BEGIN card-body -->
 						<div class="card-body">
+							<!-- BEGIN title -->
+							<div class="d-flex fw-bold small mb-3">
+								<span class="flex-grow-1">Warranty Warning</span>
+								<a href="#" data-toggle="card-expand" class="text-white text-opacity-50 text-decoration-none"><i class="bi bi-fullscreen"></i></a>
+							</div>
+							<!-- END title -->
 							<!-- BEGIN table -->
 							<div class="table-responsive">
 								<table id="topwar" class="table table-striped table-borderless mb-2px small text-nowrap">
@@ -278,6 +233,19 @@ include "inc.menutop.php";
 				</div>
 				<!-- END col-4 -->
 			</div>
+			<div class="row">
+				<div class="col-12">
+					<div class="card">
+						<div class="card-header border-bottom-0">
+							<label class="main-content-label my-auto pt-2 mb-1">ASSET LOCATION</label>
+							<span class="d-block tx-12 mb-0 mt-1 text-muted"></span>
+						</div>
+						<div class="card-body">
+							<div id="map" style="height:450px; z-index: 1;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
 			<br /><br />
 			
 			
@@ -297,15 +265,15 @@ $(document).ready(function(){
 	gettot();
 	
 	//mytbl1 = loadTable('#topold','<?php echo base64_encode("assname,loc,gr"); ?>','<?php echo base64_encode("ass_ets"); ?>','<?php echo base64_encode("");?>','<?php echo base64_encode("");?>',[[ 2, "asc" ]],'-');
-	mytbl2 = loadTable('#toppro','<?php echo base64_encode("loc,count(loc) as cnt, sum(if(stts='inactive',1,0)) as brk,round(sum(if(stts='inactive',1,0))/count(loc),2) as pct"); ?>','<?php echo base64_encode("ass_ets"); ?>','<?php echo base64_encode("");?>','<?php echo base64_encode("loc");?>',[[ 3, "desc" ]],'-');
-	mytbl3 = loadTable('#topwar','<?php echo base64_encode("assname,loc,warexp"); ?>','<?php echo base64_encode("ass_ets"); ?>','<?php echo base64_encode("");?>','<?php echo base64_encode("");?>',[[ 2, "asc" ]],'-');
+	//mytbl2 = loadTable('#toppro','<?php echo base64_encode("brand,count(brand) as cnt"); ?>','<?php echo base64_encode("ass_ets"); ?>','<?php echo base64_encode("stts='inactive'");?>','<?php echo base64_encode("brand");?>',[[ 1, "desc" ]],'-');
+	//mytbl3 = loadTable('#topwar','<?php echo base64_encode("assname,loc,warexp"); ?>','<?php echo base64_encode("ass_ets"); ?>','<?php echo base64_encode("");?>','<?php echo base64_encode("");?>',[[ 2, "asc" ]],'-');
 	
 	//markers=null;
 	//getData('onoff','maps-onoff');
 	widget_map();
 	getDataChart('asscat');
 	getDataChart('brasscat');
-	get_content("ass_hom_cat<?php echo $ext?>",{},".loader-img","#ascat");
+	
 });
 function randomColor(){
 	return "#"+(Math.random().toString(16)+"000000").slice(2, 8).toUpperCase();
@@ -343,7 +311,7 @@ function pieChart(databar){
 		colors.push(hexToRgba(myVarVal,(1-(i*0.1))));
 	}
 	
-	var ctx5 = document.getElementById('ass-cat');
+	var ctx5 = document.getElementById('break-ass-class');
 	pieChart = new Chart(ctx5, {
 		type: 'doughnut',
 		data: {
@@ -355,13 +323,6 @@ function pieChart(databar){
 				//hoverBackgroundColor: ['rgba('+ app.color.greenRgb +', 1)', 'rgba('+ app.color.whiteRgb +', 1)', 'rgba('+ app.color.gray500Rgb +', 1)'],
 				borderWidth: 0
 			}]
-		},
-		options: {
-			plugins: {
-				legend: {
-					display: false
-				},
-			}
 		}
 	});
 }
@@ -377,10 +338,10 @@ function getDataChart(q=''){
 			if(json['code']=='200'){
 				datachart=json['msgs'];
 				if(q=='asscat'){
-					pieChart(datachart);
+					barChart(datachart);
 				}
 				if(q=='brasscat'){
-					barChart(datachart);
+					pieChart(datachart);
 				}
 			}else{
 				log(json['msgs']);
@@ -402,7 +363,7 @@ function barChart(databar){
 		}
 		//log(label);
 		//log(datas);
-		var ctx2 = document.getElementById('break-ass-class');
+		var ctx2 = document.getElementById('ass-class');
 		barChart = new Chart(ctx2, {
 			type: 'bar',
 			data: {
@@ -454,7 +415,7 @@ var mytbl=$(divid).DataTable({
 	serverSide: true,
 	processing: true,
 	ordering: true,
-	paging: false,
+	paging: true,
 	lengthChange: false,
 	info: false,
 	order: ord,
