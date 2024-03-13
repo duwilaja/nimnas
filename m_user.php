@@ -65,6 +65,7 @@ disconnect($conn);
 										<!--th>NMS Group</th-->
 										<th>Location</th>
 										<th>Ticketing Group</th>
+										<th>NIK</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -79,7 +80,7 @@ disconnect($conn);
 
 <!-- Modal-->
 <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left modal_form">
-  <div role="document" class="modal-dialog">
+  <div role="document" class="modal-dialog modal-lg">
 	<div class="modal-content">
 	  <div class="modal-header"><strong id="exampleModalLabel" class="modal-title"><?php echo $modal_title?></strong>
 		<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">x</span></button>
@@ -91,7 +92,7 @@ disconnect($conn);
 <input type="hidden" name="rowid" id="rowid" value="0">
 <input type="hidden" name="mnu" value="<?php echo $menu?>">
 <input type="hidden" id="sv" name="sv" />
-<input type="hidden" name="cols" value="uid,uname,ulvl,ugrp,uloc,utick,umail" />
+<input type="hidden" name="cols" value="uid,uname,ulvl,ugrp,uloc,utick,umail,unik" />
 <input type="hidden" name="tname" value="core_user" />
 		
 		  <div class="row">
@@ -105,13 +106,17 @@ disconnect($conn);
 			</div>
 		  </div>
 		  <div class="row">
-			<div class="form-group col-md-12">
+			<div class="form-group col-md-8">
 				<label>Location</label>
 				<select class="form-control select2" multiple id="ulocx" name="ulocx">
 					<option value="">All</option>
 					<?php echo options($o_loc)?>
 				</select>
 				<input type="hidden" name="uloc" id="uloc" value="">
+			</div>
+			<div class="form-group col-md-4">
+				<label>NIK</label>
+				<input type="text" id="unik" name="unik" placeholder="..." class="form-control">
 			</div>
 			<div class="form-group col-md-6 hidden">
 				<label>NMS Group</label>
@@ -164,7 +169,7 @@ include "inc.foot.php";
 include "inc.js.php";
 
 $tname="core_user";
-$cols="uid,uname,umail,case when ulvl='0' then 'Super' when ulvl='1' then 'Admin' when ulvl='11' then 'User' end,uloc,utick,rowid";
+$cols="uid,uname,umail,case when ulvl='0' then 'Super' when ulvl='1' then 'Admin' when ulvl='11' then 'User' end,uloc,utick,unik,rowid";
 $csrc="uid,uname";
 
 ?>

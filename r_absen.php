@@ -105,7 +105,7 @@ include "inc.foot.php";
 include "inc.js.php";
 
 
-$tname="erp.absensis a left join core_user u on u.uid=a.nip";
+$tname="erp.absensis a left join core_user u on u.unik=a.nip";
 $cols="date_format(createdAt,'%Y, %m %d, %a') as dd,nip,uname,start_date,reason_in,end_date,reason_out";
 $csrc="uname";
 $grpby="";
