@@ -1,5 +1,6 @@
 <?php 
 include "inc.common.php";
+include "inc.session.php";
 /*
 include "inc.db.php";
 $conn=connect();

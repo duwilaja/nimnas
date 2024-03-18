@@ -156,7 +156,7 @@ include "inc.menutop.php";
 					<div class="card custom-card">
 						<div class="card-header justify-content-between" style="display: flex;">
 							 <div class="card-title main-content-label mb-1"> Device Location </div> 
-							 <span><a title="new window" href="peta<?php echo $ext?>" target="_blank"> <i class="fe fe-copy"></i> </a>&nbsp;&nbsp;
+							 <span><a title="all locations" href="petagugel<?php echo $ext?>" target="_blank"> <i class="fe fe-copy"></i> </a>&nbsp;&nbsp;
 							 <a href="javascript:void(0);" data-bs-toggle="card-fullscreen"> <i class="fe fe-maximize"></i> </a></span>
 						</div>
 						<div class="card-body">
