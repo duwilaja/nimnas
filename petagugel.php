@@ -41,6 +41,40 @@ let ext = '<?php echo $ext?>';
     // Add other bootstrap parameters as needed, using camel case.
   });
 
+  
+/**
+ * Creates a control that recenters the map on Chicago.
+ */
+ 
+ const myCenter={lat: -2,lng: 118};
+ 
+function createCenterControl(map) {
+  const controlButton = document.createElement("button");
+
+  // Set CSS for the control.
+  controlButton.style.backgroundColor = "#fff";
+  controlButton.style.border = "2px solid #fff";
+  controlButton.style.borderRadius = "3px";
+  controlButton.style.boxShadow = "0 2px 6px rgba(0,0,0,.3)";
+  controlButton.style.color = "rgb(25,25,25)";
+  controlButton.style.cursor = "pointer";
+  controlButton.style.fontFamily = "Roboto,Arial,sans-serif";
+  controlButton.style.fontSize = "16px";
+  controlButton.style.lineHeight = "38px";
+  controlButton.style.margin = "8px 0 22px";
+  controlButton.style.padding = "0 5px";
+  controlButton.style.textAlign = "center";
+  controlButton.textContent = "Center Map";
+  controlButton.title = "Click to recenter the map";
+  controlButton.type = "button";
+  // Setup the click event listeners: simply set the map to Chicago.
+  controlButton.addEventListener("click", () => {
+    map.setCenter(myCenter);
+	map.setZoom(5);
+  });
+  return controlButton;
+}
+
 
 async function initMap(locations) {
   // Request needed libraries.
@@ -50,13 +84,24 @@ async function initMap(locations) {
   );
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 5, //3,
-    center: {lat: -2,lng: 118}, //{ lat: -28.024, lng: 140.887 },
+    center: myCenter, //{ lat: -28.024, lng: 140.887 },
     mapId: "DEMO_MAP_ID",
   });
+  
+  // Create the DIV to hold the control.
+  const centerControlDiv = document.createElement("div");
+  // Create the control.
+  const centerControl = createCenterControl(map);
+
+  // Append the control to the DIV.
+  centerControlDiv.appendChild(centerControl);
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(centerControlDiv);
+  
+  /*
   const infoWindow = new google.maps.InfoWindow({
     content: "",
     disableAutoPan: true,
-  });
+  });*/
   
   
   // Create an array of alphabetical characters used to label the markers.
@@ -73,7 +118,7 @@ async function initMap(locations) {
    for (var i = 0; i < locations.length; i++) {
 		var a = locations[i];
 		var title = a['name']+'\nTotal: '+a['cnt']+'\nON: '+a['onoff']+'\nOFF: '+a['off']+'\nLink: '+a['lnk']+'\nBW: '+a['bw'];
-		var color = a['onoff']>0?"1":"0";
+		var color = a['onoff']=="0"?"0":"1";
 		
 		if(isNaN(a['lat'])||isNaN(a['lng'])){
 			err+=a['name']+'/';
