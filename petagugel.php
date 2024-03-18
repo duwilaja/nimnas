@@ -115,6 +115,12 @@ async function initMap(locations) {
     });
 	*/
 	var err=''; var markers=[];
+	var iconImage = [];
+	iconImage.push(document.createElement("img"));
+	iconImage[0].src = "img/0.png";
+	iconImage.push(document.createElement("img"));
+	iconImage[1].src = "img/1.png";
+			
    for (var i = 0; i < locations.length; i++) {
 		var a = locations[i];
 		var title = a['name']+'\nTotal: '+a['cnt']+'\nON: '+a['onoff']+'\nOFF: '+a['off']+'\nLink: '+a['lnk']+'\nBW: '+a['bw'];
@@ -125,11 +131,9 @@ async function initMap(locations) {
 		}else{
 			const myLatLng = new google.maps.LatLng(a['lat'], a['lng']);
 
-			const iconImage = document.createElement("img");
-			iconImage.src = "img/"+color+".png";
 			const marker = new google.maps.Marker({
 			  position: myLatLng,
-			  content: iconImage,//pinGlyph.element,
+			  content: iconImage[parseInt(color)],//pinGlyph.element,
 			  title: title,
 			});
 			
