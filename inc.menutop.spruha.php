@@ -82,6 +82,14 @@
 						</ul>
 					</li>
 					<?php }?>
+					<li class="nav-item">
+						<a class="nav-link" href="abs_hom<?php echo $ext?>">
+							<span class="shape1"></span>
+							<span class="shape2"></span>
+							<i class="fa fa-users sidemenu-icon menu-icon "></i>
+							<span class="sidemenu-label">Absensi</span>
+						</a>
+					</li>
 					
 					<li class="nav-item">
 						<a class="nav-link with-sub" href="javascript:void(0)">
