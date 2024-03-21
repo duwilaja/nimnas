@@ -157,7 +157,7 @@ include "inc.menutop.php";
 						<div class="card-header justify-content-between" style="display: flex;">
 							 <div class="card-title main-content-label mb-1"> Device Location </div> 
 							 <span><a title="all locations" href="petagugel<?php echo $ext?>" target="_blank"> <i class="fe fe-copy"></i> </a>&nbsp;&nbsp;
-							 <a href="javascript:void(0);" data-bs-toggle="card-fullscreen"> <i class="fe fe-maximize"></i> </a></span>
+							 <!--a href="javascript:void(0);" data-bs-toggle="card-fullscreen"> <i class="fe fe-maximize"></i> </a--></span>
 						</div>
 						<div class="card-body">
 							<!--div>
@@ -177,7 +177,7 @@ include "inc.menutop.php";
 
 					<div class="card custom-card wallet-1">
 						<div class="card custom-card card-dashboard-calendar pb-0">
-							<label class="main-content-label mb-2 pt-1">Highest RTT</label>
+							<label class="main-content-label mb-2 pt-1">Highest Latency</label>
 							<span class="d-block tx-12 mb-2 text-muted"></span>
 							<table class="table table-hover m-b-0 transcations mt-2">
 								<tbody id="isi-speed">
@@ -267,8 +267,26 @@ include "inc.menutop.php";
 <?php 
 include "inc.foot.php";
 include "inc.js.php";
-?>		
+
+include "inc.db.php";
+
+$locs=array();
+if($mys_LOC!=''){ //session loc
+	$conn=connect();
+	$locs=fetch_alla(exec_qry($conn,"select lat,lng from core_location where TRIM(lat)<>'' and TRIM(lng)<>'' and locid in ('$mys_LOC')"));
+	disconnect($conn);
+}
+?>
+<script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0LcVlAmmXMro8eH69aK6Wh4lUqttz-Zs&callback=initMap&v=weekly"
+      defer
+    ></script>
+
 <script>
+var myCenter={lat: -2,lng: 118};
+var myZoom=5;
+const mylocs=<?php echo json_encode($locs)?>;
+
 $(document).ready(function(){
 	page_ready();
 	//displayClock();
@@ -283,9 +301,121 @@ $(document).ready(function(){
 	get_content("home-band<?php echo $ext?>",{ord:'desc'},".ldr-ketam","#isi-band");
 	get_content("home-band<?php echo $ext?>",{ord:'asc'},".ldr-ketam","#isi-bandx");
 	
-	widget_map();
+	//widget_map();
 	
 });
+
+function createCenterControl(map) {
+  const controlButton = document.createElement("button");
+
+  // Set CSS for the control.
+  controlButton.style.backgroundColor = "#fff";
+  controlButton.style.border = "2px solid #fff";
+  controlButton.style.borderRadius = "3px";
+  controlButton.style.boxShadow = "0 2px 6px rgba(0,0,0,.3)";
+  controlButton.style.color = "rgb(25,25,25)";
+  controlButton.style.cursor = "pointer";
+  controlButton.style.fontFamily = "Roboto,Arial,sans-serif";
+  controlButton.style.fontSize = "16px";
+  controlButton.style.lineHeight = "38px";
+  controlButton.style.margin = "8px 0 22px";
+  controlButton.style.padding = "0 5px";
+  controlButton.style.textAlign = "center";
+  controlButton.textContent = "Center Map";
+  controlButton.title = "Click to recenter the map";
+  controlButton.type = "button";
+  // Setup the click event listeners: simply set the map to Chicago.
+  controlButton.addEventListener("click", () => {
+    map.setCenter(myCenter);
+	map.setZoom(myZoom);
+  });
+  return controlButton;
+}
+
+function loadLoc(map){
+	var err='';
+	$.ajax({
+		type: 'POST',
+		url: 'dataget'+ext,
+		data: {q:'map',id:0},
+		success: function(datax){
+			var locations=JSON.parse(datax)["msgs"];
+			var bounds = new google.maps.LatLngBounds();
+			var err='';
+			   for (var i = 0; i < locations.length; i++) {
+					var a = locations[i];
+					var title = a['name']+'\nTotal: '+a['cnt']+'\nON: '+a['onoff']+'\nOFF: '+a['off']+'\nLink: '+a['lnk']+'\nBW: '+a['bw'];
+					var color = a['onoff']=="0"?"0":"1";
+					
+					if(isNaN(a['lat'])||isNaN(a['lng'])){
+						err+=a['name']+'/';
+					}else{
+						const myLatLng = new google.maps.LatLng(a['lat'], a['lng']);
+						
+						const iconImage = "img/"+color+".png";
+						const marker = new google.maps.Marker({
+						  position: myLatLng,
+						  map,
+						  icon: iconImage,//pinGlyph.element,
+						  title: title,
+						});
+						
+						//extend the bounds to include each marker's position
+						bounds.extend(marker.position);
+  
+						// markers can only be keyboard focusable when they have click listeners
+						// open info window when marker is clicked
+						//marker.addListener("click", () => {
+						  //infoWindow.setContent(position.lat + ", " + position.lng);
+						  //infoWindow.open(map, marker);
+						//});
+							//return marker;
+					}
+			  }
+			  if(mylocs.length>0) {
+				myCenter = bounds.getCenter();
+				myZoom=9;
+				//now fit the map to the newly inclusive bounds
+				map.fitBounds(bounds);
+				var listener = google.maps.event.addListener(map, "idle", function() { 
+				  map.setZoom(myZoom); 
+				  google.maps.event.removeListener(listener); 
+				});
+			  }
+			
+		},
+		error: function(xhr){
+			console.log(xhr);
+		}
+	});
+}
+
+function initMap() {
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: myZoom,
+    center: myCenter,
+  });
+  
+  // Create the DIV to hold the control.
+  const centerControlDiv = document.createElement("div");
+  // Create the control.
+  const centerControl = createCenterControl(map);
+
+  // Append the control to the DIV.
+  centerControlDiv.appendChild(centerControl);
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(centerControlDiv);
+  
+/*  const image =
+    "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
+  const beachMarker = new google.maps.Marker({
+    position: { lat: -33.89, lng: 151.274 },
+    map,
+    icon: image,
+  });*/
+  loadLoc(map);
+  
+}
+
 
 var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
