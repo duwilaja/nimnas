@@ -18,6 +18,22 @@ where date(dtm)=date(now()) and traffic='Y' and t.ifoutoctets_delta<>t.ifinoctet
 group by n.host,name,loc,typ 
  order by inb $ord limit 5";
 
+//look for the latest record
+$sql="select max(t.rowid) as mrow,device_id from core_traffic t join nimdb.core_ports x on x.port=t.port_id where traffic='Y' group by device_id";
+$rs=exec_qry($conn,$sql);
+$maxs=fetch_alla($rs);
+$rowids=array();
+for($i=0;$i<count($maxs);$i++){
+	$rowids[]=$maxs[$i]["mrow"];
+}
+$recs=implode(",",$rowids);
+
+$sql="select n.host,name,n.bw,t.ifinoctets_delta as inb, t.ifoutoctets_delta as outb 
+from core_traffic t join nimdb.core_ports x on x.port=t.port_id join nimdb.core_node n on x.host=n.host 
+where t.rowid in ($recs) and t.ifoutoctets_delta<>t.ifinoctets_delta and $whr 
+group by n.host,name,loc,typ 
+ order by inb $ord limit 5";
+
 $rs=exec_qry($conn,$sql);
 $lists=fetch_alla($rs);
 
@@ -33,16 +49,18 @@ function urai($bit){
 
 for($i=0;$i<count($lists);$i++){
 	$list=$lists[$i];
+	$bw=trim(str_ireplace("gb","",str_ireplace("mb","",$list['bw']))); //cleanup letter
+	$bw = (is_numeric($bw)) ? intval($bw):0;
 ?>
 		<tr>
 			<!--td><?php echo ($i+1) ?></td-->
 			<td><?php echo $list['host'] ?></td>
 			<td><?php echo $list['name'] ?></td>
-			<td><?php echo $list['loc'] ?></td>
+			<td><?php echo $list['bw'] ?></td>
 			<td><?php echo urai($list['inb']) ?></td>
+			<td><?php echo $bw ?></td>
 			<td><?php echo urai($list['outb']) ?></td>
-			<!--td><a class="btn ripple btn-info" data-bs-target="#modaldemo3" data-bs-toggle="modal" href=""><?php echo $list['inb'] ?></a></td-->
-			<td><?php echo $list['typ'] ?></td>
+			<td><?php echo $bw ?></td>
 		</tr>
 <?php }?>
 

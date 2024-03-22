@@ -173,7 +173,7 @@ include "inc.menutop.php";
 		
 			<!--Row-->
 			<div class="row">
-				<div class="col-xl-5 col-xxl-5 col-md-12 col-lg-5">
+				<div class="col-xl-6 col-xxl-6 col-md-12 col-lg-6">
 
 					<div class="card custom-card wallet-1">
 						<div class="card custom-card card-dashboard-calendar pb-0">
@@ -187,66 +187,7 @@ include "inc.menutop.php";
 					</div>
 					
 				</div>
-				<div class="col-xl-7 col-xxl-7 col-md-12 col-lg-7">
-					<div class="card custom-card">
-						<div class="card-header border-bottom-0">
-							<label class="main-content-label my-auto pt-2">Highest Bandwidth Usage</label>
-							<span class="d-block tx-12 mb-3 mt-1 text-muted"></span>
-						</div>
-						<div class="card-body pt-2 pb-0">
-							<div class="table-responsive tasks">
-								<table class="table card-table table-vcenter text-nowrap border">
-									<thead>
-										<tr>
-											<!--th class="wd-lg-10p">#</th-->
-											<th class="wd-lg-10p">Host</th>
-											<th class="wd-lg-20p">Name</th>
-											<th class="wd-lg-20p">Location</th>
-											<th class="wd-lg-20p">In</th>
-											<th class="wd-lg-20p">Out</th>
-											<th class="wd-lg-20p">Type</th>
-										</tr>
-									</thead>
-									<tbody id="isi-band">
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- row closed -->
-						
-			<!--Row-->
-			<div class="row">
-				<div class="col-xl-7 col-xxl-7 col-md-12 col-lg-7">
-					<div class="card custom-card">
-						<div class="card-header border-bottom-0">
-							<label class="main-content-label my-auto pt-2">Lowest Bandwidth Usage</label>
-							<span class="d-block tx-12 mb-3 mt-1 text-muted"></span>
-						</div>
-						<div class="card-body pt-2 pb-0">
-							<div class="table-responsive tasks">
-								<table class="table card-table table-vcenter text-nowrap border">
-									<thead>
-										<tr>
-											<!--th class="wd-lg-10p">#</th-->
-											<th class="wd-lg-10p">Host</th>
-											<th class="wd-lg-20p">Name</th>
-											<th class="wd-lg-20p">Location</th>
-											<th class="wd-lg-20p">In</th>
-											<th class="wd-lg-20p">Out</th>
-											<th class="wd-lg-20p">Type</th>
-										</tr>
-									</thead>
-									<tbody id="isi-bandx">
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-xl-5 col-xxl-5 col-md-12 col-lg-5">
+				<div class="col-xl-6 col-xxl-6 col-md-12 col-lg-6">
 					<div class="card custom-card wallet-1">
 						<div class="card custom-card card-dashboard-calendar pb-0">
 							<label class="main-content-label mb-2 pt-1">Longest Down</label>
@@ -255,6 +196,39 @@ include "inc.menutop.php";
 								<tbody id="isi-ketam">
 								</tbody>
 							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- row closed -->
+						
+			<!--Row-->
+			<div class="row">
+				<div class="col-xl-12 col-xxl-12 col-md-12 col-lg-12">
+					<div class="card custom-card">
+						<div class="card-header justify-content-between" style="display: flex;">
+							 <div class="card-title main-content-label mb-1"> Highest Bandwidth Usage </div> 
+							 <span><a title="all locations" href="bwall<?php echo $ext?>" target="_blank"> <i class="fe fe-copy"></i> </a>&nbsp;&nbsp;
+							 <!--a href="javascript:void(0);" data-bs-toggle="card-fullscreen"> <i class="fe fe-maximize"></i> </a--></span>
+						</div>
+						<div class="card-body pt-2 pb-0">
+							<div class="table-responsive tasks">
+								<table class="table card-table table-vcenter text-nowrap border">
+									<thead>
+										<tr>
+											<th class="wd-lg-10p">Host</th>
+											<th class="wd-lg-20p">Name</th>
+											<th class="wd-lg-20p">BW</th>
+											<th class="wd-lg-20p">In (bps)</th>
+											<th class="wd-lg-20p">%</th>
+											<th class="wd-lg-20p">Out (bps)</th>
+											<th class="wd-lg-20p">%</th>
+										</tr>
+									</thead>
+									<tbody id="isi-band">
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -290,7 +264,7 @@ $(document).ready(function(){
 	//get_content("home-sla-chart<?php echo $ext?>",{},".ldr-sla","#isi-sla");
 	get_content("home-down<?php echo $ext?>",{},".ldr-ketam","#isi-ketam");
 	get_content("home-band<?php echo $ext?>",{ord:'desc'},".ldr-ketam","#isi-band");
-	get_content("home-band<?php echo $ext?>",{ord:'asc'},".ldr-ketam","#isi-bandx");
+	//get_content("home-band<?php echo $ext?>",{ord:'asc'},".ldr-ketam","#isi-bandx");
 	
 	//widget_map();
 	
