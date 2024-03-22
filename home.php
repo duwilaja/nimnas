@@ -267,15 +267,6 @@ include "inc.menutop.php";
 <?php 
 include "inc.foot.php";
 include "inc.js.php";
-
-include "inc.db.php";
-
-$locs=array();
-if($mys_LOC!=''){ //session loc
-	$conn=connect();
-	$locs=fetch_alla(exec_qry($conn,"select lat,lng from core_location where TRIM(lat)<>'' and TRIM(lng)<>'' and locid in ('$mys_LOC')"));
-	disconnect($conn);
-}
 ?>
 <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0LcVlAmmXMro8eH69aK6Wh4lUqttz-Zs&callback=initMap&v=weekly"
@@ -285,7 +276,7 @@ if($mys_LOC!=''){ //session loc
 <script>
 var myCenter={lat: -2,lng: 118};
 var myZoom=5;
-const mylocs=<?php echo json_encode($locs)?>;
+const mylocs='<?php echo $s_LOC?>';
 
 $(document).ready(function(){
 	page_ready();
@@ -337,7 +328,7 @@ function loadLoc(map){
 	$.ajax({
 		type: 'POST',
 		url: 'dataget'+ext,
-		data: {q:'map',id:0},
+		data: {q:'map',id:-1},
 		success: function(datax){
 			var locations=JSON.parse(datax)["msgs"];
 			var bounds = new google.maps.LatLngBounds();
@@ -352,16 +343,18 @@ function loadLoc(map){
 					}else{
 						const myLatLng = new google.maps.LatLng(a['lat'], a['lng']);
 						
-						const iconImage = "img/"+color+".png";
-						const marker = new google.maps.Marker({
-						  position: myLatLng,
-						  map,
-						  icon: iconImage,//pinGlyph.element,
-						  title: title,
-						});
+						if(color=='0'){
+							const iconImage = "img/"+color+".png";
+							const marker = new google.maps.Marker({
+							  position: myLatLng,
+							  map,
+							  icon: iconImage,//pinGlyph.element,
+							  title: title,
+							});
+						}
 						
 						//extend the bounds to include each marker's position
-						bounds.extend(marker.position);
+						bounds.extend(myLatLng);
   
 						// markers can only be keyboard focusable when they have click listeners
 						// open info window when marker is clicked
@@ -372,15 +365,15 @@ function loadLoc(map){
 							//return marker;
 					}
 			  }
-			  if(mylocs.length>0) {
-				myCenter = bounds.getCenter();
-				myZoom=9;
+			  if(mylocs!='') {
 				//now fit the map to the newly inclusive bounds
 				map.fitBounds(bounds);
-				var listener = google.maps.event.addListener(map, "idle", function() { 
+				/*var listener = google.maps.event.addListener(map, "idle", function() { 
+				  myCenter = bounds.getCenter();
+				  myZoom=7;
 				  map.setZoom(myZoom); 
 				  google.maps.event.removeListener(listener); 
-				});
+				});*/
 			  }
 			
 		},
