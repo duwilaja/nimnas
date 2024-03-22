@@ -40,6 +40,7 @@ $lists=fetch_alla($rs);
 disconnect($conn);
 
 function urai($bit){
+	$bit=$bit/300;
 	$ret=round($bit/1000000000,2).'GB';
 	if($bit<1000000000) $ret=round($bit/1000000,2).'MB';
 	if($bit<1000000) $ret=round($bit/1000,2).'KB';
