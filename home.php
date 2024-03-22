@@ -339,7 +339,7 @@ function loadLoc(map){
 							//return marker;
 					}
 			  }
-			  if(mylocs!='') {
+			  if(locations.length>1) {
 				//now fit the map to the newly inclusive bounds
 				map.fitBounds(bounds);
 				/*var listener = google.maps.event.addListener(map, "idle", function() { 
