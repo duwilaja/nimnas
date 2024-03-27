@@ -148,11 +148,11 @@ include "inc.menutop.php";
 		  </div>
 		  <div class="row mb-3">
 			<div class="form-group col-md-6">
-				<label>Link</label>
+				<label>VPN</label>
 				<input type="text" id="lnk" name="lnk" placeholder="..." class="form-control">
 			</div>
 			<div class="form-group col-md-6">
-				<label>Bandwidth</label>
+				<label>Internet</label>
 				<input type="text" id="bw" name="bw" placeholder="..." class="form-control">
 			</div>
 		  </div>
