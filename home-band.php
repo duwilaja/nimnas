@@ -67,8 +67,8 @@ for($i=0;$i<count($lists);$i++){
 			<td><?php echo $list['name'] ?></td>
 			<td><?php echo $list['bw'] ?></td>
 			<td><?php echo urai($list['inb']) ?></td>
-			<td><?php echo round(intval($list['inb'])/$bw,3) ?></td>
+			<td><?php echo ($bw>0)?round(intval($list['inb'])/$bw,3):0 ?>%</td>
 			<td><?php echo urai($list['outb']) ?></td>
-			<td><?php echo round(intval($list['outb'])/$bw,3) ?></td>
+			<td><?php echo ($bw>0)?round(intval($list['outb'])/$bw,3):0 ?>%</td>
 		</tr>
 <?php }?>
