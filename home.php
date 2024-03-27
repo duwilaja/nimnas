@@ -309,7 +309,7 @@ function loadLoc(map){
 			var err='';
 			   for (var i = 0; i < locations.length; i++) {
 					var a = locations[i];
-					var title = a['name']+'\nTotal: '+a['cnt']+'\nON: '+a['onoff']+'\nOFF: '+a['off']+'\VPN: '+a['lnk']+'\nInternet: '+a['bw'];
+					var title = a['name']+'\nTotal: '+a['cnt']+'\nON: '+a['onoff']+'\nOFF: '+a['off']+'\nVPN: '+a['lnk']+'\nInternet: '+a['bw'];
 					var color = a['onoff']=="0"?"0":"1";
 					
 					if(isNaN(a['lat'])||isNaN(a['lng'])){
