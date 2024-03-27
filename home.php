@@ -175,7 +175,7 @@ include "inc.menutop.php";
 			<div class="row">
 				<div class="col-xl-6 col-xxl-6 col-md-12 col-lg-6">
 
-					<div class="card custom-card wallet-1">
+					<div class="card custom-card wallet-1" style="min-height: 440px;">
 						<div class="card custom-card card-dashboard-calendar pb-0">
 							<label class="main-content-label mb-2 pt-1">Highest Latency</label>
 							<span class="d-block tx-12 mb-2 text-muted"></span>
@@ -188,7 +188,7 @@ include "inc.menutop.php";
 					
 				</div>
 				<div class="col-xl-6 col-xxl-6 col-md-12 col-lg-6">
-					<div class="card custom-card wallet-1">
+					<div class="card custom-card wallet-1" style="min-height: 440px;">
 						<div class="card custom-card card-dashboard-calendar pb-0">
 							<label class="main-content-label mb-2 pt-1">Longest Down</label>
 							<span class="d-block tx-12 mb-2 text-muted"></span>
@@ -309,7 +309,7 @@ function loadLoc(map){
 			var err='';
 			   for (var i = 0; i < locations.length; i++) {
 					var a = locations[i];
-					var title = a['name']+'\nTotal: '+a['cnt']+'\nON: '+a['onoff']+'\nOFF: '+a['off']+'\nLink: '+a['lnk']+'\nBW: '+a['bw'];
+					var title = a['name']+'\nTotal: '+a['cnt']+'\nON: '+a['onoff']+'\nOFF: '+a['off']+'\VPN: '+a['lnk']+'\nInternet: '+a['bw'];
 					var color = a['onoff']=="0"?"0":"1";
 					
 					if(isNaN(a['lat'])||isNaN(a['lng'])){

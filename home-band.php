@@ -28,8 +28,9 @@ for($i=0;$i<count($maxs);$i++){
 }
 $recs=implode(",",$rowids);
 
-$sql="select n.host,name,n.bw,t.ifinoctets_delta as inb, t.ifoutoctets_delta as outb, device_id 
+$sql="select n.host,name,l.bw,t.ifinoctets_delta as inb, t.ifoutoctets_delta as outb, device_id 
 from core_traffic t join nimdb.core_ports x on x.port=t.port_id join nimdb.core_node n on x.host=n.host 
+left join nimdb.core_location l on l.locid=n.loc 
 where t.rowid in ($recs) and t.ifoutoctets_delta<>t.ifinoctets_delta and $whr 
  order by inb $ord limit 5";
 
@@ -40,20 +41,25 @@ disconnect($conn);
 
 function urai($bit){
 	$bit=$bit/300;
-	$ret=round($bit/1000000000,2).'GB/s';
-	if($bit<1000000000) $ret=round($bit/1000000,2).'MB/s';
-	if($bit<1000000) $ret=round($bit/1000,2).'KB/s';
+	$ret=round($bit/1000000000,2).'gb/s';
+	if($bit<1000000000) $ret=round($bit/1000000,2).'mb/s';
+	if($bit<1000000) $ret=round($bit/1000,2).'kb/s';
 	
 	return $ret;
+}
+function mybw($sbw){
+	$bw=trim(str_ireplace("gbps","",str_ireplace("mbps","",$sbw))); //cleanup letter
+	$bw = (is_numeric($bw)) ? intval($bw):0;
+	if(strpos($sbw,"gbps")!==false) $bw=$bw*1000000000;
+	if(strpos($sbw,"mbps")!==false) $bw=$bw*1000000;
+	return $bw;
 }
 
 for($i=0;$i<count($lists);$i++){
 	$list=$lists[$i];
-	$bw=trim(str_ireplace("gb","",str_ireplace("mb","",$list['bw']))); //cleanup letter
-	$bw = (is_numeric($bw)) ? intval($bw):0;
 	$h=$list['host']; $idx=$list['device_id'];
+	$bw=mybw($list['bw']);
 	$act='<a title="Overview" class="btn btn-sm btn-primary ripple" href="JavaScript:;" data-fancybox data-type="iframe" data-src="lib_device'.$ext.'?h='.$h.'&idx='.$idx.'">'.$h.'</a>';
-	
 ?>
 		<tr>
 			<!--td><?php echo ($i+1) ?></td-->
@@ -61,8 +67,8 @@ for($i=0;$i<count($lists);$i++){
 			<td><?php echo $list['name'] ?></td>
 			<td><?php echo $list['bw'] ?></td>
 			<td><?php echo urai($list['inb']) ?></td>
-			<td><?php echo $bw ?></td>
+			<td><?php echo round(intval($list['inb'])/$bw,3) ?></td>
 			<td><?php echo urai($list['outb']) ?></td>
-			<td><?php echo $bw ?></td>
+			<td><?php echo round(intval($list['outb'])/$bw,3) ?></td>
 		</tr>
 <?php }?>
