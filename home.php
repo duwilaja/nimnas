@@ -216,13 +216,13 @@ include "inc.menutop.php";
 								<table class="table card-table table-vcenter text-nowrap border">
 									<thead>
 										<tr>
-											<th class="wd-lg-10p">Host</th>
-											<th class="wd-lg-20p">Name</th>
-											<th class="wd-lg-20p">BW</th>
-											<th class="wd-lg-20p">In</th>
-											<th class="wd-lg-20p">%</th>
-											<th class="wd-lg-20p">Out</th>
-											<th class="wd-lg-20p">%</th>
+											<th>Host</th>
+											<th>Name</th>
+											<th>BW</th>
+											<th>In</th>
+											<th>Usage</th>
+											<th>Out</th>
+											<th>Usage</th>
 										</tr>
 									</thead>
 									<tbody id="isi-band">
