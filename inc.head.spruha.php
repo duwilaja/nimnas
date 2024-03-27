@@ -102,6 +102,21 @@
 		select[readonly] option, select[readonly] optgroup {
 			display: none;
 		}
+		.btn-yellow{
+			color: #ffffff;
+			background-color: #ffc107;
+			border-color: #ffc107;
+		}
+		.btn-orange{
+			color: #ffffff;
+			background-color: #fd7e14;
+			border-color: #fd7e14;
+		}
+		.btn-red{
+			color: #ffffff;
+			background-color: #dc3545;
+			border-color: #dc3545;
+		}
 		</style>
 
 	</head>

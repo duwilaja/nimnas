@@ -196,9 +196,9 @@ while($row = fetch_row($result)){
 		$xx='-';
 	}
 	if($x=="tick"){
-		$color="warning";
-		if($row[2]=="normal") $color="success";
-		if($row[2]=="critical") $color="danger";
+		$color="yellow";
+		if($row[2]=="high") $color="orange";
+		if($row[2]=="critical") $color="red";
 		$row[2]="<span class='btn-sm btn-$color'>".$row[2]."</span>";
 	}
 	if($x=='rgen'){
