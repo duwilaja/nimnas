@@ -28,7 +28,7 @@ for($i=0;$i<count($maxs);$i++){
 }
 $recs=implode(",",$rowids);
 
-$sql="select n.host,name,l.bw,t.ifinoctets_delta as inb, t.ifoutoctets_delta as outb, device_id 
+$sql="select n.host,n.name,l.bw,t.ifinoctets_delta as inb, t.ifoutoctets_delta as outb, device_id 
 from core_traffic t join nimdb.core_ports x on x.port=t.port_id join nimdb.core_node n on x.host=n.host 
 left join nimdb.core_location l on l.locid=n.loc 
 where t.rowid in ($recs) and t.ifoutoctets_delta<>t.ifinoctets_delta and $whr 
