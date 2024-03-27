@@ -175,7 +175,7 @@ include "inc.menutop.php";
 			<div class="row">
 				<div class="col-xl-6 col-xxl-6 col-md-12 col-lg-6">
 
-					<div class="card custom-card wallet-1" style="min-height: 440px;">
+					<div class="card custom-card wallet-1" style="min-height: 445px;">
 						<div class="card custom-card card-dashboard-calendar pb-0">
 							<label class="main-content-label mb-2 pt-1">Highest Latency</label>
 							<span class="d-block tx-12 mb-2 text-muted"></span>
@@ -188,7 +188,7 @@ include "inc.menutop.php";
 					
 				</div>
 				<div class="col-xl-6 col-xxl-6 col-md-12 col-lg-6">
-					<div class="card custom-card wallet-1" style="min-height: 440px;">
+					<div class="card custom-card wallet-1" style="min-height: 445px;">
 						<div class="card custom-card card-dashboard-calendar pb-0">
 							<label class="main-content-label mb-2 pt-1">Longest Down</label>
 							<span class="d-block tx-12 mb-2 text-muted"></span>
@@ -216,13 +216,13 @@ include "inc.menutop.php";
 								<table class="table card-table table-vcenter text-nowrap border">
 									<thead>
 										<tr>
-											<th class="wd-lg-10p">Host</th>
-											<th class="wd-lg-20p">Name</th>
-											<th class="wd-lg-20p">BW</th>
-											<th class="wd-lg-20p">In</th>
-											<th class="wd-lg-20p">%</th>
-											<th class="wd-lg-20p">Out</th>
-											<th class="wd-lg-20p">%</th>
+											<th>Host</th>
+											<th>Name</th>
+											<th>BW</th>
+											<th>In</th>
+											<th>Usage</th>
+											<th>Out</th>
+											<th>Usage</th>
 										</tr>
 									</thead>
 									<tbody id="isi-band">
