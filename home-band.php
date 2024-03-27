@@ -51,7 +51,7 @@ for($i=0;$i<count($lists);$i++){
 	$list=$lists[$i];
 	$bw=trim(str_ireplace("gb","",str_ireplace("mb","",$list['bw']))); //cleanup letter
 	$bw = (is_numeric($bw)) ? intval($bw):0;
-	$h=$list['host'];
+	$h=$list['host']; $idx=$list['device_id'];
 	$act='<a title="Overview" class="btn btn-sm btn-primary ripple" href="JavaScript:;" data-fancybox data-type="iframe" data-src="lib_device'.$ext.'?h='.$h.'&idx='.$idx.'">'.$h.'</a>';
 	
 ?>
