@@ -5,6 +5,7 @@ date_default_timezone_set("Asia/Jakarta");
 $is_nms=true;
 $is_ticket=true;
 $is_asset=true;
+$is_hr=true;
 
 $template="spruha"; //hud , spruha , aronox
 
