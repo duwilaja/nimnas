@@ -219,9 +219,9 @@ include "inc.menutop.php";
 											<th class="wd-lg-10p">Host</th>
 											<th class="wd-lg-20p">Name</th>
 											<th class="wd-lg-20p">BW</th>
-											<th class="wd-lg-20p">In (bps)</th>
+											<th class="wd-lg-20p">In</th>
 											<th class="wd-lg-20p">%</th>
-											<th class="wd-lg-20p">Out (bps)</th>
+											<th class="wd-lg-20p">Out</th>
 											<th class="wd-lg-20p">%</th>
 										</tr>
 									</thead>
