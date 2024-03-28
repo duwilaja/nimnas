@@ -117,6 +117,22 @@
 			background-color: #dc3545;
 			border-color: #dc3545;
 		}
+		#legend {
+		  font-family: Arial, sans-serif;
+		  background: #fff;
+		  padding: 10px;
+		  margin: 10px;
+		  border: 3px solid #000;
+		}
+
+		#legend h3 {
+		  margin-top: 0;
+		}
+
+		#legend img {
+		  vertical-align: middle;
+		}
+
 		</style>
 
 	</head>
