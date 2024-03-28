@@ -180,7 +180,7 @@ disconnect($conn);
 					</div>
 				</div>
 				<div class="col-xxl-8 col-xl-8 col-md-12 col-lg-8">
-					<div class="card custom-card" style="min-height:800px;">
+					<div class="card custom-card" style="min-height:870px;">
 						<div class="card-header justify-content-between border-bottom-0" style="display: flex;">
 							 <div class="card-title main-content-label mb-1">Ticket Mapping</div> 
 							 <a title="all locations" href="petagugeltik<?php echo $ext?>" target="_blank" class="hidden"> <i class="fe fe-copy"></i> </a>
