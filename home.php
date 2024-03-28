@@ -112,7 +112,7 @@ include "inc.menutop.php";
 			
 			<!--Row-->
 				<div class="row row-sm">
-					<div class="col-sm-12 col-md-6 col-lg-6 col-xl-4"><a href="n_device<?php echo $ext?>">
+					<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3"><a href="n_device<?php echo $ext?>">
 						<div class="card custom-card">
 							<div class="card-body">
 								<div class="card-order">
@@ -126,7 +126,7 @@ include "inc.menutop.php";
 						</div></a>
 					</div>
 					<!-- COL END -->
-					<div class="col-sm-12 col-md-6 col-lg-6 col-xl-4"><a href="n_device<?php echo $ext?>?status=1">
+					<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3"><a href="n_device<?php echo $ext?>?status=1">
 						<div class="card custom-card">
 							<div class="card-body">
 								<div class="card-order">
@@ -137,7 +137,7 @@ include "inc.menutop.php";
 						</div></a>
 					</div>
 					<!-- COL END -->
-					<div class="col-sm-12 col-md-6 col-lg-6 col-xl-4"><a href="n_device<?php echo $ext?>?status=0">
+					<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3"><a href="n_device<?php echo $ext?>?status=0">
 						<div class="card custom-card">
 							<div class="card-body">
 								<div class="card-order">
@@ -148,6 +148,17 @@ include "inc.menutop.php";
 						</div></a>
 					</div>
 					<!-- COL END -->
+					<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+					<div class="card custom-card bg-primary">
+						<div class="card-body">
+							<div class="card-order">
+								<label class="main-content-label mb-3 pt-1 text-light" id="tgl">27 Sep 2023</label>
+								<h2><span class="font-weight-bold" id="jam">10:00:00</span></h2>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- COL END -->
 				</div>
 			<!--End row-->
 	
@@ -165,6 +176,7 @@ include "inc.menutop.php";
 							</div-->
 							<div class="mapcontainer1">
 								<div id="map" style="height:450px; z-index: 1;"></div>
+								<div id="legend"></div>
 							</div>
 						</div>
 					</div>
@@ -251,24 +263,27 @@ include "inc.js.php";
 var myCenter={lat: -2,lng: 118};
 var myZoom=5;
 const mylocs='<?php echo $s_LOC?>';
+var maploaded=false;
 
 $(document).ready(function(){
 	page_ready();
-	//displayClock();
+	displayClock();
 	
-	getData('home1','home-onoff');
-	//get_content("home-lok<?php echo $ext?>",{},".ldr-propinsi","#lokation");
-	get_content("home-speed<?php echo $ext?>",{},".ldr-speed","#isi-speed");
-	//get_content("home-alert<?php echo $ext?>",{},".ldr-alert","#isi-alert");
-	//getData('sla','home-sla');
-	//get_content("home-sla-chart<?php echo $ext?>",{},".ldr-sla","#isi-sla");
-	get_content("home-down<?php echo $ext?>",{},".ldr-ketam","#isi-ketam");
-	get_content("home-band<?php echo $ext?>",{ord:'desc'},".ldr-ketam","#isi-band");
-	//get_content("home-band<?php echo $ext?>",{ord:'asc'},".ldr-ketam","#isi-bandx");
-	
-	//widget_map();
+	auto_reload();
 	
 });
+
+function auto_reload(){
+	
+	getData('home1','home-onoff');
+	get_content("home-speed<?php echo $ext?>",{},".ldr-speed","#isi-speed");
+	get_content("home-down<?php echo $ext?>",{},".ldr-ketam","#isi-ketam");
+	get_content("home-band<?php echo $ext?>",{ord:'desc'},".ldr-ketam","#isi-band");
+	
+	if(maploaded) loadLoc(map);
+	
+	setTimeout(auto_reload,1*60*1000);
+}
 
 function createCenterControl(map) {
   const controlButton = document.createElement("button");
@@ -296,7 +311,7 @@ function createCenterControl(map) {
   });
   return controlButton;
 }
-
+var markers=[];
 function loadLoc(map){
 	var err='';
 	$.ajax({
@@ -304,6 +319,13 @@ function loadLoc(map){
 		url: 'dataget'+ext,
 		data: {q:'map',id:-1},
 		success: function(datax){
+			if(markers.length>0){
+				//cleanup here
+				for (let i = 0; i < markers.length; i++) {
+					markers[i].setMap(null);
+				}
+				markers=[];
+			}
 			var locations=JSON.parse(datax)["msgs"];
 			var bounds = new google.maps.LatLngBounds();
 			var err='';
@@ -325,6 +347,7 @@ function loadLoc(map){
 							  icon: iconImage,//pinGlyph.element,
 							  title: title,
 							});
+							markers.push(marker);
 						}
 						
 						//extend the bounds to include each marker's position
@@ -339,7 +362,7 @@ function loadLoc(map){
 							//return marker;
 					}
 			  }
-			  if(locations.length>1) {
+			  if(locations.length>0) {
 				//now fit the map to the newly inclusive bounds
 				map.fitBounds(bounds);
 				/*var listener = google.maps.event.addListener(map, "idle", function() { 
@@ -348,17 +371,20 @@ function loadLoc(map){
 				  map.setZoom(myZoom); 
 				  google.maps.event.removeListener(listener); 
 				});*/
+				maploaded=true;
 			  }
+			  if(err!='') console.log(err);
 			
 		},
 		error: function(xhr){
 			console.log(xhr);
 		}
 	});
+	
 }
 
 function initMap() {
-  const map = new google.maps.Map(document.getElementById("map"), {
+  map = new google.maps.Map(document.getElementById("map"), {
     zoom: myZoom,
     center: myCenter,
   });
@@ -379,23 +405,33 @@ function initMap() {
     map,
     icon: image,
   });*/
+  
+  const legend = document.getElementById("legend");
+  for(var i=0;i<2;i++){
+	const div = document.createElement("div");
+	const name = (i==0)? "Down" : "Up";
+	div.innerHTML = '<img src="img/' + i + '.png"> ' + name;
+	legend.appendChild(div);  
+  }
+	map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(legend);
+  
   loadLoc(map);
   
 }
 
 
-var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+//var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 function displayClock(){
 	var d=new Date();
 	var zone=d.toString().match(/([\+-][0-9]+)\s/)[1];
 	$("#zone").text('('+zone+')');
-	var tgl=months[d.getMonth()]+" "+d.getDate()+", "+d.getFullYear();
+	var tgl=d.getDate()+" "+months[d.getMonth()]+" "+d.getFullYear();
 	$("#tgl").text(tgl);
 	var jam=d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
 	$("#jam").text(jam);
-	
-	
+		
 	setTimeout(displayClock,1000);
 }
 
@@ -415,7 +451,7 @@ markerClickFunction = function(id) {
 	}}
 
 var map;
-var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+//var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 var err='';
 
 function widget_map(){

@@ -18,11 +18,27 @@ html, body {
   margin: 0;
   padding: 0;
 }
+#legend {
+  font-family: Arial, sans-serif;
+  background: #fff;
+  padding: 10px;
+  margin: 10px;
+  border: 3px solid #000;
+}
+
+#legend h3 {
+  margin-top: 0;
+}
+
+#legend img {
+  vertical-align: middle;
+}
 </style>
 </head>
 <body>
 &nbsp;
 	<div id="map" style="position: absolute; top: 0px; left: 0; width: 100%; height: 100%;"></div>
+	<div id="legend"></div>
 &nbsp;
 <!-- Jquery js-->
 <script src="spruha/assets/plugins/jquery/jquery.min.js"></script>
@@ -97,6 +113,14 @@ async function initMap(locations) {
   centerControlDiv.appendChild(centerControl);
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(centerControlDiv);
   
+  const legend = document.getElementById("legend");
+  for(var i=0;i<2;i++){
+	const div = document.createElement("div");
+	const name = (i==0)? "Down" : "Up";
+	div.innerHTML = '<img src="img/' + i + '.png"> ' + name;
+	legend.appendChild(div);  
+  }
+	map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(legend);
   /*
   const infoWindow = new google.maps.InfoWindow({
     content: "",
@@ -115,6 +139,7 @@ async function initMap(locations) {
     });
 	*/
 	var err=''; var markers=[];
+	var bounds = new google.maps.LatLngBounds();
    for (var i = 0; i < locations.length; i++) {
 		var a = locations[i];
 		var title = a['name']+'\nTotal: '+a['cnt']+'\nON: '+a['onoff']+'\nOFF: '+a['off']+'\nLink: '+a['lnk']+'\nBW: '+a['bw'];
@@ -133,6 +158,8 @@ async function initMap(locations) {
 			});
 			
 			markers.push(marker);
+			//extend the bounds to include each marker's position
+			bounds.extend(myLatLng);
 
 			// markers can only be keyboard focusable when they have click listeners
 			// open info window when marker is clicked
@@ -146,6 +173,10 @@ async function initMap(locations) {
 
   // Add a marker clusterer to manage the markers.
   new MarkerClusterer({ markers, map });
+  if(markers.length>0) {
+	  map.fitBounds(bounds);
+  }
+  if(err!='') console.log(err);
 }
 /*
 const locations = [
