@@ -39,7 +39,7 @@
 								</option>
 							</select>
 						</div-->
-					<?php if($is_nms){?>
+					<?php if($is_nms && false){?>
 						<form class="form-inline" method="POST" action="n_device<?php echo $ext?>">
 						<input type="text" name="cari" class="form-control rounded-0" placeholder="">
 						<button class="btn search-btn" type="submit"><i class="fe fe-search"></i></button>
@@ -58,7 +58,7 @@
 						<div class="collapse navbar-collapse" id="navbarSupportedContent-4">
 							<div class="d-flex order-lg-2 ms-auto">
 								<!-- Search -->
-								<div class="dropdown header-search">
+								<div class="dropdown header-search hidden">
 									<a class="nav-link icon header-search">
 										<i class="fe fe-search header-icons"></i>
 									</a>
