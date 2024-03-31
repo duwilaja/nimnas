@@ -371,9 +371,10 @@ function loadLoc(map){
 				  map.setZoom(myZoom); 
 				  google.maps.event.removeListener(listener); 
 				});*/
-				maploaded=true;
 			  }
 			  if(err!='') console.log(err);
+			  
+			  maploaded=true;
 			
 		},
 		error: function(xhr){
