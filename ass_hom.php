@@ -86,7 +86,7 @@ include "inc.menutop.php";
 				<!-- BEGIN col-4 -->
 				<div class="col-lg-6 col-md-12">
 					<!-- BEGIN card -->
-					<div class="card mb-3">
+					<div class="card mb-3" style="min-height: 600px;">
 						<div class="card-header border-bottom-0">
 							<label class="main-content-label my-auto pt-2 mb-1">DEVICE CLASSIFICATION</label>
 							<span class="d-block tx-12 mb-0 mt-1 text-muted"></span>
@@ -98,36 +98,73 @@ include "inc.menutop.php";
 								<h6 style="padding-top: 10px; margin-bottom: 0px;!important">Total Device</h6>
 								<div class="tx-20 font-weight-bold xtot" style="line-height:30px; !important">0</div>
 							</div>
-						</div>
-						<div class="table-responsive border-0">
-							<table class="table border-0 mg-b-0 text-nowrap text-md-nowrap">
-								<tbody id="ascat">
-									<tr>
-										<td class="d-flex">
-										<div class="bg-primary my-auto me-2"></div>
-											<div class="my-auto me-2">
-												<p class="mb-0 d-flex justify-content-center "><span class="legend bg-primary brround"></span>Network</p>
-											</div>
-										</td>
-										<td class="">30</td>
-										<td>+12.85% </td>
-										</div>
-									</tr>
-
-									<tr>
-										<td class="d-flex">
-										<div class="bg-primary my-auto me-2"></div>
-											<div class="my-auto me-2">
-												<p class="mb-0 d-flex justify-content-center "><span class="legend bg-primary brround"></span>Electrical</p>
-											</div>
-										</td>
-										<td class="">30</td>
-										<td>+12.85% </td>
-										</div>
-									</tr>
-									
-								</tbody>
-							</table>
+							<div class="table-responsive border-0">
+								<table class="table border-0 mg-b-0 text-nowrap text-md-nowrap">
+									<tbody id="ascat">
+										<!--tr>
+											<td class="d-flex">
+											<div class="bg-primary my-auto me-2"></div>
+												<div class="my-auto me-2">
+													<p class="mb-0 d-flex justify-content-center "><span class="legend bg-primary brround"></span>Network</p>
+												</div>
+											</td>
+											<td class="">30</td>
+											<td>+12.85% </td>
+										</tr>
+										<tr>
+											<td class="d-flex">
+											<div class="bg-primary my-auto me-2"></div>
+												<div class="my-auto me-2">
+													<p class="mb-0 d-flex justify-content-center "><span class="legend bg-primary brround"></span>Electrical</p>
+												</div>
+											</td>
+											<td class="">30</td>
+											<td>+12.85% </td>
+										</tr>
+										<tr>
+											<td class="d-flex">
+											<div class="bg-primary my-auto me-2"></div>
+												<div class="my-auto me-2">
+													<p class="mb-0 d-flex justify-content-center "><span class="legend bg-primary brround"></span>Electrical</p>
+												</div>
+											</td>
+											<td class="">30</td>
+											<td>+12.85% </td>
+										</tr>
+										<tr>
+											<td class="d-flex">
+											<div class="bg-primary my-auto me-2"></div>
+												<div class="my-auto me-2">
+													<p class="mb-0 d-flex justify-content-center "><span class="legend bg-primary brround"></span>Electrical</p>
+												</div>
+											</td>
+											<td class="">30</td>
+											<td>+12.85% </td>
+										</tr>
+										<tr>
+											<td class="d-flex">
+											<div class="bg-primary my-auto me-2"></div>
+												<div class="my-auto me-2">
+													<p class="mb-0 d-flex justify-content-center "><span class="legend bg-primary brround"></span>Electrical</p>
+												</div>
+											</td>
+											<td class="">30</td>
+											<td>+12.85% </td>
+										</tr>
+										<tr>
+											<td class="d-flex">
+											<div class="bg-primary my-auto me-2"></div>
+												<div class="my-auto me-2">
+													<p class="mb-0 d-flex justify-content-center "><span class="legend bg-primary brround"></span>Electrical</p>
+												</div>
+											</td>
+											<td class="">30</td>
+											<td>+12.85% </td>
+										</tr-->
+										
+									</tbody>
+								</table>
+							</div>
 						</div>
 						<!-- END card-body -->
 						
@@ -138,7 +175,7 @@ include "inc.menutop.php";
 				<!-- BEGIN col-4 -->
 				<div class="col-lg-6 col-md-12">
 					<!-- BEGIN card -->
-					<div class="card mb-3">
+					<div class="card mb-3" style="min-height: 600px;">
 						
 						<div class="card-header border-bottom-0">
 							<label class="main-content-label my-auto pt-2 mb-1">Inactive Device CLASSIFICATION</label>
@@ -149,7 +186,7 @@ include "inc.menutop.php";
 						<div class="card-body">
 							<!-- BEGIN table -->
 							<div class="overflow-hidden">
-								<canvas id="break-ass-class" style="max-height:230px;"></canvas>
+								<canvas id="break-ass-class" style="min-height:500px;max-height:500px;"></canvas>
 							</div>
 							<!-- END table -->
 						</div>
@@ -165,7 +202,7 @@ include "inc.menutop.php";
 					<div class="card">
 						<div class="card-header justify-content-between border-bottom-0" style="display: flex;">
 							 <div class="card-title main-content-label mb-1">MAPPING DEVICE</div> 
-							 <a href="javascript:void(0);" data-bs-toggle="card-fullscreen"> <i class="fe fe-maximize"></i> </a>
+							 <!--a href="javascript:void(0);" data-bs-toggle="card-fullscreen"> <i class="fe fe-maximize"></i> </a-->
 						</div>
 						<div class="card-body">
 							<div id="map" style="height:450px; z-index: 1;"></div>
@@ -212,7 +249,7 @@ include "inc.menutop.php";
 				<!-- BEGIN col-4 -->
 				<div class="col-xl-7">
 					<!-- BEGIN card -->
-					<div class="card mb-3">
+					<div class="card mb-3" style="min-height: 320px;">
 						<div class="card-header border-bottom-0 d-flex">
 							<div>
 								<label class="main-content-label mb-2 pt-1">TOP 5 LOCATION WITH PROBLEM</label>
@@ -246,7 +283,7 @@ include "inc.menutop.php";
 				<!-- BEGIN col-4 -->
 				<div class="col-xl-5">
 					<!-- BEGIN card -->
-					<div class="card mb-3">
+					<div class="card mb-3" style="min-height: 320px;">
 						<div class="card-header border-bottom-0 d-flex">
 							<div>
 								<label class="main-content-label mb-2 pt-1">TOP 5 WARRANTY WARNING</label>
@@ -288,8 +325,156 @@ include "inc.menutop.php";
 include "inc.foot.php";
 include "inc.js.php";
 ?>
+<script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0LcVlAmmXMro8eH69aK6Wh4lUqttz-Zs&callback=initMap&v=weekly"
+      defer
+    ></script>
+
 <script>
 var mytbl1, mytbl2, mytbl3, mytbl4, mytbl5, mytbl6, mytbl7, mytbl8, mytbl9, barChart, pieChart;
+
+var myCenter={lat: -2,lng: 118};
+var myZoom=5;
+const mylocs='<?php echo $s_LOC?>';
+var maploaded=false;
+
+function createCenterControl(map) {
+  const controlButton = document.createElement("button");
+
+  // Set CSS for the control.
+  controlButton.style.backgroundColor = "#fff";
+  controlButton.style.border = "2px solid #fff";
+  controlButton.style.borderRadius = "3px";
+  controlButton.style.boxShadow = "0 2px 6px rgba(0,0,0,.3)";
+  controlButton.style.color = "rgb(25,25,25)";
+  controlButton.style.cursor = "pointer";
+  controlButton.style.fontFamily = "Roboto,Arial,sans-serif";
+  controlButton.style.fontSize = "16px";
+  controlButton.style.lineHeight = "38px";
+  controlButton.style.margin = "8px 0 22px";
+  controlButton.style.padding = "0 5px";
+  controlButton.style.textAlign = "center";
+  controlButton.textContent = "Center Map";
+  controlButton.title = "Click to recenter the map";
+  controlButton.type = "button";
+  // Setup the click event listeners: simply set the map to Chicago.
+  controlButton.addEventListener("click", () => {
+    map.setCenter(myCenter);
+	map.setZoom(myZoom);
+  });
+  return controlButton;
+}
+var markers=[];
+function loadLoc(map){
+	var err='';
+	$.ajax({
+		type: 'POST',
+		url: 'dataget'+ext,
+		data: {q:'asetloc',id:''},
+		success: function(datax){
+			if(markers.length>0){
+				//cleanup here
+				for (let i = 0; i < markers.length; i++) {
+					markers[i].setMap(null);
+				}
+				markers=[];
+			}
+			var locations=JSON.parse(datax)["msgs"];
+			var bounds = new google.maps.LatLngBounds();
+			var err='';
+			   for (var i = 0; i < locations.length; i++) {
+					var a = locations[i];
+					//var title = a['name']+'\nStatus: '+a['stts']+'\nTotal: '+a['cnt'];
+					var title = a['name']+'\nTotal: '+a['cnt'];
+					var color = "1";
+					
+					if(isNaN(a['lat'])||isNaN(a['lng'])){
+						err+=a['name']+'/';
+					}else{
+						const myLatLng = new google.maps.LatLng(a['lat'], a['lng']);
+						
+						//if(color=='0'){
+							const iconImage = "img/"+color+".png";
+							const marker = new google.maps.Marker({
+							  position: myLatLng,
+							  map,
+							  icon: iconImage,//pinGlyph.element,
+							  title: title,
+							});
+							markers.push(marker);
+						//}
+						
+						//extend the bounds to include each marker's position
+						bounds.extend(myLatLng);
+  
+						// markers can only be keyboard focusable when they have click listeners
+						// open info window when marker is clicked
+						//marker.addListener("click", () => {
+						  //infoWindow.setContent(position.lat + ", " + position.lng);
+						  //infoWindow.open(map, marker);
+						//});
+							//return marker;
+					}
+			  }
+			  if(locations.length>0) {
+				//now fit the map to the newly inclusive bounds
+				map.fitBounds(bounds);
+				/*var listener = google.maps.event.addListener(map, "idle", function() { 
+				  myCenter = bounds.getCenter();
+				  myZoom=7;
+				  map.setZoom(myZoom); 
+				  google.maps.event.removeListener(listener); 
+				});*/
+			  }
+			  if(err!='') console.log(err);
+			  
+			  maploaded=true;
+			
+		},
+		error: function(xhr){
+			console.log(xhr);
+		}
+	});
+	
+}
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById("map"), {
+    zoom: myZoom,
+    center: myCenter,
+  });
+  
+  // Create the DIV to hold the control.
+  const centerControlDiv = document.createElement("div");
+  // Create the control.
+  const centerControl = createCenterControl(map);
+
+  // Append the control to the DIV.
+  centerControlDiv.appendChild(centerControl);
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(centerControlDiv);
+  
+/*  const image =
+    "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
+  const beachMarker = new google.maps.Marker({
+    position: { lat: -33.89, lng: 151.274 },
+    map,
+    icon: image,
+  });
+  
+  const legend = document.getElementById("legend");
+  for(var i=0;i<2;i++){
+	const div = document.createElement("div");
+	const name = (i==0)? "Down" : "Up";
+	div.innerHTML = '<img src="img/' + i + '.png"> ' + name;
+	legend.appendChild(div);  
+  }
+	map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(legend);
+	*/
+  
+  loadLoc(map);
+  
+}
+
 
 $(document).ready(function(){
 	page_ready();
@@ -302,7 +487,7 @@ $(document).ready(function(){
 	
 	//markers=null;
 	//getData('onoff','maps-onoff');
-	widget_map();
+	//widget_map();
 	getDataChart('asscat');
 	getDataChart('brasscat');
 	get_content("ass_hom_cat<?php echo $ext?>",{},".loader-img","#ascat");
