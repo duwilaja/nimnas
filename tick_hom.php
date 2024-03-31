@@ -389,9 +389,10 @@ function loadLoc(map){
 				  map.setZoom(myZoom); 
 				  google.maps.event.removeListener(listener); 
 				});*/
-				maploaded=true;
 			  }
 			  if(err!='') console.log(err);
+			  
+			  maploaded=true;
 			
 		},
 		error: function(xhr){
@@ -486,14 +487,27 @@ $(document).ready(function(){
 		}
 	});
 	
+	setTimeout(auto_reload,1*60*1000);
+	
 });
 function applyfilter(){
 	$(".xtot").html(0);
 	gettot();
 	getDataChart('tickcat');
-	get_loc();
+	if(maploaded) loadLoc(map);
 	get_content("tick_hom_cat<?php echo $ext?>",{prov:$('#fprov').val(),loc:$('#floc').val()},".ldr-","#ticat");
 	get_content("tick_hom_top<?php echo $ext?>",{prov:$('#fprov').val(),loc:$('#floc').val()},".ldr-","#titop");
+}
+
+function auto_reload(){
+	$(".xtot").html(0);
+	gettot();
+	getDataChart('tickcat');
+	if(maploaded) loadLoc(map);
+	get_content("tick_hom_cat<?php echo $ext?>",{prov:$('#fprov').val(),loc:$('#floc').val()},".ldr-","#ticat");
+	get_content("tick_hom_top<?php echo $ext?>",{prov:$('#fprov').val(),loc:$('#floc').val()},".ldr-","#titop");
+	
+	setTimeout(auto_reload,1*60*1000);
 }
 
 function tixlocdetil(loc,wh){
