@@ -68,7 +68,7 @@ include "inc.menutop.php";
 				</div>
 				<!-- COL END -->
 				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
-					<div class="card custom-card">
+					<div class="card custom-card blink bg-danger">
 						<div class="card-body"><a href="m_ass<?php echo $ext?>?stt=inactive">
 							<div class="card-order">
 								<label class="main-content-label mb-3 pt-1">Total Device Inactive</label>
@@ -86,16 +86,16 @@ include "inc.menutop.php";
 				<!-- BEGIN col-4 -->
 				<div class="col-lg-6 col-md-12">
 					<!-- BEGIN card -->
-					<div class="card mb-3" style="min-height: 600px;">
+					<div class="card mb-3" style="min-height: 458px;">
 						<div class="card-header border-bottom-0">
-							<label class="main-content-label my-auto pt-2 mb-1">DEVICE CLASSIFICATION</label>
+							<label class="main-content-label my-auto pt-2 mb-1">JUMLAH ASET</label>
 							<span class="d-block tx-12 mb-0 mt-1 text-muted"></span>
 						</div>
 						<!-- BEGIN card-body -->
 						<div class="card-body crypto-wallet" style="padding:10px !important" >
 							<div class=""><canvas id="ass-cat" class="ht-180" style="max-height:270px !important"></canvas></div>
 							<div class="chart-circle-value circle-style" style="top:79px; !important">
-								<h6 style="padding-top: 10px; margin-bottom: 0px;!important">Total Device</h6>
+								<h6 style="padding-top: 10px; margin-bottom: 0px;!important">Total</h6>
 								<div class="tx-20 font-weight-bold xtot" style="line-height:30px; !important">0</div>
 							</div>
 							<div class="table-responsive border-0">
@@ -175,10 +175,10 @@ include "inc.menutop.php";
 				<!-- BEGIN col-4 -->
 				<div class="col-lg-6 col-md-12">
 					<!-- BEGIN card -->
-					<div class="card mb-3" style="min-height: 600px;">
+					<div class="card mb-3" style="min-height: 458px;">
 						
 						<div class="card-header border-bottom-0">
-							<label class="main-content-label my-auto pt-2 mb-1">Inactive Device CLASSIFICATION</label>
+							<label class="main-content-label my-auto pt-2 mb-1">jumlah aset rusak</label>
 							<span class="d-block tx-12 mb-0 mt-1 text-muted"></span>
 						</div>
 
@@ -186,7 +186,7 @@ include "inc.menutop.php";
 						<div class="card-body">
 							<!-- BEGIN table -->
 							<div class="overflow-hidden">
-								<canvas id="break-ass-class" style="min-height:500px;max-height:500px;"></canvas>
+								<canvas id="break-ass-class" style="height:300px;"></canvas>
 							</div>
 							<!-- END table -->
 						</div>
@@ -621,6 +621,11 @@ function gettot(){
 				$(".xtot").html(tot);
 			}else{
 				log(json['msgs']);
+			}
+			if(parseInt($(".xinactive").html())>0){
+				if($(".blink").hasClass("bg-danger")) $(".blink").removeClass("bg-danger").addClass("blink-bg");
+			}else{
+				if($(".blink").hasClass("blink-bg")) $(".blink").addClass("bg-danger").removeClass("blink-bg");
 			}
 		},
 		error: function(xhr){
