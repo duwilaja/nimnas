@@ -220,7 +220,7 @@ include "inc.menutop.php";
 					<div class="card custom-card">
 						<div class="card-header justify-content-between" style="display: flex;">
 							 <div class="card-title main-content-label mb-1"> Highest Average Usage </div> 
-							 <span><a title="all locations" href="bwall<?php echo $ext?>" target="_blank"> <i class="fe fe-copy"></i> </a>&nbsp;&nbsp;
+							 <span><a title="all locations"  href="JavaScript:;" data-fancybox data-type="iframe" data-src="bwall<?php echo $ext?>"> <i class="fe fe-copy"></i> </a>&nbsp;&nbsp;
 							 <!--a href="javascript:void(0);" data-bs-toggle="card-fullscreen"> <i class="fe fe-maximize"></i> </a--></span>
 						</div>
 						<div class="card-body pt-2 pb-0">
