@@ -30,53 +30,53 @@ include "inc.menutop.php";
 			
 			<!-- Row -->
 			<div class="row row-sm">
-				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3"><a href="m_ass<?php echo $ext?>">
 					<div class="card custom-card">
-						<div class="card-body"><a href="m_ass<?php echo $ext?>">
+						<div class="card-body">
 							<div class="card-order ">
 								<label class="main-content-label mb-3 pt-1">Total Device</label>
 								<h2 class="text-end card-item-icon card-icon">
 								<i class="fa fa-cubes icon-size float-start text-primary"></i><span class="font-weight-bold xtot">0</span></h2>
 								<!--p class="mb-0 mt-4 text-muted">Monthly users<span class="float-end">50%</span></p-->
 							</div>
-						</a></div>
-					</div>
+						</div>
+					</div></a>
 				</div>
 				<!-- COL END -->
-				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3"><a href="m_ass<?php echo $ext?>?stt=active">
 					<div class="card custom-card">
-						<div class="card-body"><a href="m_ass<?php echo $ext?>?stt=active">
+						<div class="card-body">
 							<div class="card-order">
 								<label class="main-content-label mb-3 pt-1">Total Device Active</label>
 								<h2 class="text-end"><i class="fa fa-hdd icon-size float-start text-success"></i><span class="font-weight-bold xactive">0</span></h2>
 								<!--p class="mb-0 mt-4 text-muted">Monthly Income<span class="float-end">$7,893</span></p-->
 							</div>
-						</a></div>
-					</div>
+						</div>
+					</div></a>
 				</div>
 				<!-- COL END -->
-				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3"><a href="m_ass<?php echo $ext?>?stt=standby">
 					<div class="card custom-card">
-						<div class="card-body"><a href="m_ass<?php echo $ext?>?stt=standby">
+						<div class="card-body">
 							<div class="card-order">
 								<label class="main-content-label mb-3 pt-1">Total Device Active Standby</label>
 								<h2 class="text-end"><i class="icon-size fa fa-hdd float-start text-warning"></i><span class="font-weight-bold xstandby">0</span></h2>
 								<!--p class="mb-0 mt-4 text-muted">Monthly Profit<span class="float-end">$4,678</span></p-->
 							</div>
-						</a></div>
-					</div>
+						</div>
+					</div></a>
 				</div>
 				<!-- COL END -->
-				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
+				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3"><a href="m_ass<?php echo $ext?>?stt=inactive" style="color:white;">
 					<div class="card custom-card blink bg-danger">
-						<div class="card-body"><a href="m_ass<?php echo $ext?>?stt=inactive">
+						<div class="card-body">
 							<div class="card-order">
 								<label class="main-content-label mb-3 pt-1">Total Device Inactive</label>
 								<h2 class="text-end"><i class="fa fa-hdd icon-size float-start text-danger"></i><span class="font-weight-bold xinactive">0</span></h2>
 								<!--p class="mb-0 mt-4 text-muted">Monthly Sales<span class="float-end">3,756</span></p-->
 							</div>
-						</a></div>
-					</div>
+						</div>
+					</div></a>
 				</div>
 				<!-- COL END -->
 			</div>
