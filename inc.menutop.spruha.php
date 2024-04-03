@@ -91,9 +91,10 @@
 							<span class="sidemenu-label">HR</span>
 						</a>
 						<ul class="nav-sub">
-							<li class="nav-sub-item"><a class="nav-sub-link ass" href="abs_hom<?php echo $ext?>">Absensi</a></li>
-							<!--li class="nav-sub-item hidden"><a class="nav-sub-link asetloc" href="ass_mapsx<?php echo $ext?>">Map View</a></li-->
-							<li class="nav-sub-item"><a class="nav-sub-link muser" href="reim_hom<?php echo $ext?>">Reimburse</a></li>
+							<li class="nav-sub-item"><a class="nav-sub-link ass" href="abs_hom<?php echo $ext?>">Dashboard</a></li>
+							<li class="nav-sub-item"><a class="nav-sub-link asetloc" href="abse<?php echo $ext?>">Attendance</a></li>
+							<li class="nav-sub-item"><a class="nav-sub-link muser" href="leave<?php echo $ext?>">Leave</a></li>
+							<li class="nav-sub-item"><a class="nav-sub-link muser" href="rembers<?php echo $ext?>">Reimburse</a></li>
 						</ul>
 					</li>
 					<?php }?>
