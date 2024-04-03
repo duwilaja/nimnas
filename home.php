@@ -138,7 +138,7 @@ include "inc.menutop.php";
 					</div>
 					<!-- COL END -->
 					<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3"><a href="n_device<?php echo $ext?>?status=0">
-						<div class="card custom-card">
+						<div class="card custom-card blink bg-danger">
 							<div class="card-body">
 								<div class="card-order">
 									<label class="main-content-label mb-3 pt-1">Device OFF</label>
@@ -432,6 +432,12 @@ function displayClock(){
 	$("#tgl").text(tgl);
 	var jam=d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
 	$("#jam").text(jam);
+	
+	if(parseInt($(".doff").html().replace('<b>','').replace('</b>',''))>0){
+		if($(".blink").hasClass("bg-danger")) $(".blink").removeClass("bg-danger").addClass("blink-bg");
+	}else{
+		if($(".blink").hasClass("blink-bg")) $(".blink").addClass("bg-danger").removeClass("blink-bg");
+	}
 		
 	setTimeout(displayClock,1000);
 }
