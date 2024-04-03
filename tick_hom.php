@@ -71,7 +71,7 @@ disconnect($conn);
 							<div class="card-order">
 								<label class="main-content-label mb-3 pt-1 text-light">New Tickets</label>
 								<h2 class="text-end card-item-icon">
-									<span class="font-weight-bold xnew xtot">0</span>
+									<span class="font-weight-bold xnew xtot text-light">0</span>
 								<i class="fe fe-alert-triangle icon-size float-start text-danger"></i></h2>
 								
 							</div>

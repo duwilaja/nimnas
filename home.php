@@ -137,7 +137,7 @@ include "inc.menutop.php";
 						</div></a>
 					</div>
 					<!-- COL END -->
-					<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3"><a href="n_device<?php echo $ext?>?status=0">
+					<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3"><a href="n_device<?php echo $ext?>?status=0" style="color:white;">
 						<div class="card custom-card blink bg-danger">
 							<div class="card-body">
 								<div class="card-order">
