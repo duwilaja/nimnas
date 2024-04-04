@@ -141,8 +141,8 @@
 					<?php if($is_hr){?>
 							<li class="nav-sub-item"><a class="nav-sub-link sub-with-sub" href="javascript:void(0)">HR</a>
 							<ul class="sub-nav-sub">
-								<li class="nav-sub-item"><a class="nav-sub-link" href="r_absen<?php echo $ext?>">Absensi</a></li>
-								<li class="nav-sub-item"><a class="nav-sub-link muser" href="r_leave<?php echo $ext?>">Cuti</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="r_absen<?php echo $ext?>">Attendance</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link muser" href="r_leave<?php echo $ext?>">Leave</a></li>
 								<li class="nav-sub-item"><a class="nav-sub-link" href="r_reimb<?php echo $ext?>">Reimburse</a></li>
 							</ul>
 							</li>
@@ -187,10 +187,10 @@
 								<li class="nav-sub-item"><a class="nav-sub-link muser" href="m_ascat<?php echo $ext?>">Categories</a></li>
 							</ul>
 							</li>
-							<li class="nav-sub-item"><a class="nav-sub-link sub-with-sub" href="javascript:void(0)">HRM</a>
+							<li class="nav-sub-item"><a class="nav-sub-link sub-with-sub" href="javascript:void(0)">HR</a>
 							<ul class="sub-nav-sub">
-								<li class="nav-sub-item"><a class="nav-sub-link muser" href="m_kar<?php echo $ext?>">Karyawan</a></li>
-								<li class="nav-sub-item"><a class="nav-sub-link muser" href="m_set<?php echo $ext?>">Setting</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link muser" href="m_kar<?php echo $ext?>">Employee</a></li>
+								<!--li class="nav-sub-item"><a class="nav-sub-link muser" href="m_kset<?php echo $ext?>">Setting</a></li-->
 							</ul>
 							</li>
 						</ul>
