@@ -161,6 +161,10 @@ if($mn=='ravatar'){
 }
 
 
+if($mn=='mkary'){
+	$res=crud($conn);
+	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
+}
 if($mn=='mport'){
 	$res=crud($conn);
 	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];

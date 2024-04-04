@@ -5,22 +5,24 @@ include "inc.common.php";
 include "inc.session.php";
 
 $page_icon="fa fa-table";
-$page_title="Location";
-$modal_title="Location";
+$page_title="Employee";
+$modal_title="Employee";
 $card_title="Master $page_title";
 
-$menu="location";
+$menu="mkary";
 
-$breadcrumb="Setup/$page_title";
+$breadcrumb="Master/$page_title";
 
-include "inc.db.php";
-$conn=connect();
-$rs=exec_qry($conn,"select iso,name from core_province order by name");
-$o_prov=fetch_all($rs);
-disconnect($conn);
+$o_elvl=[
+	["staff","staff"],
+	["leader_area","leader area"],
+	["leader_pusat","leader pusat"]
+];
+
 
 include "inc.head.php";
 include "inc.menutop.php";
+
 ?>
 
 <div class="app-content page-body">
@@ -40,12 +42,12 @@ include "inc.menutop.php";
 		</div>
 		<!--End Page header-->
 		
-				<div class="card mb-3">
+				<div class="card">
 					<div class="card-header">
 						<div class="card-title"><?php echo $card_title?></div>
 						<div class="card-options ">
-							<a href="#" onclick="$('#datas').val('');" data-toggle="modal" data-target="#modal_batch" title="Batch" class=""><i class="fe fe-upload"></i></a>
-							<a href="#" onclick="openForm(0);" data-toggle="modal" data-target="#myModal" title="Add" class=""><i class="fe fe-plus"></i></a>
+							<!--a href="#" onclick="$('#datas').val('');" data-toggle="modal" data-target="#modal_batch" title="Batch" class=""><i class="fe fe-upload"></i></a>
+							--><a href="#" onclick="openForm(0);" data-toggle="modal" data-target="#myModal" title="Add" class=""><i class="fe fe-plus"></i></a>
 							<a href="#" title="Expand/Collapse" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
 							<!--a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a-->
 						</div>
@@ -55,14 +57,12 @@ include "inc.menutop.php";
 							<table id="mytbl" class="table table-striped table-bordered w-100">
 								<thead>
 									<tr>
-										<th>ID</th>
+										<!--th>Type</th-->
+										<th>NIK</th>
 										<th>Name</th>
-										<th>Addr</th>
-										<th>City</th>
-										<th>Prov</th>
-										<th>Internet</th>
-										<th>VPN</th>
-										<th>Minutes Diff</th>
+										<th>Job</th>
+										<th>Level</th>
+										<th>Device</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -77,7 +77,7 @@ include "inc.menutop.php";
 
 <!-- Modal-->
 <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left modal_form">
-  <div role="document" class="modal-dialog modal-lg">
+  <div role="document" class="modal-dialog">
 	<div class="modal-content">
 	  <div class="modal-header"><strong id="exampleModalLabel" class="modal-title"><?php echo $modal_title?></strong>
 		<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">x</span></button>
@@ -89,83 +89,48 @@ include "inc.menutop.php";
 <input type="hidden" name="rowid" id="rowid" value="0">
 <input type="hidden" name="mnu" value="<?php echo $menu?>">
 <input type="hidden" id="sv" name="sv" />
-<input type="hidden" name="cols" value="locid,name,addr,city,prov,postal,area,lat,lng,lnk,bw,hrminutediff" />
-<input type="hidden" name="tname" value="core_location" />
+<input type="hidden" name="cols" value="nik,nama,job,lvl,device" />
+<input type="hidden" name="tname" value="hr_kary" />
 		
-		  <div class="row mb-3">
-			<div class="form-group col-md-6">
-				<label>ID</label>
-				<input type="text" id="locid" name="locid" placeholder="..." class="form-control">
+		  <div class="row">
+			<div class="form-group col-md-12">
+				<label>NIK</label>
+				<input type="text" id="nik" name="nik" placeholder="..." class="form-control">
 			</div>
-			<div class="form-group col-md-6">
+		  </div>
+		  <div class="row">
+			<div class="form-group col-md-12">
 				<label>Name</label>
-				<input type="text" id="name" name="name" placeholder="..." class="form-control">
+				<input type="text" id="nama" name="nama" placeholder="..." class="form-control">
 			</div>
 		  </div>
-		  <div class="row mb-3">
-			<div class="form-group col-md-6">
-				<label>Province</label>
-				<!--input type="text" id="prov" name="prov" placeholder="..." class="form-control"-->
-				<select class="form-control " id="prov" name="prov" onchange="getkabkot(this.value);">
+		  <div class="row">
+			<div class="form-group col-md-12">
+				<label>Job</label>
+				<input type="text" id="job" name="job" placeholder="..." class="form-control">
+			</div>
+		  </div>
+		  <div class="row">
+			<div class="form-group col-md-12">
+				<label>Level</label>
+				<select class="form-control " id="lvl" name="lvl">
 					<option value="">-</option>
-					<?php echo options($o_prov)?>
+					<?php echo options($o_elvl)?>
 				</select>
 			</div>
-			<div class="form-group col-md-6">
-				<label>City</label>
-				<!--input type="text" id="city" name="city" placeholder="..." class="form-control"-->
-				<select class="form-control " id="city" name="city">
-					<option value="">-</option>
-				</select>
-			</div>
 		  </div>
-		  <div class="row mb-3">
-			<div class="form-group col-md-9">
-				<label>Address</label>
-				<input type="text" id="addr" name="addr" placeholder="..." class="form-control">
-			</div>
-			<div class="form-group col-md-3">
-				<label>Postal Code</label>
-				<input type="text" id="postal" name="postal" placeholder="..." class="form-control">
-			</div>
-		  </div>
-		  <div class="form-group mb-3 hidden">
-				<label>Area</label>
-				<input type="text" id="area" name="area" placeholder="..." class="form-control">
-		  </div>
-		  <div class="row mb-3">
-			<div class="form-group col-md-5">
-				<label>Latitude</label>
-				<input type="text" id="lat" name="lat" placeholder="..." class="form-control">
-			</div>
-			<div class="form-group col-md-5 mb-3">
-				<label>Longitude</label>
-				<input type="text" id="lng" name="lng" placeholder="..." class="form-control">
-			</div>
-			<div class="form-group col-md-2 mb-3">
-				<label>&nbsp;</label><br />
-				<button type="button" onclick="mappicker('#lat','#lng');" class="btn btn-info"><i class="fa fa-map-pin"></i></button>
-			</div>
-		  </div>
-		  <div class="row mb-3">
-			<div class="form-group col-md-4">
-				<label>VPN</label>
-				<input type="text" id="lnk" name="lnk" placeholder="..." class="form-control">
-			</div>
-			<div class="form-group col-md-4">
-				<label>Internet</label>
-				<input type="text" id="bw" name="bw" placeholder="..." class="form-control">
-			</div>
-			<div class="form-group col-md-4">
-				<label>TimeDiff(minutes)</label>
-				<input type="text" id="hrminutediff" name="hrminutediff" placeholder="..." class="form-control">
+		  <div class="row">
+			<div class="form-group col-md-12">
+				<label>Device ID</label>
+				<input readonly type="text" id="device" name="device" placeholder="..." class="form-control">
 			</div>
 		  </div>
 		  
 		</form>
 	  </div>
 	  <div class="modal-footer">
-	    <button type="button" class="btn btn-danger" id="bdel"  onclick="confirmDelete();">Delete</button>
+	    <button type="button" class="btn btn-warning hideme" onclick="$('#device').val('');">Reset Device</button>
+		<button type="button" class="btn btn-danger" id="bdel"  onclick="confirmDelete();">Delete</button>
 		<button type="button" class="btn btn-success" onclick="saveData();">Save</button>
 		<button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
 		
@@ -191,11 +156,11 @@ include "inc.menutop.php";
 					<input type="hidden" name="mnu" value="<?php echo $menu?>_batch">
 					<input type="hidden" id="svx" name="sv" />
 					<input type="hidden" name="cols" value="" />
-					<input type="hidden" name="tname" value="core_location" />
+					<input type="hidden" name="tname" value="core_netdiagram" />
 					
 						<!--div class="card-body"-->
 							<div class="form-group">
-								<label class=""><b>Data :</b><br /> - Copy paste from spreadsheet<br /> - 1st row always header field<br /> -  need sample? click <a target="_blank" style="text-decoration:underline;" href="sample_location.xlsx">here</a></label>
+								<label class=""><b>Data :</b><br /> - Copy paste from spreadsheet<br /> - 1st row always header field<br /> -  need sample? click <a target="_blank" style="text-decoration:underline;" href="sample_topology.xlsx">here</a></label>
 								<div class="">
 									<textarea class="form-control" name="datas" rows="10" id="datas" placeholder="....."></textarea>
 								</div>
@@ -220,9 +185,9 @@ include "inc.menutop.php";
 include "inc.foot.php";
 include "inc.js.php";
 
-$tname="core_location";
-$cols="locid,name,addr,city,prov,bw,lnk,hrminutediff,rowid";
-$csrc="name,addr,city,prov";
+$tname="hr_kary";
+$cols="nik,nama,job,lvl,device,rowid";
+$csrc="nik,nama";
 
 ?>
 
@@ -253,10 +218,10 @@ $(document).ready(function(){
 	jvalidate = $("#myf").validate({
     ignore: ":hidden:not(.selectpicker)",
 	rules :{
-        "locid" : {
+        "nik" : {
             required : true
         },
-		"name" : {
+		"nama" : {
 			required : true
 		}
     }});
@@ -270,21 +235,12 @@ function reloadtbl(){
 	mytbl.ajax.reload();
 }
 
-function mappicker(lat,lng){
-	window.open("map"+ext+"?lat="+$(lat).val()+"&lng="+$(lng).val(),"MapWindow","width=830,height=500,location=no").focus();
-}
-
-function getkabkot(prov,dv=''){
-	getCombo("dataget"+ext,'kabkot',prov,"#city",dv);
-}
-
-function openformcallback(q,json=''){
-	var dv='';
-	var prov=$("#prov").val();
-	if(json!=''){
-		dv=json['msgs'][0]['city'];
+function openformcallback(q,json){
+	if($("#rowid").val()=="0"){
+		$(".hideme").hide();
+	}else{
+		$(".hideme").show();
 	}
-	getkabkot(prov,dv);
 }
 </script>
 

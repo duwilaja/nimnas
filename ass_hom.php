@@ -71,7 +71,7 @@ include "inc.menutop.php";
 					<div class="card custom-card blink bg-danger">
 						<div class="card-body">
 							<div class="card-order">
-								<label class="main-content-label mb-3 pt-1">Total Device Inactive</label>
+								<label class="main-content-label mb-3 pt-1 text-light">Total Device Inactive</label>
 								<h2 class="text-end"><i class="fa fa-hdd icon-size float-start text-danger"></i><span class="font-weight-bold xinactive">0</span></h2>
 								<!--p class="mb-0 mt-4 text-muted">Monthly Sales<span class="float-end">3,756</span></p-->
 							</div>

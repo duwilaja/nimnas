@@ -27,89 +27,7 @@ include "inc.menutop.php";
 
 			</div>
 			<!--End Page header-->
-			
-			<!-- ROW OPEN -->
-			<div class="row hidden">
-				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
-					<div class="card mb-3">
-						<div class="card-body">
-							<div class="card-order">
-								<div class="row">
-									<div class="col">
-										<div class="">Total Device</div>
-										<div class="h3 mt-2 mb-2 dtot">0 <span class="text-success fs-13 ml-2">(0%)</span></div>
-									</div>
-									<div class="feature">
-										<a href="n_device<?php echo $ext?>">
-											<i class="si si-screen-desktop primary feature-icon bg-secondary"></i>
-										</a>
-									</div>
-								</div>
-								<!--
-								<p class="mb-0 text-muted">Monthly users</p>
-								-->
-							</div>
-						</div>
-					</div>
-				</div><!-- COL END -->
-				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
-					<div class="card mb-3">
-						<div class="card-body">
-							<div class="card-order">
-								<div class="row">
-									<div class="col">
-										<div class="">Device Up</div>
-										<div class="h3 mt-2 mb-2 don">0 <span class="text-success fs-13 ml-2">(0%)</span></div>
-									</div>
-									<div class="feature">
-										<a href="n_device<?php echo $ext?>?status=1">
-											<i class="si si-arrow-up-circle success feature-icon bg-success"></i>
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div><!-- COL END -->
-				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
-					<div class="card mb-3">
-						<div class="card-body">
-							<div class="card-order">
-								<div class="row">
-									<div class="col">
-										<div class="">Device Down</div>
-										<div class="h3 mt-2 mb-2 doff">0 <span class="text-success fs-13 ml-2">(0%)</span></div>
-									</div>
-									<div class="feature">
-										<a href="n_device<?php echo $ext?>?status=0">
-											<i class="si si-arrow-down-circle danger feature-icon bg-danger"></i>
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div><!-- COL END -->
-				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3">
-					<div class="card mb-3">
-						<div class="card-body">
-							<div class="card-order">
-								<div class="row">
-									<div class="col">
-										<div id="tglx" class="">January 1, 1970</div>
-										<div class="h3 mt-2 mb-2"><b id="jamx">00:00:00</b><span id="zone" class="text-success fs-13 ml-2">UTC</span></div>
-									</div>
-									<div class="feature">
-										<i class="si si-clock secondary feature-icon bg-primary"></i>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div><!-- COL END -->
-			</div>
-			<!-- End Row -->
-			
+						
 			<!--Row-->
 				<div class="row row-sm">
 					<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3"><a href="n_device<?php echo $ext?>">
@@ -141,7 +59,7 @@ include "inc.menutop.php";
 						<div class="card custom-card blink bg-danger">
 							<div class="card-body">
 								<div class="card-order">
-									<label class="main-content-label mb-3 pt-1">Device OFF</label>
+									<label class="main-content-label mb-3 pt-1 text-light">Device OFF</label>
 									<h2 class="text-end"><i class="icon-size fe fe-arrow-down-circle float-start text-danger"></i><span class="font-weight-bold doff">0</span></h2>
 								</div>
 							</div>
@@ -408,7 +326,7 @@ function initMap() {
   });*/
   
   const legend = document.getElementById("legend");
-  for(var i=0;i<2;i++){
+  for(var i=0;i<1;i++){
 	const div = document.createElement("div");
 	const name = (i==0)? "Down" : "Up";
 	div.innerHTML = '<img src="img/' + i + '.png"> ' + name;
