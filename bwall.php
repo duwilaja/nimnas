@@ -22,20 +22,29 @@ $whr=($mys_LOC=='')?"1=1":" loc in ('$mys_LOC')";
 
 $ord="desc";
 
+//find the hosts and the bw of the loc
+$sql="select distinct n.host,n.name,l.bw,device from nimdb.core_node n join nimdb.core_location l on l.locid=n.loc
+join nimdb.core_ports x on x.host=n.host where traffic='Y' and $whr";
+$rs=exec_qry($conn,$sql);
+$locs=fetch_alla($rs);
+$devices=array();
+for($i=0;$i<count($locs);$i++){
+	$devices[]=$locs[$i]["device"];
+}
+$devs=implode(",",$devices);
+
 //look for the latest record
-$sql="select max(t.rowid) as mrow,device_id from core_traffic t join nimdb.core_ports x on x.port=t.port_id where traffic='Y' group by device_id";
+$sql="select max(t.rowid) as mrow,device_id from core_traffic t join nimdb.core_ports x on x.port=t.port_id where traffic='Y' and device_id in ($devs) group by device_id";
 $rs=exec_qry($conn,$sql);
 $maxs=fetch_alla($rs);
-$rowids=array();
+$rowids=array(); 
 for($i=0;$i<count($maxs);$i++){
 	$rowids[]=$maxs[$i]["mrow"];
 }
 $recs=implode(",",$rowids);
 
-$sql="select n.host,n.name,l.bw,t.ifinoctets_delta as inb, t.ifoutoctets_delta as outb, device_id 
-from core_traffic t join nimdb.core_ports x on x.port=t.port_id join nimdb.core_node n on x.host=n.host 
-left join nimdb.core_location l on l.locid=n.loc 
-where t.rowid in ($recs) and t.ifoutoctets_delta<>t.ifinoctets_delta and $whr 
+$sql="select t.ifinoctets_delta as inb, t.ifoutoctets_delta as outb, device_id 
+from core_traffic t where t.rowid in ($recs) and t.ifoutoctets_delta<>t.ifinoctets_delta  
  order by inb $ord";
 
 $rs=exec_qry($conn,$sql);
@@ -57,6 +66,14 @@ function mybw($sbw){
 	if(strpos($sbw,"gbps")!==false) $bw=$bw*1000000000;
 	if(strpos($sbw,"mbps")!==false) $bw=$bw*1000000;
 	return $bw;
+}
+function mymaster($id,$mas){
+	$ret=array('bw'=>0,'name'=>'','host'=>'');
+	for($i=0;$i<count($mas);$i++){
+		$m=$mas[$i];
+		if($m['device']==$id) $ret=$m;
+	}
+	return $ret;
 }
 ?>
 				<div class="app-content page-body">
@@ -103,15 +120,16 @@ function mybw($sbw){
 <?php
 for($i=0;$i<count($lists);$i++){
 	$list=$lists[$i];
-	$h=$list['host']; $idx=$list['device_id'];
-	$bw=mybw($list['bw']);
+	$master=mymaster($list['device_id'],$locs);
+	$h=$master['host']; $idx=$list['device_id'];
+	$bw=mybw($master['bw']);
 	$act='<a title="Overview" class="btn btn-sm btn-primary ripple" href="JavaScript:;" data-fancybox data-type="iframe" data-src="lib_device'.$ext.'?h='.$h.'&idx='.$idx.'">'.$h.'</a>';
 ?>
 		<tr>
 			<!--td><?php echo ($i+1) ?></td-->
 			<td><?php echo $act ?></td>
-			<td><?php echo $list['name'] ?></td>
-			<td><?php echo $list['bw'] ?></td>
+			<td><?php echo $master['name'] ?></td>
+			<td><?php echo $master['bw'] ?></td>
 			<td><?php echo urai($list['inb']) ?></td>
 			<td><?php echo ($bw>0)?round(intval($list['inb'])/300/$bw,3)*100:0 ?>%</td>
 			<td><?php echo urai($list['outb']) ?></td>
