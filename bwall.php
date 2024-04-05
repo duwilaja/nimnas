@@ -13,7 +13,7 @@ $breadcrumb="Overview/Bandwidth Usage";
 
 include "inc.head.php";
 //include "inc.menutop.php";
-include "inc.db.php";
+include "lib_inc.db.php";
 
 $conn=connect();
 
@@ -34,7 +34,7 @@ for($i=0;$i<count($locs);$i++){
 $devs=implode(",",$devices);
 
 //look for the latest record
-$sql="select max(t.rowid) as mrow,device_id from core_traffic t join nimdb.core_ports x on x.port=t.port_id where traffic='Y' and device_id in ($devs) group by device_id";
+$sql="select max(t.rowid) as mrow,device_id from libdb.core_traffic t join nimdb.core_ports x on x.port=t.port_id where traffic='Y' and device_id in ($devs) group by device_id";
 $rs=exec_qry($conn,$sql);
 $maxs=fetch_alla($rs);
 $rowids=array(); 
@@ -44,7 +44,7 @@ for($i=0;$i<count($maxs);$i++){
 $recs=implode(",",$rowids);
 
 $sql="select t.ifinoctets_delta as inb, t.ifoutoctets_delta as outb, device_id 
-from core_traffic t where t.rowid in ($recs) and t.ifoutoctets_delta<>t.ifinoctets_delta  
+from libdb.core_traffic t where t.rowid in ($recs) and t.ifoutoctets_delta<>t.ifinoctets_delta
  order by inb $ord";
 
 $rs=exec_qry($conn,$sql);
