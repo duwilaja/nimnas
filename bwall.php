@@ -98,9 +98,9 @@ function mymaster($id,$mas){
 							<div class="col-xl-12 col-xxl-12 col-md-12 col-lg-12">
 								<div class="card custom-card">
 									<div class="card-header justify-content-between" style="display: flex;">
-										 <div class="card-title main-content-label mb-1"> Highest Average Usage </div> 
-										 <span><a title="all locations" href="bwall<?php echo $ext?>" target="_blank"> <i class="fe fe-copy"></i> </a>&nbsp;&nbsp;
-										 <!--a href="javascript:void(0);" data-bs-toggle="card-fullscreen"> <i class="fe fe-maximize"></i> </a--></span>
+										 <div class="card-title main-content-label mb-1"> Usage/second </div> 
+										 <span><!--a title="all locations" href="bwall<?php echo $ext?>" target="_blank"> <i class="fe fe-copy"></i> </a>&nbsp;&nbsp;
+										 <a href="javascript:void(0);" data-bs-toggle="card-fullscreen"> <i class="fe fe-maximize"></i> </a--></span>
 									</div>
 									<div class="card-body pt-2 pb-0">
 										<div class="table-responsive">
