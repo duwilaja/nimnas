@@ -1,22 +1,26 @@
 <?php 
-$restrict_lvl=array("0","1");
+//$restrict_lvl=array("0","1");
 
 include "inc.common.php";
 include "inc.session.php";
 
 $page_icon="fa fa-table";
-$page_title="Employee";
-$modal_title="Employee";
-$card_title="Master $page_title";
+$page_title="Leave";
+$modal_title="Leave";
+$card_title="$page_title";
 
-$menu="mkary";
+$menu="hrleav";
 
-$breadcrumb="Master/$page_title";
+$breadcrumb="HR/$page_title";
 
-$o_elvl=[
-	["staff","staff"],
-	["leader_area","leader area"],
-	["leader_pusat","leader pusat"]
+$o_ltyp=[
+	["Cuti","Cuti"],
+	["Ijin","Ijin"],
+	["Sakit","Sakit"]
+];
+$o_lstt=[
+	["Reject","Reject"],
+	["Approved","Approved"]
 ];
 
 
@@ -57,12 +61,13 @@ include "inc.menutop.php";
 							<table id="mytbl" class="table table-striped table-bordered w-100">
 								<thead>
 									<tr>
-										<!--th>Type</th-->
 										<th>NIK</th>
 										<th>Name</th>
-										<th>Job</th>
-										<th>Leader</th>
-										<th>Device</th>
+										<th>From</th>
+										<th>To</th>
+										<th>Type</th>
+										<th>Status</th>
+										<th>Remark</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -77,7 +82,7 @@ include "inc.menutop.php";
 
 <!-- Modal-->
 <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left modal_form">
-  <div role="document" class="modal-dialog">
+  <div role="document" class="modal-dialog modal-lg">
 	<div class="modal-content">
 	  <div class="modal-header"><strong id="exampleModalLabel" class="modal-title"><?php echo $modal_title?></strong>
 		<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">x</span></button>
@@ -89,55 +94,58 @@ include "inc.menutop.php";
 <input type="hidden" name="rowid" id="rowid" value="0">
 <input type="hidden" name="mnu" value="<?php echo $menu?>">
 <input type="hidden" id="sv" name="sv" />
-<input type="hidden" name="cols" value="nik,nama,job,lvl,device,leader" />
-<input type="hidden" name="tname" value="hr_kary" />
+<input type="hidden" name="cols" value="nik,dtf,dtt,typ,rmk,status,note" />
+<input type="hidden" name="tname" value="hr_leav" />
 		
-		  <div class="row">
-			<div class="form-group col-md-12">
+		  <div class="row hideme">
+			<div class="form-group col-md-6">
 				<label>NIK</label>
-				<input type="text" id="nik" name="nik" placeholder="..." class="form-control">
+				<input type="text" readonly id="nik" name="nik" placeholder="..." class="form-control">
 			</div>
-		  </div>
-		  <div class="row">
-			<div class="form-group col-md-12">
+		    <div class="form-group col-md-6">
 				<label>Name</label>
-				<input type="text" id="nama" name="nama" placeholder="..." class="form-control">
+				<input type="text" readonly id="nama" name="nama" placeholder="..." class="form-control">
 			</div>
 		  </div>
 		  <div class="row">
-			<div class="form-group col-md-12">
-				<label>Job</label>
-				<input type="text" id="job" name="job" placeholder="..." class="form-control">
+			<div class="form-group col-md-6">
+				<label>From</label>
+				<input type="text" id="dtf" name="dtf" placeholder="..." class="form-control datepicker">
+			</div>
+			<div class="form-group col-md-6">
+				<label>To</label>
+				<input type="text" id="dtt" name="dtt" placeholder="..." class="form-control datepicker">
 			</div>
 		  </div>
 		  <div class="row">
-			<div class="form-group col-md-12">
-				<label>NIK Leader</label>
-				<input type="text" id="leader" name="leader" placeholder="..." class="form-control">
-			</div>
-		  </div>
-		  <div class="row hidden">
-			<div class="form-group col-md-12">
-				<label>Level</label>
-				<select class="form-control " id="lvl" name="lvl">
+			<div class="form-group col-md-6">
+				<label>Type</label>
+				<select class="form-control " id="typ" name="typ">
 					<option value="">-</option>
-					<?php echo options($o_elvl)?>
+					<?php echo options($o_ltyp)?>
+				</select>
+			</div>
+			<div class="form-group col-md-6 hideme">
+				<label>Status</label>
+				<!--input type="text" readonly id="status" name="status" placeholder="..." class="form-control"-->
+				<select class="form-control reado" id="status" name="status">
+					<option value="">-</option>
+					<?php echo options($o_lstt)?>
 				</select>
 			</div>
 		  </div>
 		  <div class="row">
 			<div class="form-group col-md-12">
-				<label>Device ID</label>
-				<input readonly type="text" id="device" name="device" placeholder="..." class="form-control">
+				<label>Remark</label>
+				<input type="text" id="rmk" name="rmk" placeholder="..." class="form-control">
 			</div>
 		  </div>
 		  
 		</form>
 	  </div>
 	  <div class="modal-footer">
-	    <button type="button" class="btn btn-warning hideme" onclick="$('#device').val('');">Reset Device</button>
 		<button type="button" class="btn btn-danger" id="bdel"  onclick="confirmDelete();">Delete</button>
-		<button type="button" class="btn btn-success" onclick="saveData();">Save</button>
+		<button type="button" class="btn btn-success" id="bsav" onclick="saveData();">Save</button>
 		<button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
 		
 	  </div>
@@ -191,9 +199,10 @@ include "inc.menutop.php";
 include "inc.foot.php";
 include "inc.js.php";
 
-$tname="hr_kary";
-$cols="nik,nama,job,leader,device,rowid";
-$csrc="nik,nama";
+$tname="hr_leav l left join hr_kary k on k.nik=l.nik";
+$cols="l.nik,nama,dtf,dtt,typ,status,rmk,l.rowid";
+$csrc="l.nik,name,typ";
+$where="l.nik='$s_NIK' or leader='$s_NIK'";
 
 ?>
 
@@ -212,6 +221,7 @@ $(document).ready(function(){
 			data: function (d) {
 				d.cols= '<?php echo base64_encode($cols); ?>',
 				d.tname= '<?php echo base64_encode($tname); ?>',
+				d.where= '<?php echo base64_encode($where); ?>',
 				d.csrc= '<?php echo base64_encode($csrc); ?>',
 				d.x= '<?php echo $menu?>';
 			}
@@ -224,15 +234,21 @@ $(document).ready(function(){
 	jvalidate = $("#myf").validate({
     ignore: ":hidden:not(.selectpicker)",
 	rules :{
-        "nik" : {
+        "dtf" : {
             required : true
         },
-		"nama" : {
+		"dtt" : {
+			required : true
+		},
+		"typ" : {
+			required : true
+		},
+		"rmk" : {
 			required : true
 		}
     }});
 	
-	//datepicker();
+	datepicker();
 	//timepicker();
 	//selectpicker(true);
 });
@@ -242,10 +258,25 @@ function reloadtbl(){
 }
 
 function openformcallback(q,json){
+	$(".reado").attr("readonly",true);
 	if($("#rowid").val()=="0"){
+		$("#nik").val("<?php echo $s_NIK?>");
 		$(".hideme").hide();
+		$("#eprup").hide();
+		$("#bsav").show();
 	}else{
+		if(json['msgs'][0]['leader']=='<?php echo $s_NIK?>'){
+			$("#eprup").show();
+			$(".reado").attr("readonly",false);
+		}else{
+			$("#eprup").hide();
+		}
 		$(".hideme").show();
+		
+		if(json['msgs'][0]['status']!='') {
+			$("#bdel").hide();
+			$("#bsav").hide();
+		}
 	}
 }
 </script>
