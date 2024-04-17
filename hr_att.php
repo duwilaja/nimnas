@@ -47,6 +47,24 @@ include "inc.menutop.php";
 		</div>
 		<!--End Page header-->
 		
+				<div class="mb-3">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-md-2"><div class="input-group">
+								<input type="text" id="fdf" placeholder="From Date" class="form-control datepicker" value="<?php echo date('Y-m-d')?>">
+								<div class="input-group-append"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
+							</div></div>
+							<div class="col-md-2"><div class="input-group">
+								<input type="text" id="fdt" placeholder="To Date" class="form-control datepicker">
+								<div class="input-group-append"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
+							</div></div>
+							&nbsp;&nbsp;&nbsp;
+							<button type="button" onclick="reloadtbl();" class="btn btn-primary col-md-1">Submit</button>
+							
+							<input type="hidden" id="tname">
+						</div>
+					</div>
+				</div>
 				<div class="card">
 					<div class="card-header">
 						<div class="card-title"><?php echo $card_title?></div>
@@ -99,7 +117,7 @@ include "inc.menutop.php";
 <input type="hidden" name="cols" value="nik,dt,edin,edout,reasonin,reasonout,typ,status" />
 <input type="hidden" name="tname" value="hr_attend" />
 		
-		  <div class="row hideme">
+		  <div class="row">
 			<div class="form-group col-md-4">
 				<label>Date</label>
 				<input type="text" id="dt" name="dt" placeholder="..." class="form-control datepicker">
@@ -212,7 +230,7 @@ include "inc.js.php";
 $tname="hr_attend l left join hr_kary k on k.nik=l.nik";
 $cols="dt,l.nik,nama,edin,reasonin,edout,reasonout,typ,l.rowid";
 $csrc="l.nik,name,typ";
-$where="l.nik='$s_NIK' or leader='$s_NIK'";
+$where="(l.nik='$s_NIK' or leader='$s_NIK')";
 
 ?>
 
@@ -233,6 +251,8 @@ $(document).ready(function(){
 				d.tname= '<?php echo base64_encode($tname); ?>',
 				d.where= '<?php echo base64_encode($where); ?>',
 				d.csrc= '<?php echo base64_encode($csrc); ?>',
+				d.fdf=$("#fdf").val(),
+				d.fdt=$("#fdt").val(),
 				d.x= '<?php echo $menu?>';
 			}
 		},

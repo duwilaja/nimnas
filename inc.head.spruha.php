@@ -59,6 +59,9 @@
 		.text-whitex{
 			color: #aaa;
 		}
+		.text-whites{
+			color: #fff;
+		}
 		.notification::before{
 			background: var(--primary-transparentcolor);
 		}
