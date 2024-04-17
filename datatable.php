@@ -170,7 +170,7 @@ while($row = fetch_row($result)){
 	}
 	
 	if($x=="rsla"){
-		$row[6]=$row[8]==0?0:round(($row[7]/$row[8]*100),2);
+		$row[7]=$row[9]==0?0:round(($row[8]/$row[9]*100),2);
 		$xx='-';
 	}
 	if($x=="nlocation"){

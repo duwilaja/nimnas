@@ -69,6 +69,7 @@ include "inc.db.php";
 										<th>Name</th>
 										<th>Network</th>
 										<th>Type</th>
+										<th>Total</th>
 										<th>Uptime</th>
 										<th>Downtime</th>
 										<th>SLA (%)</th>
@@ -90,7 +91,7 @@ include "inc.js.php";
 
 $tname="core_node n left join core_status s on n.host=s.host";
 $tnamex="core_node n left join core_status_sla s on n.host=s.host";
-$cols="n.host,n.name,n.net,n.typ,sec_to_time(sum(uptime)) as ut,sec_to_time(sum(downtime)) as d,'0' as x,sum(uptime) as u,sum(downtime+uptime) as t";
+$cols="n.host,n.name,n.net,n.typ,sec_to_time(sum(downtime+uptime)) as t,sec_to_time(sum(uptime)) as ut,sec_to_time(sum(downtime)) as d,'0' as x,sum(uptime) as u,sum(downtime+uptime) as t";
 $grpby="n.host,n.name,n.net,n.typ,x";
 $grpcol="n.host,n.name,n.net,n.typ";
 $where=""; $clso="";
