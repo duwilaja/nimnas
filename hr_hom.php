@@ -3,7 +3,7 @@ include "inc.common.php";
 include "inc.session.php";
 
 $page_icon="fa fa-home";
-$page_title="Absensi";
+$page_title="HR Dashboard";
 $modal_title="Title of Modal";
 $menu="ass";
 
@@ -30,118 +30,204 @@ include "inc.menutop.php";
 			
 			<!-- Row -->
 			<div class="row row-sm">
-				<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3"><a href="hr_att<?php echo $ext?>">
 					<div class="card custom-card">
-						<div class="card-body"><a href="m_ass<?php echo $ext?>">
+						<div class="card-body">
 							<div class="card-order ">
-								<label class="main-content-label mb-3 pt-1">Total</label>
+								<label class="main-content-label mb-3 pt-1">Total Employee</label>
 								<h2 class="text-end card-item-icon card-icon">
-								<i class="fa fa-cubes icon-size float-start text-primary"></i><span class="font-weight-bold xtot">0</span></h2>
+								<i class="fa fa-users icon-size float-start text-dark"></i><span class="font-weight-bold xtot">0</span></h2>
 								<!--p class="mb-0 mt-4 text-muted">Monthly users<span class="float-end">50%</span></p-->
 							</div>
-						</a></div>
-					</div>
+						</div>
+					</div></a>
 				</div>
 				<!-- COL END -->
-				<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3"><a href="hr_att<?php echo $ext?>?stt=active">
 					<div class="card custom-card">
-						<div class="card-body"><a href="m_ass<?php echo $ext?>?stt=active">
+						<div class="card-body">
 							<div class="card-order">
-								<label class="main-content-label mb-3 pt-1">Hadir</label>
-								<h2 class="text-end"><i class="fa fa-hdd icon-size float-start text-success"></i><span class="font-weight-bold xactive">0</span></h2>
+								<label class="main-content-label mb-3 pt-1">On Site</label>
+								<h2 class="text-end"><i class="fa fa-user icon-size float-start text-primary"></i><span class="font-weight-bold xonsite">0</span></h2>
 								<!--p class="mb-0 mt-4 text-muted">Monthly Income<span class="float-end">$7,893</span></p-->
 							</div>
-						</a></div>
-					</div>
+						</div>
+					</div></a>
 				</div>
 				<!-- COL END -->
-				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3 hidden">
+				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3"><a href="hr_att<?php echo $ext?>?stt=standby">
 					<div class="card custom-card">
-						<div class="card-body"><a href="m_ass<?php echo $ext?>?stt=standby">
+						<div class="card-body">
 							<div class="card-order">
-								<label class="main-content-label mb-3 pt-1">Total Device Active Standby</label>
-								<h2 class="text-end"><i class="icon-size fa fa-hdd float-start text-warning"></i><span class="font-weight-bold xstandby">0</span></h2>
+								<label class="main-content-label mb-3 pt-1">Off Site</label>
+								<h2 class="text-end"><i class="icon-size fa fa-user float-start text-info"></i><span class="font-weight-bold xoffsite">0</span></h2>
 								<!--p class="mb-0 mt-4 text-muted">Monthly Profit<span class="float-end">$4,678</span></p-->
 							</div>
-						</a></div>
-					</div>
+						</div>
+					</div></a>
 				</div>
 				<!-- COL END -->
-				<div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+				<div class="col-sm-12 col-md-6 col-lg-6 col-xl-3"><a href="hr_att<?php echo $ext?>?stt=inactive">
 					<div class="card custom-card">
-						<div class="card-body"><a href="m_ass<?php echo $ext?>?stt=inactive">
+						<div class="card-body">
 							<div class="card-order">
-								<label class="main-content-label mb-3 pt-1">Tidak Hadir</label>
-								<h2 class="text-end"><i class="fa fa-hdd icon-size float-start text-danger"></i><span class="font-weight-bold xinactive">0</span></h2>
+								<label class="main-content-label mb-3 pt-1">Off Duty</label>
+								<h2 class="text-end"><i class="fa fa-user icon-size float-start text-warning"></i><span class="font-weight-bold xoffduty">0</span></h2>
 								<!--p class="mb-0 mt-4 text-muted">Monthly Sales<span class="float-end">3,756</span></p-->
 							</div>
-						</a></div>
-					</div>
+						</div>
+					</div></a>
 				</div>
 				<!-- COL END -->
 			</div>
 			<!-- End Row -->
 		
 			<div class="row">
-				<div class="col-12">
+				<div class="col-sm-12 col-md-12 col-lg-9 col-xl-9">
 					<div class="card">
 						<div class="card-header justify-content-between border-bottom-0" style="display: flex;">
-							 <div class="card-title main-content-label mb-1">Lokasi kehadiran</div> 
-							 <a href="javascript:void(0);" data-bs-toggle="card-fullscreen"> <i class="fe fe-maximize"></i> </a>
+							 <div class="card-title main-content-label mb-1">MAPPING DEVICE</div> 
+							 <!--a href="javascript:void(0);" data-bs-toggle="card-fullscreen"> <i class="fe fe-maximize"></i> </a-->
 						</div>
 						<div class="card-body">
 							<div id="map" style="height:450px; z-index: 1;"></div>
 						</div>
 					</div>
 				</div>
+				<!-- COL END -->
+				<div class="col-sm-12 col-md-12 col-lg-3 col-xl-3">
+					<div class="card custom-card bg-primary">
+						<div class="card-body">
+							<div class="card-item">
+								<div class="card-item-title  mb-1">
+									<label class="main-content-label tx-13 font-weight-bold mb-1 text-whites"><span class="tgl">-</span> <span class="badge bg-warning">WIB</span></label>
+								</div>
+								<div class="card-item-body">
+									<div class="card-item-stat">
+										<h1 class="font-weight-bold jam">00:00:00</h1>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card custom-card bg-primary">
+						<div class="card-body">
+							<div class="card-item">
+								<div class="card-item-title  mb-1">
+									<label class="main-content-label tx-13 font-weight-bold mb-1 text-whites"><span class="tgl2">-</span> <span class="badge bg-warning">WITA</span></label>
+								</div>
+								<div class="card-item-body">
+									<div class="card-item-stat">
+										<h1 class="font-weight-bold jam2">00:00:00</h1>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card custom-card bg-primary">
+						<div class="card-body">
+							<div class="card-item">
+								<div class="card-item-title  mb-1">
+									<label class="main-content-label tx-13 font-weight-bold mb-1 text-whites"><span class="tgl3">-</span> <span class="badge bg-warning">WIT</span></label>
+								</div>
+								<div class="card-item-body">
+									<div class="card-item-stat">
+										<h1 class="font-weight-bold jam3">00:00:00</h1>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- COL END -->
 			</div>
 			<br /><br />
 			<div class="row">
 				<!-- BEGIN col-4 -->
 				<div class="col-lg-6 col-md-12 hidden">
 					<!-- BEGIN card -->
-					<div class="card mb-3">
+					<div class="card mb-3" style="min-height: 458px;">
 						<div class="card-header border-bottom-0">
-							<label class="main-content-label my-auto pt-2 mb-1">DEVICE CLASSIFICATION</label>
+							<label class="main-content-label my-auto pt-2 mb-1">JUMLAH ASET</label>
 							<span class="d-block tx-12 mb-0 mt-1 text-muted"></span>
 						</div>
 						<!-- BEGIN card-body -->
 						<div class="card-body crypto-wallet" style="padding:10px !important" >
 							<div class=""><canvas id="ass-cat" class="ht-180" style="max-height:270px !important"></canvas></div>
 							<div class="chart-circle-value circle-style" style="top:79px; !important">
-								<h6 style="padding-top: 10px; margin-bottom: 0px;!important">Total Device</h6>
+								<h6 style="padding-top: 10px; margin-bottom: 0px;!important">Total</h6>
 								<div class="tx-20 font-weight-bold xtot" style="line-height:30px; !important">0</div>
 							</div>
-						</div>
-						<div class="table-responsive border-0">
-							<table class="table border-0 mg-b-0 text-nowrap text-md-nowrap">
-								<tbody id="ascat">
-									<tr>
-										<td class="d-flex">
-										<div class="bg-primary my-auto me-2"></div>
-											<div class="my-auto me-2">
-												<p class="mb-0 d-flex justify-content-center "><span class="legend bg-primary brround"></span>Network</p>
-											</div>
-										</td>
-										<td class="">30</td>
-										<td>+12.85% </td>
-										</div>
-									</tr>
-
-									<tr>
-										<td class="d-flex">
-										<div class="bg-primary my-auto me-2"></div>
-											<div class="my-auto me-2">
-												<p class="mb-0 d-flex justify-content-center "><span class="legend bg-primary brround"></span>Electrical</p>
-											</div>
-										</td>
-										<td class="">30</td>
-										<td>+12.85% </td>
-										</div>
-									</tr>
-									
-								</tbody>
-							</table>
+							<div class="table-responsive border-0">
+								<table class="table border-0 mg-b-0 text-nowrap text-md-nowrap">
+									<tbody id="ascat">
+										<!--tr>
+											<td class="d-flex">
+											<div class="bg-primary my-auto me-2"></div>
+												<div class="my-auto me-2">
+													<p class="mb-0 d-flex justify-content-center "><span class="legend bg-primary brround"></span>Network</p>
+												</div>
+											</td>
+											<td class="">30</td>
+											<td>+12.85% </td>
+										</tr>
+										<tr>
+											<td class="d-flex">
+											<div class="bg-primary my-auto me-2"></div>
+												<div class="my-auto me-2">
+													<p class="mb-0 d-flex justify-content-center "><span class="legend bg-primary brround"></span>Electrical</p>
+												</div>
+											</td>
+											<td class="">30</td>
+											<td>+12.85% </td>
+										</tr>
+										<tr>
+											<td class="d-flex">
+											<div class="bg-primary my-auto me-2"></div>
+												<div class="my-auto me-2">
+													<p class="mb-0 d-flex justify-content-center "><span class="legend bg-primary brround"></span>Electrical</p>
+												</div>
+											</td>
+											<td class="">30</td>
+											<td>+12.85% </td>
+										</tr>
+										<tr>
+											<td class="d-flex">
+											<div class="bg-primary my-auto me-2"></div>
+												<div class="my-auto me-2">
+													<p class="mb-0 d-flex justify-content-center "><span class="legend bg-primary brround"></span>Electrical</p>
+												</div>
+											</td>
+											<td class="">30</td>
+											<td>+12.85% </td>
+										</tr>
+										<tr>
+											<td class="d-flex">
+											<div class="bg-primary my-auto me-2"></div>
+												<div class="my-auto me-2">
+													<p class="mb-0 d-flex justify-content-center "><span class="legend bg-primary brround"></span>Electrical</p>
+												</div>
+											</td>
+											<td class="">30</td>
+											<td>+12.85% </td>
+										</tr>
+										<tr>
+											<td class="d-flex">
+											<div class="bg-primary my-auto me-2"></div>
+												<div class="my-auto me-2">
+													<p class="mb-0 d-flex justify-content-center "><span class="legend bg-primary brround"></span>Electrical</p>
+												</div>
+											</td>
+											<td class="">30</td>
+											<td>+12.85% </td>
+										</tr-->
+										
+									</tbody>
+								</table>
+							</div>
 						</div>
 						<!-- END card-body -->
 						
@@ -152,10 +238,10 @@ include "inc.menutop.php";
 				<!-- BEGIN col-4 -->
 				<div class="col-lg-12 col-md-12">
 					<!-- BEGIN card -->
-					<div class="card mb-3">
+					<div class="card mb-3" style="min-height: 458px;">
 						
 						<div class="card-header border-bottom-0">
-							<label class="main-content-label my-auto pt-2 mb-1">Kehadiran dalam 30 hari terakhir</label>
+							<label class="main-content-label my-auto pt-2 mb-1">employee attendance</label>
 							<span class="d-block tx-12 mb-0 mt-1 text-muted"></span>
 						</div>
 
@@ -163,111 +249,7 @@ include "inc.menutop.php";
 						<div class="card-body">
 							<!-- BEGIN table -->
 							<div class="overflow-hidden">
-								<canvas id="break-ass-class" style="max-height:230px;"></canvas>
-							</div>
-							<!-- END table -->
-						</div>
-						<!-- END card-body -->
-						
-					</div>
-					<!-- END card -->
-				</div>
-				<!-- END col-4 -->
-			</div>
-			<div class="row hidden">
-				<!-- BEGIN col-4 -->
-				<div class="col-xl-4">
-					<!-- BEGIN card -->
-					<div class="card mb-3">
-						<!-- BEGIN card-body -->
-						<div class="card-body">
-							<!-- BEGIN title -->
-							<div class="d-flex fw-bold small mb-3">
-								<span class="flex-grow-1">Oldest Assets</span>
-								<a href="#" data-toggle="card-expand" class="text-white text-opacity-50 text-decoration-none"><i class="bi bi-fullscreen"></i></a>
-							</div>
-							<!-- END title -->
-							<!-- BEGIN table -->
-							<div class="table-responsive">
-								<table id="topold" class="table table-striped table-borderless mb-2px small text-nowrap">
-									<thead>
-										<tr>
-											<th>Name</th>
-											<th>Location</th>
-											<th>Purchased</th>
-										</tr>
-									</thead>
-									<tbody>
-									</tbody>
-								</table>
-							</div>
-							<!-- END table -->
-						</div>
-						<!-- END card-body -->
-						
-					</div>
-					<!-- END card -->
-				</div>
-				<!-- END col-4 -->
-				<!-- BEGIN col-4 -->
-				<div class="col-xl-7">
-					<!-- BEGIN card -->
-					<div class="card mb-3">
-						<div class="card-header border-bottom-0 d-flex">
-							<div>
-								<label class="main-content-label mb-2 pt-1">TOP 5 LOCATION WITH PROBLEM</label>
-							</div>
-						</div>
-						<!-- BEGIN card-body -->
-						<div class="card-body">
-							<!-- BEGIN table -->
-							<div class="table-responsive">
-								<table id="toppro" class="table table-striped table-borderless mb-2px small text-nowrap">
-									<thead>
-										<tr>
-											<th>Location</th>
-											<th>Total</th>
-											<th>BROKEN</th>
-											<th>%</th>
-										</tr>
-									</thead>
-									<tbody>
-									</tbody>
-								</table>
-							</div>
-							<!-- END table -->
-						</div>
-						<!-- END card-body -->
-						
-					</div>
-					<!-- END card -->
-				</div>
-				<!-- END col-4 -->
-				<!-- BEGIN col-4 -->
-				<div class="col-xl-5">
-					<!-- BEGIN card -->
-					<div class="card mb-3">
-						<div class="card-header border-bottom-0 d-flex">
-							<div>
-								<label class="main-content-label mb-2 pt-1">TOP 5 WARRANTY WARNING</label>
-							</div>
-						</div>
-						
-						<!-- BEGIN card-body -->
-						<div class="card-body">
-							<!-- BEGIN table -->
-							<div class="table-responsive">
-								<table id="topwar" class="table table-striped table-borderless mb-2px small text-nowrap">
-									<thead>
-										<tr>
-											<th>Name</th>
-											<th>Location</th>
-											<th>Expired</th>
-										</tr>
-									</thead>
-									<tbody>
-									</tbody>
-								</table>
+								<canvas id="break-ass-class" style="height:300px;"></canvas>
 							</div>
 							<!-- END table -->
 						</div>
@@ -288,24 +270,172 @@ include "inc.menutop.php";
 include "inc.foot.php";
 include "inc.js.php";
 ?>
+<script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0LcVlAmmXMro8eH69aK6Wh4lUqttz-Zs&callback=initMap&v=weekly"
+      defer
+    ></script>
+
 <script>
 var mytbl1, mytbl2, mytbl3, mytbl4, mytbl5, mytbl6, mytbl7, mytbl8, mytbl9, barChart, pieChart;
 
+var myCenter={lat: -2,lng: 118};
+var myZoom=5;
+const mylocs='<?php echo $s_LOC?>';
+var maploaded=false;
+
+function createCenterControl(map) {
+  const controlButton = document.createElement("button");
+
+  // Set CSS for the control.
+  controlButton.style.backgroundColor = "#fff";
+  controlButton.style.border = "2px solid #fff";
+  controlButton.style.borderRadius = "3px";
+  controlButton.style.boxShadow = "0 2px 6px rgba(0,0,0,.3)";
+  controlButton.style.color = "rgb(25,25,25)";
+  controlButton.style.cursor = "pointer";
+  controlButton.style.fontFamily = "Roboto,Arial,sans-serif";
+  controlButton.style.fontSize = "16px";
+  controlButton.style.lineHeight = "38px";
+  controlButton.style.margin = "8px 0 22px";
+  controlButton.style.padding = "0 5px";
+  controlButton.style.textAlign = "center";
+  controlButton.textContent = "Center Map";
+  controlButton.title = "Click to recenter the map";
+  controlButton.type = "button";
+  // Setup the click event listeners: simply set the map to Chicago.
+  controlButton.addEventListener("click", () => {
+    map.setCenter(myCenter);
+	map.setZoom(myZoom);
+  });
+  return controlButton;
+}
+var markers=[];
+function loadLoc(map){
+	var err='';
+	$.ajax({
+		type: 'POST',
+		url: 'dataget'+ext,
+		data: {q:'absloc',id:''},
+		success: function(datax){
+			if(markers.length>0){
+				//cleanup here
+				for (let i = 0; i < markers.length; i++) {
+					markers[i].setMap(null);
+				}
+				markers=[];
+			}
+			var locations=JSON.parse(datax)["msgs"];
+			var bounds = new google.maps.LatLngBounds();
+			var err='';
+			   for (var i = 0; i < locations.length; i++) {
+					var a = locations[i];
+					//var title = a['name']+'\nStatus: '+a['stts']+'\nTotal: '+a['cnt'];
+					var title = a['nama'];
+					var color = "1";
+					
+					if(isNaN(a['lat'])||isNaN(a['lng'])){
+						err+=a['nama']+'/';
+					}else{
+						const myLatLng = new google.maps.LatLng(a['lat'], a['lng']);
+						
+						//if(color=='0'){
+							const iconImage = "img/"+color+".png";
+							const marker = new google.maps.Marker({
+							  position: myLatLng,
+							  map,
+							  icon: iconImage,//pinGlyph.element,
+							  title: title,
+							});
+							markers.push(marker);
+						//}
+						
+						//extend the bounds to include each marker's position
+						bounds.extend(myLatLng);
+  
+						// markers can only be keyboard focusable when they have click listeners
+						// open info window when marker is clicked
+						//marker.addListener("click", () => {
+						  //infoWindow.setContent(position.lat + ", " + position.lng);
+						  //infoWindow.open(map, marker);
+						//});
+							//return marker;
+					}
+			  }
+			  if(locations.length>0) {
+				//now fit the map to the newly inclusive bounds
+				map.fitBounds(bounds);
+				/*var listener = google.maps.event.addListener(map, "idle", function() { 
+				  myCenter = bounds.getCenter();
+				  myZoom=7;
+				  map.setZoom(myZoom); 
+				  google.maps.event.removeListener(listener); 
+				});*/
+			  }
+			  if(err!='') console.log(err);
+			  
+			  maploaded=true;
+			
+		},
+		error: function(xhr){
+			console.log(xhr);
+		}
+	});
+	
+}
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById("map"), {
+    zoom: myZoom,
+    center: myCenter,
+  });
+  
+  // Create the DIV to hold the control.
+  const centerControlDiv = document.createElement("div");
+  // Create the control.
+  const centerControl = createCenterControl(map);
+
+  // Append the control to the DIV.
+  centerControlDiv.appendChild(centerControl);
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(centerControlDiv);
+  
+/*  const image =
+    "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
+  const beachMarker = new google.maps.Marker({
+    position: { lat: -33.89, lng: 151.274 },
+    map,
+    icon: image,
+  });
+  
+  const legend = document.getElementById("legend");
+  for(var i=0;i<2;i++){
+	const div = document.createElement("div");
+	const name = (i==0)? "Down" : "Up";
+	div.innerHTML = '<img src="img/' + i + '.png"> ' + name;
+	legend.appendChild(div);  
+  }
+	map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(legend);
+	*/
+  
+  loadLoc(map);
+  
+}
+
+
 $(document).ready(function(){
 	page_ready();
-	//displayClock();
+	displayClock();
 	gettot();
 	
 	//mytbl1 = loadTable('#topold','<?php echo base64_encode("assname,loc,gr"); ?>','<?php echo base64_encode("ass_ets"); ?>','<?php echo base64_encode("");?>','<?php echo base64_encode("");?>',[[ 2, "asc" ]],'-');
-	mytbl2 = loadTable('#toppro','<?php echo base64_encode("loc,count(loc) as cnt, sum(if(stts='inactive',1,0)) as brk,round(sum(if(stts='inactive',1,0))/count(loc),2) as pct"); ?>','<?php echo base64_encode("ass_ets"); ?>','<?php echo base64_encode("");?>','<?php echo base64_encode("loc");?>',[[ 3, "desc" ]],'-');
-	mytbl3 = loadTable('#topwar','<?php echo base64_encode("assname,loc,warexp"); ?>','<?php echo base64_encode("ass_ets"); ?>','<?php echo base64_encode("");?>','<?php echo base64_encode("");?>',[[ 2, "asc" ]],'-');
+	//mytbl2 = loadTable('#toppro','<?php echo base64_encode("loc,count(loc) as cnt, sum(if(stts='inactive',1,0)) as brk,round(sum(if(stts='inactive',1,0))/count(loc),2) as pct"); ?>','<?php echo base64_encode("ass_ets"); ?>','<?php echo base64_encode("");?>','<?php echo base64_encode("loc");?>',[[ 3, "desc" ]],'-');
+	//mytbl3 = loadTable('#topwar','<?php echo base64_encode("assname,loc,warexp"); ?>','<?php echo base64_encode("ass_ets"); ?>','<?php echo base64_encode("");?>','<?php echo base64_encode("");?>',[[ 2, "asc" ]],'-');
 	
 	//markers=null;
 	//getData('onoff','maps-onoff');
-	widget_map();
-	getDataChart('asscat');
-	getDataChart('brasscat');
-	get_content("ass_hom_cat<?php echo $ext?>",{},".loader-img","#ascat");
+	//widget_map();
+	//getDataChart('asscat');
+	//getDataChart('brasscat');
+	//get_content("ass_hom_cat<?php echo $ext?>",{},".loader-img","#ascat");
 });
 function randomColor(){
 	return "#"+(Math.random().toString(16)+"000000").slice(2, 8).toUpperCase();
@@ -423,7 +553,7 @@ function gettot(){
 	$.ajax({
 		type: 'POST',
 		url: 'dataget'+ext,
-		data: {q:'asshom'},
+		data: {q:'abstot'},
 		success: function(data){
 			var json = JSON.parse(data);
 			if(json['code']=='200'){
@@ -436,6 +566,11 @@ function gettot(){
 				$(".xtot").html(tot);
 			}else{
 				log(json['msgs']);
+			}
+			if(parseInt($(".xinactive").html())>0){
+				if($(".blink").hasClass("bg-danger")) $(".blink").removeClass("bg-danger").addClass("blink-bg");
+			}else{
+				if($(".blink").hasClass("blink-bg")) $(".blink").addClass("bg-danger").removeClass("blink-bg");
 			}
 		},
 		error: function(xhr){
@@ -482,18 +617,28 @@ var mytbl=$(divid).DataTable({
 
 
 var map, markers;
-var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+//var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 var err='';
+var d=new Date('<?php echo date('Y-m-d H:i:s')?>'); //jam server wib
+var d2=d;
 
 function displayClock(){
-	var d=new Date();
-	var zone=d.toString().match(/([\+-][0-9]+)\s/)[1];
-	$("#zone").text('('+zone+')');
-	var tgl=months[d.getMonth()]+" "+d.getDate()+", "+d.getFullYear();
-	$("#tgl").text(tgl);
-	var jam=d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
-	$("#jam").text(jam);
-		
+	//var zone=d.toString().match(/([\+-][0-9]+)\s/)[1];
+	//$("#zone").text('('+zone+')');
+	$(".tgl").text(d.getDate()+" "+months[+d.getMonth()]+" "+d.getFullYear());
+	$(".jam").text(d.getHours()+":"+d.getMinutes()+":"+d.getSeconds());
+	
+	d2=new Date(d.getTime()+(3600 * 1000)) //+ 1 hour = 3600 * 1000 wita
+	$(".tgl2").text(d2.getDate()+" "+months[+d2.getMonth()]+" "+d2.getFullYear());
+	$(".jam2").text(d2.getHours()+":"+d2.getMinutes()+":"+d2.getSeconds());
+	d2=new Date(d.getTime()+(7200 * 1000)) //+ 2 hour = 7200 * 1000 wit
+	$(".tgl3").text(d2.getDate()+" "+months[+d2.getMonth()]+" "+d2.getFullYear());
+	$(".jam3").text(d2.getHours()+":"+d2.getMinutes()+":"+d2.getSeconds());
+	
+	const milliseconds = 1 * 1000; // 1 seconds = 1000 milliseconds
+	d=new Date(d.getTime()+milliseconds);
+	
 	setTimeout(displayClock,1000);
 }
 
