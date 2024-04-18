@@ -102,6 +102,13 @@ switch($q){
 			$slct="lat,lng,lnk,l.bw,concat(l.name,'\n',l.addr) as name,locid,sum(s.status) as onoff,count(n.host) as cnt, (count(n.host)-sum(s.status)) as off";
 		$sql="select $slct from $tname where lat<>'' and lng<>'' $wdef and $whr group by $grpby"; break;
 	
+	case 'absloc': $tname="hr_attend a join hr_kary k on a.nik=k.nik";
+				$sql="select k.nama, latin as lat,lngin as lng from $tname where dt=date(now()) and TRIM(latin)<>'' and TRIM(lngin)<>''";
+				break;
+	case 'abstot': $tname="hr_attend";
+				$sql="select status as stts,count(status) as tot from $tname where dt=date(now())";
+				break;
+				
 	case 'nodes': $sql="select n.rowid as id, n.host as label, concat(typ,'/',name) as title, concat('img/cat/',replace(trim(lower(typ)),' ','-'),'.png') as image, 'image' as shape,
 					if(status=1,'#ffffff','#ff0000') as fc from core_node n join core_status s on s.host=n.host where $whr and 
 					(n.host in (select dari from core_netdiagram) or n.host in (select ke from core_netdiagram))"; break;
