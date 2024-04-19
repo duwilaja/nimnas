@@ -170,7 +170,11 @@ if($mn=='hrleav'){
 	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
 }
 if($mn=='hratt'){
-	$res=crud($conn);
+	if(post('typ')=='Masuk'||post('typ')=='Terlambat'){
+		$res=crud($conn,"status","'onsite'");
+	}else{
+		$res=crud($conn);
+	}
 	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
 }
 
