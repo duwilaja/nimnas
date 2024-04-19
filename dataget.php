@@ -18,16 +18,16 @@ if($mys_LOC!=''){ //session loc
 	$whr= "loc in ('$mys_LOC')";
 }
 
-$wtik="(1=1)"; $wloc=""; $wass="(1=1)";
+$wtik="(1=1)"; $wloc=""; $wass="(1=1)"; $hrwr="(1=1)";
 if($mys_LOC!=''){
 	$wass.= " AND loc in ('$mys_LOC')";
 	$wtik.= " AND loc in ('$mys_LOC')";
 	$wloc=" AND locid in ('$mys_LOC')";
+	$hrwr="(l.nik='$s_NIK' or leader='$s_NIK')";
 }
 if($s_TICK!=''){
 	$wtik.= " AND grp='$s_TICK'";
 }
-
 
 switch($q){
 	case 'user': $sql="select * from core_user where rowid='$id'"; break;
@@ -103,10 +103,10 @@ switch($q){
 		$sql="select $slct from $tname where lat<>'' and lng<>'' $wdef and $whr group by $grpby"; break;
 	
 	case 'absloc': $tname="hr_attend a join hr_kary k on a.nik=k.nik";
-				$sql="select k.nama, latin as lat,lngin as lng from $tname where dt=date(now()) and TRIM(latin)<>'' and TRIM(lngin)<>''";
+				$sql="select k.nama, latin as lat,lngin as lng from $tname where dt=date(now()) and TRIM(latin)<>'' and TRIM(lngin)<>'' and $hrwr";
 				break;
-	case 'abstot': $tname="hr_attend";
-				$sql="select status as stts,count(status) as tot from $tname where dt=date(now())";
+	case 'abstot': $tname="hr_attend l left join hr_kary k on k.nik=l.nik";
+				$sql="select status as stts,count(status) as tot from $tname where dt=date(now()) and $hrwr";
 				break;
 				
 	case 'nodes': $sql="select n.rowid as id, n.host as label, concat(typ,'/',name) as title, concat('img/cat/',replace(trim(lower(typ)),' ','-'),'.png') as image, 'image' as shape,
