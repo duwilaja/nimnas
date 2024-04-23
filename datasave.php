@@ -173,7 +173,7 @@ if($mn=='hratt'){
 	if(post('typ')=='Masuk'||post('typ')=='Terlambat'){
 		$res=crud($conn,"status","'onsite'");
 	}else{
-		$res=crud($conn);
+		$res=crud($conn,"status","'offduty'");
 	}
 	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
 }
