@@ -593,8 +593,8 @@ function barChart(databar){
 	if(databar!=null){
 		var label=[], axis=[], datas=[];
 		//log(databar);
-		label=getLabel(databar);
-		axis=["onsite","offsite","offduty"];//getAxis(databar);
+		label=["onsite","offsite","offduty"];//getLabel(databar);
+		axis=getAxis(databar);
 		datas=build_datasets(label,axis,databar);
 		//log(label);
 		log(datas);
