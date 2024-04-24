@@ -52,6 +52,7 @@ switch($q){
 	case 'mbrand': $sql="select * from ass_brand where rowid='$id'"; break;
 	case 'mascat': $sql="select * from ass_cat where rowid='$id'"; break;
 	case 'mass': $sql="select * from ass_ets where rowid='$id'"; break;
+	
 	case 'asetloc': 
 			$tname="core_location l join ass_ets a on l.locid=a.loc";
 			$grpby="lat,lng,concat(l.name,'\n',l.addr),locid";
@@ -108,6 +109,7 @@ switch($q){
 	case 'abstot': $tname="hr_attend l left join hr_kary k on k.nik=l.nik";
 				$sql="select status as stts,count(status) as tot from $tname where dt=date(now()) and $hrwr";
 				break;
+	case 'abscat': $sql="select status as x,dt as z,count(rowid) as y from hr_attend group by status,dt order by dt"; break;
 				
 	case 'nodes': $sql="select n.rowid as id, n.host as label, concat(typ,'/',name) as title, concat('img/cat/',replace(trim(lower(typ)),' ','-'),'.png') as image, 'image' as shape,
 					if(status=1,'#ffffff','#ff0000') as fc from core_node n join core_status s on s.host=n.host where $whr and 
