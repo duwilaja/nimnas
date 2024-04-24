@@ -434,7 +434,7 @@ $(document).ready(function(){
 	//getData('onoff','maps-onoff');
 	//widget_map();
 	//getDataChart('asscat');
-	//getDataChart('brasscat');
+	getDataChart('abscat');
 	//get_content("ass_hom_cat<?php echo $ext?>",{},".loader-img","#ascat");
 });
 function randomColor(){
@@ -509,7 +509,7 @@ function getDataChart(q=''){
 				if(q=='asscat'){
 					pieChart(datachart);
 				}
-				if(q=='brasscat'){
+				if(q=='abscat'){
 					barChart(datachart);
 				}
 			}else{
@@ -521,29 +521,105 @@ function getDataChart(q=''){
 		}
 	});
 }
+function pie_datas(l,axs,ds){
+	var set=[];
+	for(var x=0;x<axs.length;x++){ //loop axis
+		set.push(get_data(l,axs[x],ds));
+	}
+	return set;
+}
+function get_data(a,b,c){
+	var ret=0;
+	for(var y=0;y<c.length;y++){
+		var d=c[y];
+		if(d['x']==a && d['z']==b) ret=parseInt(d['y']);
+	}
+	return ret;
+}
+function get_sets(l,ds,axs,type='line',i){
+	var set=[];
+	var colors = ["#6259ca", "#01b8ff", "#ff9b21"];
+	for(var x=0;x<axs.length;x++){ //loop axis
+		set.push(get_data(l,axs[x],ds));
+	}
+	var sd={
+		label: l,
+		data: set,
+		fill: false,
+		type: type,
+		borderColor: colors[i],
+		backgroundColor: colors[i],
+		borderWidth: 1,
+		  datalabels: {
+			align: 'center',
+			anchor: 'center'
+		  }
+	}
+	return sd;
+}
+function build_datasets(label,axis,dataset,type='bar'){
+	var data=[];
+	for(var i=0;i<label.length;i++){
+		data.push(get_sets(label[i],dataset,axis,type,i));
+	}
+	//console.log(datax);
+	
+	return data;
+}
+function getAxis(data){ // X of dataseries
+	var axis=[];
+	var tmp='';
+	for(var i=0;i<data.length;i++){
+		if(axis.indexOf(data[i]['z'])<0){
+			axis.push(data[i]['z']);
+			tmp=data[i]['z'];
+		}
+	}
+	return axis;
+}
+function getLabel(data){ //X label
+	var label=[];
+	var tmp='';
+	for(var i=0;i<data.length;i++){
+		if(label.indexOf(data[i]['x'])<0){
+			label.push(data[i]['x']);
+			tmp=data[i]['x'];
+		}
+	}
+	return label;
+}
 function barChart(databar){
 	var myVarVal="#6259ca";
 	if(databar!=null){
-		var label=[], datas=[];
+		var label=[], axis=[], datas=[];
 		//log(databar);
-		for(var i=0;i<databar.length;i++){
-			label.push(databar[i]['cat']);
-			datas.push(parseInt(databar[i]['tot']));
-		}
+		label=getLabel(databar);
+		axis=["onsite","offsite","offduty"];//getAxis(databar);
+		datas=build_datasets(label,axis,databar);
 		//log(label);
-		//log(datas);
+		log(datas);
 		var ctx2 = document.getElementById('break-ass-class');
 		barChart = new Chart(ctx2, {
 			type: 'bar',
 			data: {
-				labels: label,//['Jan','Feb','Mar','Apr','May','Jun'],
-				datasets: [{
+				labels: axis,//['Jan','Feb','Mar','Apr','May','Jun'],
+				datasets: datas /*[{
 					label: 'Total',
 					data: datas,//[37,31,36,34,43,31],
 					backgroundColor: hexToRgba(myVarVal,0.5),
 					//borderColor: randomColor(),
 					borderWidth: 1.5
-				}]
+				}]*/
+			},
+			options: {
+				scales: {
+					x: {
+						stacked: true
+					},
+					y: {
+						stacked: true
+					}
+				}
 			}
 		});
 	}
