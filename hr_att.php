@@ -230,9 +230,12 @@ include "inc.js.php";
 $tname="hr_attend l left join hr_kary k on k.nik=l.nik";
 $cols="dt,l.nik,nama,edin,reasonin,edout,reasonout,typ,l.rowid";
 $csrc="l.nik,name,typ";
-$where="";
+$where="(1=1)";
+if($_GET["stt"]!=""){
+	$where.=" and status='".$_GET["stt"]."'";
+}
 if($mys_LOC!=''){
-	$where="(l.nik='$s_NIK' or leader='$s_NIK')";
+	$where.=" and (l.nik='$s_NIK' or leader='$s_NIK')";
 }
 ?>
 
