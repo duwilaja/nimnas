@@ -265,6 +265,8 @@ function loadLoc(map){
 							  icon: iconImage,//pinGlyph.element,
 							  title: title,
 							});
+							var fn=markerClickFunction(a['locid']);
+							marker.addListener("click", fn);
 							markers.push(marker);
 						}
 						
