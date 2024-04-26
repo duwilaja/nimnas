@@ -84,13 +84,13 @@ include "inc.menutop.php";
 		
 			<div class="row">
 				<div class="col-sm-12 col-md-12 col-lg-9 col-xl-9">
-					<div class="card">
+					<div class="card" style="max-height: 480px;">
 						<div class="card-header justify-content-between border-bottom-0" style="display: flex;">
 							 <div class="card-title main-content-label mb-1">MAPPING DEVICE</div> 
 							 <!--a href="javascript:void(0);" data-bs-toggle="card-fullscreen"> <i class="fe fe-maximize"></i> </a-->
 						</div>
 						<div class="card-body">
-							<div id="map" style="height:450px; z-index: 1;"></div>
+							<div id="map" style="height:335px; z-index: 1;"></div>
 						</div>
 					</div>
 				</div>
@@ -144,7 +144,6 @@ include "inc.menutop.php";
 				</div>
 				<!-- COL END -->
 			</div>
-			<br /><br />
 			<div class="row">
 				<!-- BEGIN col-4 -->
 				<div class="col-lg-6 col-md-12 hidden">
