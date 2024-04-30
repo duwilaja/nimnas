@@ -46,6 +46,7 @@ switch($q){
 	
 	case 'hrleav': $sql="select l.*,nama,leader from hr_leav l left join hr_kary k on k.nik=l.nik where l.rowid='$id'"; break;
 	case 'hratt': $sql="select l.*,nama,leader from hr_attend l left join hr_kary k on k.nik=l.nik where l.rowid='$id'"; break;
+	case 'hrrem': $sql="select l.*,nama,leader from hr_remb l left join hr_kary k on k.nik=l.nik where l.rowid='$id'"; break;
 	
 	case 'kabkot': $sql="select kabkotid as v,concat(name,' (',kabkot,')') as t from core_kabkot where prov='$id' order by name"; break;
 	

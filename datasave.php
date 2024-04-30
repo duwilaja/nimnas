@@ -177,6 +177,15 @@ if($mn=='hratt'){
 	}
 	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
 }
+if($mn=='hrrem'){
+	$fname=strtotime("now");
+	$upload=upload_file("attc","remattc/",$fname);
+	$attc=$upload[0]?$upload[1]:"";
+	if($attc==''&&post('fattc')!='') $attc=post('fattc');
+	$stts=post('status')==''?'pending':post('status');
+	$res=crud($conn,"attc,status","'$attc','$stts'");
+	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
+}
 
 if($mn=='mport'){
 	$res=crud($conn);
