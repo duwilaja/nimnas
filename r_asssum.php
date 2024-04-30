@@ -246,6 +246,7 @@ if($mys_LOC!=''){ //session loc
 $(document).ready(function(){
 	page_ready();
 	$(".select2").select2();
+	getsum();
 });
 
 function getsum(lnk='dataget',q='asssum'){
