@@ -127,16 +127,55 @@ include "inc.menutop.php";
 								</div>
 							</div>
 						</div>
-									
+						<br />
+						<div class="row">
+							<div class="col-md-12">
+				<div class="card">
+					<div class="card-header justify-content-between border-bottom-0" style="display: flex;">
+						<div class="card-title main-content-label mb-1">Absensi</div>
+						<div class="card-options ">
+							<button class="btn btn-sm btn-success" onclick="cek('in');">Check-In</button>&nbsp;&nbsp;
+							<button class="btn btn-sm btn-danger" onclick="cek('out');">Check-Out</button>
+						</div>
+					</div>
+					<div class="card-body">
+						<div class="table-responsive">
+							<table id="mytbl" class="table table-striped table-bordered w-100">
+								<thead>
+									<tr>
+										<th>Date</th>
+										<th>NIK</th>
+										<th>Name</th>
+										<th>IN</th>
+										<th>Remark IN</th>
+										<th>OUT</th>
+										<th>Remark OUT</th>
+										<th>Type</th>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+							</div>
+						</div>
 					</div>
 				</div><!-- end app-content-->
 				
 <?php 
 include "inc.foot.php";
 include "inc.js.php";
+
+
+$tname="hr_attend l left join hr_kary k on k.nik=l.nik";
+$cols="dt,l.nik,nama,edin,reasonin,edout,reasonout,typ,l.rowid";
+$csrc="l.nik,name,typ";
+$where.="l.nik='$s_NIK'";
 ?>
 <script>
-var jvalidate,jvalidatex;
+var jvalidate,jvalidatex, mytbl;
 $(document).ready(function(){
 	page_ready();
 	
@@ -164,7 +203,54 @@ $(document).ready(function(){
     }});
 	
 	openForm('profile','<?php echo $s_ID?>');
+	
+	absenku();
 })
+
+function absenku(){
+	mytbl = $("#mytbl").DataTable({
+		serverSide: true,
+		processing: true,
+		searching: true,
+		//buttons: ['copy', 'csv'],
+		order: [[0,'desc']],
+		ajax: {
+			type: 'POST',
+			url: 'datatable<?php echo $ext?>',
+			data: function (d) {
+				d.cols= '<?php echo base64_encode($cols); ?>',
+				d.tname= '<?php echo base64_encode($tname); ?>',
+				d.where= '<?php echo base64_encode($where); ?>',
+				d.csrc= '<?php echo base64_encode($csrc); ?>',
+				d.fdf=$("#fdf").val(),
+				d.fdt=$("#fdt").val(),
+				d.x= '-';
+			}
+		},
+		initComplete: function(){
+			//dttbl_buttons(); //for ajax call
+		}
+	});
+}
+function reloadabsen(){
+	mytbl.ajax.reload();
+}
+function cek(x){
+	$.ajax({
+		type: 'POST',
+		url: 'datasave'+ext,
+		data: {mnu:'cek'+x},
+		success: function(data){
+			var json = JSON.parse(data);
+			alrt(json['msgs'],json['ttl'].toLowerCase(),json['ttl']);
+			reloadabsen();
+		},
+		error: function(xhr){
+			//modal('Error','Server Error');
+			alrt('Could not execute command '+q,'error','Error');
+		}
+	});
+}
 </script>
 
   </body>
