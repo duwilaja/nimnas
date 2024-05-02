@@ -67,11 +67,11 @@ $menu="";
 								<div class="main-container container-fluid">
 									<div class="row row-sm">
 										<div class="card-body mt-2 mb-2">
-											<img src="spruha/assets/img/brand/logo.png" class=" d-lg-none header-brand-img text-start float-start mb-4" alt="logo">
+											<img src="img/logo_smjt-removebg-preview.png" class=" d-lg-none header-brand-img text-start float-start mb-4" alt="logo">
 											<div class="clearfix"></div>
 											<form action="" method="POST" name="login_form" id="login_form">
 												<h5 class="text-start mb-2">Signin to Your Account</h5>
-												<p class="mb-4 text-muted tx-13 ms-0 text-start">Signin to create, discover and connect with the global community</p>
+												<p class="mb-4 text-muted tx-13 ms-0 text-start">Sistem Monitoring Jaringan Terpadu</p>
 												<div class="form-group text-start">
 													<label>Username</label>
 													<input type="text" name="user" class="form-control" placeholder="" value="<?php echo $user?>">

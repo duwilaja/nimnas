@@ -13,8 +13,8 @@
 				</div>
 				<div class="main-header-center">
 					<div class="responsive-logo">
-						<a href="#"><img src="spruha/assets/img/brand/logo.png" class="mobile-logo" alt="logo"></a>
-						<a href="#"><img src="spruha/assets/img/brand/logo-light.png" class="mobile-logo-dark"
+						<a href="#"><img src="img/logo_smjt_landscape-removebg-preview.png" class="mobile-logo" alt="logo"></a>
+						<a href="#"><img src="img/logo_smjt_landscape-removebg-preview.png" class="mobile-logo-dark"
 								alt="logo"></a>
 					</div>
 					<div class="input-group">
