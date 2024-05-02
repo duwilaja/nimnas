@@ -448,7 +448,7 @@ $(document).ready(function(){
 	
 	//mytbl1 = loadTable('#topold','<?php echo base64_encode("assname,loc,gr"); ?>','<?php echo base64_encode("ass_ets"); ?>','<?php echo base64_encode("");?>','<?php echo base64_encode("");?>',[[ 2, "asc" ]],'-');
 	
-	markers=null;
+	markers=[];
 	//getData('onoff','maps-onoff');
 	//widget_map();
 	//getDataChart('tickstt');
@@ -795,7 +795,7 @@ var mytbl=$(divid).DataTable({
 	return mytbl;
 }
 
-var map, markers;
+var map;
 var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 var err='';
 

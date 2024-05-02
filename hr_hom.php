@@ -1,4 +1,6 @@
 <?php 
+$restrict_lvl=array("0");
+
 include "inc.common.php";
 include "inc.session.php";
 
