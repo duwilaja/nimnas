@@ -200,29 +200,37 @@ if($mn=='hrrem'){
 	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
 }
 if($mn=='cekin'){
-	$sql="select * from hr_attend where dt=date(now()) and nik='$s_NIK'";
-	$rs=fetch_alla(exec_qry($conn,$sql));
-	if(count($rs)>0){
-		$sql="update hr_attend set tmin=time(now()),edin=time(now()),status='onsite',typ='Masuk' where tmin='00:00:00' and dt=date(now()) and nik='$s_NIK'";
+	if(trim($s_NIK)==''){
+		$msgs="NIK is blank";
 	}else{
-		$sql="insert into hr_attend (nik,dt,tmin,edin,status,typ) values ('$s_NIK',date(now()),time(now()),time(now()),'onsite','Masuk')";
-	}
-	$rs=exec_qry($conn,$sql);
-	if(db_error($conn)==''){
-		$code="200"; $ttl="success"; $msgs="Data updated";
+		$sql="select * from hr_attend where dt=date(now()) and nik='$s_NIK'";
+		$rs=fetch_alla(exec_qry($conn,$sql));
+		if(count($rs)>0){
+			$sql="update hr_attend set tmin=time(now()),edin=time(now()),status='onsite',typ='Masuk' where tmin='00:00:00' and dt=date(now()) and nik='$s_NIK'";
+		}else{
+			$sql="insert into hr_attend (nik,dt,tmin,edin,status,typ) values ('$s_NIK',date(now()),time(now()),time(now()),'onsite','Masuk')";
+		}
+		$rs=exec_qry($conn,$sql);
+		if(db_error($conn)==''){
+			$code="200"; $ttl="success"; $msgs="Data updated";
+		}
 	}
 }
 if($mn=='cekout'){
-	$sql="select * from hr_attend where dt=date(now()) and nik='$s_NIK'";
-	$rs=fetch_alla(exec_qry($conn,$sql));
-	if(count($rs)>0){
-		$sql="update hr_attend set tmout=time(now()),edout=time(now()),status='onsite',typ='Masuk' where tmout='00:00:00' and dt=date(now()) and nik='$s_NIK'";
+	if(trim($s_NIK)==''){
+		$msgs="NIK is blank";
 	}else{
-		$sql="insert into hr_attend (nik,dt,tmin,edin,status,typ) values ('$s_NIK',date(now()),time(now()),time(now()),'onsite','Masuk')";
-	}
-	$rs=exec_qry($conn,$sql);
-	if(db_error($conn)==''){
-		$code="200"; $ttl="success"; $msgs="Data updated";
+		$sql="select * from hr_attend where dt=date(now()) and nik='$s_NIK'";
+		$rs=fetch_alla(exec_qry($conn,$sql));
+		if(count($rs)>0){
+			$sql="update hr_attend set tmout=time(now()),edout=time(now()),status='onsite',typ='Masuk' where tmout='00:00:00' and dt=date(now()) and nik='$s_NIK'";
+		}else{
+			$sql="insert into hr_attend (nik,dt,tmin,edin,status,typ) values ('$s_NIK',date(now()),time(now()),time(now()),'onsite','Masuk')";
+		}
+		$rs=exec_qry($conn,$sql);
+		if(db_error($conn)==''){
+			$code="200"; $ttl="success"; $msgs="Data updated";
+		}
 	}
 }
 
