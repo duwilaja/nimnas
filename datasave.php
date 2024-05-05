@@ -129,11 +129,20 @@ if($mn=='passwd'){
 	}
 }
 if($mn=='user'){
-	$passwd=post('pwd');
-	$fcols=$passwd==''?'':'upwd';
-	$fvals=$passwd==''?"":"md5('$passwd')";
-	$res=crud($conn,$fcols,$fvals);
-	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
+	if($s_LVL==0){
+		$passwd=post('pwd');
+		$fcols=$passwd==''?'':'upwd';
+		$fvals=$passwd==''?"":"md5('$passwd')";
+		$res=crud($conn,$fcols,$fvals);
+		$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
+	}
+}
+if($mn=='user_batch'){
+	if($s_LVL==0){
+		$res=batch_input($conn,"uid");
+		$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
+		$x=exec_qry($conn,"update core_user set upwd=md5('1') where upwd=''");
+	}
 }
 if($mn=='profile'){
 	$up=upload_file("favatar","avatars/",$s_ID);
@@ -163,6 +172,10 @@ if($mn=='ravatar'){
 
 if($mn=='mkary'){
 	$res=crud($conn);
+	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
+}
+if($mn=='mkary_batch'){
+	$res=batch_input($conn,"nik");
 	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
 }
 if($mn=='hrleav'){

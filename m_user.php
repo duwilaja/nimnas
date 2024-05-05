@@ -47,7 +47,7 @@ disconnect($conn);
 					<div class="card-header">
 						<div class="card-title"><?php echo $card_title ?></div>
 						<div class="card-options ">
-							<!--a href="#" title="Batch" class=""><i class="fe fe-upload"></i></a-->
+							<a href="#" onclick="$('#datas').val('');" data-toggle="modal" data-target="#modal_batch" title="Batch" class=""><i class="fe fe-upload"></i></a>
 							<a href="#" onclick="openForm(0);" data-toggle="modal" data-target="#myModal" title="Add" class=""><i class="fe fe-plus"></i></a>
 							<a href="#" title="Expand/Collapse" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
 							<!--a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a-->
@@ -163,6 +163,49 @@ disconnect($conn);
 	</div>
   </div>
 </div>
+
+
+<!-- Modal Batch -->
+<div class="modal fade modal_form" id="modal_batch" tabindex="-1" role="dialog" aria-labelledby="formModalLabelBatch" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="formModalLabelBatch">Batch <?php echo $modal_title ?></h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<!--div class="card"-->
+					<form class="form-horizontal" id="myfx">
+					<input type="hidden" name="rowid" id="rowid" value="0">
+					<input type="hidden" name="mnu" value="<?php echo $menu?>_batch">
+					<input type="hidden" id="svx" name="sv" />
+					<input type="hidden" name="cols" value="" />
+					<input type="hidden" name="tname" value="core_user" />
+					
+						<!--div class="card-body"-->
+							<div class="form-group">
+								<label class=""><b>Data :</b><br /> - Copy paste from spreadsheet<br /> - 1st row always header field<br /> -  need sample? click <a target="_blank" style="text-decoration:underline;" href="sample_user.xlsx">here</a></label>
+								<div class="">
+									<textarea class="form-control" name="datas" rows="10" id="datas" placeholder="....."></textarea>
+								</div>
+							</div>
+							
+						<!--/div-->
+					</form>
+				<!--/div-->
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" onclick="$('#svx').val('DEL');saveData('#myfx');">Delete</button>
+				<button type="button" class="btn btn-warning" onclick="$('#svx').val('UPD');saveData('#myfx');">Update</button>
+				<button type="button" class="btn btn-success" onclick="$('#svx').val('NEW');saveData('#myfx');">Insert</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Modal Batch -->
 
 <?php 
 include "inc.foot.php";

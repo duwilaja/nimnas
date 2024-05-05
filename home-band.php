@@ -27,6 +27,7 @@ for($i=0;$i<count($maxs);$i++){
 	$rowids[]=$maxs[$i]["mrow"];
 }
 $recs=implode(",",$rowids);
+if($recs=='') $recs="0";
 
 $sql="select n.host,n.name,l.bw,t.ifinoctets_delta as inb, t.ifoutoctets_delta as outb, device_id 
 from core_traffic t join nimdb.core_ports x on x.port=t.port_id join nimdb.core_node n on x.host=n.host 
