@@ -46,8 +46,8 @@ include "inc.menutop.php";
 					<div class="card-header">
 						<div class="card-title"><?php echo $card_title?></div>
 						<div class="card-options ">
-							<!--a href="#" onclick="$('#datas').val('');" data-toggle="modal" data-target="#modal_batch" title="Batch" class=""><i class="fe fe-upload"></i></a>
-							--><a href="#" onclick="openForm(0);" data-toggle="modal" data-target="#myModal" title="Add" class=""><i class="fe fe-plus"></i></a>
+							<a href="#" onclick="$('#datas').val('');" data-toggle="modal" data-target="#modal_batch" title="Batch" class=""><i class="fe fe-upload"></i></a>
+							<a href="#" onclick="openForm(0);" data-toggle="modal" data-target="#myModal" title="Add" class=""><i class="fe fe-plus"></i></a>
 							<a href="#" title="Expand/Collapse" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
 							<!--a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a-->
 						</div>
@@ -162,11 +162,11 @@ include "inc.menutop.php";
 					<input type="hidden" name="mnu" value="<?php echo $menu?>_batch">
 					<input type="hidden" id="svx" name="sv" />
 					<input type="hidden" name="cols" value="" />
-					<input type="hidden" name="tname" value="core_netdiagram" />
+					<input type="hidden" name="tname" value="hr_kary" />
 					
 						<!--div class="card-body"-->
 							<div class="form-group">
-								<label class=""><b>Data :</b><br /> - Copy paste from spreadsheet<br /> - 1st row always header field<br /> -  need sample? click <a target="_blank" style="text-decoration:underline;" href="sample_topology.xlsx">here</a></label>
+								<label class=""><b>Data :</b><br /> - Copy paste from spreadsheet<br /> - 1st row always header field<br /> -  need sample? click <a target="_blank" style="text-decoration:underline;" href="sample_employee.xlsx">here</a></label>
 								<div class="">
 									<textarea class="form-control" name="datas" rows="10" id="datas" placeholder="....."></textarea>
 								</div>
