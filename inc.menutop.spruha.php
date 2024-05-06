@@ -82,7 +82,7 @@
 						</ul>
 					</li>
 					<?php }?>
-					<?php if($is_hr){?>
+					<?php if($is_hr && ($s_LVL==0||$s_LVL==1)){?>
 					<li class="nav-item">
 						<a class="nav-link with-sub" href="javascript:void(0)">
 							<span class="shape1"></span>
@@ -138,7 +138,7 @@
 							</ul>
 							</li>
 					<?php }?>
-					<?php if($is_hr){?>
+					<?php if($is_hr && ($s_LVL==0||$s_LVL==1)){?>
 							<li class="nav-sub-item"><a class="nav-sub-link sub-with-sub" href="javascript:void(0)">HR</a>
 							<ul class="sub-nav-sub">
 								<li class="nav-sub-item"><a class="nav-sub-link" href="r_absen<?php echo $ext?>">Attendance</a></li>

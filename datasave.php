@@ -178,7 +178,7 @@ if($mn=='mkary_batch'){
 	$res=batch_input($conn,"nik");
 	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
 }
-if($mn=='hrleav'){
+if($mn=='hrleav'||$mn=='myleav'){
 	$res=crud($conn);
 	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
 }
