@@ -128,13 +128,13 @@ include "inc.menutop.php";
 								<br /><br />
 								<div class="row">
 									<div class="col-md-4 text-center">
-										<a title="Attendance" class="btn btn-round btn-primary" href="JavaScript:;" data-fancybox data-type="iframe" data-src="prof_att<?php echo $ext?>">Attendance</a>
+										<a title="Attendance" class="btn rounded-pill btn-primary" href="JavaScript:;" data-fancybox data-type="iframe" data-src="prof_att<?php echo $ext?>">Attendance</a>
 									</div>
 									<div class="col-md-4 text-center">
-										<a title="Offtime" class="btn btn-round btn-danger" href="JavaScript:;" data-fancybox data-type="iframe" data-src="prof_leav<?php echo $ext?>">Offtime Request</a>
+										<a title="Offtime" class="btn rounded-pill btn-danger" href="JavaScript:;" data-fancybox data-type="iframe" data-src="prof_leav<?php echo $ext?>">Offtime Request</a>
 									</div>
 									<div class="col-md-4 text-center">
-										<a title="Reimbursement" class="btn btn-round btn-warning" href="JavaScript:;" data-fancybox data-type="iframe" data-src="prof_reim<?php echo $ext?>">Reimbursement</a>
+										<a title="Reimbursement" class="btn rounded-pill btn-warning" href="JavaScript:;" data-fancybox data-type="iframe" data-src="prof_rem<?php echo $ext?>">Reimbursement</a>
 									</div>
 								</div>
 							</div>
@@ -216,7 +216,7 @@ $(document).ready(function(){
 	
 	openForm('profile','<?php echo $s_ID?>');
 	
-	absenku();
+	//absenku();
 })
 
 function absenku(){

@@ -190,7 +190,7 @@ if($mn=='hratt'){
 	}
 	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
 }
-if($mn=='hrrem'){
+if($mn=='hrrem'||$mn=='myrem'){
 	$fname=strtotime("now");
 	$upload=upload_file("attc","remattc/",$fname);
 	$attc=$upload[0]?$upload[1]:"";

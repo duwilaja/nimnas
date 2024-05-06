@@ -205,10 +205,10 @@ while($row = fetch_row($result)){
 		$act='<a title="View" class="dttbl" href="JavaScript:;" data-fancybox data-type="iframe" data-src="r_genshow'.$ext.'?j='.$row[7].'">'.$row[7].'</a>';
 		if($row[6]=='done') $row[7]=$act;
 	}
-	if($x=="hrrem"){
-		$act='<a title="Attachment" class="btn btn-sm btn-primary ripple" href="JavaScript:;" data-fancybox data-type="iframe" data-src="remattc/'.$row[6].'">'.$row[6].'</a>';
+	if($x=="hrrem"||$x=='myrem'){
+		$act='<a title="Attachment" class="btn btn-sm btn-primary ripple" href="JavaScript:;" data-fancybox data-type="iframe" data-src="remattc/'.$row[6].'"><i class="fa fa-paperclip"</i></a>';
 		$row[6]=$act;
-		//$xx='-';
+		if($x=='myrem') $xx='-';
 	}
 	
 	if($x!="-"&&$xx!="-"){ //- means no need to modify first column
