@@ -223,7 +223,7 @@ if($mn=='cekout'){
 		$sql="select * from hr_attend where dt=date(now()) and nik='$s_NIK'";
 		$rs=fetch_alla(exec_qry($conn,$sql));
 		if(count($rs)>0){
-			$sql="update hr_attend set tmout=time(now()),edout=time(now()),status='onsite',typ='Masuk' where tmout='00:00:00' and dt=date(now()) and nik='$s_NIK'";
+			$sql="update hr_attend set tmout=time(now()),edout=time(now()),status='onsite',typ='Masuk' where tmout='00:00:00' and tmin<>'00:00:00' and dt=date(now()) and nik='$s_NIK'";
 		}else{
 			$sql="insert into hr_attend (nik,dt,tmin,edin,status,typ) values ('$s_NIK',date(now()),time(now()),time(now()),'onsite','Masuk')";
 		}
