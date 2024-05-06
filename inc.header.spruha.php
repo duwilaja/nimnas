@@ -86,7 +86,7 @@
 														</option>
 													</select>
 												</div-->
-												<?php if($is_nms){?>
+												<?php if($is_nms && false){?>
 												<form class="form-inline" method="POST" action="n_device<?php echo $ext?>">
 												<input type="text" name="cari" class="form-control"
 													placeholder="">

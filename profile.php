@@ -53,7 +53,7 @@ include "inc.menutop.php";
 											</div>
 											<div class="form-group col-md-6">
 												<label>Name</label>
-												<input type="text" id="uname" name="uname" placeholder="..." class="form-control">
+												<input type="text" readonly id="uname" name="uname" placeholder="..." class="form-control">
 											</div>
 										  </div>
 										  <div class="row">
@@ -68,8 +68,8 @@ include "inc.menutop.php";
 										  </div>
 										  <div class="row">
 											<div class="form-group col-md-6">
-												<label>NMS Group</label>
-												<input readonly type="text" id="ugrp" name="ugrp" placeholder="..." class="form-control">
+												<label>NIK</label>
+												<input readonly type="text" id="unik" name="unik" placeholder="..." class="form-control">
 											</div>
 											<div class="form-group col-md-6">
 												<label>Picture</label>
@@ -125,10 +125,22 @@ include "inc.menutop.php";
 										</div>
 									</div>
 								</div>
+								<br /><br />
+								<div class="row">
+									<div class="col-md-4 text-center">
+										<a title="Attendance" class="btn btn-round btn-primary" href="JavaScript:;" data-fancybox data-type="iframe" data-src="prof_att<?php echo $ext?>">Attendance</a>
+									</div>
+									<div class="col-md-4 text-center">
+										<a title="Offtime" class="btn btn-round btn-danger" href="JavaScript:;" data-fancybox data-type="iframe" data-src="prof_leav<?php echo $ext?>">Offtime Request</a>
+									</div>
+									<div class="col-md-4 text-center">
+										<a title="Reimbursement" class="btn btn-round btn-warning" href="JavaScript:;" data-fancybox data-type="iframe" data-src="prof_reim<?php echo $ext?>">Reimbursement</a>
+									</div>
+								</div>
 							</div>
 						</div>
 						<br />
-						<div class="row">
+						<div class="row hidden">
 							<div class="col-md-12">
 				<div class="card">
 					<div class="card-header justify-content-between border-bottom-0" style="display: flex;">
@@ -172,7 +184,7 @@ include "inc.js.php";
 $tname="hr_attend l left join hr_kary k on k.nik=l.nik";
 $cols="dt,l.nik,nama,edin,reasonin,edout,reasonout,typ,l.rowid";
 $csrc="l.nik,name,typ";
-$where.="l.nik='$s_NIK'";
+$where="l.nik='$s_NIK'";
 ?>
 <script>
 var jvalidate,jvalidatex, mytbl;
