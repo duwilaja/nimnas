@@ -3,9 +3,9 @@ include "inc.common.php";
 include "inc.session.php";
 
 $page_icon="fa fa-table";
-$page_title="Absensi";
+$page_title="Attendance";
 $modal_title="";
-$card_title="Absensi Report";
+$card_title="Attendance Report";
 
 $menu="-";
 
@@ -31,42 +31,25 @@ include "inc.menutop.php";
 			</div-->
 		</div>
 		<!--End Page header-->
-			<!--div class="row">
-				<div class="col-xl-2">
-					<div class="small text-white text-opacity-50 mb-2"><b>BRAND</b></div>
-					<select class="form-select">
-						<option selected>ALL BRAND</option>
-						<option value="1">INRICO</option>
-						<option value="2">MOTOROLA</option>
-						<option value="3">TD TECH</option>
-						<option value="4">MILLTRAC</option>
-						<option value="5">BELFONE</option>
-					</select>
+				<div class="mb-3">
+					<div class="card-body">
+						<div class="row">
+							<div class="col-md-2"><div class="input-group">
+								<input type="text" id="fdf" placeholder="From Date" class="form-control datepicker" value="<?php echo date('Y-m-d')?>">
+								<div class="input-group-append"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
+							</div></div>
+							<div class="col-md-2"><div class="input-group">
+								<input type="text" id="fdt" placeholder="To Date" class="form-control datepicker">
+								<div class="input-group-append"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
+							</div></div>
+							&nbsp;&nbsp;&nbsp;
+							<button type="button" onclick="reloadtbl();" class="btn btn-primary col-md-1">Submit</button>
+							
+							<input type="hidden" id="tname">
+						</div>
+					</div>
 				</div>
-				<div class="col-xl-2">
-					<div class="small text-white text-opacity-50 mb-2"><b>STATUS</b></div>
-					<select class="form-select">
-						<option selected>All STATUS</option>
-						<option value="1">ACTIVE</option>
-						<option value="2">ACTIVE STANDBY</option>
-						<option value="3">STANDBY</option>
-					</select>
-				</div>
-				<div class="col-xl-2">
-					<div class="small text-white text-opacity-50 mb-2"><b>EXPIRED</b></div>
-					<select class="form-select">
-						<option selected>YEAR</option>
-						<option value="1">2024</option>
-						<option value="2">2023</option>
-						<option value="3">2022</option>
-						<option value="4">2021</option>
-					</select>
-				</div>
-				
-			</div>
-
-			<br><br-->
-		
+						
 				<div class="card">
 					<div class="card-header">
 						<div class="card-title"><?php echo $card_title?></div>
@@ -81,12 +64,13 @@ include "inc.menutop.php";
 								<thead>
 									<tr>
 										<th>Date</th>
-										<th>ID</th>
+										<th>NIK</th>
 										<th>Name</th>
 										<th>IN</th>
-										<th>Reason IN</th>
-										<th>Out</th>
-										<th>Reason OUT</th>
+										<th>Remark IN</th>
+										<th>OUT</th>
+										<th>Remark OUT</th>
+										<th>Type</th>
 										
 									</tr>
 								</thead>
@@ -104,16 +88,11 @@ include "inc.menutop.php";
 include "inc.foot.php";
 include "inc.js.php";
 
-
-$tname="erp.absensis a left join core_user u on u.unik=a.nip";
-$cols="date_format(createdAt,'%Y, %m %d, %a') as dd,nip,uname,start_date,reason_in,end_date,reason_out";
-$csrc="uname";
+$tname="hr_attend l left join hr_kary k on k.nik=l.nik";
+$cols="dt,l.nik,nama,edin,reasonin,edout,reasonout,typ,l.rowid";
+$csrc="l.nik,name,typ";
+$where="";
 $grpby="";
-$where="1=1"; $clso="";
-if($mys_LOC!=''){ //session loc
-	//$where.= " AND loc in ('$mys_LOC')";
-}
-
 ?>
 
 <script>
@@ -135,6 +114,8 @@ $(document).ready(function(){
 				d.csrc= '<?php echo base64_encode($csrc); ?>',
 				d.grpby= '<?php echo base64_encode($grpby); ?>',
 				d.where= '<?php echo base64_encode($where); ?>',
+				d.fdf=$("#fdf").val(),
+				d.fdt=$("#fdt").val(),
 				d.x= '<?php echo $menu?>';
 			}
 		},
@@ -154,7 +135,14 @@ $(document).ready(function(){
 			required : true
 		}
     }});
+	
+	datepicker();
+
 });
+
+function reloadtbl(){
+	mytbl.ajax.reload();
+}
 
 </script>
 

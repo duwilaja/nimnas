@@ -131,7 +131,7 @@ include "inc.menutop.php";
 										<a title="Attendance" class="btn rounded-pill btn-primary" href="JavaScript:;" data-fancybox data-type="iframe" data-src="prof_att<?php echo $ext?>">Attendance</a>
 									</div>
 									<div class="col-md-4 text-center">
-										<a title="Offtime" class="btn rounded-pill btn-danger" href="JavaScript:;" data-fancybox data-type="iframe" data-src="prof_leav<?php echo $ext?>">Offtime Request</a>
+										<a title="Offtime" class="btn rounded-pill btn-danger" href="JavaScript:;" data-fancybox data-type="iframe" data-src="prof_leav<?php echo $ext?>">DayOff Request</a>
 									</div>
 									<div class="col-md-4 text-center">
 										<a title="Reimbursement" class="btn rounded-pill btn-warning" href="JavaScript:;" data-fancybox data-type="iframe" data-src="prof_rem<?php echo $ext?>">Reimbursement</a>
