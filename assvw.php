@@ -4,6 +4,9 @@ $cleartext=true;
 include "inc.common.php";
 include "inc.session.php";
 
+
+include '../phpqrcode/qrlib.php';
+
 $ass=$_GET["id"];
 
 $page_icon="fa fa-home";
@@ -25,6 +28,14 @@ if(count($recs)<1){ disconnect($conn); header("Location: error$ext?m=No data fou
 $sql="select ticketno,stts from tick_ets where sn='$ass' order by dtm desc";
 $hist=fetch_alla(exec_qry($conn,$sql));
 disconnect($conn);
+
+$kode = $recs[0]["sn"]."/".$recs[0]["assname"]."/".$recs[0]["loc"]."/".$recs[0]["brand"]."/".$recs[0]["cat"];
+$filename="qr/$ass.png";
+$errorCorrectionLevel = "L";
+$matrixPointSize = "6";
+if(!file_exists($filename)){
+	QRcode::png($kode, $filename, $errorCorrectionLevel, $matrixPointSize, 2);
+}
 ?>
 
 				<div class="app-content page-body">
@@ -94,7 +105,10 @@ disconnect($conn);
 																	<th scope="row">License Expired</th>
 																	<td><?php echo $recs[0]["licexp"]?></td>
 																</tr>
-
+																<tr>
+																	<th scope="row">QR</th>
+																	<td><img src="<?php echo $filename?>"></td>
+																</tr>
 															</tbody>
 														</table>
 													</div>
