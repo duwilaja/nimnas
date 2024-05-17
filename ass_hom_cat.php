@@ -23,6 +23,7 @@ $tot=0;
 for($i=0;$i<count($rs);$i++){
 	$tot+=intval($rs[$i]['tot']);
 }
+$tot=$tot==0?1:$tot;
 for($i=0;$i<count($rs);$i++){
 	//echo '<tr><td>'.$rs[$i]['catname'].'</td></tr>';
 	/*$ico='fe fe-activity';
