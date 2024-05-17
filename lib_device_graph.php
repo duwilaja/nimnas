@@ -13,8 +13,13 @@ $l=get("l");
 $df=get("f")==''?date('Y-m-d'):base64_decode(get("f"));
 $dt=get("t")==''?date('Y-m-d'):base64_decode(get("t"));
 
+$conn=connect();
+$rs=fetch_alla(exec_qry($conn,"select name from core_node where host='$h'"));
+$name=$rs[0]["name"];
+disconnect($conn);
+
 $page_icon="fa fa-home";
-$page_title="$h/$g";
+$page_title="$h ($name)/$g";
 $modal_title="My Profile";
 $menu="lib_device";
 
