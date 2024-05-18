@@ -14,7 +14,7 @@ $df=post("df");
 $dt=post("dt");
 $dfdt=($df!=''&&$dt!='')?"from=".strtotime("$df 00:00:00")."&to=".strtotime("$dt 23:59:59"):"";
 
-$sql="select ifName,ifDescr from ports where device_id=$id";
+$sql="select ifName,ifDescr from ports where device_id=$id and deleted=0";
 $rs=exec_qry($conn,$sql);
 $ports=fetch_alla($rs);
 
