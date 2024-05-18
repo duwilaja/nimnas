@@ -1,11 +1,11 @@
 <?php 
-$restrict_lvl=array("0");
+//$restrict_lvl=array("0");
 
 include "inc.common.php";
 include "inc.session.php";
 
 $page_icon="fa fa-table";
-$page_title="Offtime Request";
+$page_title="DayOff Request";
 $modal_title="Request";
 $card_title="$page_title";
 
@@ -23,9 +23,10 @@ $o_lstt=[
 	["Approved","Approved"]
 ];
 
+$myprof=1;
 
 include "inc.head.php";
-//include "inc.menutop.php";
+include "inc.menutop.php";
 
 ?>
 

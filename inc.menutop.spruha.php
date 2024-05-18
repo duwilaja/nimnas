@@ -4,7 +4,7 @@
 			<div class="main-menu main-sidebar main-sidebar-sticky side-menu">
 				<div class="main-sidebar-header main-container-1 active">
 					<div class="sidemenu-logo">
-						<a class="main-logo" href="#">
+						<a class="main-logo" href="home<?php echo $ext?>">
 							<img src="img/logo_smjt_landscape-removebg-preview.png" class="header-brand-img desktop-logo" alt="logo">
 							<img src="spruha/assets/img/brand/icon-light.png" class="header-brand-img icon-logo" alt="logo">
 							<img src="img/logo_smjt_landscape-removebg-preview.png" class="header-brand-img desktop-logo theme-logo" alt="logo">
@@ -17,6 +17,34 @@
 				<div class="slide-right" id="slide-right"><i class="fe fe-chevron-right"></i></div>
 				<ul class="menu-nav nav">
 					<li class="nav-header"><span class="nav-label">&nbsp;</span></li>
+					<li class="nav-header"><span class="nav-label">&nbsp;</span></li>
+<?php if(isset($myprof)){?>
+					<li class="nav-header"><span class="nav-label">My Profile</span></li>
+					<li class="nav-item">
+						<a class="nav-link" href="prof_att<?php echo $ext?>">
+							<span class="shape1"></span>
+							<span class="shape2"></span>
+							<i class="ti-user sidemenu-icon menu-icon "></i>
+							<span class="sidemenu-label">Attendance</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="prof_leav<?php echo $ext?>">
+							<span class="shape1"></span>
+							<span class="shape2"></span>
+							<i class="ti-shift-right sidemenu-icon menu-icon "></i>
+							<span class="sidemenu-label">DayOff Request</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="prof_rem<?php echo $ext?>">
+							<span class="shape1"></span>
+							<span class="shape2"></span>
+							<i class="ti-wallet sidemenu-icon menu-icon "></i>
+							<span class="sidemenu-label">Reimbursment</span>
+						</a>
+					</li>
+<?php }else{?>
 					<?php if($is_nms){?>
 					<li class="nav-item">
 						<a class="nav-link with-sub" href="javascript:void(0)">
@@ -210,7 +238,7 @@
 							<li class="nav-sub-item"><a class="nav-sub-link muser" href="t_snmp<?php echo $ext?>">SNMP</a></li>
 						</ul>
 					</li>
-					
+<?php }?>
 				</ul>
 				<!-- END menu -->
 				</div>
