@@ -33,7 +33,7 @@ if(count($rpt)<1 && count($recs)<1) die("no data found");
 						<div class="row">
 						<?php foreach($recs as $r){?>
 							<div class="col-md-6 col-sm-6">
-							<?php echo $r['host']?> - <?php echo $r['nm']?><br />
+							<?php echo $r['host']?> - <?php echo $r['nm']?> / <?php echo $rpt[0]['dtf']?> to <?php echo $rpt[0]['dtt']?><br />
 							<img style="width:100%" src="<?php echo $rpt_dir.$r['job'].'/'.$r['host']?>.png" />
 							</div>
 						<?php }?>
