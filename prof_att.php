@@ -24,9 +24,10 @@ $o_lstt=[
 	["Approved","Approved"]
 ];
 
+$myprof=1;
 
 include "inc.head.php";
-//include "inc.menutop.php";
+include "inc.menutop.php";
 
 ?>
 

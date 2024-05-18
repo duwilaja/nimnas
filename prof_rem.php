@@ -25,8 +25,10 @@ $o_remstt=[
 ];
 
 
+$myprof=1;
+
 include "inc.head.php";
-//include "inc.menutop.php";
+include "inc.menutop.php";
 
 ?>
 

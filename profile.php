@@ -9,6 +9,8 @@ $menu="profile";
 
 $breadcrumb="Profile/$page_title";
 
+$myprof=1;
+
 include "inc.head.php";
 include "inc.menutop.php";
 ?>
@@ -126,7 +128,7 @@ include "inc.menutop.php";
 									</div>
 								</div>
 								<br /><br />
-								<div class="row">
+								<div class="row hidden">
 									<div class="col-md-4 text-center">
 										<a title="Attendance" class="btn rounded-pill btn-primary" href="JavaScript:;" data-fancybox data-type="iframe" data-src="prof_att<?php echo $ext?>">Attendance</a>
 									</div>
