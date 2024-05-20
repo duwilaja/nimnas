@@ -238,6 +238,18 @@ if($mn=='mport'){
 	$res=crud($conn);
 	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
 }
+if($mn=='mportall'){
+	$where = "(1=1)";
+	$where.=post("host")!=""?" and host like '".post("host")."'":"";
+	$where.=post("ifname")!=""?" and ifname like '".post("ifname")."'":"";
+	$sql="update core_ports set traffic='".post("traffic")."' where $where";
+	$rs=exec_qry($conn,$sql);
+	if(db_error($conn)==''){
+		$code="200"; $ttl="success"; $msgs="Data updated";
+	}else{
+		$msgs=db_error($conn);
+	}
+}
 if($mn=='severity'){
 	$res=crud($conn);
 	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];

@@ -41,6 +41,39 @@ include "inc.menutop.php";
 			</div-->
 		</div>
 		<!--End Page header-->
+		<div class="row">
+			<div class="col-md-3">
+				<div class="mg-b-20">
+					<div class="form-group">
+						<label>Host</label>
+						<input type="text" id="hos" placeholder="[blank] = All" class="form-control">
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="mg-b-20">
+					<div class="form-group">
+						<label>IfName</label>
+						<input type="text" id="ifn" placeholder="[blank] = All" class="form-control">
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="mg-b-20">
+					<div class="form-group">
+						<label>Traffic?</label>
+						<select id="tra" placeholder="..." class="form-control">
+							<option value=""></option>
+							<option value="Y">Y</option>
+							<option value="N">N</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-2 pt-3">
+				<button type="button" class="btn btn-danger my-2 btn-icon-text" onclick="apdetall();">Update All</button>
+			</div>
+		</div>
 		
 				<div class="card">
 					<div class="card-header">
@@ -263,6 +296,34 @@ function loaddatas(){
 		}
 	});
 }
+
+function apdetall(){
+	var url='datasave'+ext;
+	var mtd='POST';
+	
+	//alert(frmdata);
+	
+	$.ajax({
+		type: mtd,
+		url: url,
+		data: {mnu:'mportall',host:$("#hos").val(),ifname:$("#ifn").val(),traffic:$("#tra").val()},
+		success: function(data){
+			var json = JSON.parse(data);
+			//modal(json['ttl'],json['msgs']);
+			if(json['code']=='200'){
+				if(typeof(reloadtbl)=='function') reloadtbl();
+				alrt(json['msgs'],'success',json['ttl']);
+			}else{
+				alrt(json['msgs'],'error',json['ttl']);
+			}
+		},
+		error: function(xhr){
+			//modal('Error','Please check your connection');
+			alrt('Please check your connection','error','Error');
+		}
+	});
+}
+
 </script>
 
   </body>
