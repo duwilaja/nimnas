@@ -409,8 +409,8 @@ include "inc.menutop.php";
 include "inc.foot.php";
 include "inc.js.php";
 
-$tname="tick_ets t left join tick_cat c on t.cat=c.catid left join core_location l on l.locid=t.loc";
-$cols="ticketno,stts,prio,name,h,d,catname,grp,dtm,created,creby,t.rowid";
+$tname="tick_ets t left join tick_cat c on t.cat=c.catid left join core_location l on l.locid=t.loc left join core_user u on u.uid=creby";
+$cols="ticketno,stts,prio,name,h,d,catname,grp,dtm,created,uname,t.rowid";
 $csrc="ticketno,h,name";
 
 ?>
