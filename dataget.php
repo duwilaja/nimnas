@@ -113,6 +113,9 @@ switch($q){
 	case 'remtot': $tname="hr_remb";
 				$sql="select status as stts,count(status) as ctot, sum(tot) as stot from $tname group by status";
 				break;
+	case 'leavtot': $tname="hr_leav";
+				$sql="select if(status='','pending',status) as stts,count(status) as ctot, sum(0) as stot from $tname group by status";
+				break;
 	case 'abscat': $sql="select status as x,dt as z,count(rowid) as y from hr_attend group by status,dt order by dt"; break;
 				
 	case 'nodes': $sql="select n.rowid as id, n.host as label, concat(typ,'/',name) as title, concat('img/cat/',replace(trim(lower(typ)),' ','-'),'.png') as image, 'image' as shape,

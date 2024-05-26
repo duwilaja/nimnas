@@ -19,8 +19,8 @@ $o_ltyp=[
 	["Sakit","Sakit"]
 ];
 $o_lstt=[
-	["Reject","Reject"],
-	["Approved","Approved"]
+	["rejected","Reject"],
+	["approved","Approve"]
 ];
 
 
@@ -45,9 +45,89 @@ include "inc.menutop.php";
 			</div-->
 		</div>
 		<!--End Page header-->
+		<div class="row">
+			<div class="col-xl-2">
+				<div class="small text-opacity-50 mb-2 text-whitex"><b>TANGGAL</b></div>
+				<div class="mg-b-20">
+					<div class="input-group">
+						<div class="input-group-text border-end-0">
+							<i class="fe fe-calendar lh--9 op-6"></i>
+						</div>
+						<input class="form-control datepicker" id="dt" placeholder="" type="text">
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-6">
+				<div class="small text-opacity-50 mb-2 text-whitex"><b>LOCATION</b></div>
+				<select class="form-control select2" id="loc">
+					<option value="">All LOCATION</option>
+					<?php echo options($o_loc)?>
+					</select>
+			</div>
+			<div class="col-xl-2 pt-3">
+				<button type="button" class="btn btn-primary my-2 btn-icon-text">Filter</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6 col-md-6 col-lg-3">
+				<div class="card custom-card">
+					<div class="card-body text-center">
+						<div class="icon-service bg-primary-transparent rounded-circle text-primary">
+							<i class="fa fa-arrow-up"></i>
+						</div>
+						<p class="mb-1 text-muted">Request</p>
+						<h3 class="mb-0 xtot">0</h3>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6 col-md-6 col-lg-3">
+				<div class="card custom-card">
+					<div class="card-body text-center">
+						<div class="icon-service bg-success-transparent rounded-circle text-success">
+							<i class="fa fa-check"></i>
+						</div>
+						<p class="mb-1 text-muted">Approve</p>
+						<h3 class="mb-0 xapproved">0</h3>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6 col-md-6 col-lg-3">
+				<div class="card custom-card">
+					<div class="card-body text-center">
+						<div class="icon-service bg-warning-transparent rounded-circle text-warning">
+							<i class="fa fa-spinner"></i>
+						</div>
+						<p class="mb-1 text-muted">Pending</p>
+						<h3 class="mb-0 xpending">0</h3>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6 col-md-6 col-lg-3">
+				<div class="card custom-card">
+					<div class="card-body text-center">
+						<div class="icon-service bg-danger-transparent rounded-circle text-danger">
+							<i class="fa fa-ban"></i>
+						</div>
+						<p class="mb-1 text-muted">Reject</p>
+						<h3 class="mb-0 xrejected">0</h3>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6 col-md-6 col-lg-4 hidden">
+				<div class="card custom-card bg-success">
+					<div class="card-body text-center">
+						<div class="icon-service bg-success-transparent rounded-circle text-light">
+							<i class="si si-wallet"></i>
+						</div>
+						<p class="mb-1 text-white">Cost Operation</p>
+						<h3 class="mb-0 mtot">Rp 0</h3>
+					</div>
+				</div>
+			</div>
+		</div>
 		
 				<div class="card">
-					<div class="card-header">
+					<div class="card-header hidden">
 						<div class="card-title"><?php echo $card_title?></div>
 						<div class="card-options ">
 							<!--a href="#" onclick="$('#datas').val('');" data-toggle="modal" data-target="#modal_batch" title="Batch" class=""><i class="fe fe-upload"></i></a>
@@ -144,7 +224,7 @@ include "inc.menutop.php";
 		</form>
 	  </div>
 	  <div class="modal-footer">
-		<button type="button" class="btn btn-danger" id="bdel"  onclick="confirmDelete();">Delete</button>
+		<!--button type="button" class="btn btn-danger" id="bdel"  onclick="confirmDelete();">Delete</button-->
 		<button type="button" class="btn btn-success" id="bsav" onclick="saveData();">Save</button>
 		<button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
 		
@@ -200,10 +280,10 @@ include "inc.foot.php";
 include "inc.js.php";
 
 $tname="hr_leav l left join hr_kary k on k.nik=l.nik";
-$cols="l.nik,nama,dtf,dtt,typ,status,rmk,l.rowid";
+$cols="l.nik,nama,dtf,dtt,typ,if(status='','pending',status) as stts,rmk,l.rowid";
 $csrc="l.nik,name,typ";
 $where="l.nik='$s_NIK' or leader='$s_NIK'";
-
+$where="";
 ?>
 
 <script>
@@ -251,13 +331,47 @@ $(document).ready(function(){
 	datepicker();
 	//timepicker();
 	//selectpicker(true);
+	
+	gettot();
 });
 
 function reloadtbl(){
 	mytbl.ajax.reload();
 }
 
-function openformcallback(q,json){
+function gettot(){
+	$.ajax({
+		type: 'POST',
+		url: 'dataget'+ext,
+		data: {q:'leavtot',dt:$("#dt").val(),loc:$("#loc").val()},
+		success: function(data){
+			var json = JSON.parse(data);
+			if(json['code']=='200'){
+				var tot=0; var mtot=0;
+				for(var i=0;i<json['msgs'].length;i++){
+					var d=json['msgs'][i];
+					$(".x"+d['stts']).html(d['ctot']);
+					tot+=parseInt(d['ctot']);
+					//if(d['stts']=='approved') mtot+=parseInt(d['stot']);
+				}
+				$(".xtot").html(tot); $(".mtot").html("Rp."+mtot);
+			}else{
+				log(json['msgs']);
+			}
+			/*if(parseInt($(".xinactive").html())>0){
+				if($(".blink").hasClass("bg-danger")) $(".blink").removeClass("bg-danger").addClass("blink-bg");
+			}else{
+				if($(".blink").hasClass("blink-bg")) $(".blink").addClass("bg-danger").removeClass("blink-bg");
+			}*/
+		},
+		error: function(xhr){
+			log('Please check your connection'+xhr);
+		}
+	});
+	//setTimeout(gettot,1000*300);
+}
+
+function openformcallbackx(q,json){
 	$(".reado").attr("readonly",true);
 	if($("#rowid").val()=="0"){
 		$("#nik").val("<?php echo $s_NIK?>");

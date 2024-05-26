@@ -21,7 +21,9 @@ $o_ltyp=[
 	["Terlambat","Terlambat"]
 ];
 $o_lstt=[
-	["Approved","Approved"]
+	["onsite","on site"],
+	["offsite","off site"],
+	["offduty","off duty"]
 ];
 
 
@@ -66,7 +68,7 @@ include "inc.menutop.php";
 					</div>
 				</div>
 				<div class="card">
-					<div class="card-header">
+					<div class="card-header hidden">
 						<div class="card-title"><?php echo $card_title?></div>
 						<div class="card-options ">
 							<!--a href="#" onclick="$('#datas').val('');" data-toggle="modal" data-target="#modal_batch" title="Batch" class=""><i class="fe fe-upload"></i></a>
@@ -159,7 +161,7 @@ include "inc.menutop.php";
 					<?php echo options($o_ltyp)?>
 				</select>
 			</div>
-			<div class="form-group col-md-6 hidden">
+			<div class="form-group col-md-6">
 				<label>Status</label>
 				<!--input type="text" readonly id="status" name="status" placeholder="..." class="form-control"-->
 				<select class="form-control reado" id="status" name="status">
@@ -168,11 +170,22 @@ include "inc.menutop.php";
 				</select>
 			</div>
 		  </div>
+		  <div class="row">
+			<div class="form-group col-md-6">
+				<label>Pict. In</label><br />
+				<span id="potoin"></span>
+			</div>
+			<div class="form-group col-md-6">
+				<label>Pict. Out</label><br />
+				<span id="potoout"></span>
+			</div>
+		  </div>
 		  
 		</form>
 	  </div>
 	  <div class="modal-footer">
-		<button type="button" class="btn btn-danger" id="bdel"  onclick="confirmDelete();">Delete</button>
+	  
+		<!--button type="button" class="btn btn-danger" id="bdel"  onclick="confirmDelete();">Delete</button-->
 		<button type="button" class="btn btn-success" id="bsav" onclick="saveData();">Save</button>
 		<button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
 		
@@ -235,7 +248,7 @@ if($_GET["stt"]!=""){
 	$where.=" and status='".$_GET["stt"]."'";
 }
 if($mys_LOC!=''){
-	$where.=" and (l.nik='$s_NIK' or leader='$s_NIK')";
+	//$where.=" and (l.nik='$s_NIK' or leader='$s_NIK')";
 }
 ?>
 
@@ -296,6 +309,18 @@ function reloadtbl(){
 }
 
 function openformcallback(q,json){
+	var nimapi="<?php echo $nimapi?>files/";
+	$("#potoin").html("");
+	$("#potoout").html("");
+	if(json!=''){
+		var pin=json["msgs"][0]["photoin"];
+		var pout=json["msgs"][0]["photoout"];
+		if(pin!="") $("#potoin").html('<img style="height:200px; width:auto;" src="'+nimapi+pin+'">');
+		if(pout!="") $("#potoout").html('<img style="height:200px; width:auto;" src="'+nimapi+pout+'">');
+	}
+}
+
+function openformcallbackx(q,json){
 	$(".reado").attr("readonly",true);
 	if($("#rowid").val()=="0"){
 		$("#nik").val("<?php echo $s_NIK?>");
