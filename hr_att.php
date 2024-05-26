@@ -327,6 +327,11 @@ function reloadtbl(){
 	mytbl.ajax.reload();
 }
 
+
+function mappicker(lat,lng,ttl=''){
+	window.open("mapgugel"+ext+"?ttl="+ttl+"&lat="+$(lat).val()+"&lng="+$(lng).val(),"MapWindow","width=830,height=500,location=no").focus();
+}
+
 function openformcallback(q,json){
 	var nimapi="<?php echo $nimapi?>files/";
 	$("#potoin").html("");
@@ -334,8 +339,8 @@ function openformcallback(q,json){
 	if(json!=''){
 		var pin=json["msgs"][0]["photoin"];
 		var pout=json["msgs"][0]["photoout"];
-		if(pin!="") $("#potoin").html('<img style="height:200px; width:auto;" src="'+nimapi+pin+'">');
-		if(pout!="") $("#potoout").html('<img style="height:200px; width:auto;" src="'+nimapi+pout+'">');
+		if(pin!="") $("#potoin").html('<img style="height:200px; width:auto;" src="'+nimapi+pin+'">&nbsp;&nbsp;<button class="btn btn-info" type="button" onclick="mappicker(\'#latin\',\'#lngin\',\'IN\');"><i class="fa fa-map-pin"></i></button>');
+		if(pout!="") $("#potoout").html('<img style="height:200px; width:auto;" src="'+nimapi+pout+'">&nbsp;&nbsp;<button class="btn btn-info" type="button" onclick="mappicker(\'#latout\',\'#lngout\',\'OUT\');"><i class="fa fa-map-pin"></i></button>');
 	}
 }
 
