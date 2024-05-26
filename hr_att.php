@@ -154,6 +154,16 @@ include "inc.menutop.php";
 			</div>
 		  </div>
 		  <div class="row">
+			<div class="form-group col-md-4">
+				<label>OUT</label>
+				<input type="text" id="edout" name="edout" placeholder="..." class="form-control timepicker">
+			</div>
+			<div class="form-group col-md-8">
+				<label>Remark OUT</label>
+				<input type="text" id="reasonout" name="reasonout" placeholder="..." class="form-control">
+			</div>
+		  </div>
+		  <div class="row">
 			<div class="form-group col-md-6">
 				<label>Type</label>
 				<select class="form-control " id="typ" name="typ">
@@ -168,6 +178,25 @@ include "inc.menutop.php";
 					<option value="">-</option>
 					<?php echo options($o_lstt)?>
 				</select>
+			</div>
+		  </div>
+		  <div class="row">
+			<div class="form-group col-md-3">
+				<label>Lat.IN</label>
+				<input type="text" id="latin" name="latin" placeholder="..." class="form-control">
+			</div>
+			<div class="form-group col-md-3">
+				<label>Lng.IN</label>
+				<input type="text" id="lngin" name="lngin" placeholder="..." class="form-control">
+			</div>
+		  
+			<div class="form-group col-md-3">
+				<label>Lat.OUT</label>
+				<input type="text" id="latout" name="latout" placeholder="..." class="form-control">
+			</div>
+			<div class="form-group col-md-3">
+				<label>Lng.OUT</label>
+				<input type="text" id="lngout" name="lngout" placeholder="..." class="form-control">
 			</div>
 		  </div>
 		  <div class="row">
@@ -242,7 +271,7 @@ include "inc.js.php";
 
 $tname="hr_attend l left join hr_kary k on k.nik=l.nik";
 $cols="dt,l.nik,nama,edin,reasonin,edout,reasonout,typ,l.rowid";
-$csrc="l.nik,name,typ";
+$csrc="l.nik,nama,typ";
 $where="(1=1)";
 if($_GET["stt"]!=""){
 	$where.=" and status='".$_GET["stt"]."'";
