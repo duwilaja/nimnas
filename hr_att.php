@@ -154,16 +154,6 @@ include "inc.menutop.php";
 			</div>
 		  </div>
 		  <div class="row">
-			<div class="form-group col-md-4">
-				<label>OUT</label>
-				<input type="text" id="edout" name="edout" placeholder="..." class="form-control timepicker">
-			</div>
-			<div class="form-group col-md-8">
-				<label>Remark OUT</label>
-				<input type="text" id="reasonout" name="reasonout" placeholder="..." class="form-control">
-			</div>
-		  </div>
-		  <div class="row">
 			<div class="form-group col-md-6">
 				<label>Type</label>
 				<select class="form-control " id="typ" name="typ">
