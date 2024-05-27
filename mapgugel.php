@@ -144,7 +144,7 @@ function initAutocomplete() {
 
   const map = new google.maps.Map(document.getElementById("map"), {
     center: myLatLng,
-    zoom: 7,
+    zoom: 13,
     mapTypeId: "roadmap",
   });
   new google.maps.Marker({
