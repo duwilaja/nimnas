@@ -93,6 +93,7 @@ switch($q){
 				dtm >= DATE_SUB(DATE_ADD(LAST_DAY(NOW()), INTERVAL 1 DAY), INTERVAL 1 YEAR) group by bul,bln,stts order by bul"; break;
 	
 	case 'profile': $sql="select * from core_user where uid='$id'"; break;
+	case 'myatt': $sql="select l.*,nama,leader from hr_attend l left join hr_kary k on k.nik=l.nik where l.rowid='$id' and l.nik='$s_NIK'"; break;
 	
 	case 'home1': $sql="select count(host) as tdev, sum(status) as tdup, count(host)-sum(status) as tdon from core_status"; 
 			if($mys_LOC!='') $sql.=" where host in (select host from core_node where $whr)"; 

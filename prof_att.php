@@ -108,7 +108,7 @@ include "inc.menutop.php";
 	  </div>
 	  <div class="modal-body">
 		<!--p>Lorem ipsum dolor sit amet consectetur.</p-->
-		<form id="myf" class="form-horizontal">
+		<form id="myfcvx" class="form-horizontal">
 <!--hidden-->
 <input type="hidden" name="rowid" id="rowid" value="0">
 <input type="hidden" name="mnu" value="<?php echo $menu?>">
@@ -158,7 +158,7 @@ include "inc.menutop.php";
 					<?php echo options($o_ltyp)?>
 				</select>
 			</div>
-			<div class="form-group col-md-6 hidden">
+			<div class="form-group col-md-6">
 				<label>Status</label>
 				<!--input type="text" readonly id="status" name="status" placeholder="..." class="form-control"-->
 				<select class="form-control reado" id="status" name="status">
@@ -167,12 +167,42 @@ include "inc.menutop.php";
 				</select>
 			</div>
 		  </div>
+		  <div class="row">
+			<div class="form-group col-md-3">
+				<label>Lat.IN</label>
+				<input type="text" id="latin" name="latin" placeholder="..." class="form-control">
+			</div>
+			<div class="form-group col-md-3">
+				<label>Lng.IN</label>
+				<input type="text" id="lngin" name="lngin" placeholder="..." class="form-control">
+			</div>
+		  
+			<div class="form-group col-md-3">
+				<label>Lat.OUT</label>
+				<input type="text" id="latout" name="latout" placeholder="..." class="form-control">
+			</div>
+			<div class="form-group col-md-3">
+				<label>Lng.OUT</label>
+				<input type="text" id="lngout" name="lngout" placeholder="..." class="form-control">
+			</div>
+		  </div>
+		  <div class="row">
+			<div class="form-group col-md-6">
+				<label>Pict. In</label><br />
+				<span id="potoin"></span>
+			</div>
+			<div class="form-group col-md-6">
+				<label>Pict. Out</label><br />
+				<span id="potoout"></span>
+			</div>
+		  </div>
 		  
 		</form>
 	  </div>
 	  <div class="modal-footer">
-		<button type="button" class="btn btn-danger" id="bdel"  onclick="confirmDelete();">Delete</button>
-		<button type="button" class="btn btn-success" id="bsav" onclick="saveData();">Save</button>
+	  
+		<!--button type="button" class="btn btn-danger" id="bdel"  onclick="confirmDelete();">Delete</button>
+		<button type="button" class="btn btn-success" id="bsav" onclick="saveData();">Save</button-->
 		<button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
 		
 	  </div>
@@ -257,7 +287,7 @@ $(document).ready(function(){
 				d.csrc= '<?php echo base64_encode($csrc); ?>',
 				d.fdf=$("#fdf").val(),
 				d.fdt=$("#fdt").val(),
-				d.x= '-';
+				d.x= '<?php echo $menu?>';
 			}
 		},
 		initComplete: function(){
@@ -265,7 +295,7 @@ $(document).ready(function(){
 		}
 	});
 	//dttbl_buttons(); //remark this if ajax dttbl call
-	jvalidate = $("#myf").validate({
+	jvalidate = $("#myfcvx").validate({
     ignore: ":hidden:not(.selectpicker)",
 	rules :{
         "edin" : {
@@ -294,24 +324,19 @@ function reloadtbl(){
 	mytbl.ajax.reload();
 }
 
+function mappicker(lat,lng,ttl=''){
+	window.open("mapgugel"+ext+"?ttl="+ttl+"&lat="+$(lat).val()+"&lng="+$(lng).val(),"MapWindow","width=830,height=500,location=no").focus();
+}
+
 function openformcallback(q,json){
-	$(".reado").attr("readonly",true);
-	if($("#rowid").val()=="0"){
-		$("#nik").val("<?php echo $s_NIK?>");
-		$(".hideme").hide();
-		$("#eprup").hide();
-	}else{
-		if(json['msgs'][0]['leader']=='<?php echo $s_NIK?>'){
-			$("#eprup").show();
-			$(".reado").attr("readonly",false);
-		}else{
-			$("#eprup").hide();
-		}
-		$(".hideme").show();
-	}
-	if(json['msgs'][0]['status']!='') {
-		//$("#bdel").hide();
-		//$("#bsav").hide();
+	var nimapi="<?php echo $nimapi?>files/";
+	$("#potoin").html("");
+	$("#potoout").html("");
+	if(json!=''){
+		var pin=json["msgs"][0]["photoin"];
+		var pout=json["msgs"][0]["photoout"];
+		if(pin!="") $("#potoin").html('<img style="height:200px; width:auto;" src="'+nimapi+pin+'">&nbsp;&nbsp;<button class="btn btn-info" type="button" onclick="mappicker(\'#latin\',\'#lngin\',\'IN\');"><i class="fa fa-map-pin"></i></button>');
+		if(pout!="") $("#potoout").html('<img style="height:200px; width:auto;" src="'+nimapi+pout+'">&nbsp;&nbsp;<button class="btn btn-info" type="button" onclick="mappicker(\'#latout\',\'#lngout\',\'OUT\');"><i class="fa fa-map-pin"></i></button>');
 	}
 }
 
