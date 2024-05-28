@@ -110,7 +110,7 @@
 						</ul>
 					</li>
 					<?php }?>
-					<?php if($is_hr && ($s_LVL==0||$s_LVL==1)){?>
+					<?php if($is_hr && ($s_LVL==0||$s_LVL==1||$s_LVL==2)){?>
 					<li class="nav-item">
 						<a class="nav-link with-sub" href="javascript:void(0)">
 							<span class="shape1"></span>

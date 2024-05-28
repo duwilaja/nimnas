@@ -211,8 +211,13 @@ disconnect($conn);
 include "inc.foot.php";
 include "inc.js.php";
 
+$cases="";
+for($i=0;$i<count($o_ulvl);$i++){
+	$cases.=" when ulvl='".$o_ulvl[$i][0]."' then '".$o_ulvl[$i][1]."'";
+}
+
 $tname="core_user";
-$cols="uid,uname,umail,case when ulvl='0' then 'Super' when ulvl='1' then 'Admin' when ulvl='11' then 'User' end,uloc,utick,unik,rowid";
+$cols="uid,uname,umail,case  $cases  end,uloc,utick,unik,rowid";
 $csrc="uid,uname";
 
 ?>
