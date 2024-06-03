@@ -21,18 +21,21 @@ $conn=connect();
 $whr=($mys_LOC=='')?"1=1":" loc in ('$mys_LOC')";
 
 $ord="desc";
-
 //find the hosts and the bw of the loc
-$sql="select distinct n.host,n.name,l.bw,device from nimdb.core_node n join nimdb.core_location l on l.locid=n.loc
+$sql="select distinct n.host,n.name,l.bw,device,port from nimdb.core_node n join nimdb.core_location l on l.locid=n.loc
 join nimdb.core_ports x on x.host=n.host where traffic='Y' and $whr";
 $rs=exec_qry($conn,$sql);
 $locs=fetch_alla($rs);
 $devices=array();
+$ports=array(0);
 for($i=0;$i<count($locs);$i++){
 	$devices[]=$locs[$i]["device"];
+	$ports[]=$locs[$i]["port"];
 }
 $devs=implode(",",$devices);
+$recs=implode(",",$ports);
 
+/*
 //look for the latest record
 $sql="select max(t.rowid) as mrow,device_id from libdb.core_traffic t join nimdb.core_ports x on x.port=t.port_id where traffic='Y' and device_id in ($devs) group by device_id";
 $rs=exec_qry($conn,$sql);
@@ -46,7 +49,12 @@ $recs=implode(",",$rowids);
 $sql="select t.ifinoctets_delta as inb, t.ifoutoctets_delta as outb, device_id 
 from libdb.core_traffic t where t.rowid in ($recs) and t.ifoutoctets_delta<>t.ifinoctets_delta
  order by inb $ord";
+*/
 
+$sql="select t.ifinoctets_delta as inb, t.ifoutoctets_delta as outb, device_id 
+from libdb.ports t where t.port_id in ($recs) and t.ifoutoctets_delta<>t.ifinoctets_delta
+ order by inb $ord";
+ 
 $rs=exec_qry($conn,$sql);
 $lists=fetch_alla($rs);
 
