@@ -12,12 +12,13 @@ $whr=($mys_LOC=='')?"1=1":" loc in ('$mys_LOC')";
 
 $ord=post("ord");
 
+/*
 $sql="select n.host,name,loc,typ,sum(t.ifinoctets_delta) as inb,sum(t.ifoutoctets_delta) as outb 
 from core_traffic t join nimdb.core_ports x on x.port=t.port_id join nimdb.core_node n on x.host=n.host 
 where date(dtm)=date(now()) and traffic='Y' and t.ifoutoctets_delta<>t.ifinoctets_delta and $whr 
 group by n.host,name,loc,typ 
  order by inb $ord limit 5";
-
+ 
 //look for the latest record
 $sql="select max(t.rowid) as mrow,device_id from core_traffic t join nimdb.core_ports x on x.port=t.port_id where traffic='Y' group by device_id";
 $rs=exec_qry($conn,$sql);
@@ -28,11 +29,12 @@ for($i=0;$i<count($maxs);$i++){
 }
 $recs=implode(",",$rowids);
 if($recs=='') $recs="0";
+*/
 
 $sql="select n.host,n.name,l.bw,t.ifinoctets_delta as inb, t.ifoutoctets_delta as outb, device_id 
-from core_traffic t join nimdb.core_ports x on x.port=t.port_id join nimdb.core_node n on x.host=n.host 
+from ports t join nimdb.core_ports x on x.port=t.port_id join nimdb.core_node n on x.host=n.host 
 left join nimdb.core_location l on l.locid=n.loc 
-where t.rowid in ($recs) and t.ifoutoctets_delta<>t.ifinoctets_delta and $whr 
+where x.traffic='Y' and t.ifoutoctets_delta<>t.ifinoctets_delta and $whr 
  order by inb $ord limit 5";
 
 $rs=exec_qry($conn,$sql);
