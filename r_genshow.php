@@ -21,6 +21,7 @@ disconnect($conn);
 
 if(count($rpt)<1 && count($recs)<1) die("no data found");
  
+$img_ext=($rpt[0]['rpt']=='ping')?".png":$trf_img;
 ?>
 				<div class="app-content page-body">
 					<div class="row"><div class="col-12" style="text-align:right;">
@@ -34,7 +35,7 @@ if(count($rpt)<1 && count($recs)<1) die("no data found");
 						<?php foreach($recs as $r){?>
 							<div class="col-md-6 col-sm-6">
 							<?php echo $r['host']?> - <?php echo $r['nm']?> / <?php echo $rpt[0]['dtf']?> to <?php echo $rpt[0]['dtt']?><br />
-							<img style="width:100%" src="<?php echo $rpt_dir.$r['job'].'/'.$r['host']?>.png" />
+							<img style="width:100%" src="<?php echo $rpt_dir.$r['job'].'/'.$r['host'].$img_ext?>" />
 							</div>
 						<?php }?>
 						</div>
