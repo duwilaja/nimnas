@@ -15,7 +15,9 @@ $breadcrumb="Report/$page_title";
 
 $o_lovrpt=[
 	["ping","ping"],
-	["traffic","traffic"]
+	["traffic","traffic"],
+	["wan1","wan1 traffic"],
+	["wan2","wan2 traffic"]
 ];
 
 $gx=($s_GRP=="")?"":" and val='$s_GRP'";
