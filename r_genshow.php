@@ -29,16 +29,22 @@ $img_ext=($rpt[0]['rpt']=='ping')?".png":$trf_img;
 					</div></div>
 
 					<div class="container" style="text-align:center" id="prin">
-					<h5><?php echo $rpt[0]['ttl']?></h5>
+					<div class="row"><div class="col-md-1"><img src="img/telk.png"></div>
+					<div class="col-md-10"><h5><?php echo $rpt[0]['ttl']?></h5>
 					<h6><?php echo str_ireplace("\n","<br />",$rpt[0]['dscr'])?></h6>
+					</div><div class="col-md-1"><img src="img/diknas.png"></div></div>
+					<hr />
 						<div class="row">
 						<?php foreach($recs as $r){?>
-							<div class="col-md-6 col-sm-6">
+							<div class="col-md-12 col-sm-12">
+							<br />
 							<?php echo $r['host']?> - <?php echo $r['nm']?> / <?php echo $rpt[0]['dtf']?> to <?php echo $rpt[0]['dtt']?><br />
 							<img style="width:100%" src="<?php echo $rpt_dir.$r['job'].'/'.$r['host'].$img_ext?>" />
 							</div>
 						<?php }?>
 						</div>
+						&nbsp;
+						<hr />
 					</div>
 				</div><!-- end app-content-->
 				
