@@ -119,9 +119,14 @@ include "inc.menutop.php";
 				</div>
 				<div class="col-xl-6 col-xxl-6 col-md-12 col-lg-6">
 					<div class="card custom-card wallet-1" style="min-height: 445px;">
-						<div class="card custom-card card-dashboard-calendar pb-0">
-							<label class="main-content-label mb-2 pt-1">Longest Down</label>
-							<span class="d-block tx-12 mb-2 text-muted"></span>
+						<div class="card-header justify-content-between" style="display: flex;">
+							 <div class="card-title main-content-label mb-1"> Longest Down </div> 
+							 <span><a title="all" href="JavaScript:;" data-fancybox data-type="iframe" data-src="longdown<?php echo $ext?>"> <i class="fe fe-copy"></i> </a>&nbsp;&nbsp;
+							 <!--a href="javascript:void(0);" data-bs-toggle="card-fullscreen"> <i class="fe fe-maximize"></i> </a--></span>
+						</div>
+						<div class="card-body pb-0">
+							<!--label class="main-content-label mb-2 pt-1">Longest Down</label>
+							<span class="d-block tx-12 mb-2 text-muted"></span-->
 							<table class="table table-hover m-b-0 transcations mt-2">
 								<tbody id="isi-ketam">
 								</tbody>
