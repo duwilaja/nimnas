@@ -3,26 +3,31 @@ include "inc.common.php";
 include "inc.session.php";
 
 $page_icon="fa fa-home";
-$page_title="Report";
+$page_title="Attandance Report";
 $modal_title="Title of Modal";
 $menu="";
 
 include "inc.db.php";
 
 $conn=connect();
-$j=get('j',$conn);
-$sql="select  * from core_bgrpt where job='$j'";
-$rpt=fetch_alla(exec_qry($conn,$sql));
-$sql="select  * from core_bgrptjob where job='$j'";
-$recs=fetch_alla(exec_qry($conn,$sql));
+$df=post('df',$conn);
+$dt=post('dt',$conn);
+$nm=post('nikx',$conn);
+
+$where="1=1";
+if($df!='') $where.=" and dt>='$df'";
+if($dt!='') $where.=" and dt<='$dt'";
+if($nm!='') $where.=" and nama='$nm'";
+
+$sql="select dt,l.nik,nama,edin,reasonin,edout,reasonout,typ from hr_attend l left join hr_kary k on k.nik=l.nik where $where order by l.nik,dt";
+$recs=fetch_all(exec_qry($conn,$sql));
+
 disconnect($conn);
 
-if(count($rpt)<1 && count($recs)<1) die("no data found");
- 
+if(count($recs)<1) die("no data found");
+
 include "inc.head.php";
 //include "inc.menutop.php";
-
-$img_ext=($rpt[0]['rpt']=='ping')?".png":$trf_img;
 ?>
 				<div class="app-content page-body">
 					<div class="row"><div class="col-12" style="text-align:right;">
@@ -31,18 +36,42 @@ $img_ext=($rpt[0]['rpt']=='ping')?".png":$trf_img;
 
 					<div class="container" style="text-align:center" id="prin">
 					<div class="row"><div class="col-md-1"><img src="img/telk.png"></div>
-					<div class="col-md-10"><h5><?php echo $rpt[0]['ttl']?></h5>
-					<h6><?php echo str_ireplace("\n","<br />",$rpt[0]['dscr'])?></h6>
+					<div class="col-md-10"><h5><?php echo $page_title?></h5>
+					<h6><?php echo "$df - $dt"?></h6>
 					</div><div class="col-md-1"><img src="img/diknas.png"></div></div>
 					<hr />
 						<div class="row">
-						<?php foreach($recs as $r){?>
 							<div class="col-md-12 col-sm-12">
-							<br />
-							<?php echo $r['host']?> - <?php echo $r['nm']?> / <?php echo $rpt[0]['dtf']?> to <?php echo $rpt[0]['dtt']?><br />
-							<img style="width:100%" src="<?php echo $rpt_dir.$r['job'].'/'.$r['host'].$img_ext?>" />
-							</div>
+							<table id="mytbl" class="table table-striped table-bordered w-100">
+								<thead>
+									<tr>
+										<th>Date</th>
+										<th>NIK</th>
+										<th>Name</th>
+										<th>IN</th>
+										<th>Remark IN</th>
+										<th>OUT</th>
+										<th>Remark OUT</th>
+										<th>Type</th>
+										
+									</tr>
+								</thead>
+								<tbody>
+						<?php foreach($recs as $r){?>
+									<tr>
+										<td><?php echo $r[0]?></td>
+										<td><?php echo $r[1]?></td>
+										<td><?php echo $r[2]?></td>
+										<td><?php echo $r[3]?></td>
+										<td><?php echo $r[4]?></td>
+										<td><?php echo $r[5]?></td>
+										<td><?php echo $r[6]?></td>
+										<td><?php echo $r[7]?></td>
+									</tr>
 						<?php }?>
+								</tbody>
+							</table>
+							</div>
 						</div>
 						&nbsp;
 						<hr />
