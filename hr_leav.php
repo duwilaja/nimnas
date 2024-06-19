@@ -284,6 +284,10 @@ $cols="l.nik,nama,dtf,dtt,typ,if(status='','pending',status) as stts,rmk,l.rowid
 $csrc="l.nik,name,typ";
 $where="l.nik='$s_NIK' or leader='$s_NIK'";
 $where="";
+
+if($s_LVL>1){
+	$menu="-";
+}
 ?>
 
 <script>

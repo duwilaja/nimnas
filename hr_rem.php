@@ -295,6 +295,9 @@ $cols="l.nik,nama,status,submitted,tot,des,attc,l.rowid";
 $csrc="l.nik,nama,des";
 $where="";
 
+if($s_LVL>1){
+	$menu="-";
+}
 ?>
 
 <script>
