@@ -269,6 +269,9 @@ if($_GET["stt"]!=""){
 if($mys_LOC!=''){
 	//$where.=" and (l.nik='$s_NIK' or leader='$s_NIK')";
 }
+if($s_LVL>1){
+	$menu="-";
+}
 ?>
 
 <script>

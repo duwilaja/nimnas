@@ -17,14 +17,17 @@ include "inc.menutop.php";
 include "inc.db.php";
 $where="";
 $o_kar=array();
-if($s_LVL>2){
+if($s_LVL>1){
 	$where="l.nik='$s_NIK'";
+	$sql="select nama,nama from hr_kary where nik='$s_NIK' order by nama";
 }else{
-	$conn=connect();
-	$rs=exec_qry($conn,"select nama,nama from hr_kary order by nama");
-	$o_kar=fetch_all($rs);
-	disconnect($conn);
+	$sql="select nama,nama from hr_kary order by nama";
 }
+
+$conn=connect();
+$rs=exec_qry($conn,$sql);
+$o_kar=fetch_all($rs);
+disconnect($conn);
 
 ?>
 

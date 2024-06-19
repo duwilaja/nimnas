@@ -62,8 +62,8 @@ disconnect($conn);
 										<th>Name</th>
 										<th>Status</th>
 										<th>Network</th>
-										<th>Location</th>
-										<th>Group</th>
+										<th>Province</th>
+										<!--th>Group</th-->
 										<th>Type</th>
 									</tr>
 								</thead>
@@ -207,9 +207,10 @@ $typ=get("typ")==""?"1=1":"typ='".get("typ")."'";
 
 $where = "$loc and $status and $typ";
 
-$tname="core_node n left join core_status s on n.host=s.host";
+$tname="core_node n left join core_status s on n.host=s.host left join core_location l on l.locid=loc";
 $cols="n.host,n.name,if(status=1,'UP','DOWN') as stt,net,loc,grp,typ,n.rowid";
-$csrc="n.host,name,net,loc,grp,typ";
+$cols="n.host,n.name,if(status=1,'UP','DOWN') as stt,net,prov,typ,loc,n.rowid";
+$csrc="n.host,name,net,prov,typ";
 $grpby="";
 
 $cari=post("cari");

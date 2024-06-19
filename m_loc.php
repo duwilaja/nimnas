@@ -105,18 +105,18 @@ include "inc.menutop.php";
 		  <div class="row mb-3">
 			<div class="form-group col-md-6">
 				<label>Province</label>
-				<!--input type="text" id="prov" name="prov" placeholder="..." class="form-control"-->
-				<select class="form-control " id="prov" name="prov" onchange="getkabkot(this.value);">
+				<input type="text" id="prov" name="prov" placeholder="..." class="form-control">
+				<!--select class="form-control " id="prov" name="prov" onchange="getkabkot(this.value);">
 					<option value="">-</option>
 					<?php echo options($o_prov)?>
-				</select>
+				</select-->
 			</div>
 			<div class="form-group col-md-6">
 				<label>City</label>
-				<!--input type="text" id="city" name="city" placeholder="..." class="form-control"-->
-				<select class="form-control " id="city" name="city">
+				<input type="text" id="city" name="city" placeholder="..." class="form-control">
+				<!--select class="form-control " id="city" name="city">
 					<option value="">-</option>
-				</select>
+				</select-->
 			</div>
 		  </div>
 		  <div class="row mb-3">
