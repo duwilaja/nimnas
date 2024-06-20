@@ -69,7 +69,7 @@ disconnect($conn);
 							<button type="button" onclick="reloadtbl();" class="btn btn-primary">Refresh</button>
 							</div>
 							<div class="col-md-1">
-							<button type="button" onclick="this.form.submit();" class="btn btn-info">Submit</button>
+							<button type="button" onclick="this.form.submit();" class="btn btn-info">Download</button>
 							</div>
 							<input type="hidden" id="tname">
 						</div>
