@@ -54,7 +54,7 @@ disconnect($conn);
 								<div class="input-group-append"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
 							</div></div>
 							<div class="col-md-6"><div class="input-group">
-								<select id="hos" class="form-control">
+								<select id="hos" class="form-control select2">
 									<option value="">--- Please Select ---</option>
 									<?php echo options($rs)?>
 								</select>
@@ -104,7 +104,7 @@ var hosts=<?php echo json_encode($rs)?>;
 $(document).ready(function(){
 	page_ready();
 	datepicker(true);
-	
+	$(".select2").select2();
 });
 function gethos(i){
 	var rr='';
