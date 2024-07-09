@@ -12,6 +12,8 @@ $g=get("g");
 $l=get("l");
 $df=get("f")==''?date('Y-m-d'):base64_decode(get("f"));
 $dt=get("t")==''?date('Y-m-d'):base64_decode(get("t"));
+$tf="00:00:00";
+$tt="23:59:59";
 
 $conn=connect();
 $rs=fetch_alla(exec_qry($conn,"select name from core_node where host='$h'"));
@@ -51,8 +53,16 @@ include "inc.head.php";
 								<div class="input-group-append"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
 							</div></div>
 							<div class="col-md-2"><div class="input-group">
+								<input type="text" id="tf" placeholder="From Time" class="form-control timepicker" value="<?php echo $tf?>">
+								<div class="input-group-append"><span class="input-group-text"><i class="fa fa-clock"></i></span></div>
+							</div></div>
+							<div class="col-md-2"><div class="input-group">
 								<input type="text" id="dt" placeholder="To Date" class="form-control datepicker" value="<?php echo $dt?>">
 								<div class="input-group-append"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
+							</div></div>
+							<div class="col-md-2"><div class="input-group">
+								<input type="text" id="tt" placeholder="From Date" class="form-control timepicker" value="<?php echo $tt?>">
+								<div class="input-group-append"><span class="input-group-text"><i class="fa fa-clock"></i></span></div>
 							</div></div>
 							&nbsp;&nbsp;&nbsp;
 							<button type="button" onclick="submit_graph();" class="btn btn-primary col-md-1">Submit</button>
@@ -105,13 +115,14 @@ $(document).ready(function(){
 	page_ready();
 	
 	datepicker(true);
+	timepicker();
 	//get_content("device_perf<?php echo $ext?>",{h:"<?php echo $h?>"},".ldr-perf","#isi-perf");
 	submit_graph();
 	
 });
 
 function submit_graph(){
-	get_content("lib_graph<?php echo $ext?>",{lnk:$("#lnk").val(),df:$("#df").val(),dt:$("#dt").val()},".ldr-graph","#isi-graph");
+	get_content("lib_graph<?php echo $ext?>",{lnk:$("#lnk").val(),df:$("#df").val(),dt:$("#dt").val(),tf:$("#tf").val(),tt:$("#tt").val()},".ldr-graph","#isi-graph");
 }
 </script>
 
