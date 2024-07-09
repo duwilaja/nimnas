@@ -8,8 +8,8 @@ include "inc.session.php";
 include "inc.db.php";
 
 $lnk=post("lnk");
-$df=post("df")." 00:00:00";
-$dt=post("dt")." 23:59:59";
+$df=post("df");//." 00:00:00";
+$dt=post("dt");//." 23:59:59";
 
 $b=strtotime($df);
 $e=strtotime($dt);
