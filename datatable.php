@@ -191,6 +191,7 @@ while($row = fetch_row($result)){
 		$row[0]=$act;
 		$xx='-';
 	}
+	
 	if($x=="ticknotes"){
 		$act='<a title="Attachment" class="btn btn-sm btn-primary ripple" href="JavaScript:;" data-fancybox data-type="iframe" data-src="tickattc/'.$row[4].'">'.$row[4].'</a>';
 		$row[4]=$act;
@@ -205,6 +206,11 @@ while($row = fetch_row($result)){
 	if($x=='rgen'){
 		$act='<a title="View" class="dttbl" href="JavaScript:;" data-fancybox data-type="iframe" data-src="r_genshow'.$ext.'?j='.$row[7].'">'.$row[7].'</a>';
 		if($row[6]=='done') $row[7]=$act;
+	}
+	if($x=='rperf'){
+		$act='<a title="Overview" class="btn btn-sm btn-primary ripple" href="JavaScript:;" data-fancybox data-type="iframe" data-src="device'.$ext.'?h='.$row[0].'">'.$row[0].'</a>';
+		$row[0]=$act;
+		$xx='-';
 	}
 	if($x=="hrrem"||$x=='myrem'){
 		$act='<a title="Attachment" class="btn btn-sm btn-primary ripple" href="JavaScript:;" data-fancybox data-type="iframe" data-src="remattc/'.$row[6].'"><i class="fa fa-paperclip"</i></a>';
