@@ -122,6 +122,7 @@ if($mys_LOC!=''){ //session loc
 										<th>Solved</th>
 										<th>Pending</th>
 										<th>Total</th>
+										<th>MTTR</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -139,8 +140,10 @@ include "inc.foot.php";
 include "inc.js.php";
 
 
-$tname="tick_ets";
-$cols="ticketno,dtm,h,d,cat,svc,loc,created,creby,closed,clsby,MY_SECTOTIME(snew),MY_SECTOTIME(sprogress),MY_SECTOTIME(ssolved),MY_SECTOTIME(spending),MY_SECTOTIME(TIMESTAMPDIFF(SECOND, created, closed)),rowid";
+$tname="tick_ets t left join core_location  l on locid=loc left join core_user u1 on creby=u1.uid left join core_user u2 on clsby=u2.uid";
+$cols="ticketno,dtm,h,d,cat,svc,l.name,created,u1.uname,closed,u2.uname,
+MY_SECTOTIME(snew),MY_SECTOTIME(sprogress),MY_SECTOTIME(ssolved),MY_SECTOTIME(spending),MY_SECTOTIME(TIMESTAMPDIFF(SECOND, created, closed)),
+MY_SECTOTIME(snew+sprogress+ssolved),t.rowid";
 $csrc="ticketno,h,d";
 $grpby="";
 
