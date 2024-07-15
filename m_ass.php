@@ -257,7 +257,7 @@ include "inc.js.php";
 
 $tname="ass_ets a left join ass_brand b on brid=brand left join ass_cat c on catid=cat left join core_location l on locid=loc";
 $cols="assid,assname,brname,catname,name,stts,warexp,licexp,a.rowid";
-$csrc="assname";
+$csrc="assname,name";
 
 $where="1=1";
 $loc=get("loc");
