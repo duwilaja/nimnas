@@ -62,7 +62,7 @@ disconnect($conn);
 										<th>Name</th>
 										<th>Mail</th>
 										<th>Level</th>
-										<!--th>NMS Group</th-->
+										<th>Mobile Group</th>
 										<th>Location</th>
 										<th>Ticketing Group</th>
 										<th>NIK</th>
@@ -118,23 +118,23 @@ disconnect($conn);
 				<label>NIK</label>
 				<input type="text" id="unik" name="unik" placeholder="..." class="form-control">
 			</div>
-			<div class="form-group col-md-6 hidden">
-				<label>NMS Group</label>
-				<select class="form-control " id="ugrp" name="ugrp">
-					<option value=""></option>
-					<?php echo options($o_grp)?>
-				</select>
-			</div>
 		  </div>
 		  <div class="row">
-			<div class="form-group col-md-6">
+			<div class="form-group col-md-4">
 				<label>Level</label>
 				<select class="form-control " id="ulvl" name="ulvl">
 					<option value="">-</option>
 					<?php echo options($o_ulvl)?>
 				</select>
 			</div>
-			<div class="form-group col-md-6">
+			<div class="form-group col-md-4">
+				<label>Mobile Group</label>
+				<select class="form-control " id="ugrp" name="ugrp">
+					<option value=""></option>
+					<?php echo options($o_grp)?>
+				</select>
+			</div>
+			<div class="form-group col-md-4">
 				<label>Ticketing Group</label>
 				<select class="form-control " id="utick" name="utick">
 					<option value="">-</option>
