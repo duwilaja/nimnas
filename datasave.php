@@ -266,6 +266,12 @@ if($mn=='location_batch'){
 	$res=batch_input($conn,"locid");
 	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
 }
+if($mn=='location_ba'){
+	$upload=upload_file("bai","bai/");
+	$bai=$upload[0]?$upload[1]:"";
+	$res=crud($conn,"bai","'$bai'");
+	$code=$res[0]; $ttl=$res[1]; $msgs=$bai.$res[2];
+}
 if($mn=='mbg'){
 	$res=crud($conn);
 	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
