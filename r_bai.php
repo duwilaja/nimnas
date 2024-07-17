@@ -66,10 +66,10 @@ include "inc.js.php";
 
 $bai="concat('<a target=\"_blank\" href=\"bai/',bai,'\">',bai,'</a>') as bi";
 
-$tname="core_location l";
-$cols="locid,l.name,$bai";
-$csrc="";
-$grpby="locid,l.name";
+$tname="core_location";
+$cols="locid,name,$bai";
+$csrc="locid,name";
+$grpby="";
 $where=""; $clso="";
 if($mys_LOC!=''){ //session loc
 	$where.= "locid in ('$mys_LOC')";
@@ -83,7 +83,7 @@ $(document).ready(function(){
 	mytbl = $("#mytbl").DataTable({
 		serverSide: true,
 		processing: true,
-		searching: false,
+		searching: true,
 		buttons: ['copy', 'csv'],
 		lengthMenu: [[10,50,100,500,-1],["10","50","100","500","All"]],
 		ajax: {
