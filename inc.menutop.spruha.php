@@ -95,7 +95,7 @@
 						</ul>
 					</li>
 					<?php }?>
-					<?php if($is_asset){?>
+					<?php if($is_asset && $s_LVL!=12){?>
 					<li class="nav-item">
 						<a class="nav-link with-sub" href="javascript:void(0)">
 							<span class="shape1"></span>
@@ -135,7 +135,9 @@
 							<span class="sidemenu-label">Reports</span>
 						</a>
 						<ul class="nav-sub">
+					<?php if($is_bai){?>
 							<li class="nav-sub-item"><a class="nav-sub-link rbai" href="r_bai<?php echo $ext?>">BAI</a></li>
+					<?php }?>
 					<?php if($is_nms){?>
 							<li class="nav-sub-item"><a class="nav-sub-link sub-with-sub" href="javascript:void(0)">Monitoring</a>
 							<ul class="sub-nav-sub">
@@ -159,7 +161,7 @@
 							</ul>
 							</li>
 					<?php }?>
-					<?php if($is_asset){?>
+					<?php if($is_asset && $s_LVL!=12){?>
 							<li class="nav-sub-item"><a class="nav-sub-link sub-with-sub" href="javascript:void(0)">Asset</a>
 							<ul class="sub-nav-sub">
 								<li class="nav-sub-item"><a class="nav-sub-link mlov" href="r_asssum<?php echo $ext?>">Summary</a></li>
