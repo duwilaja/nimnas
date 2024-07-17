@@ -17,6 +17,8 @@ include "inc.db.php";
 $conn=connect();
 $rs=exec_qry($conn,"select iso,name from core_province order by name");
 $o_prov=fetch_all($rs);
+$rs=exec_qry($conn,"select rowid,name from core_location order by name");
+$o_loc=fetch_all($rs);
 disconnect($conn);
 
 include "inc.head.php";
@@ -46,8 +48,9 @@ include "inc.menutop.php";
 						<div class="card-options ">
 							<a href="#" onclick="$('#datas').val('');" data-toggle="modal" data-target="#modal_batch" title="Batch" class=""><i class="fe fe-upload"></i></a>
 							<a href="#" onclick="openForm(0);" data-toggle="modal" data-target="#myModal" title="Add" class=""><i class="fe fe-plus"></i></a>
-							<a href="#" title="Expand/Collapse" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
-							<!--a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a-->
+							<a href="#" onclick="openBAI();" data-toggle="modal" data-target="#modal_ba" title="BAI" class=""><i class="fe fe-file"></i></a>
+							<!--a href="#" title="Expand/Collapse" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+							<a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a-->
 						</div>
 					</div>
 					<div class="card-body">
@@ -60,9 +63,9 @@ include "inc.menutop.php";
 										<th>Addr</th>
 										<th>City</th>
 										<th>Prov</th>
-										<th>Internet</th>
-										<th>VPN</th>
-										<th>Minutes Diff</th>
+										<th>Internet B/W</th>
+										<th>VPN B/W</th>
+										<th>BAI</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -149,11 +152,11 @@ include "inc.menutop.php";
 		  </div>
 		  <div class="row mb-3">
 			<div class="form-group col-md-4">
-				<label>VPN</label>
+				<label>VPN B/W</label>
 				<input type="text" id="lnk" name="lnk" placeholder="..." class="form-control">
 			</div>
 			<div class="form-group col-md-4">
-				<label>Internet</label>
+				<label>Internet B/W</label>
 				<input type="text" id="bw" name="bw" placeholder="..." class="form-control">
 			</div>
 			<div class="form-group col-md-4">
@@ -216,12 +219,55 @@ include "inc.menutop.php";
 </div>
 <!-- End Modal Batch -->
 
+<!-- Modal Batch -->
+<div class="modal fade modal_form" id="modal_ba" tabindex="-3" role="dialog" aria-labelledby="formModalLabelBa" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="formModalLabelBa">Upload BAI</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal" id="myfz">
+				<!--input type="hidden" name="rowid" id="rowid" value="0"-->
+				<input type="hidden" name="mnu" value="<?php echo $menu?>_ba">
+				<input type="hidden" id="svz" name="sv" value="UPD" />
+				<input type="hidden" name="cols" value="" />
+				<input type="hidden" name="tname" value="core_location" />
+				<div class="row mb-3">
+					<div class="form-group col-md-12">
+						<label>Location</label>
+						<!--input type="text" id="locid" name="locid" placeholder="..." class="form-control"-->
+						<select class="form-control select2" id="rowidz" name="rowid">
+						<option value="">-- Please Select --</option>
+						<?php echo options($o_loc)?>
+						</select>
+					</div>
+				</div>
+				<div class="row mb-3">
+					<div class="form-group col-md-12">
+						<label>BAI File</label>
+						<input type="file" id="bai" name="bai" placeholder="..." class="form-control">
+					</div>
+				</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-success" onclick="saveData('#myfz');">Save</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- End Modal Batch -->
 <?php 
 include "inc.foot.php";
 include "inc.js.php";
 
 $tname="core_location";
-$cols="locid,name,addr,city,prov,bw,lnk,hrminutediff,rowid";
+$cols="locid,name,addr,city,prov,bw,lnk,bai,rowid";
 $csrc="name,addr,city,prov";
 
 ?>
@@ -264,10 +310,19 @@ $(document).ready(function(){
 	//datepicker();
 	//timepicker();
 	//selectpicker(true);
+	$(".select2").select2();
 });
 
 function reloadtbl(){
 	mytbl.ajax.reload();
+}
+
+function openBAI(){
+	$('#bai').val('');
+	$("#rowidz").select2('destroy');
+	$('#rowidz').val('');
+	$("#rowidz").select2();
+	$('#modal_ba').modal('show');
 }
 
 function mappicker(lat,lng){

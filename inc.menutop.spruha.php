@@ -135,6 +135,7 @@
 							<span class="sidemenu-label">Reports</span>
 						</a>
 						<ul class="nav-sub">
+							<li class="nav-sub-item"><a class="nav-sub-link rbai" href="r_bai<?php echo $ext?>">BAI</a></li>
 					<?php if($is_nms){?>
 							<li class="nav-sub-item"><a class="nav-sub-link sub-with-sub" href="javascript:void(0)">Monitoring</a>
 							<ul class="sub-nav-sub">
