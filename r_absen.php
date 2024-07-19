@@ -1,4 +1,6 @@
 <?php 
+$restrict_lvl=array("0","1","2");
+
 include "inc.common.php";
 include "inc.session.php";
 
@@ -59,7 +61,7 @@ disconnect($conn);
 								<input type="text" id="fdt" name="dt" placeholder="To Date" class="form-control datepicker">
 								<div class="input-group-append"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
 							</div></div>
-							<div class="col-md-3">
+							<div class="col-md-4">
 							<select class="form-control select2" id="nikx" name="nikx">
 								<option value="">All</option>
 								<?php echo options($o_kar)?>

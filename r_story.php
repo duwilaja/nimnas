@@ -5,9 +5,9 @@ include "inc.common.php";
 include "inc.session.php";
 
 $page_icon="fa fa-table";
-$page_title="Reimbursement";
+$page_title="Activity";
 $modal_title="";
-$card_title="Reimbursement";
+$card_title="Activity Report";
 
 $menu="-";
 
@@ -15,6 +15,22 @@ $breadcrumb="Reports/$page_title";
 
 include "inc.head.php";
 include "inc.menutop.php";
+
+include "inc.db.php";
+$where="";
+$o_kar=array();
+if($s_LVL>1){
+	$where="l.nik='$s_NIK'";
+	$sql="select nama,nama from hr_kary where nik='$s_NIK' order by nama";
+}else{
+	$sql="select nama,nama from hr_kary order by nama";
+}
+
+$conn=connect();
+$rs=exec_qry($conn,$sql);
+$o_kar=fetch_all($rs);
+disconnect($conn);
+
 ?>
 
 <div class="app-content page-body">
@@ -35,20 +51,31 @@ include "inc.menutop.php";
 		<!--End Page header-->
 				<div class="mb-3">
 					<div class="card-body">
+						<form method="post" target="_blank" action="r_absenx<?php echo $ext?>">
 						<div class="row">
 							<div class="col-md-2"><div class="input-group">
-								<input type="text" id="fdf" placeholder="From Date" class="form-control datepicker" value="<?php echo date('Y-m-d')?>">
+								<input type="text" id="fdf" name="df" placeholder="From Date" class="form-control datepicker" value="<?php echo date('Y-m-d')?>">
 								<div class="input-group-append"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
 							</div></div>
 							<div class="col-md-2"><div class="input-group">
-								<input type="text" id="fdt" placeholder="To Date" class="form-control datepicker">
+								<input type="text" id="fdt" name="dt" placeholder="To Date" class="form-control datepicker">
 								<div class="input-group-append"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
 							</div></div>
-							&nbsp;&nbsp;&nbsp;
-							<button type="button" onclick="reloadtbl();" class="btn btn-primary col-md-1">Submit</button>
-							
+							<div class="col-md-4">
+							<select class="form-control select2" id="nikx" name="nikx">
+								<option value="">All</option>
+								<?php echo options($o_kar)?>
+							</select>
+							</div>
+							<div class="col-md-1">
+							<button type="button" onclick="reloadtbl();" class="btn btn-primary">Refresh</button>
+							</div>
+							<!--div class="col-md-1">
+							<button type="button" onclick="this.form.submit();" class="btn btn-info">Download</button>
+							</div-->
 							<input type="hidden" id="tname">
 						</div>
+						</form>
 					</div>
 				</div>
 						
@@ -65,12 +92,11 @@ include "inc.menutop.php";
 							<table id="mytbl" class="table table-striped table-bordered w-100">
 								<thead>
 									<tr>
+										<th>Date/Time</th>
 										<th>NIK</th>
 										<th>Name</th>
-										<th>Status</th>
-										<th>Submited</th>
-										<th>Total</th>
-										<th>Remark</th>
+										<th>Note</th>
+										<th>Img</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -87,12 +113,11 @@ include "inc.menutop.php";
 include "inc.foot.php";
 include "inc.js.php";
 
+$img="concat('<a target=\"_blank\" href=\"story/',photo,'\">',photo,'</a>') as img";
 
-$tname="hr_remb l left join hr_kary k on k.nik=l.nik";
-$cols="l.nik,nama,status,submitted,tot,des,attc,l.rowid";
-$csrc="l.nik,nama,des";
-
-$where="";
+$tname="hr_story l left join hr_kary k on k.nik=l.nik";
+$cols="dtm,l.nik,nama,txt,$img,l.rowid";
+$csrc="l.nik,nama";
 $grpby="";
 ?>
 
@@ -114,8 +139,12 @@ $(document).ready(function(){
 				d.tname= '<?php echo base64_encode($tname); ?>',
 				d.csrc= '<?php echo base64_encode($csrc); ?>',
 				d.grpby= '<?php echo base64_encode($grpby); ?>',
-				d.where= getWhere(),
-				d.x= '-';
+				d.where= '<?php echo base64_encode($where); ?>',
+				d.fdtmf=$("#fdf").val(),
+				d.fdtmt=$("#fdt").val(),
+				d.filtereq="nama",
+				d.nama=$("#nikx").val(),
+				d.x= '<?php echo $menu?>';
 			}
 		},
 		initComplete: function(){
@@ -123,7 +152,7 @@ $(document).ready(function(){
 		}
 	});
 	//dttbl_buttons(); //remark this if ajax dttbl call
-	datepicker(true);
+	//datepicker(true);
 	//timepicker();
 	jvalidate = $("#myf").validate({
     rules :{
@@ -136,6 +165,7 @@ $(document).ready(function(){
     }});
 	
 	datepicker();
+	$(".select2").select2();
 
 });
 
@@ -143,15 +173,6 @@ function reloadtbl(){
 	mytbl.ajax.reload();
 }
 
-function getWhere(){
-	var ret='(1=1)';
-	var dtf=$("#fdf").val().trim();
-	var dtt=$("#fdt").val().trim();
-	if(dtf!='') ret+=" and (submitted>='"+dtf+"')";
-	if(dtt!='') ret+=" and (submitted<='"+dtt+" 23:59:59')";
-	
-	return btoa(ret);
-}
 </script>
 
   </body>
