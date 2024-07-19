@@ -175,6 +175,7 @@
 								<li class="nav-sub-item"><a class="nav-sub-link" href="r_absen<?php echo $ext?>">Attendance</a></li>
 								<li class="nav-sub-item"><a class="nav-sub-link muser" href="r_leave<?php echo $ext?>">Leave</a></li>
 								<li class="nav-sub-item"><a class="nav-sub-link" href="r_reim<?php echo $ext?>">Reimburse</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="r_story<?php echo $ext?>">Activity</a></li>
 							</ul>
 							</li>
 					<?php }?>
