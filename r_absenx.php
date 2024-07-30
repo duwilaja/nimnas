@@ -28,7 +28,7 @@ if(count($recs)<1) die("no data found");
 
 function getphoto($s){
 	if(trim($s)!=''){
-		return '<img src="files/'.$s.'" />';
+		return '<img style="height: 200px;width: auto;" src="files/'.$s.'" />';
 	}else{
 		return '';
 	}
