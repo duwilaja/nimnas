@@ -19,12 +19,20 @@ if($df!='') $where.=" and dt>='$df'";
 if($dt!='') $where.=" and dt<='$dt'";
 if($nm!='') $where.=" and nama='$nm'";
 
-$sql="select dt,l.nik,nama,edin,reasonin,edout,reasonout,typ from hr_attend l left join hr_kary k on k.nik=l.nik where $where order by l.nik,dt";
+$sql="select dt,l.nik,nama,edin,reasonin,edout,reasonout,typ,photoin,photoout from hr_attend l left join hr_kary k on k.nik=l.nik where $where order by l.nik,dt";
 $recs=fetch_all(exec_qry($conn,$sql));
 
 disconnect($conn);
 
 if(count($recs)<1) die("no data found");
+
+function getphoto($s){
+	if(trim($s)!=''){
+		return '<img src="files/'.$s.'" />';
+	}else{
+		return '';
+	}
+}
 
 include "inc.head.php";
 //include "inc.menutop.php";
@@ -53,6 +61,8 @@ include "inc.head.php";
 										<th>OUT</th>
 										<th>Remark OUT</th>
 										<th>Type</th>
+										<th>Photo IN</th>
+										<th>Photo OUT</th>
 										
 									</tr>
 								</thead>
@@ -67,6 +77,8 @@ include "inc.head.php";
 										<td><?php echo $r[5]?></td>
 										<td><?php echo $r[6]?></td>
 										<td><?php echo $r[7]?></td>
+										<td><?php echo getphoto($r[8])?></td>
+										<td><?php echo getphoto($r[9])?></td>
 									</tr>
 						<?php }?>
 								</tbody>
