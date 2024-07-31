@@ -136,7 +136,7 @@ switch($q){
 	
 	case 'notify': $sql="select DATE_FORMAT(created,'%a, %e %b %H:%i') as dtm,uname,uavatar as avatar,ticketno,
 			concat('Ticket#',ticketno,'. ',h,'. status ',stts) as msg
-			from tick_ets n left join core_user u on u.uid=n.creby where stts='new' and $wtik order by created desc"; break;
+			from tick_ets n left join core_user u on u.uid=n.creby where stts<>'closed' and $wtik order by created desc"; break;
 }
 
 //echo $sql;
