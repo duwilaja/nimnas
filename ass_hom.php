@@ -251,7 +251,7 @@ include "inc.menutop.php";
 				<!-- BEGIN col-4 -->
 				<div class="col-xl-7">
 					<!-- BEGIN card -->
-					<div class="card mb-3" style="min-height: 320px;">
+					<div class="card mb-3" style="min-height: 320px;max-height: 320px;">
 						<div class="card-header border-bottom-0 d-flex">
 							<div>
 								<label class="main-content-label mb-2 pt-1">TOP 5 LOCATION WITH PROBLEM</label>
@@ -260,7 +260,7 @@ include "inc.menutop.php";
 						<!-- BEGIN card-body -->
 						<div class="card-body">
 							<!-- BEGIN table -->
-							<div class="table-responsive">
+							<div class="table-responsive" style="max-height: 225px;">
 								<table id="toppro" class="table table-striped table-borderless mb-2px small text-nowrap">
 									<thead>
 										<tr>
@@ -285,7 +285,7 @@ include "inc.menutop.php";
 				<!-- BEGIN col-4 -->
 				<div class="col-xl-5">
 					<!-- BEGIN card -->
-					<div class="card mb-3" style="min-height: 320px;">
+					<div class="card mb-3" style="min-height: 320px; max-height: 320px;">
 						<div class="card-header border-bottom-0 d-flex">
 							<div>
 								<label class="main-content-label mb-2 pt-1">TOP 5 WARRANTY WARNING</label>
@@ -295,7 +295,7 @@ include "inc.menutop.php";
 						<!-- BEGIN card-body -->
 						<div class="card-body">
 							<!-- BEGIN table -->
-							<div class="table-responsive">
+							<div class="table-responsive" style="max-height: 225px;">
 								<table id="topwar" class="table table-striped table-borderless mb-2px small text-nowrap">
 									<thead>
 										<tr>
