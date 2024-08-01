@@ -158,7 +158,6 @@ if($mn=='ravatar'){
 	$files=glob("avatars/$s_ID.*");
 	if(count($files)>0){
 		if(unlink($files[0])){
-			$_SESSION['s_AVATAR']='';
 			$res=array("200","Success","Picture removed");
 		}else{
 			$res=array("201","Error","Remove picture failed");
@@ -166,6 +165,7 @@ if($mn=='ravatar'){
 	}else{
 		$res=array("201","Error","Picture does not exist");
 	}
+	$_SESSION['s_AVATAR']='';
 	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
 }
 
