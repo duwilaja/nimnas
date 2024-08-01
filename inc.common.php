@@ -2,6 +2,7 @@
 $ext=".php";
 date_default_timezone_set("Asia/Jakarta");
 
+$is_bai=false;
 $is_nms=true;
 $is_ticket=true;
 $is_asset=true;
@@ -13,6 +14,11 @@ $theme="hor-skin/horizontal-dark.css"; //hor-skin/hor-skin1.css
 $theme="hor-skin/hor-skin1.css";
 
 $app_url="http://localhost/nimnas/";
+
+$nimapi="http://localhost/nimapi/";
+$rpt_dir="rpt/";
+$trf_img=".svg";
+$trf_ports="'wan1','wan2','eth0','br-vlan10'";
 
 $lib_url="http://localhost:8080/api/v0/";
 $lib_token="8997ec42d0c502a67cce02e2be64f333";
@@ -32,7 +38,9 @@ $o_ugrp=[
 $o_ulvl=[
 	["0","Super"],
 	["1","Admin"],
-	["11","User"]
+	["2","General"],
+	["11","User"],
+	["12","Customer"]
 ];
 
 $o_days=[
@@ -72,14 +80,16 @@ $o_tikstts=[
 	["closed","closed"]
 ];
 $o_tikgrp=[
-	["EOS","EOS/L1"],
-	["L2","L2"],
-	["L3","L3"],
+	["EOS","EOS"],
+	["HELPDESK","HELPDESK"],
+	["EOS_PUSAT","EOS PUSAT"],
+	["EOS_LEADER","EOS LEADER PUSAT"],
+	["LINK","Link"],
 	["EU","End User"],
 	["MGMT","Management"]
 ];
 $o_prio=[
-	["normal","normal"],
+	["medium","medium"],
 	["high","high"],
 	["critical","critical"]
 ];
