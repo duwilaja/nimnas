@@ -43,9 +43,9 @@ if($ox=="1"){
 if($mys_LOC!=''){ //session loc
 	$where.= " AND loc in ('$mys_LOC')";
 }
-if($myg=="1"){
-	$page_title="My Group";
+if($myg=="1"||$s_TICK=='LINK'){
 	$where.= " AND grp='$s_TICK'";
+	if($myg=="1") $page_title="My Group";
 }
 if($mine=="1"){
 	$page_title="My Tickets";
