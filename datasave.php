@@ -166,6 +166,7 @@ if($mn=='ravatar'){
 		$res=array("201","Error","Picture does not exist");
 	}
 	$_SESSION['s_AVATAR']='';
+	$rx=exec_qry($conn,"update core_user set uavatar='' where uid='$s_ID'");
 	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
 }
 
