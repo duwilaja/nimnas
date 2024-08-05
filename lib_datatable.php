@@ -169,6 +169,16 @@ while($row = fetch_row($result)){
 		$row[0]=$act;
 		$xx='-';
 	}
+	if($x=="rarch"){
+		$h=$row[0];
+		$idx=$row[$col-1];
+		$act=$h.'&nbsp;&nbsp;';
+		$act.='<a title="SNMP" class="btn btn-sm" href="JavaScript:;" data-fancybox data-type="iframe" data-src="lib_device'.$ext.'?h='.$h.'&idx='.$idx.'"><i class="fas fa-server" style="color:green;"></i></a>';
+		$act.='&nbsp;&nbsp;<a title="Ping" class="btn btn-sm" href="JavaScript:;" data-fancybox data-type="iframe" data-src="device'.$ext.'?h='.$h.'"><i class="fas fa-desktop" style="color:orange;"></i></a>';
+		
+		$row[0]=$act;
+		$xx='-';
+	}
 	
 	if($x!="-"&&$xx!="-"){ //- means no need to modify first column
 		$row[0]='<a href="#" class="btn btn-sm btn-primary ripple"  title="Open" data-toggle="modal" data-target="#myModal" onclick="openForm(\''.$x.'\',\''.$row[$col-1].'\');">'.$row[0].'&nbsp;</a>';
