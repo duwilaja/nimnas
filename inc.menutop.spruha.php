@@ -149,6 +149,7 @@
 								<li class="nav-sub-item"><a class="nav-sub-link rupdown" href="r_updown<?php echo $ext?>">UP/Down</a></li>
 								<li class="nav-sub-item"><a class="nav-sub-link rtraffic" href="r_traffic<?php echo $ext?>">Traffic</a></li>
 								<li class="nav-sub-item"><a class="nav-sub-link rtraffic" href="r_gen<?php echo $ext?>">Generate</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link rtraffic" href="r_arch<?php echo $ext?>">Archieve</a></li>
 							</ul>
 							</li>
 					<?php }?>
