@@ -331,6 +331,7 @@ function exec_command(q,h,c,v='',o=''){
 		alrt('Invalid command '+q,'error','Error');
 		$(".ldr").hide();
 	}else{
+		$(r).html('<img src="spruha/assets/img/loader.svg" class="loader-img" alt="Loader">');
 		$.ajax({
 			type: 'GET',
 			url: url,
