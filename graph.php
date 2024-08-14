@@ -10,8 +10,8 @@ include "inc.db.php";
 $h=post("h");
 $g=post("g");
 $c=post("c");
-$df=post("df")." 00:00:00";
-$dt=post("dt")." 23:59:59";
+$df=post("df");
+$dt=post("dt");
 
 $b=strtotime($df);
 $e=strtotime($dt);
