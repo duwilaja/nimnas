@@ -195,8 +195,16 @@ include "inc.menutop.php";
 				<span id="potoin"></span>
 			</div>
 			<div class="form-group col-md-6">
+				<span id="petain"></span>
+			</div>
+		  </div>
+		  <div class="row">
+			<div class="form-group col-md-6">
 				<label>Pict. Out</label><br />
 				<span id="potoout"></span>
+			</div>
+			<div class="form-group col-md-6">
+				<span id="petaout"></span>
 			</div>
 		  </div>
 		  
@@ -339,11 +347,23 @@ function openformcallback(q,json){
 	var nimapi="<?php echo $nimapi?>files/";
 	$("#potoin").html("");
 	$("#potoout").html("");
+	$("#petain").html("");
+	$("#petaout").html("");
 	if(json!=''){
 		var pin=json["msgs"][0]["photoin"];
 		var pout=json["msgs"][0]["photoout"];
-		if(pin!="") $("#potoin").html('<img style="height:200px; width:auto;" src="'+nimapi+pin+'">&nbsp;&nbsp;<button class="btn btn-info" type="button" onclick="mappicker(\'#latin\',\'#lngin\',\'IN\');"><i class="fa fa-map-pin"></i></button>');
-		if(pout!="") $("#potoout").html('<img style="height:200px; width:auto;" src="'+nimapi+pout+'">&nbsp;&nbsp;<button class="btn btn-info" type="button" onclick="mappicker(\'#latout\',\'#lngout\',\'OUT\');"><i class="fa fa-map-pin"></i></button>');
+		if(pin!="") {
+			$("#potoin").html('<img style="height:200px; width:auto;" src="'+nimapi+pin+'">&nbsp;&nbsp;<button class="btn btn-info" type="button" onclick="mappicker(\'#latin\',\'#lngin\',\'IN\');"><i class="fa fa-map-pin"></i></button>');
+			var latlng=$("#latin").val()+","+$("#lngin").val();
+			var statik="https://maps.googleapis.com/maps/api/staticmap?center="+latlng+"&zoom=12&size=350x350&markers=color:red%7C"+latlng+"&key=AIzaSyB0LcVlAmmXMro8eH69aK6Wh4lUqttz-Zs";
+			$("#petain").html('<img src="'+statik+'">');
+		}
+		if(pout!="") {
+			$("#potoout").html('<img style="height:200px; width:auto;" src="'+nimapi+pout+'">&nbsp;&nbsp;<button class="btn btn-info" type="button" onclick="mappicker(\'#latout\',\'#lngout\',\'OUT\');"><i class="fa fa-map-pin"></i></button>');
+			var latlng=$("#latout").val()+","+$("#lngout").val();
+			var statik="https://maps.googleapis.com/maps/api/staticmap?center="+latlng+"&zoom=12&size=350x350&markers=color:red%7C"+latlng+"&key=AIzaSyB0LcVlAmmXMro8eH69aK6Wh4lUqttz-Zs";
+			$("#petaout").html('<img src="'+statik+'">');
+		}
 	}
 }
 
