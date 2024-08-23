@@ -19,7 +19,7 @@ if($df!='') $where.=" and dt>='$df'";
 if($dt!='') $where.=" and dt<='$dt'";
 if($nm!='') $where.=" and nama='$nm'";
 
-$sql="select dt,l.nik,nama,edin,reasonin,edout,reasonout,typ,photoin,photoout from hr_attend l left join hr_kary k on k.nik=l.nik where $where order by l.nik,dt";
+$sql="select dt,l.nik,nama,IF(TIME_TO_SEC(edin)>0,ADDTIME(edin,SEC_TO_TIME(tmd*60)),edin),reasonin,IF(TIME_TO_SEC(edout)>0,ADDTIME(edout,SEC_TO_TIME(tmd*60)),edout),reasonout,typ,photoin,photoout from hr_attend l left join hr_kary k on k.nik=l.nik where $where order by l.nik,dt";
 $recs=fetch_all(exec_qry($conn,$sql));
 
 disconnect($conn);
