@@ -57,12 +57,12 @@ include "inc.menutop.php";
 							<table id="mytbl" class="table table-striped table-bordered w-100">
 								<thead>
 									<tr>
-										<!--th>Type</th-->
 										<th>NIK</th>
 										<th>Name</th>
 										<th>Job</th>
 										<th>Leader</th>
 										<th>Device</th>
+										<th>Time Diff (minutes)</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -89,7 +89,7 @@ include "inc.menutop.php";
 <input type="hidden" name="rowid" id="rowid" value="0">
 <input type="hidden" name="mnu" value="<?php echo $menu?>">
 <input type="hidden" id="sv" name="sv" />
-<input type="hidden" name="cols" value="nik,nama,job,lvl,device,leader" />
+<input type="hidden" name="cols" value="nik,nama,job,lvl,device,leader,tmd" />
 <input type="hidden" name="tname" value="hr_kary" />
 		
 		  <div class="row">
@@ -111,9 +111,13 @@ include "inc.menutop.php";
 			</div>
 		  </div>
 		  <div class="row">
-			<div class="form-group col-md-12">
+			<div class="form-group col-md-6">
 				<label>NIK Leader</label>
 				<input type="text" id="leader" name="leader" placeholder="..." class="form-control">
+			</div>
+			<div class="form-group col-md-6">
+				<label>Time Diff. (minutes)</label>
+				<input type="text" id="tmd" name="tmd" placeholder="..." class="form-control">
 			</div>
 		  </div>
 		  <div class="row hidden">
@@ -192,7 +196,7 @@ include "inc.foot.php";
 include "inc.js.php";
 
 $tname="hr_kary";
-$cols="nik,nama,job,leader,device,rowid";
+$cols="nik,nama,job,leader,device,tmd,rowid";
 $csrc="nik,nama";
 
 ?>
