@@ -9,7 +9,7 @@ $page_title="Activity";
 $modal_title="";
 $card_title="Activity Report";
 
-$menu="-";
+$menu="rstory";
 
 $breadcrumb="Reports/$page_title";
 
@@ -116,7 +116,7 @@ include "inc.js.php";
 $img="concat('<a target=\"_blank\" href=\"story/',photo,'\">',photo,'</a>') as img";
 
 $tname="hr_story l left join hr_kary k on k.nik=l.nik";
-$cols="dtm,l.nik,nama,txt,$img,l.rowid";
+$cols="dtm,l.nik,nama,txt,photo,l.rowid";
 $csrc="l.nik,nama";
 $grpby="";
 ?>
