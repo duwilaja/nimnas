@@ -217,6 +217,14 @@ while($row = fetch_row($result)){
 		$row[6]=$act;
 		if($x=='myrem') $xx='-';
 	}
+	if($x=='rstory'){
+		$potos=explode(";",$row[4]); $act="";
+		for($ix=0;$ix<count($potos);$ix++){
+			$act.='&nbsp;<a title="View" href="JavaScript:;" data-fancybox data-type="iframe" data-src="story/'.$potos[$ix].'">'.$potos[$ix].'</a>&nbsp;';
+		}
+		$row[4]=$act;
+		$xx='-';
+	}
 	
 	if($x!="-"&&$xx!="-"){ //- means no need to modify first column
 		if($template=="aronox"){
