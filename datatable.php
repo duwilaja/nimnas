@@ -220,7 +220,7 @@ while($row = fetch_row($result)){
 	if($x=='rstory'){
 		$potos=explode(";",$row[4]); $act="";
 		for($ix=0;$ix<count($potos);$ix++){
-			$act.='&nbsp;<a title="View" href="JavaScript:;" data-fancybox data-type="iframe" data-src="story/'.$potos[$ix].'">'.$potos[$ix].'</a>&nbsp;';
+			$act.='<a title="View" href="JavaScript:;" data-fancybox data-type="iframe" data-src="story/'.$potos[$ix].'">'.$potos[$ix].'</a><br />';
 		}
 		$row[4]=$act;
 		$xx='-';
