@@ -217,6 +217,35 @@ if($mn=='cekin'){
 		}
 	}
 }
+if($mn=='myatt'){
+	if(trim($s_NIK)==''){
+		$msgs="NIK is blank";
+	}else{
+		$upload=upload_file("myFileInput","files/");
+		$poto=$upload[0]?$upload[1]:"";
+		$lat=post('lat');$lng=post('lng');
+		if($poto!=''){
+			$sql="select tmin,tmout from hr_attend where dt=date(now()) and nik='$s_NIK'";
+			$rs=fetch_alla(exec_qry($conn,$sql));
+			if(count($rs)>0){
+				$io='in'; 
+				if($rs[0]['tmin']!='00:00:00') $io='out';
+				
+				$sql="update hr_attend set tm$io=time(now()),ed$io=time(now()),photo$io='$poto',lat$io='$lat',lng$io='$lng',status='onsite',typ='Masuk' where dt=date(now()) and nik='$s_NIK'";
+			}else{
+				$sql="insert into hr_attend (nik,photoin,latin,lngin,dt,tmin,edin,status,typ) values ('$s_NIK','$poto','$lat','$lng',date(now()),time(now()),time(now()),'onsite','Masuk')";
+			}
+			$rs=exec_qry($conn,$sql);
+			if(db_error($conn)==''){
+				$code="200"; $ttl="success"; $msgs="Data updated";
+			}else{
+				$msgs=db_error($conn);
+			}
+		}else{
+			$msgs="File upload failed/empty";
+		}
+	}
+}
 if($mn=='cekout'){
 	if(trim($s_NIK)==''){
 		$msgs="NIK is blank";

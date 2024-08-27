@@ -42,9 +42,9 @@ include "inc.menutop.php";
 					<?php echo breadcrumb($breadcrumb)?>
 				</ol>
 			</div>
-			<!--div class="page-rightheader">
-				<a href="#" class="btn btn-primary" onclick="" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Create</a>
-			</div-->
+			<div class="page-rightheader">
+				<a href="#" class="btn btn-primary" onclick="openForm(0);" data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa fa-check"></i> Check-In/Out</a>
+			</div>
 		</div>
 		<!--End Page header-->
 		
@@ -69,7 +69,7 @@ include "inc.menutop.php";
 				<div class="card">
 					<div class="card-header" style="display: flex;">
 						<div class="card-title"><?php echo $card_title?></div>
-						<div class="card-options ">
+						<div class="card-options hidden">
 							<button class="btn btn-sm btn-success" onclick="cek('in');">Check-In</button>&nbsp;&nbsp;
 							<button class="btn btn-sm btn-danger" onclick="cek('out');">Check-Out</button>
 						</div>
@@ -101,99 +101,35 @@ include "inc.menutop.php";
 
 <!-- Modal-->
 <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left modal_form">
-  <div role="document" class="modal-dialog modal-lg">
+  <div role="document" class="modal-dialog">
 	<div class="modal-content">
 	  <div class="modal-header"><strong id="exampleModalLabel" class="modal-title"><?php echo $modal_title?></strong>
 		<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">x</span></button>
 	  </div>
 	  <div class="modal-body">
 		<!--p>Lorem ipsum dolor sit amet consectetur.</p-->
-		<form id="myfcvx" class="form-horizontal">
-<!--hidden-->
-<input type="hidden" name="rowid" id="rowid" value="0">
-<input type="hidden" name="mnu" value="<?php echo $menu?>">
-<input type="hidden" id="sv" name="sv" />
-<input type="hidden" name="cols" value="nik,dt,edin,edout,reasonin,reasonout,typ,status" />
-<input type="hidden" name="tname" value="hr_attend" />
-		
-		  <div class="row">
-			<div class="form-group col-md-4">
-				<label>Date</label>
-				<input type="text" id="dt" name="dt" placeholder="..." class="form-control datepicker">
-			</div>
-			<div class="form-group col-md-4">
-				<label>NIK</label>
-				<input type="text" readonly id="nik" name="nik" placeholder="..." class="form-control">
-			</div>
-		    <div class="form-group col-md-4">
-				<label>Name</label>
-				<input type="text" readonly id="nama" name="nama" placeholder="..." class="form-control">
-			</div>
-		  </div>
-		  <div class="row">
-			<div class="form-group col-md-4">
-				<label>IN</label>
-				<input type="text" id="edin" name="edin" placeholder="..." class="form-control timepicker">
-			</div>
-			<div class="form-group col-md-8">
-				<label>Remark IN</label>
-				<input type="text" id="reasonin" name="reasonin" placeholder="..." class="form-control">
-			</div>
-		  </div>
-		  <div class="row">
-			<div class="form-group col-md-4">
-				<label>OUT</label>
-				<input type="text" id="edout" name="edout" placeholder="..." class="form-control timepicker">
-			</div>
-			<div class="form-group col-md-8">
-				<label>Remark OUT</label>
-				<input type="text" id="reasonout" name="reasonout" placeholder="..." class="form-control">
-			</div>
-		  </div>
+		<form id="myf" class="form-horizontal">
+		<input type="hidden" name="mnu" value="<?php echo $menu?>">
 		  <div class="row">
 			<div class="form-group col-md-6">
-				<label>Type</label>
-				<select class="form-control " id="typ" name="typ">
-					<option value="">-</option>
-					<?php echo options($o_ltyp)?>
-				</select>
+				<label>Latitude</label>
+				<input readonly type="text" id="lat" name="lat" placeholder="..." class="form-control">
 			</div>
 			<div class="form-group col-md-6">
-				<label>Status</label>
-				<!--input type="text" readonly id="status" name="status" placeholder="..." class="form-control"-->
-				<select class="form-control reado" id="status" name="status">
-					<option value="">-</option>
-					<?php echo options($o_lstt)?>
-				</select>
+				<label>Longitude</label>
+				<input readonly type="text" id="lng" name="lng" placeholder="..." class="form-control">
 			</div>
 		  </div>
-		  <div class="row">
-			<div class="form-group col-md-3">
-				<label>Lat.IN</label>
-				<input type="text" id="latin" name="latin" placeholder="..." class="form-control">
-			</div>
-			<div class="form-group col-md-3">
-				<label>Lng.IN</label>
-				<input type="text" id="lngin" name="lngin" placeholder="..." class="form-control">
-			</div>
 		  
-			<div class="form-group col-md-3">
-				<label>Lat.OUT</label>
-				<input type="text" id="latout" name="latout" placeholder="..." class="form-control">
-			</div>
-			<div class="form-group col-md-3">
-				<label>Lng.OUT</label>
-				<input type="text" id="lngout" name="lngout" placeholder="..." class="form-control">
-			</div>
-		  </div>
 		  <div class="row">
-			<div class="form-group col-md-6">
-				<label>Pict. In</label><br />
-				<span id="potoin"></span>
-			</div>
-			<div class="form-group col-md-6">
-				<label>Pict. Out</label><br />
-				<span id="potoout"></span>
+			<!--div class="form-group col-md-6">
+				<button type="button" onclick="startCamera();">Camera</button><br />
+				<video id="video" width="320" height="240" autoplay></video>
+			</div-->
+			<div class="form-group col-md-12">
+				<label>Capture  Image</label><br />
+				<!--canvas id="canvas" width="320" height="240"></canvas-->
+				<input name="myFileInput" type="file" accept="image/*;capture=camera">
 			</div>
 		  </div>
 		  
@@ -201,8 +137,9 @@ include "inc.menutop.php";
 	  </div>
 	  <div class="modal-footer">
 	  
-		<!--button type="button" class="btn btn-danger" id="bdel"  onclick="confirmDelete();">Delete</button>
-		<button type="button" class="btn btn-success" id="bsav" onclick="saveData();">Save</button-->
+		<!--button type="button" class="btn btn-danger" id="bdel"  onclick="confirmDelete();">Delete</button-->
+		<button type="button" class="btn btn-warning" onclick="getLocation();">Get Location</button>
+		<button type="button" class="btn btn-success" id="bsav" onclick="saveData()">Save</button>
 		<button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
 		
 	  </div>
@@ -257,7 +194,7 @@ include "inc.foot.php";
 include "inc.js.php";
 
 $tname="hr_attend l left join hr_kary k on k.nik=l.nik";
-$cols="dt,l.nik,nama,edin,reasonin,edout,reasonout,typ,l.rowid";
+$cols="dt,l.nik,nama,IF(TIME_TO_SEC(edin)>0,ADDTIME(edin,SEC_TO_TIME(tmd*60)),edin) as edin,reasonin,IF(TIME_TO_SEC(edout)>0,ADDTIME(edout,SEC_TO_TIME(tmd*60)),edout) as edout,reasonout,typ,l.rowid";
 $csrc="l.nik,name,typ";
 $where="(1=1)";
 //if($_GET["stt"]!=""){
@@ -287,7 +224,7 @@ $(document).ready(function(){
 				d.csrc= '<?php echo base64_encode($csrc); ?>',
 				d.fdf=$("#fdf").val(),
 				d.fdt=$("#fdt").val(),
-				d.x= '<?php echo $menu?>';
+				d.x= '-';
 			}
 		},
 		initComplete: function(){
@@ -295,7 +232,7 @@ $(document).ready(function(){
 		}
 	});
 	//dttbl_buttons(); //remark this if ajax dttbl call
-	jvalidate = $("#myfcvx").validate({
+	jvalidate = $("#myf").validate({
     ignore: ":hidden:not(.selectpicker)",
 	rules :{
         "edin" : {
@@ -310,7 +247,7 @@ $(document).ready(function(){
 		"reasonout" : {
 			required : true
 		},
-		"typ" : {
+		"myFileInput" : {
 			required : true
 		}
     }});
@@ -329,15 +266,7 @@ function mappicker(lat,lng,ttl=''){
 }
 
 function openformcallback(q,json){
-	var nimapi="<?php echo $nimapi?>files/";
-	$("#potoin").html("");
-	$("#potoout").html("");
-	if(json!=''){
-		var pin=json["msgs"][0]["photoin"];
-		var pout=json["msgs"][0]["photoout"];
-		if(pin!="") $("#potoin").html('<img style="height:200px; width:auto;" src="'+nimapi+pin+'">&nbsp;&nbsp;<button class="btn btn-info" type="button" onclick="mappicker(\'#latin\',\'#lngin\',\'IN\');"><i class="fa fa-map-pin"></i></button>');
-		if(pout!="") $("#potoout").html('<img style="height:200px; width:auto;" src="'+nimapi+pout+'">&nbsp;&nbsp;<button class="btn btn-info" type="button" onclick="mappicker(\'#latout\',\'#lngout\',\'OUT\');"><i class="fa fa-map-pin"></i></button>');
-	}
+	
 }
 
 function cek(x){
@@ -355,6 +284,51 @@ function cek(x){
 			alrt('Could not execute command '+q,'error','Error');
 		}
 	});
+}
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition,showError);
+  } else {
+    alrt("Geolocation is not supported by this browser.",'error');
+  }
+}
+
+function showPosition(position) {
+  $("#lat").val( position.coords.latitude );
+  $("#lng").val( position.coords.longitude);
+}
+function showError(error) {
+  switch(error.code) {
+    case error.PERMISSION_DENIED:
+      alrt("User denied the request for Geolocation.",'warning');
+      break;
+    case error.POSITION_UNAVAILABLE:
+      alrt("Location information is unavailable.",'error');
+      break;
+    case error.TIMEOUT:
+      alrt("The request to get user location timed out.",'error');
+      break;
+    case error.UNKNOWN_ERROR:
+      alrt("An unknown error occurred.",'error');
+      break;
+  }
+} 
+
+function startCamera(){
+	let video = document.getElementById('video');
+	navigator.mediaDevices
+	  .getUserMedia({ video: true, audio: false })
+	  .then((stream) => {
+		video.srcObject = stream;
+		video.play();
+	  })
+	  .catch((err) => {
+		alrt(`An error occurred: ${err}`,'error');
+	  });
+}
+function takePhoto(){
+	
 }
 </script>
 
