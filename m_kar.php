@@ -63,6 +63,7 @@ include "inc.menutop.php";
 										<th>Leader</th>
 										<th>Device</th>
 										<th>Time Diff (minutes)</th>
+										<th>Province</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -89,7 +90,7 @@ include "inc.menutop.php";
 <input type="hidden" name="rowid" id="rowid" value="0">
 <input type="hidden" name="mnu" value="<?php echo $menu?>">
 <input type="hidden" id="sv" name="sv" />
-<input type="hidden" name="cols" value="nik,nama,job,lvl,device,leader,tmd" />
+<input type="hidden" name="cols" value="nik,nama,job,lvl,device,leader,tmd,prov" />
 <input type="hidden" name="tname" value="hr_kary" />
 		
 		  <div class="row">
@@ -105,9 +106,13 @@ include "inc.menutop.php";
 			</div>
 		  </div>
 		  <div class="row">
-			<div class="form-group col-md-12">
+			<div class="form-group col-md-6">
 				<label>Job</label>
 				<input type="text" id="job" name="job" placeholder="..." class="form-control">
+			</div>
+			<div class="form-group col-md-6">
+				<label>Province</label>
+				<input type="text" id="prov" name="prov" placeholder="..." class="form-control">
 			</div>
 		  </div>
 		  <div class="row">
@@ -118,15 +123,6 @@ include "inc.menutop.php";
 			<div class="form-group col-md-6">
 				<label>Time Diff. (minutes)</label>
 				<input type="text" id="tmd" name="tmd" placeholder="..." class="form-control">
-			</div>
-		  </div>
-		  <div class="row hidden">
-			<div class="form-group col-md-12">
-				<label>Level</label>
-				<select class="form-control " id="lvl" name="lvl">
-					<option value="">-</option>
-					<?php echo options($o_elvl)?>
-				</select>
 			</div>
 		  </div>
 		  <div class="row">
@@ -196,7 +192,7 @@ include "inc.foot.php";
 include "inc.js.php";
 
 $tname="hr_kary";
-$cols="nik,nama,job,leader,device,tmd,rowid";
+$cols="nik,nama,job,leader,device,tmd,prov,rowid";
 $csrc="nik,nama";
 
 ?>

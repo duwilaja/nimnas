@@ -85,6 +85,7 @@ include "inc.menutop.php";
 										<th>Date</th>
 										<th>NIK</th>
 										<th>Name</th>
+										<th>Province</th>
 										<th>IN</th>
 										<th>Remark IN</th>
 										<th>OUT</th>
@@ -268,12 +269,13 @@ include "inc.foot.php";
 include "inc.js.php";
 
 $tname="hr_attend l left join hr_kary k on k.nik=l.nik";
-$cols="dt,l.nik,nama,edin,reasonin,edout,reasonout,typ,l.rowid";
-$csrc="l.nik,nama,typ";
+$cols="dt,l.nik,nama,prov,edin,reasonin,edout,reasonout,typ,l.rowid";
+$csrc="l.nik,nama,prov,typ";
 $where="(1=1)";
+if(isset($_GET["stt"])){
 if($_GET["stt"]!=""){
 	$where.=" and status='".$_GET["stt"]."'";
-}
+}}
 if($mys_LOC!=''){
 	//$where.=" and (l.nik='$s_NIK' or leader='$s_NIK')";
 }
@@ -291,6 +293,7 @@ $(document).ready(function(){
 		processing: true,
 		searching: true,
 		buttons: ['copy', 'csv'],
+		order: [[1,"asc"]],
 		ajax: {
 			type: 'POST',
 			url: 'datatable<?php echo $ext?>',

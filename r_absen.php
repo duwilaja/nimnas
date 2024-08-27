@@ -118,7 +118,7 @@ include "inc.foot.php";
 include "inc.js.php";
 
 $tname="hr_attend l left join hr_kary k on k.nik=l.nik";
-$cols="dt,l.nik,nama,IF(TIME_TO_SEC(edin)>0,ADDTIME(edin,SEC_TO_TIME(tmd*60)),edin),reasonin,IF(TIME_TO_SEC(edout)>0,ADDTIME(edout,SEC_TO_TIME(tmd*60)),edout),reasonout,typ,l.rowid";
+$cols="dt,l.nik,nama,IF(TIME_TO_SEC(edin)>0,ADDTIME(edin,SEC_TO_TIME(tmd*60)),edin) as edin,reasonin,IF(TIME_TO_SEC(edout)>0,ADDTIME(edout,SEC_TO_TIME(tmd*60)),edout) as edout,reasonout,typ,l.rowid";
 $csrc="l.nik,name,typ";
 $grpby="";
 ?>
@@ -133,6 +133,7 @@ $(document).ready(function(){
 		searching: false,
 		buttons: ['copy', 'csv'],
 		lengthMenu: [[10,50,100,500,-1],["10","50","100","500","All"]],
+		order: [[1,"asc"]],
 		ajax: {
 			type: 'POST',
 			url: 'datatable<?php echo $ext?>',
