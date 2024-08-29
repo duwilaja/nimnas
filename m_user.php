@@ -63,9 +63,9 @@ disconnect($conn);
 										<th>Mail</th>
 										<th>Level</th>
 										<th>Mobile Group</th>
-										<th>Location</th>
 										<th>Ticketing Group</th>
 										<th>NIK</th>
+										<th>Location</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -217,7 +217,7 @@ for($i=0;$i<count($o_ulvl);$i++){
 }
 
 $tname="core_user";
-$cols="uid,uname,umail,case  $cases  end,ugrp,uloc,utick,unik,rowid";
+$cols="uid,uname,umail,case  $cases  end,ugrp,utick,unik,uloc,rowid";
 $csrc="uid,uname";
 
 ?>
