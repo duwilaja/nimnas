@@ -180,7 +180,11 @@ if($mn=='mkary_batch'){
 	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
 }
 if($mn=='hrleav'||$mn=='myleav'){
-	$res=crud($conn);
+	$fname=$s_NIK.strtotime("now");
+	$upload=upload_file("attc","leavattc/",$fname);
+	$attc=$upload[0]?$upload[1]:"";
+	if($attc==''&&post('fattc')!='') $attc=post('fattc');
+	$res=crud($conn,'attc',"'$attc'");
 	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
 }
 if($mn=='hratt'){
@@ -192,7 +196,7 @@ if($mn=='hratt'){
 	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
 }
 if($mn=='hrrem'||$mn=='myrem'){
-	$fname=strtotime("now");
+	$fname=$s_NIK.strtotime("now");
 	$upload=upload_file("attc","remattc/",$fname);
 	$attc=$upload[0]?$upload[1]:"";
 	if($attc==''&&post('fattc')!='') $attc=post('fattc');
@@ -221,7 +225,8 @@ if($mn=='myatt'){
 	if(trim($s_NIK)==''){
 		$msgs="NIK is blank";
 	}else{
-		$upload=upload_file("myFileInput","files/");
+		$fname=$s_NIK.strtotime("now");
+		$upload=upload_file("myFileInput","files/",$fname);
 		$poto=$upload[0]?$upload[1]:"";
 		$lat=post('lat');$lng=post('lng');
 		if($poto!=''){
@@ -242,7 +247,7 @@ if($mn=='myatt'){
 				$msgs=db_error($conn);
 			}
 		}else{
-			$msgs="File upload failed/empty";
+			$msgs="File upload failed/".$upload[1];
 		}
 	}
 }

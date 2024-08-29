@@ -148,6 +148,7 @@ include "inc.menutop.php";
 										<th>Type</th>
 										<th>Status</th>
 										<th>Remark</th>
+										<th>Attachment</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -176,7 +177,9 @@ include "inc.menutop.php";
 <input type="hidden" id="sv" name="sv" />
 <input type="hidden" name="cols" value="nik,dtf,dtt,typ,rmk,status,note" />
 <input type="hidden" name="tname" value="hr_leav" />
-		
+
+<input type="hidden" name="fattc" id="attc" value="" />
+
 		  <div class="row hideme">
 			<div class="form-group col-md-6">
 				<label>NIK</label>
@@ -280,7 +283,7 @@ include "inc.foot.php";
 include "inc.js.php";
 
 $tname="hr_leav l left join hr_kary k on k.nik=l.nik";
-$cols="l.nik,nama,dtf,dtt,typ,if(status='','pending',status) as stts,rmk,l.rowid";
+$cols="l.nik,nama,dtf,dtt,typ,if(status='','pending',status) as stts,rmk,attc,l.rowid";
 $csrc="l.nik,name,typ";
 $where="l.nik='$s_NIK' or leader='$s_NIK'";
 $where="";

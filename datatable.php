@@ -217,6 +217,13 @@ while($row = fetch_row($result)){
 		$row[6]=$act;
 		if($x=='myrem') $xx='-';
 	}
+	if($x=="hrleav"||$x=='myleav'){
+		if($row[7]!=''){
+			$act='<a title="Attachment" class="btn btn-sm btn-primary ripple" href="JavaScript:;" data-fancybox data-type="iframe" data-src="leavattc/'.$row[7].'"><i class="fa fa-paperclip"</i></a>';
+			$row[7]=$act;
+		}
+		if($x=='myleav') $xx='-';
+	}
 	if($x=='rstory'){
 		$potos=explode(";",$row[4]); $act="";
 		for($ix=0;$ix<count($potos);$ix++){
