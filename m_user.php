@@ -217,7 +217,7 @@ for($i=0;$i<count($o_ulvl);$i++){
 }
 
 $tname="core_user";
-$cols="uid,uname,umail,case  $cases  end,uloc,utick,unik,rowid";
+$cols="uid,uname,umail,case  $cases  end,ugrp,uloc,utick,unik,rowid";
 $csrc="uid,uname";
 
 ?>
