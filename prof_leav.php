@@ -69,6 +69,7 @@ include "inc.menutop.php";
 										<th>Type</th>
 										<th>Status</th>
 										<th>Remark</th>
+										<th>Attachment</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -97,7 +98,9 @@ include "inc.menutop.php";
 <input type="hidden" id="sv" name="sv" />
 <input type="hidden" name="cols" value="nik,dtf,dtt,typ,rmk,status,note" />
 <input type="hidden" name="tname" value="hr_leav" />
-		
+
+<input type="hidden" name="fattc" id="attc" value="" />
+
 		  <div class="row hideme">
 			<div class="form-group col-md-6">
 				<label>NIK</label>
@@ -136,9 +139,13 @@ include "inc.menutop.php";
 			</div>
 		  </div>
 		  <div class="row">
-			<div class="form-group col-md-12">
+			<div class="form-group col-md-6">
 				<label>Remark</label>
 				<input type="text" id="rmk" name="rmk" placeholder="..." class="form-control">
+			</div>
+			<div class="form-group col-md-6">
+				<label>Attachment</label>
+				<input type="file" id="attcx" name="attc" placeholder="..." class="form-control">
 			</div>
 		  </div>
 		  
@@ -201,7 +208,7 @@ include "inc.foot.php";
 include "inc.js.php";
 
 $tname="hr_leav l left join hr_kary k on k.nik=l.nik";
-$cols="l.nik,nama,dtf,dtt,typ,status,rmk,l.rowid";
+$cols="l.nik,nama,dtf,dtt,typ,status,rmk,attc,l.rowid";
 $csrc="l.nik,name,typ";
 $where="l.nik='$s_NIK'";
 
@@ -224,7 +231,7 @@ $(document).ready(function(){
 				d.tname= '<?php echo base64_encode($tname); ?>',
 				d.where= '<?php echo base64_encode($where); ?>',
 				d.csrc= '<?php echo base64_encode($csrc); ?>',
-				d.x= '-';
+				d.x= 'myleav';
 			}
 		},
 		initComplete: function(){
@@ -246,6 +253,15 @@ $(document).ready(function(){
 		},
 		"rmk" : {
 			required : true
+		},
+		"attc" : {
+			required: function(){
+				if($("#typ").val()=="Sakit" && $("#dtf").val()!=$("#dtt").val()){
+					return true;
+				}else{
+					return false;
+				}
+			}
 		}
     }});
 	
