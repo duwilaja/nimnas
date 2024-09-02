@@ -16,6 +16,13 @@ if($s_LOC!=''){
 	$mys_LOC=implode("','",explode(",",str_replace("'","''",$s_LOC)));
 }
 
+if($s_LVL=="22"){//HR
+	$is_bai=false;
+	$is_nms=false;
+	$is_ticket=false;
+	$is_asset=false;
+}
+
 $redir=isset($redirect)?$redirect:true;
 $dttbl=isset($datatable)?$datatable:false;
 $noformat=isset($cleartext)?$cleartext:false;

@@ -1,4 +1,6 @@
 <?php 
+$restrict_lvl=array("0","1","2","22");
+
 include "inc.common.php";
 include "inc.session.php";
 
@@ -19,7 +21,7 @@ if($df!='') $where.=" and dt>='$df'";
 if($dt!='') $where.=" and dt<='$dt'";
 if($nm!='') $where.=" and nama='$nm'";
 
-$sql="select dt,l.nik,nama,IF(TIME_TO_SEC(edin)>0,ADDTIME(edin,SEC_TO_TIME(tmd*60)),edin),reasonin,IF(TIME_TO_SEC(edout)>0,ADDTIME(edout,SEC_TO_TIME(tmd*60)),edout),reasonout,typ,photoin,photoout from hr_attend l left join hr_kary k on k.nik=l.nik where $where order by l.nik,dt";
+$sql="select dt,l.nik,nama,IF(TIME_TO_SEC(edin)>0,ADDTIME(edin,SEC_TO_TIME(tmd*60)),edin),reasonin,IF(TIME_TO_SEC(edout)>0,ADDTIME(edout,SEC_TO_TIME(tmd*60)),edout),reasonout,typ,photoin,photoout,latin,lngin,latout,lngout from hr_attend l left join hr_kary k on k.nik=l.nik where $where order by l.nik,dt";
 $recs=fetch_all(exec_qry($conn,$sql));
 
 disconnect($conn);
@@ -28,7 +30,7 @@ if(count($recs)<1) die("no data found");
 
 function getphoto($s){
 	if(trim($s)!=''){
-		return '<img style="height: 200px;width: auto;" src="files/'.$s.'" />';
+		return '<img style="height: auto;width: auto;" src="files/'.$s.'" />';
 	}else{
 		return '';
 	}
@@ -63,6 +65,8 @@ include "inc.head.php";
 										<th>Type</th>
 										<th>Photo IN</th>
 										<th>Photo OUT</th>
+										<th>Lat/Lng IN</th>
+										<th>Lat/Lng OUT</th>
 										
 									</tr>
 								</thead>
@@ -79,6 +83,8 @@ include "inc.head.php";
 										<td><?php echo $r[7]?></td>
 										<td><?php echo getphoto($r[8])?></td>
 										<td><?php echo getphoto($r[9])?></td>
+										<td><?php echo $r[10]?>/<?php echo $r[11]?></td>
+										<td><?php echo $r[12]?>/<?php echo $r[13]?></td>
 									</tr>
 						<?php }?>
 								</tbody>

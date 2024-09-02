@@ -1,5 +1,5 @@
 <?php 
-$restrict_lvl=array("0","1","2");
+$restrict_lvl=array("0","1","2","22");
 
 include "inc.common.php";
 include "inc.session.php";
@@ -17,8 +17,7 @@ $o_ltyp=[
 	["Cuti","Cuti"],
 	["Ijin","Ijin"],
 	["Sakit","Sakit"],
-	["Masuk","Masuk"],
-	["Terlambat","Terlambat"]
+	["Masuk","Masuk"]
 ];
 $o_lstt=[
 	["onsite","on site"],
@@ -136,7 +135,7 @@ include "inc.menutop.php";
 		  </div>
 		  <div class="row">
 			<div class="form-group col-md-4">
-				<label>IN</label>
+				<label>IN (WIB)</label>
 				<input type="text" id="edin" name="edin" placeholder="..." class="form-control timepicker">
 			</div>
 			<div class="form-group col-md-8">
@@ -146,7 +145,7 @@ include "inc.menutop.php";
 		  </div>
 		  <div class="row">
 			<div class="form-group col-md-4">
-				<label>OUT</label>
+				<label>OUT (WIB)</label>
 				<input type="text" id="edout" name="edout" placeholder="..." class="form-control timepicker">
 			</div>
 			<div class="form-group col-md-8">
@@ -213,8 +212,10 @@ include "inc.menutop.php";
 	  </div>
 	  <div class="modal-footer">
 	  
+		<?php if($s_LVL<2){?>
 		<!--button type="button" class="btn btn-danger" id="bdel"  onclick="confirmDelete();">Delete</button-->
 		<button type="button" class="btn btn-success" id="bsav" onclick="saveData();">Save</button>
+		<?php }?>
 		<button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
 		
 	  </div>
@@ -268,13 +269,21 @@ include "inc.menutop.php";
 include "inc.foot.php";
 include "inc.js.php";
 
+$kolor="IF(TIME_TO_SEC(edin)=0 OR ADDTIME(edin,SEC_TO_TIME(tmd*60))>='08:31:00','red','green') as color";
+$edin="IF(TIME_TO_SEC(edin)>0,ADDTIME(edin,SEC_TO_TIME(tmd*60)),edin) as edin";
+$edout="IF(TIME_TO_SEC(edout)>0,ADDTIME(edout,SEC_TO_TIME(tmd*60)),edout) as edout";
+
 $tname="hr_attend l left join hr_kary k on k.nik=l.nik";
-$cols="dt,l.nik,nama,prov,edin,reasonin,edout,reasonout,typ,l.rowid";
+$cols="dt,l.nik,nama,prov,$edin,reasonin,$edout,reasonout,typ,$kolor,phone,l.rowid";
 $csrc="l.nik,nama,prov,typ";
 $where="(1=1)";
 if(isset($_GET["stt"])){
 if($_GET["stt"]!=""){
 	$where.=" and status='".$_GET["stt"]."'";
+}}
+if(isset($_GET["tmd"])){
+if($_GET["tmd"]!=""){
+	$where.=" and tmd='".$_GET["tmd"]."'";
 }}
 if($mys_LOC!=''){
 	//$where.=" and (l.nik='$s_NIK' or leader='$s_NIK')";

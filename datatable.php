@@ -217,6 +217,21 @@ while($row = fetch_row($result)){
 		$row[6]=$act;
 		if($x=='myrem') $xx='-';
 	}
+	if($x=="hrot"||$x=='myot'){
+		$act='<a title="Attachment" class="btn btn-sm btn-primary ripple" href="JavaScript:;" data-fancybox data-type="iframe" data-src="remattc/'.$row[7].'"><i class="fa fa-paperclip"</i></a>';
+		$row[7]=$act;
+		if($x=='myot') $xx='-';
+	}
+	if($x=="hratt"){
+		$act='<span class="badge" style="background-color:'.$row[9].'">'.$row[4].'</span>';
+		$row[4]=$act;
+		if(trim($row[10])!=''){
+			$phn=str_ireplace(" ","",str_ireplace("-","",$row[10]));
+			$act='&nbsp;&nbsp;<a title="Whatsapp" target="_blank" href="https://wa.me/'.$phn.'"><i class="fab fa-whatsapp" style="color:orange;"></i></a>';
+			$row[2]=$row[2].$act;
+		}
+		if($x=='myatt') $xx='-';
+	}
 	if($x=="hrleav"||$x=='myleav'){
 		if($row[7]!=''){
 			$act='<a title="Attachment" class="btn btn-sm btn-primary ripple" href="JavaScript:;" data-fancybox data-type="iframe" data-src="leavattc/'.$row[7].'"><i class="fa fa-paperclip"</i></a>';

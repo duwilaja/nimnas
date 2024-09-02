@@ -1,5 +1,5 @@
 <?php 
-$restrict_lvl=array("0","1","2");
+$restrict_lvl=array("0","1","2","22");
 
 include "inc.common.php";
 include "inc.session.php";
@@ -97,7 +97,7 @@ include "inc.menutop.php";
 					</div>
 				</div>
 				<!-- COL END -->
-				<div class="col-sm-12 col-md-12 col-lg-3 col-xl-3">
+				<div class="col-sm-12 col-md-12 col-lg-3 col-xl-3"><a href="hr_att<?php echo $ext?>?tmd=0">
 					<div class="card custom-card bg-primary">
 						<div class="card-body">
 							<div class="card-item">
@@ -112,7 +112,7 @@ include "inc.menutop.php";
 								</div>
 							</div>
 						</div>
-					</div>
+					</div></a><a href="hr_att<?php echo $ext?>?tmd=60">
 					<div class="card custom-card bg-primary">
 						<div class="card-body">
 							<div class="card-item">
@@ -127,7 +127,7 @@ include "inc.menutop.php";
 								</div>
 							</div>
 						</div>
-					</div>
+					</div></a><a href="hr_att<?php echo $ext?>?tmd=120">
 					<div class="card custom-card bg-primary">
 						<div class="card-body">
 							<div class="card-item">
@@ -142,100 +142,11 @@ include "inc.menutop.php";
 								</div>
 							</div>
 						</div>
-					</div>
+					</div></a>
 				</div>
 				<!-- COL END -->
 			</div>
 			<div class="row">
-				<!-- BEGIN col-4 -->
-				<div class="col-lg-6 col-md-12 hidden">
-					<!-- BEGIN card -->
-					<div class="card mb-3" style="min-height: 458px;">
-						<div class="card-header border-bottom-0">
-							<label class="main-content-label my-auto pt-2 mb-1">JUMLAH ASET</label>
-							<span class="d-block tx-12 mb-0 mt-1 text-muted"></span>
-						</div>
-						<!-- BEGIN card-body -->
-						<div class="card-body crypto-wallet" style="padding:10px !important" >
-							<div class=""><canvas id="ass-cat" class="ht-180" style="max-height:270px !important"></canvas></div>
-							<div class="chart-circle-value circle-style" style="top:79px; !important">
-								<h6 style="padding-top: 10px; margin-bottom: 0px;!important">Total</h6>
-								<div class="tx-20 font-weight-bold xtot" style="line-height:30px; !important">0</div>
-							</div>
-							<div class="table-responsive border-0">
-								<table class="table border-0 mg-b-0 text-nowrap text-md-nowrap">
-									<tbody id="ascat">
-										<!--tr>
-											<td class="d-flex">
-											<div class="bg-primary my-auto me-2"></div>
-												<div class="my-auto me-2">
-													<p class="mb-0 d-flex justify-content-center "><span class="legend bg-primary brround"></span>Network</p>
-												</div>
-											</td>
-											<td class="">30</td>
-											<td>+12.85% </td>
-										</tr>
-										<tr>
-											<td class="d-flex">
-											<div class="bg-primary my-auto me-2"></div>
-												<div class="my-auto me-2">
-													<p class="mb-0 d-flex justify-content-center "><span class="legend bg-primary brround"></span>Electrical</p>
-												</div>
-											</td>
-											<td class="">30</td>
-											<td>+12.85% </td>
-										</tr>
-										<tr>
-											<td class="d-flex">
-											<div class="bg-primary my-auto me-2"></div>
-												<div class="my-auto me-2">
-													<p class="mb-0 d-flex justify-content-center "><span class="legend bg-primary brround"></span>Electrical</p>
-												</div>
-											</td>
-											<td class="">30</td>
-											<td>+12.85% </td>
-										</tr>
-										<tr>
-											<td class="d-flex">
-											<div class="bg-primary my-auto me-2"></div>
-												<div class="my-auto me-2">
-													<p class="mb-0 d-flex justify-content-center "><span class="legend bg-primary brround"></span>Electrical</p>
-												</div>
-											</td>
-											<td class="">30</td>
-											<td>+12.85% </td>
-										</tr>
-										<tr>
-											<td class="d-flex">
-											<div class="bg-primary my-auto me-2"></div>
-												<div class="my-auto me-2">
-													<p class="mb-0 d-flex justify-content-center "><span class="legend bg-primary brround"></span>Electrical</p>
-												</div>
-											</td>
-											<td class="">30</td>
-											<td>+12.85% </td>
-										</tr>
-										<tr>
-											<td class="d-flex">
-											<div class="bg-primary my-auto me-2"></div>
-												<div class="my-auto me-2">
-													<p class="mb-0 d-flex justify-content-center "><span class="legend bg-primary brround"></span>Electrical</p>
-												</div>
-											</td>
-											<td class="">30</td>
-											<td>+12.85% </td>
-										</tr-->
-										
-									</tbody>
-								</table>
-							</div>
-						</div>
-						<!-- END card-body -->
-						
-					</div>
-					<!-- END card -->
-				</div>
-				<!-- END col-4 -->
 				<!-- BEGIN col-4 -->
 				<div class="col-lg-12 col-md-12">
 					<!-- BEGIN card -->

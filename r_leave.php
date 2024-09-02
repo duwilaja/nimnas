@@ -1,5 +1,5 @@
 <?php 
-$restrict_lvl=array("0","1","2");
+$restrict_lvl=array("0","1","2","22");
 
 include "inc.common.php";
 include "inc.session.php";
