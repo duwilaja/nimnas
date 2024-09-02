@@ -90,7 +90,7 @@ include "inc.menutop.php";
 <input type="hidden" name="rowid" id="rowid" value="0">
 <input type="hidden" name="mnu" value="<?php echo $menu?>">
 <input type="hidden" id="sv" name="sv" />
-<input type="hidden" name="cols" value="nik,nama,job,lvl,device,leader,tmd,prov" />
+<input type="hidden" name="cols" value="nik,nama,job,lvl,device,leader,tmd,prov,phone" />
 <input type="hidden" name="tname" value="hr_kary" />
 		
 		  <div class="row">
@@ -126,7 +126,11 @@ include "inc.menutop.php";
 			</div>
 		  </div>
 		  <div class="row">
-			<div class="form-group col-md-12">
+			<div class="form-group col-md-6">
+				<label>Phone</label>
+				<input type="text" id="phone" name="phone" placeholder="..." class="form-control">
+			</div>
+			<div class="form-group col-md-6">
 				<label>Device ID</label>
 				<input readonly type="text" id="device" name="device" placeholder="..." class="form-control">
 			</div>
