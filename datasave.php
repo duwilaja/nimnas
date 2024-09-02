@@ -180,29 +180,41 @@ if($mn=='mkary_batch'){
 	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
 }
 if($mn=='hrleav'||$mn=='myleav'){
-	$fname=$s_NIK.strtotime("now");
-	$upload=upload_file("attc","leavattc/",$fname);
-	$attc=$upload[0]?$upload[1]:"";
-	if($attc==''&&post('fattc')!='') $attc=post('fattc');
-	$res=crud($conn,'attc',"'$attc'");
-	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
+	if($s_LVL!="22"){
+		$fname=$s_NIK.strtotime("now");
+		$upload=upload_file("attc","leavattc/",$fname);
+		$attc=$upload[0]?$upload[1]:"";
+		if($attc==''&&post('fattc')!='') $attc=post('fattc');
+		$res=crud($conn,'attc',"'$attc'");
+		$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
+	}else{
+		$msgs="Invalid authorization";
+	}
 }
 if($mn=='hratt'){
-	if(post('typ')=='Masuk'||post('typ')=='Terlambat'){
-		$res=crud($conn,"status","'onsite'");
+	if($s_LVL!="22"){
+		if(post('typ')=='Masuk'||post('typ')=='Terlambat'){
+			$res=crud($conn,"status","'onsite'");
+		}else{
+			$res=crud($conn,"status","'offduty'");
+		}
+		$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
 	}else{
-		$res=crud($conn,"status","'offduty'");
+		$msgs="Invalid authorization";
 	}
-	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
 }
 if($mn=='hrrem'||$mn=='myrem'){
-	$fname=$s_NIK.strtotime("now");
-	$upload=upload_file("attc","remattc/",$fname);
-	$attc=$upload[0]?$upload[1]:"";
-	if($attc==''&&post('fattc')!='') $attc=post('fattc');
-	$stts=post('status')==''?'pending':post('status');
-	$res=crud($conn,"attc,status","'$attc','$stts'");
-	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
+	if($s_LVL!="22"){
+		$fname=$s_NIK.strtotime("now");
+		$upload=upload_file("attc","remattc/",$fname);
+		$attc=$upload[0]?$upload[1]:"";
+		if($attc==''&&post('fattc')!='') $attc=post('fattc');
+		$stts=post('status')==''?'pending':post('status');
+		$res=crud($conn,"attc,status","'$attc','$stts'");
+		$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
+	}else{
+		$msgs="Invalid authorization";
+	}
 }
 if($mn=='cekin'){
 	if(trim($s_NIK)==''){
@@ -222,7 +234,7 @@ if($mn=='cekin'){
 	}
 }
 if($mn=='myatt'){
-	if(trim($s_NIK)==''){
+	if(trim($s_NIK)==''||$s_LVL=="22"){
 		$msgs="NIK is blank";
 	}else{
 		$fname=$s_NIK.strtotime("now");

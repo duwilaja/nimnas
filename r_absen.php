@@ -1,5 +1,5 @@
 <?php 
-$restrict_lvl=array("0","1","2");
+$restrict_lvl=array("0","1","2","22");
 
 include "inc.common.php";
 include "inc.session.php";
@@ -100,6 +100,10 @@ disconnect($conn);
 										<th>OUT</th>
 										<th>Remark OUT</th>
 										<th>Type</th>
+										<th>Lat IN</th>
+										<th>Long IN</th>
+										<th>Lat OUT</th>
+										<th>Long OUT</th>
 										
 									</tr>
 								</thead>
@@ -118,7 +122,7 @@ include "inc.foot.php";
 include "inc.js.php";
 
 $tname="hr_attend l left join hr_kary k on k.nik=l.nik";
-$cols="dt,l.nik,nama,IF(TIME_TO_SEC(edin)>0,ADDTIME(edin,SEC_TO_TIME(tmd*60)),edin) as edin,reasonin,IF(TIME_TO_SEC(edout)>0,ADDTIME(edout,SEC_TO_TIME(tmd*60)),edout) as edout,reasonout,typ,l.rowid";
+$cols="dt,l.nik,nama,IF(TIME_TO_SEC(edin)>0,ADDTIME(edin,SEC_TO_TIME(tmd*60)),edin) as edin,reasonin,IF(TIME_TO_SEC(edout)>0,ADDTIME(edout,SEC_TO_TIME(tmd*60)),edout) as edout,reasonout,typ,latin,lngin,latout,lngout,l.rowid";
 $csrc="l.nik,name,typ";
 $grpby="";
 ?>

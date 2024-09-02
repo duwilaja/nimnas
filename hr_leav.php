@@ -1,5 +1,5 @@
 <?php 
-$restrict_lvl=array("0","1","2");
+$restrict_lvl=array("0","1","2","22");
 
 include "inc.common.php";
 include "inc.session.php";
@@ -227,8 +227,10 @@ include "inc.menutop.php";
 		</form>
 	  </div>
 	  <div class="modal-footer">
+		<?php if($s_LVL<2){?>
 		<!--button type="button" class="btn btn-danger" id="bdel"  onclick="confirmDelete();">Delete</button-->
 		<button type="button" class="btn btn-success" id="bsav" onclick="saveData();">Save</button>
+		<?php }?>
 		<button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
 		
 	  </div>
@@ -289,7 +291,7 @@ $where="l.nik='$s_NIK' or leader='$s_NIK'";
 $where="";
 
 if($s_LVL>1){
-	$menu="-";
+	//$menu="-";
 }
 ?>
 
