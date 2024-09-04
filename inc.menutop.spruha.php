@@ -44,14 +44,14 @@
 							<span class="sidemenu-label">Reimbursment</span>
 						</a>
 					</li>
-					<!--li class="nav-item">
+					<li class="nav-item">
 						<a class="nav-link" href="prof_ot<?php echo $ext?>">
 							<span class="shape1"></span>
 							<span class="shape2"></span>
-							<i class="ti-wallet sidemenu-icon menu-icon "></i>
+							<i class="ti-time sidemenu-icon menu-icon "></i>
 							<span class="sidemenu-label">Overtime</span>
 						</a>
-					</li-->
+					</li>
 <?php }else{?>
 					<?php if($is_nms){?>
 					<li class="nav-item">
@@ -112,9 +112,9 @@
 							<span class="sidemenu-label">Asset</span>
 						</a>
 						<ul class="nav-sub">
-							<li class="nav-sub-item"><a class="nav-sub-link ass" href="ass_hom<?php echo $ext?>">Dashboard</a></li>
+							<li class="nav-sub-item"><a class="nav-sub-link" href="ass_hom<?php echo $ext?>">Dashboard</a></li>
 							<!--li class="nav-sub-item hidden"><a class="nav-sub-link asetloc" href="ass_mapsx<?php echo $ext?>">Map View</a></li-->
-							<li class="nav-sub-item"><a class="nav-sub-link muser" href="m_ass<?php echo $ext?>">Assets</a></li>
+							<li class="nav-sub-item"><a class="nav-sub-link" href="m_ass<?php echo $ext?>">Assets</a></li>
 						</ul>
 					</li>
 					<?php }?>
@@ -127,10 +127,11 @@
 							<span class="sidemenu-label">HR</span>
 						</a>
 						<ul class="nav-sub">
-							<li class="nav-sub-item"><a class="nav-sub-link ass" href="hr_hom<?php echo $ext?>">Dashboard</a></li>
-							<li class="nav-sub-item"><a class="nav-sub-link asetloc" href="hr_att<?php echo $ext?>">Attendance</a></li>
-							<li class="nav-sub-item"><a class="nav-sub-link muser" href="hr_leav<?php echo $ext?>">Leave</a></li>
-							<li class="nav-sub-item"><a class="nav-sub-link muser" href="hr_rem<?php echo $ext?>">Reimburse</a></li>
+							<li class="nav-sub-item"><a class="nav-sub-link" href="hr_hom<?php echo $ext?>">Dashboard</a></li>
+							<li class="nav-sub-item"><a class="nav-sub-link" href="hr_att<?php echo $ext?>">Attendance</a></li>
+							<li class="nav-sub-item"><a class="nav-sub-link" href="hr_leav<?php echo $ext?>">Leave</a></li>
+							<li class="nav-sub-item"><a class="nav-sub-link" href="hr_rem<?php echo $ext?>">Reimburse</a></li>
+							<li class="nav-sub-item"><a class="nav-sub-link" href="hr_ot<?php echo $ext?>">Overtime</a></li>
 						</ul>
 					</li>
 					<?php }?>
@@ -149,15 +150,15 @@
 					<?php if($is_nms){?>
 							<li class="nav-sub-item"><a class="nav-sub-link sub-with-sub" href="javascript:void(0)">Monitoring</a>
 							<ul class="sub-nav-sub">
-								<li class="nav-sub-item"><a class="nav-sub-link rdevice" href="r_device<?php echo $ext?>">Devices</a></li>
-								<li class="nav-sub-item"><a class="nav-sub-link rlocation" href="r_location<?php echo $ext?>">Locations</a></li>
-								<li class="nav-sub-item"><a class="nav-sub-link rperf" href="r_perf<?php echo $ext?>">Performance</a></li>
-								<li class="nav-sub-item"><a class="nav-sub-link rsla" href="r_sla<?php echo $ext?>">SLA</a></li>
-								<li class="nav-sub-item"><a class="nav-sub-link rseverity" href="r_severity<?php echo $ext?>">Severity</a></li>
-								<li class="nav-sub-item"><a class="nav-sub-link rupdown" href="r_updown<?php echo $ext?>">UP/Down</a></li>
-								<li class="nav-sub-item"><a class="nav-sub-link rtraffic" href="r_traffic<?php echo $ext?>">Traffic</a></li>
-								<li class="nav-sub-item"><a class="nav-sub-link rtraffic" href="r_gen<?php echo $ext?>">Generate</a></li>
-								<li class="nav-sub-item"><a class="nav-sub-link rtraffic" href="r_arch<?php echo $ext?>">Archieve</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="r_device<?php echo $ext?>">Devices</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="r_location<?php echo $ext?>">Locations</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="r_perf<?php echo $ext?>">Performance</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="r_sla<?php echo $ext?>">SLA</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="r_severity<?php echo $ext?>">Severity</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="r_updown<?php echo $ext?>">UP/Down</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="r_traffic<?php echo $ext?>">Traffic</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="r_gen<?php echo $ext?>">Generate</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="r_arch<?php echo $ext?>">Archieve</a></li>
 							</ul>
 							</li>
 					<?php }?>
@@ -173,8 +174,8 @@
 					<?php if($is_asset && $s_LVL!=12){?>
 							<li class="nav-sub-item"><a class="nav-sub-link sub-with-sub" href="javascript:void(0)">Asset</a>
 							<ul class="sub-nav-sub">
-								<li class="nav-sub-item"><a class="nav-sub-link mlov" href="r_asssum<?php echo $ext?>">Summary</a></li>
-								<li class="nav-sub-item"><a class="nav-sub-link muser" href="r_asss<?php echo $ext?>">Assets</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="r_asssum<?php echo $ext?>">Summary</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="r_asss<?php echo $ext?>">Assets</a></li>
 							</ul>
 							</li>
 					<?php }?>
@@ -182,8 +183,9 @@
 							<li class="nav-sub-item"><a class="nav-sub-link sub-with-sub" href="javascript:void(0)">HR</a>
 							<ul class="sub-nav-sub">
 								<li class="nav-sub-item"><a class="nav-sub-link" href="r_absen<?php echo $ext?>">Attendance</a></li>
-								<li class="nav-sub-item"><a class="nav-sub-link muser" href="r_leave<?php echo $ext?>">Leave</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="r_leave<?php echo $ext?>">Leave</a></li>
 								<li class="nav-sub-item"><a class="nav-sub-link" href="r_reim<?php echo $ext?>">Reimburse</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="r_ot<?php echo $ext?>">Overtime</a></li>
 								<li class="nav-sub-item"><a class="nav-sub-link" href="r_story<?php echo $ext?>">Activity</a></li>
 							</ul>
 							</li>
