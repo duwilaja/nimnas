@@ -1,17 +1,17 @@
 <?php 
-$restrict_lvl=array("0","1","2","22");
+//$restrict_lvl=array("0","1");
 
 include "inc.common.php";
 include "inc.session.php";
 
 $page_icon="fa fa-table";
-$page_title="Reimbursement";
-$modal_title="Reimburse";
+$page_title="Overtime";
+$modal_title="Overtime";
 $card_title="$page_title";
 
-$menu="hrrem";
+$menu="myot";
 
-$breadcrumb="HR/$page_title";
+$breadcrumb="My Profile/$page_title";
 
 $o_ltyp=[
 	["Cuti","Cuti"],
@@ -20,21 +20,15 @@ $o_ltyp=[
 ];
 $o_remstt=[
 	["pending","Pending"],
-	["rejected","Rejected"],
+	["reject","Reject"],
 	["approved","Approved"]
 ];
 
 
+$myprof=1;
+
 include "inc.head.php";
 include "inc.menutop.php";
-
-include "inc.db.php";
-
-$conn=connect();
-$wherloc=$mys_LOC==''?'':"where locid in ('$mys_LOC')";
-$rs=exec_qry($conn,"select locid,name from core_location $wherloc order by name");
-$o_loc=fetch_all($rs);
-disconnect($conn);
 
 ?>
 
@@ -54,94 +48,15 @@ disconnect($conn);
 			</div-->
 		</div>
 		<!--End Page header-->
-		<div class="row">
-			<div class="col-xl-2">
-				<div class="small text-opacity-50 mb-2 text-whitex"><b>TANGGAL</b></div>
-				<div class="mg-b-20">
-					<div class="input-group">
-						<div class="input-group-text border-end-0">
-							<i class="fe fe-calendar lh--9 op-6"></i>
-						</div>
-						<input class="form-control datepicker" id="dt" placeholder="" type="text">
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-6">
-				<div class="small text-opacity-50 mb-2 text-whitex"><b>LOCATION</b></div>
-				<select class="form-control select2" id="loc">
-					<option value="">All LOCATION</option>
-					<?php echo options($o_loc)?>
-					</select>
-			</div>
-			<div class="col-xl-2 pt-3">
-				<button type="button" class="btn btn-primary my-2 btn-icon-text">Filter</button>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-6 col-md-6 col-lg-2">
-				<div class="card custom-card">
-					<div class="card-body text-center">
-						<div class="icon-service bg-primary-transparent rounded-circle text-primary">
-							<i class="fa fa-arrow-up"></i>
-						</div>
-						<p class="mb-1 text-muted">Request</p>
-						<h3 class="mb-0 xtot">0</h3>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-6 col-lg-2">
-				<div class="card custom-card">
-					<div class="card-body text-center">
-						<div class="icon-service bg-success-transparent rounded-circle text-success">
-							<i class="fa fa-check"></i>
-						</div>
-						<p class="mb-1 text-muted">Approve</p>
-						<h3 class="mb-0 xapproved">0</h3>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-6 col-lg-2">
-				<div class="card custom-card">
-					<div class="card-body text-center">
-						<div class="icon-service bg-warning-transparent rounded-circle text-warning">
-							<i class="fa fa-spinner"></i>
-						</div>
-						<p class="mb-1 text-muted">Pending</p>
-						<h3 class="mb-0 xpending">0</h3>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-6 col-lg-2">
-				<div class="card custom-card">
-					<div class="card-body text-center">
-						<div class="icon-service bg-danger-transparent rounded-circle text-danger">
-							<i class="fa fa-ban"></i>
-						</div>
-						<p class="mb-1 text-muted">Reject</p>
-						<h3 class="mb-0 xrejected">0</h3>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-6 col-lg-4">
-				<div class="card custom-card bg-success">
-					<div class="card-body text-center">
-						<div class="icon-service bg-success-transparent rounded-circle text-light">
-							<i class="si si-wallet"></i>
-						</div>
-						<p class="mb-1 text-whites">Cost Operation</p>
-						<h3 class="mb-0 mtot">Rp 0</h3>
-					</div>
-				</div>
-			</div>
-		</div>
+		
 				<div class="card">
-					<div class="card-header hidden">
+					<div class="card-header">
 						<div class="card-title"><?php echo $card_title?></div>
 						<div class="card-options ">
 							<!--a href="#" onclick="$('#datas').val('');" data-toggle="modal" data-target="#modal_batch" title="Batch" class=""><i class="fe fe-upload"></i></a>
-							<a href="#" onclick="openForm(0);" data-toggle="modal" data-target="#myModal" title="Add" class=""><i class="fe fe-plus"></i></a>
+							--><a href="#" onclick="openForm(0);" data-toggle="modal" data-target="#myModal" title="Add" class=""><i class="fe fe-plus"></i></a>
 							<a href="#" title="Expand/Collapse" class="card-options-collapse" data-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
-							<--a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a-->
+							<!--a href="#" class="card-options-remove" data-toggle="card-remove"><i class="fe fe-x"></i></a-->
 						</div>
 					</div>
 					<div class="card-body">
@@ -153,7 +68,8 @@ disconnect($conn);
 										<th>Name</th>
 										<th>Status</th>
 										<th>Submited</th>
-										<th>Total</th>
+										<th>From</th>
+										<th>To</th>
 										<th>Remark</th>
 										<th>Attachment</th>
 									</tr>
@@ -182,8 +98,8 @@ disconnect($conn);
 <input type="hidden" name="rowid" id="rowid" value="0">
 <input type="hidden" name="mnu" value="<?php echo $menu?>">
 <input type="hidden" id="sv" name="sv" />
-<input type="hidden" name="cols" value="nik,tot,des" />
-<input type="hidden" name="tname" value="hr_remb" />
+<input type="hidden" name="cols" value="nik,dtf,dtt,ket,tot" />
+<input type="hidden" name="tname" value="hr_ot" />
 
 <input type="hidden" name="fattc" id="attc" value="" />
 		
@@ -197,19 +113,19 @@ disconnect($conn);
 				<input type="text" readonly id="nama" name="nama" placeholder="..." class="form-control">
 			</div>
 		  </div>
-		  <div class="row hidden">
+		  <div class="row">
 			<div class="form-group col-md-6">
 				<label>From</label>
-				<input type="text" id="dtf" name="dtf" placeholder="..." class="form-control datepicker">
+				<input type="text" id="dtf" name="dtf" placeholder="..." class="form-control datetimepicker">
 			</div>
 			<div class="form-group col-md-6">
 				<label>To</label>
-				<input type="text" id="dtt" name="dtt" placeholder="..." class="form-control datepicker">
+				<input type="text" id="dtt" name="dtt" placeholder="..." class="form-control datetimepicker">
 			</div>
 		  </div>
 		  <div class="row">
 			<div class="form-group col-md-6">
-				<label>Total</label>
+				<label>Total (hour)</label>
 				<input type="text" id="tot" name="tot" placeholder="..." class="form-control">
 			</div>
 			<div class="form-group col-md-6 hideme">
@@ -224,7 +140,7 @@ disconnect($conn);
 		  <div class="row">
 			<div class="form-group col-md-6">
 				<label>Remark</label>
-				<input type="text" id="des" name="des" placeholder="..." class="form-control">
+				<input type="text" id="ket" name="ket" placeholder="..." class="form-control">
 			</div>
 			<div class="form-group col-md-6">
 				<label>Attachment</label>
@@ -235,10 +151,8 @@ disconnect($conn);
 		</form>
 	  </div>
 	  <div class="modal-footer">
-		<?php if($s_LVL<2){?>
-		<!--button type="button" class="btn btn-danger" id="bdel"  onclick="confirmDelete();">Delete</button-->
+		<button type="button" class="btn btn-danger" id="bdel"  onclick="confirmDelete();">Delete</button>
 		<button type="button" class="btn btn-success" id="bsav" onclick="saveData();">Save</button>
-		<?php }?>
 		<button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
 		
 	  </div>
@@ -292,14 +206,11 @@ disconnect($conn);
 include "inc.foot.php";
 include "inc.js.php";
 
-$tname="hr_remb l left join hr_kary k on k.nik=l.nik";
-$cols="l.nik,nama,status,submitted,tot,des,attc,l.rowid";
-$csrc="l.nik,nama,des";
-$where="";
+$tname="hr_ot l left join hr_kary k on k.nik=l.nik";
+$cols="l.nik,nama,status,submitted,dtf,dtt,ket,attc,l.rowid";
+$csrc="l.nik,nama,ket";
+$where="l.nik='$s_NIK'";
 
-if($s_LVL>1){
-	//$menu="-";
-}
 ?>
 
 <script>
@@ -310,7 +221,8 @@ $(document).ready(function(){
 		serverSide: true,
 		processing: true,
 		searching: true,
-		buttons: ['copy', 'csv'],
+		//buttons: ['copy', 'csv'],
+		order: [[3,"desc"]],
 		ajax: {
 			type: 'POST',
 			url: 'datatable<?php echo $ext?>',
@@ -336,56 +248,25 @@ $(document).ready(function(){
 		"dtt" : {
 			required : true
 		},
-		"typ" : {
+		"dtf" : {
 			required : true
 		},
-		"des" : {
+		"ket" : {
+			required : true
+		},
+		"attc" : {
 			required : true
 		}
     }});
 	
-	datepicker();
-	//timepicker();
+	//datepicker();
+	datetimepicker();
 	//selectpicker(true);
-	gettot();
 });
 
 function reloadtbl(){
 	mytbl.ajax.reload();
 }
-
-function gettot(){
-	$.ajax({
-		type: 'POST',
-		url: 'dataget'+ext,
-		data: {q:'remtot',dt:$("#dt").val(),loc:$("#loc").val()},
-		success: function(data){
-			var json = JSON.parse(data);
-			if(json['code']=='200'){
-				var tot=0; var mtot=0;
-				for(var i=0;i<json['msgs'].length;i++){
-					var d=json['msgs'][i];
-					$(".x"+d['stts']).html(d['ctot']);
-					tot+=parseInt(d['ctot']);
-					if(d['stts']=='approved') mtot+=parseInt(d['stot']);
-				}
-				$(".xtot").html(tot); $(".mtot").html("Rp."+mtot);
-			}else{
-				log(json['msgs']);
-			}
-			/*if(parseInt($(".xinactive").html())>0){
-				if($(".blink").hasClass("bg-danger")) $(".blink").removeClass("bg-danger").addClass("blink-bg");
-			}else{
-				if($(".blink").hasClass("blink-bg")) $(".blink").addClass("bg-danger").removeClass("blink-bg");
-			}*/
-		},
-		error: function(xhr){
-			log('Please check your connection'+xhr);
-		}
-	});
-	//setTimeout(gettot,1000*300);
-}
-
 
 function openformcallback(q,json){
 	$(".reado").attr("readonly",true);
@@ -403,7 +284,7 @@ function openformcallback(q,json){
 		}
 		$(".hideme").show();
 		
-		if(json['msgs'][0]['status']!='pending'&&json['msgs'][0]['status']!='reject') {
+		if(json['msgs'][0]['status']!='pending') {
 			$("#bdel").hide();
 			$("#bsav").hide();
 		}else{

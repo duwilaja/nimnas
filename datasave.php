@@ -216,6 +216,23 @@ if($mn=='hrrem'||$mn=='myrem'){
 		$msgs="Invalid authorization";
 	}
 }
+if($mn=='hrot'||$mn=='myot'){
+	if($s_LVL!="22"){
+		$fname=$s_NIK.strtotime("now");
+		$upload=upload_file("attc","otattc/",$fname);
+		$attc=$upload[0]?$upload[1]:"";
+		if($attc==''&&post('fattc')!='') $attc=post('fattc');
+		if($attc!=''||post('rowid')!=0){
+			$stts=post('status')==''?'pending':post('status');
+			$res=crud($conn,"attc,status","'$attc','$stts'");
+			$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
+		}else{
+			$msgs="Attachment doesnt exist. ".$upload[1];
+		}
+	}else{
+		$msgs="Invalid authorization";
+	}
+}
 if($mn=='cekin'){
 	if(trim($s_NIK)==''){
 		$msgs="NIK is blank";

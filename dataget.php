@@ -47,6 +47,7 @@ switch($q){
 	case 'hrleav': $sql="select l.*,nama,leader from hr_leav l left join hr_kary k on k.nik=l.nik where l.rowid='$id'"; break;
 	case 'hratt': $sql="select l.*,nama,leader from hr_attend l left join hr_kary k on k.nik=l.nik where l.rowid='$id'"; break;
 	case 'hrrem': $sql="select l.*,nama,leader from hr_remb l left join hr_kary k on k.nik=l.nik where l.rowid='$id'"; break;
+	case 'hrot': $sql="select l.*,nama,leader from hr_ot l left join hr_kary k on k.nik=l.nik where l.rowid='$id'"; break;
 	
 	case 'kabkot': $sql="select kabkotid as v,concat(name,' (',kabkot,')') as t from core_kabkot where prov='$id' order by name"; break;
 	
@@ -112,6 +113,9 @@ switch($q){
 				$sql="select status as stts,count(status) as tot from $tname where dt=date(now()) and $hrwr group by stts";
 				break;
 	case 'remtot': $tname="hr_remb";
+				$sql="select status as stts,count(status) as ctot, sum(tot) as stot from $tname group by status";
+				break;
+	case 'ottot': $tname="hr_ot";
 				$sql="select status as stts,count(status) as ctot, sum(tot) as stot from $tname group by status";
 				break;
 	case 'leavtot': $tname="hr_leav";
