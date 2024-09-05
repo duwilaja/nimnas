@@ -170,7 +170,10 @@ if($mn=='ravatar'){
 	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
 }
 
-
+if($mn=='mhol'){
+	$res=crud($conn);
+	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
+}
 if($mn=='mkary'){
 	$res=crud($conn);
 	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
