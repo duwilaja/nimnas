@@ -42,6 +42,7 @@ switch($q){
 	case 'mev': $sql="select * from core_events where rowid='$id'"; break;
 	case 'mport': $sql="select * from core_ports where rowid='$id'"; break;
 	case 'mkary': $sql="select * from hr_kary where rowid='$id'"; break;
+	case 'mhol': $sql="select * from hr_holiday where rowid='$id'"; break;
 	case 'rgen': $sql="select * from core_bgrpt where rowid='$id'"; break;
 	
 	case 'hrleav': $sql="select l.*,nama,leader from hr_leav l left join hr_kary k on k.nik=l.nik where l.rowid='$id'"; break;

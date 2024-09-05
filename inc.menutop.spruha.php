@@ -64,19 +64,19 @@
 						<ul class="nav-sub">
 							<li class="nav-sub-item"><a class="nav-sub-link sub-with-sub" href="javascript:void(0)">Overview</a>
 							<ul class="sub-nav-sub">
-								<li class="nav-sub-item"><a class="nav-sub-link home" href="home<?php echo $ext?>">Dashboard</a></li>
-								<li class="nav-sub-item"><a class="nav-sub-link ncategory" href="n_category<?php echo $ext?>">Category View</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="home<?php echo $ext?>">Dashboard</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="n_category<?php echo $ext?>">Category View</a></li>
 								<!--li class="nav-sub-item"><a class="nav-sub-link org" href="org<?php echo $ext?>">Business View</a></li-->
-								<li class="nav-sub-item"><a class="nav-sub-link topo" href="topo<?php echo $ext?>">Topology View</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="topo<?php echo $ext?>">Topology View</a></li>
 								<!--li class="nav-sub-item hidden"><a class="nav-sub-link maps" href="maps<?php echo $ext?>">Map View</a></li-->
 							</ul>
 							</li>
 							<li class="nav-sub-item"><a class="nav-sub-link sub-with-sub" href="javascript:void(0)">Objects</a>
 							<ul class="sub-nav-sub">
-								<li class="nav-sub-item"><a class="nav-sub-link ndevice" href="n_devicex<?php echo $ext?>">Devices</a></li>
-								<li class="nav-sub-item"><a class="nav-sub-link nlocation" href="n_location<?php echo $ext?>">Locations</a></li>
-								<li class="nav-sub-item"><a class="nav-sub-link papp" href="p_snmpd<?php echo $ext?>">SNMP</a></li>
-								<li class="nav-sub-item"><a class="nav-sub-link papp" href="p_app<?php echo $ext?>">Application</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="n_devicex<?php echo $ext?>">Devices</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="n_location<?php echo $ext?>">Locations</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="p_snmpd<?php echo $ext?>">SNMP</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="p_app<?php echo $ext?>">Application</a></li>
 							</ul>
 						</ul>
 					</li>
@@ -140,7 +140,7 @@
 						<a class="nav-link with-sub" href="javascript:void(0)">
 							<span class="shape1"></span>
 							<span class="shape2"></span>
-							<i class="fa fa-file-text sidemenu-icon menu-icon "></i>
+							<i class="fa fa-file-text sidemenu-icon menu-icon"></i>
 							<span class="sidemenu-label">Reports</span>
 						</a>
 						<ul class="nav-sub">
@@ -165,9 +165,9 @@
 					<?php if($is_ticket){?>
 							<li class="nav-sub-item"><a class="nav-sub-link sub-with-sub" href="javascript:void(0)">Ticketing</a>
 							<ul class="sub-nav-sub">
-								<li class="nav-sub-item"><a class="nav-sub-link " href="r_ticksum<?php echo $ext?>">Summary</a></li>
-								<li class="nav-sub-item"><a class="nav-sub-link " href="r_tick<?php echo $ext?>">Tickets</a></li>
-								<li class="nav-sub-item"><a class="nav-sub-link " href="r_mttr<?php echo $ext?>">MTTR</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="r_ticksum<?php echo $ext?>">Summary</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="r_tick<?php echo $ext?>">Tickets</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="r_mttr<?php echo $ext?>">MTTR</a></li>
 							</ul>
 							</li>
 					<?php }?>
@@ -202,38 +202,38 @@
 							<span class="sidemenu-label">Setup</span>
 						</a>
 						<ul class="nav-sub">
-							<li class="nav-sub-item"><a class="nav-sub-link muser" href="m_loc<?php echo $ext?>">Locations</a></li>
-							<li class="nav-sub-item"><a class="nav-sub-link muser" href="m_events<?php echo $ext?>">Events</a></li>
+							<li class="nav-sub-item"><a class="nav-sub-link" href="m_loc<?php echo $ext?>">Locations</a></li>
+							<li class="nav-sub-item"><a class="nav-sub-link" href="m_events<?php echo $ext?>">Events</a></li>
 							<li class="nav-sub-item"><a class="nav-sub-link sub-with-sub" href="javascript:void(0)">Monitoring</a>
 							<ul class="sub-nav-sub">
 								<?php if($s_LVL==0){?>
-								<li class="nav-sub-item"><a class="nav-sub-link mlov" href="m_lov<?php echo $ext?>">LoV</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="m_lov<?php echo $ext?>">LoV</a></li>
 								<!--li class="nav-sub-item"><a class="nav-sub-link muser" href="m_user<?php echo $ext?>">User</a></li-->
 								<?php }?>
-								<li class="nav-sub-item"><a class="nav-sub-link mlov" href="m_device<?php echo $ext?>">Devices</a></li>
-								<li class="nav-sub-item"><a class="nav-sub-link mlov" href="m_topo<?php echo $ext?>">Topology</a></li>
-								<li class="nav-sub-item"><a class="nav-sub-link muser" href="m_sla<?php echo $ext?>">SLA</a></li>
-								<li class="nav-sub-item"><a class="nav-sub-link mlov" href="m_severity<?php echo $ext?>">Severity</a></li>
-								<li class="nav-sub-item"><a class="nav-sub-link muser" href="m_bg<?php echo $ext?>">Controls</a></li>
-								<li class="nav-sub-item"><a class="nav-sub-link muser" href="m_ports<?php echo $ext?>">Ports</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="m_device<?php echo $ext?>">Devices</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="m_topo<?php echo $ext?>">Topology</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="m_sla<?php echo $ext?>">SLA</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="m_severity<?php echo $ext?>">Severity</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="m_bg<?php echo $ext?>">Controls</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="m_ports<?php echo $ext?>">Ports</a></li>
 							</ul>
 							</li>
 							<li class="nav-sub-item"><a class="nav-sub-link sub-with-sub" href="javascript:void(0)">Ticketing</a>
 							<ul class="sub-nav-sub">
-								<li class="nav-sub-item"><a class="nav-sub-link muser" href="m_serv<?php echo $ext?>">Services</a></li>
-								<li class="nav-sub-item"><a class="nav-sub-link muser" href="m_ticat<?php echo $ext?>">Categories</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="m_serv<?php echo $ext?>">Services</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="m_ticat<?php echo $ext?>">Categories</a></li>
 							</ul>
 							</li>
 							<li class="nav-sub-item"><a class="nav-sub-link sub-with-sub" href="javascript:void(0)">Asset</a>
 							<ul class="sub-nav-sub">
-								<li class="nav-sub-item"><a class="nav-sub-link muser" href="m_brand<?php echo $ext?>">Brand</a></li>
-								<li class="nav-sub-item"><a class="nav-sub-link muser" href="m_ascat<?php echo $ext?>">Categories</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="m_brand<?php echo $ext?>">Brand</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="m_ascat<?php echo $ext?>">Categories</a></li>
 							</ul>
 							</li>
 							<li class="nav-sub-item"><a class="nav-sub-link sub-with-sub" href="javascript:void(0)">HR</a>
 							<ul class="sub-nav-sub">
-								<li class="nav-sub-item"><a class="nav-sub-link muser" href="m_kar<?php echo $ext?>">Employee</a></li>
-								<!--li class="nav-sub-item"><a class="nav-sub-link muser" href="m_kset<?php echo $ext?>">Setting</a></li-->
+								<li class="nav-sub-item"><a class="nav-sub-link" href="m_kar<?php echo $ext?>">Employee</a></li>
+								<li class="nav-sub-item"><a class="nav-sub-link" href="m_hol<?php echo $ext?>">Holiday</a></li>
 							</ul>
 							</li>
 						</ul>
@@ -249,9 +249,9 @@
 						</a>
 						<ul class="nav-sub">
 							<li class="side-menu-label1"><a href="javascript:void(0)">Tools</a></li>
-							<li class="nav-sub-item"><a class="nav-sub-link mlov" href="t_ping<?php echo $ext?>">Ping</a></li>
-							<li class="nav-sub-item"><a class="nav-sub-link muser" href="t_trace<?php echo $ext?>">Trace</a></li>
-							<li class="nav-sub-item"><a class="nav-sub-link muser" href="t_snmp<?php echo $ext?>">SNMP</a></li>
+							<li class="nav-sub-item"><a class="nav-sub-link" href="t_ping<?php echo $ext?>">Ping</a></li>
+							<li class="nav-sub-item"><a class="nav-sub-link" href="t_trace<?php echo $ext?>">Trace</a></li>
+							<li class="nav-sub-item"><a class="nav-sub-link" href="t_snmp<?php echo $ext?>">SNMP</a></li>
 						</ul>
 					</li>
 					<?php }?>
