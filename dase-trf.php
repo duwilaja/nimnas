@@ -34,7 +34,7 @@ if(count($rs)>0){
 	$lnk=urlencode(base64_encode($endpoint.urlencode($name).'/port_bits'));
 	$lnkimg=urlencode(base64_encode($endpoint.urlencode($name).'/port_bits?'.$dfdt));
 ?>	
-		<a href="JavaScript:;" data-fancybox="" data-type="iframe" data-src="lib_device_graph<?php echo $ext?>?l=<?php echo $lnk?>&h=<?php echo $host?>&g=<?php echo $name?>&f=<?php echo base64_encode($df)?>&t=<?php echo base64_encode($dt)?>">
+		<a href="JavaScript:;" data-fancybox="" data-type="iframe" data-src="lib_device_graph<?php echo $ext?>?l=<?php echo $lnk?>&h=<?php echo $host?>&g=<?php echo $name?>&f=<?php echo base64_encode($df)?>&t=<?php echo base64_encode($dt." 23:59:59")?>">
 			<img style="background:white;" width="100%" src="lib_api<?php echo $ext?>?lnk=<?php echo $lnkimg?>" />
 		</a>
 <?php	
