@@ -40,7 +40,7 @@ for($i=0;$i<count($rs);$i++){
 														<div class="col-4">
 															<span class=""><?php echo $d['mname']?></span>
 														</div>
-														<div class="col-6 my-auto">
+														<div class="col-5 my-auto">
 															<div class="progress ht-6 my-auto">
 																<div class="progress-bar ht-6 wd-<?php echo $wd?>p" role="progressbar"
 																	aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
