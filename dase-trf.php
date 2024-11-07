@@ -8,7 +8,7 @@ include "lib_inc.db.php";
 
 $conn=connect();
 
-$wherloc ='';
+$wherloc ='where hostname in (select host from nimdb.core_node)';
 $host='';
 if($mys_LOC!=''){
 	$sql="select host from nimdb.core_node where loc in ('$mys_LOC')";
@@ -17,7 +17,7 @@ if($mys_LOC!=''){
 	for($i=0;$i<count($rs);$i++){
 		$aho[]=$rs[$i]['host'];
 	}
-	$wherloc=count($aho)>0?" where hostname in ('".implode("','",$aho)."')":"";
+	$wherloc.=count($aho)>0?" and hostname in ('".implode("','",$aho)."')":"";
 }
 $sql="select hostname from devices $wherloc";
 $rs=fetch_alla(exec_qry($conn,$sql));
