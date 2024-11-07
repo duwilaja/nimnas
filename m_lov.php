@@ -14,6 +14,7 @@ $menu="mlov";
 $breadcrumb="Setup/$page_title";
 
 $o_lovtyp=[
+	["suspect","Suspect"],
 	["group","Group"],
 	["network","Network"],
 	["devicetype","Device Type"]

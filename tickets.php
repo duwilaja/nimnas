@@ -28,6 +28,8 @@ $rs=exec_qry($conn,"select servid,servname from tick_serv order by servname");
 $o_serv=fetch_all($rs);
 $rs=exec_qry($conn,"select catid,catname from tick_cat order by catname");
 $o_cat=fetch_all($rs);
+$rs=exec_qry($conn,"select val,txt from core_lov where typ='suspect' order by txt");
+$o_sus=fetch_all($rs);
 disconnect($conn);
 
 $ox=get("o");
@@ -221,7 +223,11 @@ include "inc.menutop.php";
 		  <div class="row mb-3">
 			<div class="form-group col-md-4">
 				<label>Suspect</label>
-				<input type="text" id="h" name="h" placeholder="..." class="form-control reado">
+				<!--input type="text" id="h" name="h" placeholder="..." class="form-control reado"-->
+				<select class="form-control" id="h" name="h">
+					<option value="">Please Choose</option>
+					<?php echo options($o_sus)?>
+				</select>
 			</div>
 			<div class="form-group col-md-4">
 				<label>Desc</label>
@@ -320,7 +326,9 @@ include "inc.menutop.php";
 		<?php if($s_LVL==0){?>
 	    <button type="button" class="btn btn-danger" id="bdel"  onclick="confirmDelete();">Delete</button>
 		<?php }?>
-		<button type="button" class="btn btn-success" onclick="b4sef(); saveData();">Save</button>
+		<?php if($s_LVL!=12){?>
+	    <button type="button" class="btn btn-success" onclick="b4sef(); saveData();">Save</button>
+		<?php }?>
 		<button type="button" data-dismiss="modal" class="btn btn-default" onclick="togglehide(1);">Close</button>
 		
 	  </div>

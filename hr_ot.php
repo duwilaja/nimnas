@@ -237,7 +237,7 @@ disconnect($conn);
 	  </div>
 	  <div class="modal-footer">
 		<?php if($s_LVL<2){?>
-		<!--button type="button" class="btn btn-danger" id="bdel"  onclick="confirmDelete();">Delete</button-->
+		<button type="button" class="btn btn-danger" id="bdel"  onclick="confirmDelete();">Delete</button>
 		<button type="button" class="btn btn-success" id="bsav" onclick="saveData();">Save</button>
 		<?php }?>
 		<button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
