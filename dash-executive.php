@@ -137,7 +137,7 @@ include "inc.menutop.php";
 														</div>
 													</div>
 												</div>
-												<div id="slamonth">
+												<div id="slamonth" style="max-height:165px; overflow: auto;">
 												</div>
 											</div>
 										</div>
