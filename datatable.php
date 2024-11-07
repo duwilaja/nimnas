@@ -213,8 +213,10 @@ while($row = fetch_row($result)){
 		$xx='-';
 	}
 	if($x=="hrrem"||$x=='myrem'){
-		$act='<a title="Attachment" class="btn btn-sm btn-primary ripple" href="JavaScript:;" data-fancybox data-type="iframe" data-src="remattc/'.$row[6].'"><i class="fa fa-paperclip"</i></a>';
-		$row[6]=$act;
+		if($row[6]!=''){
+			$act='<a title="Attachment" class="btn btn-sm btn-primary ripple" href="JavaScript:;" data-fancybox data-type="iframe" data-src="remattc/'.$row[6].'"><i class="fa fa-paperclip"</i></a>';
+			$row[6]=$act;
+		}
 		if($x=='myrem') $xx='-';
 	}
 	if($x=="hrot"||$x=='myot'){

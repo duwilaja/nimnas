@@ -191,7 +191,7 @@
 											<p class="main-notification-text">You have 1 unread notification<span
 													class="badge bg-pill bg-primary ms-3">View all</span></p>
 										</div-->
-										<div class="main-notification-list isilonceng">
+										<div class="main-notification-list isilonceng" style="max-height:300px; overflow: hidden scroll">
 											
 										</div>
 										<div class="dropdown-footer hidden">

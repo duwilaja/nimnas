@@ -142,6 +142,11 @@ switch($q){
 	case 'notify': $sql="select DATE_FORMAT(created,'%a, %e %b %H:%i') as dtm,uname,uavatar as avatar,ticketno,
 			concat('Ticket#',ticketno,'. ',h,'. status ',stts) as msg
 			from tick_ets n left join core_user u on u.uid=n.creby where stts<>'closed' and $wtik order by created desc"; break;
+			
+	case 'excdash': $myw='';
+		if($mys_LOC!='') $myw=" where host in (select host from core_node where $whr)";
+			$sql="select 'dev' as obj,'' as typ,status as stt,count(status) as cnt from core_status $myw group by status UNION 
+							select 'tick' as obj,cat as typ, stts as stt,count(stts) as cnt from tick_ets where $wtik group by cat,stts"; 
 }
 
 //echo $sql;

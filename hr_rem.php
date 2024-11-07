@@ -236,7 +236,7 @@ disconnect($conn);
 	  </div>
 	  <div class="modal-footer">
 		<?php if($s_LVL<2){?>
-		<!--button type="button" class="btn btn-danger" id="bdel"  onclick="confirmDelete();">Delete</button-->
+		<button type="button" class="btn btn-danger" id="bdel"  onclick="confirmDelete();">Delete</button>
 		<button type="button" class="btn btn-success" id="bsav" onclick="saveData();">Save</button>
 		<?php }?>
 		<button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
@@ -395,7 +395,7 @@ function openformcallback(q,json){
 		$("#eprup").hide();
 		$("#bsav").show();
 	}else{
-		if(json['msgs'][0]['leader']=='<?php echo $s_NIK?>'){
+		if(json['msgs'][0]['leader']=='<?php echo $s_NIK?>' || <?php echo $s_LVL==0?'true':'false'; ?>){
 			$("#eprup").show();
 			$(".reado").attr("readonly",false);
 		}else{
