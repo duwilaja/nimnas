@@ -35,6 +35,7 @@ for($i=0;$i<count($rs);$i++){
 	$mod=$mod>5?5:0;
 	$div=intdiv(round($pct,0),10);
 	$wd=($div*10)+$mod;
+	$wd=$wd>100?100:$wd;
 ?>
 													<div class="row mt-<?php echo $mt?>">
 														<div class="col-4">
