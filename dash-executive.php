@@ -137,7 +137,7 @@ include "inc.menutop.php";
 														</div>
 													</div>
 												</div>
-												<div id="slamonth" style="max-height:165px; overflow: auto;">
+												<div id="slamonth" style="max-height:165px; overflow-y: auto; overflow-x: hidden;">
 												</div>
 											</div>
 										</div>
@@ -150,7 +150,7 @@ include "inc.menutop.php";
 												</div>
 												<span class="d-block tx-12 mt-2 mb-0 text-muted"> project work involves a group of students investigating . </span>
 											</div>
-											<div class="card-body">
+											<div class="card-body" style="min-height: 210px;">
 												<span id="sparkline1">3,4,4,7,5,9,10,6,4,4,7,5,10,5,8,9,12,4,7,13,6,12,4,5,9,10,6</span>
 											</div>
 										</div>
@@ -163,7 +163,7 @@ include "inc.menutop.php";
 												</div>
 												<span class="d-block tx-12 mt-2 mb-0 text-muted"> project work involves a group of students investigating . </span>
 											</div>
-											<div class="card-body">
+											<div class="card-body" style="min-height: 210px;">
 												<span id="sparkline2">3,4,4,7,5,9,10,6,4,4,7,5,10,5,8,9,12,4,7,13,6,12,4,5,9,10,6</span>
 											</div>
 										</div>
