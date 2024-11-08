@@ -77,7 +77,7 @@ include "inc.menutop.php";
 											<div class="card-header border-bottom-0 pb-0">
 												<div>
 													<div class="d-md-flex">
-														<label class="main-content-label my-auto pt-2">Usage Bandwidth Perday</label>
+														<label class="main-content-label my-auto pt-2">Usage Bandwidth </label>
 														<div class="ms-auto">
 															<div class="apexcharts-menu-icon d-flex text-muted tx-13" title="Menu" style="fill: #6E8192; width: 20px;">
 																<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -88,7 +88,7 @@ include "inc.menutop.php";
 														</div>
 													</div>
 													<div class="d-md-flex">
-														<span class="d-block tx-12 mt-2 mb-0 text-muted"> Bandwidth JIK 100 Mbps. </span>
+														<span class="d-block tx-12 mt-2 mb-0 text-muted" id="bw"> Bandwidth JIK </span>
 														<div class="ms-auto mt-2 d-flex">
 															<div class="me-3 d-flex text-muted tx-13">
 																<span class="legend bg-primary rounded-circle"></span> Usage
@@ -105,14 +105,14 @@ include "inc.menutop.php";
 													<div class="col-sm-6 my-auto">
 														<h6 class="mb-3 font-weight-normal">Penggunaan</h6>
 														<div class="text-start">
-															<h3 class="font-weight-bold me-3 mb-2 text-primary">75 mbps</h3>
-															<p class="tx-13 my-auto text-muted">Sep 27 2024</p>
+															<h3 class="font-weight-bold me-3 mb-2 text-primary" id="usage">0</h3>
+															<p class="tx-13 my-auto text-muted" id="tgl">-</p>
 														</div>
 													</div>
 													<div class="col-md-6 my-auto">
 														<div class="forth circle">
 															<div class="chart-circle-value circle-style">
-																<div class="tx-16 font-weight-bold">75%</div>
+																<div class="tx-16 font-weight-bold" id="percent">0%</div>
 															</div>
 														</div>
 													</div>
@@ -148,7 +148,7 @@ include "inc.menutop.php";
 												<div class="d-flex">
 													<label class="main-content-label my-auto pt-2">Traffic INTERNET</label>
 												</div>
-												<span class="d-block tx-12 mt-2 mb-0 text-muted"> project work involves a group of students investigating . </span>
+												<span class="d-block tx-12 mt-2 mb-0 text-muted"> Traffic IN/OUT port wan1 </span>
 											</div>
 											<div class="card-body" style="min-height: 210px;">
 												<span id="sparkline1">3,4,4,7,5,9,10,6,4,4,7,5,10,5,8,9,12,4,7,13,6,12,4,5,9,10,6</span>
@@ -161,7 +161,7 @@ include "inc.menutop.php";
 												<div class="d-flex">
 													<label class="main-content-label my-auto pt-2">Traffic VPN</label>
 												</div>
-												<span class="d-block tx-12 mt-2 mb-0 text-muted"> project work involves a group of students investigating . </span>
+												<span class="d-block tx-12 mt-2 mb-0 text-muted"> Traffic IN/OUT port wan2 </span>
 											</div>
 											<div class="card-body" style="min-height: 210px;">
 												<span id="sparkline2">3,4,4,7,5,9,10,6,4,4,7,5,10,5,8,9,12,4,7,13,6,12,4,5,9,10,6</span>
@@ -268,7 +268,7 @@ include "inc.menutop.php";
 						<div class="card custom-card card-dashboard-calendar pb-0">
 							<label class="main-content-label mb-2 pt-1">EOS team on province</label>
 							<span class="d-block tx-12 mb-2 text-muted">
-								A task is accomplished by a set deadline, and must contribute toward work-related objectives.
+								All EOS registered
 							</span>
 							<table id="emptbl" class="table table-hover m-b-0 transcations mt-2">
 								<thead class="hidden"><tr><td>logo</td><td>logo</td><td>logo</td><td>logo</td><td>logo</td></tr></thead>
@@ -305,7 +305,9 @@ $(document).ready(function(){
 	get_content("dase-trf"+ext,{port:'wan1',df:'<?php echo date('Y-m-d')?>',dt:'<?php echo date('Y-m-d')?>'},'',"#sparkline1");
 	get_content("dase-trf"+ext,{port:'wan2',df:'<?php echo date('Y-m-d')?>',dt:'<?php echo date('Y-m-d')?>'},'',"#sparkline2");
 	
-	circleit();
+	getbw();
+	
+	//circleit(0.9);
 	//sparklineit();
 });
 
@@ -334,7 +336,24 @@ function getkary(url,data,ldr,target,mthd='POST'){
 		}
 	});
 }
-
+function getbw(){
+	$.ajax({
+		type: 'POST',
+		url: 'dase-ban'+ext,
+		data: {},
+		success: function(data){
+			var json = JSON.parse(data);
+			//log(json);
+			$.each(json,function(k,v){
+				$("#"+k).html(v);
+				if(k=='number') circleit(v);
+			})
+		},
+		error: function(xhr){
+			log('Server Error'+xhr);
+		}
+	});
+}
 function gettot(){
 	$.ajax({
 		type: 'POST',
@@ -392,13 +411,13 @@ function gettot(){
 	});
 }
 
-        function circleit() {
-            'use strict'
+        function circleit(valu=0) {
+            //'use strict'
         
             var c4 = $('.forth.circle');
             c4.circleProgress({
                 startAngle: -Math.PI / 2 * 9,
-                value: 0.75,
+                value: valu,
                 lineCap: 'round',
                 emptyFill: 'rgba(204, 204, 204,0.2)',
                 fill: { color: myVarVal },
