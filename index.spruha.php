@@ -34,7 +34,7 @@ if($user!=''&&$passwd!=''){
 }
 if($loggedin){
 	$hom='';
-	if($_SESSION['s_LVL']=="22"){//HR
+	if($_SESSION['s_LVL']=="22"||$_SESSION['s_LVL']=="21"){//HR
 		$is_bai=false;
 		$is_nms=false;
 		$is_ticket=false;
@@ -45,6 +45,8 @@ if($loggedin){
 	if($is_ticket) {$hom="tick_hom$ext";}
 	if($is_hr) {$hom="hr_hom$ext";}
 	if($is_nms) {$hom="home$ext";}
+	if($_SESSION['s_LVL']==12) {$hom="dash-executive$ext";}
+	if($_SESSION['s_LVL']==22) {$hom="hr_hom$ext";}
 	
 	if($hom!=''){
 		header("Location: $hom");
@@ -60,7 +62,7 @@ include "inc.head.php";
 $menu="";
 ?>
 			<!-- Row -->
-			<div class="row signpages text-center">
+			<!-- <div class="row signpages text-center">
 				<div class="col-md-12">
 					<div class="card">
 						<div class="row row-sm">
@@ -101,10 +103,54 @@ $menu="";
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 			<!-- End Row -->
+			<div class="row">
+				<div class="col-lg-7 col-xl-7 login-page">
+					<img src="./img/item-wave-1.png" style="position: absolute; width: 100%; height: 40%; bottom: 0;" id="wave-left-1" />
+					<img src="./img/item-wave-2.png" style="position: absolute; width: 60%; height: 20%; bottom: 0;" id="wave-left-2" />
+					<img src="./img/item-wave-3.png" style="position: absolute; width: 60%; height: 20%; top: 0; right: 0;" id="wave-left-3" />
+					<div class="content-login-1">
+						<div class="d-flex flex-column align-items-center justify-content-center" style="height: 100vh;">
+							<h1 style="color: #F7A31C; font-size: 60px; font-weight: 700; z-index: 4;">SMJT</h1>
+							<img src="img/img-login.png" width="55%" class="py-2" alt="user" style="z-index: 4;">
+							<p class="text-muted text-center" style="z-index: 4;"><span style="color: #FFFFFF; font-size: 30px; font-weight: 600;">Sistem Monitoring Jaringan Terpadu</span> </br> Be Responsive Dan Responsible</p>
+						</div>
+					</div>
+					<div class="d-flex flex-column justify-content-end ps-4 content-login-2">
+						<p class="text-muted"><span class="sub-text lh-1">Sistem Monitoring Jaringan Terpadu</span> </br> Be Responsive Dan Responsible</p>
+					</div>
+				</div>
+				<div class="col-lg-5 col-xl-5 form-login">
+					<img src="./img/item-wave-3.png" style="position: absolute; width: 80%; height: 20%; top: 0; left: 0; transform: scaleX(-1); opacity: 50%" id="wave-right-1" />
+					<img src="./img/item-wave-5.png" style="position: absolute; width: 100%; height: 40%; bottom: 0; transform: scaleX(-1);" id="wave-right-2" />
+					<div class="d-flex flex-column align-items-center justify-content-center" style="height: 100vh;">
+						<img src="img/logo.png" width="20%" alt="logo" class="pb-5" style="z-index: 4;">
+						<form action="" method="POST" name="login_form" id="login_form" style="z-index: 4;" class="w-75">
+							<h5 class="text-center mb-2">Welcome Back!</h5>
+							<p class="mb-4 text-muted tx-13 ms-0 text-center">Centralized Management Distributed Operational</p>
+							<div class="form-group text-start">
+								<label>Username</label>
+								<input type="text" name="user" class="form-control" placeholder="Enter Your Username" value="<?php echo $user?>">
+							</div>
+							<div class="form-group text-start">
+								<label>Password</label>
+								<input type="password" name="passwd" class="form-control" placeholder="Enter Your Password" value="<?php echo $passwd?>">
+							</div>
+							<div class="d-flex justify-content-between align-items-center mb-2">
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" id="disabledFieldsetCheck">
+									<label class="form-check-label tx-13" for="disabledFieldsetCheck">Remember me</label>
+								</div>
+								<a href="index.spruha.forgot.php" class="tx-13">Forgot Password</a>
+							</div>
+							<button type="submit" onclick="if($('#login').valid()){this.form.submit();}" class="btn ripple btn-main-primary btn-block">Sign In</button>
+						</form>
+					</div>
+				</div>
+			</div>			
 <?php
-include "inc.foot.php";
+//include "inc.foot.php";
 include "inc.js.php";
 ?>
 <script>
@@ -131,6 +177,7 @@ function showAlert(){
 		alrt(m,x);
 	}
 }
+
 </script>
   </body>
 </html>

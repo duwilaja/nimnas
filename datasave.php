@@ -213,7 +213,8 @@ if($mn=='hrrem'||$mn=='myrem'){
 		$attc=$upload[0]?$upload[1]:"";
 		if($attc==''&&post('fattc')!='') $attc=post('fattc');
 		$stts=post('status')==''?'pending':post('status');
-		$res=crud($conn,"attc,status","'$attc','$stts'");
+		$fin=post('fin')==''?'pending':post('fin');
+		$res=crud($conn,"attc,status,fin","'$attc','$stts','$fin'");
 		$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
 	}else{
 		$msgs="Invalid authorization";

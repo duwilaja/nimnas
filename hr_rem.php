@@ -1,5 +1,5 @@
 <?php 
-$restrict_lvl=array("0","1","2","22");
+$restrict_lvl=array("0","1","2","22","21");
 
 include "inc.common.php";
 include "inc.session.php";
@@ -155,6 +155,7 @@ disconnect($conn);
 										<th>Submited</th>
 										<th>Total</th>
 										<th>Remark</th>
+										<th>Finance</th>
 										<th>Attachment</th>
 									</tr>
 								</thead>
@@ -212,10 +213,18 @@ disconnect($conn);
 				<label>Total</label>
 				<input type="text" id="tot" name="tot" placeholder="..." class="form-control">
 			</div>
-			<div class="form-group col-md-6 hideme">
+			<div class="form-group col-md-3 hideme">
 				<label>Status</label>
 				<!--input type="text" readonly id="status" name="status" placeholder="..." class="form-control"-->
 				<select class="form-control reado" id="status" name="status">
+					<option value="">-</option>
+					<?php echo options($o_remstt)?>
+				</select>
+			</div>
+			<div class="form-group col-md-3 hideme">
+				<label>Finance</label>
+				<!--input type="text" readonly id="status" name="status" placeholder="..." class="form-control"-->
+				<select class="form-control reado" id="fin" name="fin">
 					<option value="">-</option>
 					<?php echo options($o_remstt)?>
 				</select>
@@ -235,8 +244,10 @@ disconnect($conn);
 		</form>
 	  </div>
 	  <div class="modal-footer">
+		<?php if($s_LVL<2||$s_LVL==21){?>
 		<?php if($s_LVL<2){?>
 		<button type="button" class="btn btn-danger" id="bdel"  onclick="confirmDelete();">Delete</button>
+		<?php }?>
 		<button type="button" class="btn btn-success" id="bsav" onclick="saveData();">Save</button>
 		<?php }?>
 		<button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
@@ -293,7 +304,7 @@ include "inc.foot.php";
 include "inc.js.php";
 
 $tname="hr_remb l left join hr_kary k on k.nik=l.nik";
-$cols="l.nik,nama,status,submitted,tot,des,attc,l.rowid";
+$cols="l.nik,nama,status,submitted,tot,des,fin,attc,l.rowid";
 $csrc="l.nik,nama,des";
 $where="";
 
@@ -395,20 +406,20 @@ function openformcallback(q,json){
 		$("#eprup").hide();
 		$("#bsav").show();
 	}else{
-		if(json['msgs'][0]['leader']=='<?php echo $s_NIK?>' || <?php echo $s_LVL==0?'true':'false'; ?>){
+		if(json['msgs'][0]['leader']=='<?php echo $s_NIK?>' || <?php echo $s_LVL==0||$s_LVL==21?'true':'false'; ?>){
 			$("#eprup").show();
 			$(".reado").attr("readonly",false);
 		}else{
 			$("#eprup").hide();
 		}
 		$(".hideme").show();
-		
+		/*
 		if(json['msgs'][0]['status']!='pending'&&json['msgs'][0]['status']!='reject') {
 			$("#bdel").hide();
 			$("#bsav").hide();
 		}else{
 			$("#bsav").show();
-		}
+		}*/
 	}
 }
 </script>

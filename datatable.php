@@ -213,9 +213,9 @@ while($row = fetch_row($result)){
 		$xx='-';
 	}
 	if($x=="hrrem"||$x=='myrem'){
-		if($row[6]!=''){
-			$act='<a title="Attachment" class="btn btn-sm btn-primary ripple" href="JavaScript:;" data-fancybox data-type="iframe" data-src="remattc/'.$row[6].'"><i class="fa fa-paperclip"</i></a>';
-			$row[6]=$act;
+		if($row[7]!=''){
+			$act='<a title="Attachment" class="btn btn-sm btn-primary ripple" href="JavaScript:;" data-fancybox data-type="iframe" data-src="remattc/'.$row[7].'"><i class="fa fa-paperclip"</i></a>';
+			$row[7]=$act;
 		}
 		if($x=='myrem') $xx='-';
 	}

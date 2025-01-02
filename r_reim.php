@@ -1,5 +1,5 @@
 <?php 
-$restrict_lvl=array("0","1","2","22");
+$restrict_lvl=array("0","1","2","22","21");
 
 include "inc.common.php";
 include "inc.session.php";
@@ -71,6 +71,7 @@ include "inc.menutop.php";
 										<th>Submited</th>
 										<th>Total</th>
 										<th>Remark</th>
+										<th>Finance</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -89,7 +90,7 @@ include "inc.js.php";
 
 
 $tname="hr_remb l left join hr_kary k on k.nik=l.nik";
-$cols="l.nik,nama,status,submitted,tot,des,attc,l.rowid";
+$cols="l.nik,nama,status,submitted,tot,des,fin,attc,l.rowid";
 $csrc="l.nik,nama,des";
 
 $where="";
