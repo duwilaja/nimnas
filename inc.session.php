@@ -16,7 +16,7 @@ if($s_LOC!=''){
 	$mys_LOC=implode("','",explode(",",str_replace("'","''",$s_LOC)));
 }
 
-if($s_LVL=="22"){//HR
+if($s_LVL=="22"||$s_LVL=="21"){//HR
 	$is_bai=false;
 	$is_nms=false;
 	$is_ticket=false;

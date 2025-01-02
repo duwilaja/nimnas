@@ -70,6 +70,7 @@ include "inc.menutop.php";
 										<th>Submited</th>
 										<th>Total</th>
 										<th>Remark</th>
+										<th>Finance</th>
 										<th>Attachment</th>
 									</tr>
 								</thead>

@@ -1,10 +1,19 @@
+<?php
+$hidemenu="";
+if($is_asset) {$homepage="ass_hom$ext";}
+if($is_ticket) {$homepage="tick_hom$ext";}
+if($is_hr) {$homepage="hr_hom$ext";}
+if($is_nms) {$homepage="home$ext";}
+if($s_LVL==22) {$homepage="hr_hom$ext";}
+if($s_LVL==12) {$homepage="dash-executive$ext"; $hidemenu="hidden";}
+?>	
 		<!-- Main Header-->
 		<div class="main-header side-header sticky">
 			<div class="main-container container-fluid">
 				<div class="main-header-left">
 					<a class="main-header-menu-icon" href="javascript:void(0)" id="mainSidebarToggle"><span></span></a>
 					<div class="hor-logo">
-						<a class="main-logo" href="home<?php echo $ext?>">
+						<a class="main-logo" href="<?php echo $hhomepage?>">
 							<img src="spruha/assets/img/brand/logo.png" class="header-brand-img desktop-logo" alt="logo">
 							<img src="spruha/assets/img/brand/logo-light.png" class="header-brand-img desktop-logo-dark"
 								alt="logo">
@@ -13,9 +22,7 @@
 				</div>
 				<div class="main-header-center">
 					<div class="responsive-logo">
-						<a href="home<?php echo $ext?>"><img src="img/logo_smjt_landscape-removebg-preview.png" class="mobile-logo" alt="logo"></a>
-						<a href="home<?php echo $ext?>"><img src="img/logo_smjt_landscape-removebg-preview.png" class="mobile-logo-dark"
-								alt="logo"></a>
+						<a href="<?php echo $hhomepage?>"><img src="./img/text-logo.png" class="mobile-logo" alt="logo"></a>					
 					</div>
 					<div class="input-group">
 						<!--div class="input-group-btn search-panel">
@@ -191,7 +198,7 @@
 											<p class="main-notification-text">You have 1 unread notification<span
 													class="badge bg-pill bg-primary ms-3">View all</span></p>
 										</div-->
-										<div class="main-notification-list isilonceng" style="max-height:300px; overflow: hidden scroll">
+										<div class="main-notification-list isilonceng">
 											
 										</div>
 										<div class="dropdown-footer hidden">
