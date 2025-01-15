@@ -422,6 +422,14 @@ if($mn=='tick'){
 	}
 	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2].'. '.$mmail;
 }
+if($mn=='tickhis'){
+	$fname=$s_ID.strtotime("now");
+	$upload=upload_file("fattc","tickattc/",$fname);
+	$attc=$upload[0]?$upload[1]:"";
+	$attc=$attc==''?post('attc'):$attc;
+	$res=crud($conn,"attc","'$attc'");
+	$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
+}
 if($mn=='rgen'){
 	if(post('sv')=='NEW'){
 		$res=crud($conn,"job","UNIX_TIMESTAMP()");
