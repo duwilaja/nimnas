@@ -68,6 +68,8 @@ switch($q){
 	case 'asssum': $sql="select cat,count(cat) as tot from ass_ets where $wass and loc like '%$id%' group by cat"; break;
 	
 	case 'tick': $sql="select * from tick_ets where rowid='$id'"; break;
+	case 'tickhis': $sql="select * from tick_note where rowid='$id'"; break;
+	
 	case 'mticat': $sql="select * from tick_cat where rowid='$id'"; break;
 	case 'mserv': $sql="select * from tick_serv where rowid='$id'"; break;
 	

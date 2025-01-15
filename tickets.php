@@ -142,6 +142,13 @@ include "inc.menutop.php";
 					<?php echo options($o_loc)?>
 				</select>
 			</div>
+			<div class="col-xl-2">
+				<div class="small text-opacity-50 mb-2"><b>SUSPECT</b></div>
+				<select id="fsus" class="form-control select2">
+					<option value="">All SUSPECT</option>
+					<?php echo options($o_sus)?>
+				</select>
+			</div>
 			<div class="col-xl-2 pt-3">
 				<button type="button" onclick="reloadtbl()" class="btn btn-primary my-2 btn-icon-text">Filter</button>
 			</div>
@@ -445,8 +452,8 @@ $(document).ready(function(){
 				d.tname= '<?php echo base64_encode($tname); ?>',
 				d.csrc= '<?php echo base64_encode($csrc); ?>',
 				d.where= '<?php echo base64_encode($where); ?>',
-				d.filtereq= 'grp,cat,svc,stts,loc,prio',
-				d.cat= $("#fprio").val(),
+				d.filtereq= 'grp,cat,svc,stts,loc,h',
+				d.h= $("#fsus").val(),
 				d.cat= $("#fcat").val(),
 				d.grp= $("#fgrp").val(),
 				d.svc= $("#fsvc").val(),
