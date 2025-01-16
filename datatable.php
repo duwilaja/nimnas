@@ -220,9 +220,9 @@ while($row = fetch_row($result)){
 		if($x=='myrem') $xx='-';
 	}
 	if($x=="hrot"||$x=='myot'){
-		if($row[7]!=''){
-			$act='<a title="Attachment" class="btn btn-sm btn-primary ripple" href="JavaScript:;" data-fancybox data-type="iframe" data-src="otattc/'.$row[7].'"><i class="fa fa-paperclip"</i></a>';
-			$row[7]=$act;
+		if($row[8]!=''){
+			$act='<a title="Attachment" class="btn btn-sm btn-primary ripple" href="JavaScript:;" data-fancybox data-type="iframe" data-src="otattc/'.$row[8].'"><i class="fa fa-paperclip"</i></a>';
+			$row[8]=$act;
 		}
 		if($x=='myot') $xx='-';
 	}

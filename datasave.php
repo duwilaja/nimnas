@@ -228,7 +228,8 @@ if($mn=='hrot'||$mn=='myot'){
 		if($attc==''&&post('fattc')!='') $attc=post('fattc');
 		if($attc!=''||post('rowid')!=0){
 			$stts=post('status')==''?'pending':post('status');
-			$res=crud($conn,"attc,status","'$attc','$stts'");
+			$hr=post('hr')==''?'pending':post('hr');
+			$res=crud($conn,"attc,status,hr","'$attc','$stts','$hr'");
 			$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
 		}else{
 			$msgs="Attachment doesnt exist. ".$upload[1];
@@ -405,7 +406,8 @@ if($mn=='tick'){
 		$res=crud($conn,"$fcols","$fvals");
 	}else{
 		if(post('sv')=='UPD'){
-			$upload=upload_file("attc","tickattc/");
+			$fname=$s_ID.strtotime("now");
+			$upload=upload_file("attc","tickattc/",$fname);
 			$attc=$upload[0]?$upload[1]:"";
 			$sq=sql_insert("tick_note","notes,stts,ticketno",$conn,"dtm,updby,attc","NOW(),'$s_ID','$attc'");
 			$r=exec_qry($conn,$sq);

@@ -67,6 +67,7 @@ include "inc.menutop.php";
 										<th>NIK</th>
 										<th>Name</th>
 										<th>Status</th>
+										<th>HR</th>
 										<th>Submited</th>
 										<th>From</th>
 										<th>To</th>
@@ -207,7 +208,7 @@ include "inc.foot.php";
 include "inc.js.php";
 
 $tname="hr_ot l left join hr_kary k on k.nik=l.nik";
-$cols="l.nik,nama,status,submitted,dtf,dtt,ket,attc,l.rowid";
+$cols="l.nik,nama,status,hr,submitted,dtf,dtt,ket,attc,l.rowid";
 $csrc="l.nik,nama,ket";
 $where="l.nik='$s_NIK'";
 
