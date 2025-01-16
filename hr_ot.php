@@ -152,6 +152,7 @@ disconnect($conn);
 										<th>NIK</th>
 										<th>Name</th>
 										<th>Status</th>
+										<th>HR</th>
 										<th>Submited</th>
 										<th>From</th>
 										<th>To</th>
@@ -213,10 +214,18 @@ disconnect($conn);
 				<label>Total (hour)</label>
 				<input type="text" id="tot" name="tot" placeholder="..." class="form-control">
 			</div>
-			<div class="form-group col-md-6 hideme">
+			<div class="form-group col-md-3 hideme">
 				<label>Status</label>
 				<!--input type="text" readonly id="status" name="status" placeholder="..." class="form-control"-->
 				<select class="form-control reado" id="status" name="status">
+					<option value="">-</option>
+					<?php echo options($o_remstt)?>
+				</select>
+			</div>
+			<div class="form-group col-md-3 hideme">
+				<label>HR</label>
+				<!--input type="text" readonly id="status" name="status" placeholder="..." class="form-control"-->
+				<select class="form-control reado" id="hr" name="hr">
 					<option value="">-</option>
 					<?php echo options($o_remstt)?>
 				</select>
@@ -236,8 +245,10 @@ disconnect($conn);
 		</form>
 	  </div>
 	  <div class="modal-footer">
+		<?php if($s_LVL<2||$s_LVL==22){?>
 		<?php if($s_LVL<2){?>
 		<button type="button" class="btn btn-danger" id="bdel"  onclick="confirmDelete();">Delete</button>
+		<?php }?>
 		<button type="button" class="btn btn-success" id="bsav" onclick="saveData();">Save</button>
 		<?php }?>
 		<button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
@@ -294,7 +305,7 @@ include "inc.foot.php";
 include "inc.js.php";
 
 $tname="hr_ot l left join hr_kary k on k.nik=l.nik";
-$cols="l.nik,nama,status,submitted,dtf,dtt,ket,attc,l.rowid";
+$cols="l.nik,nama,status,hr,submitted,dtf,dtt,ket,attc,l.rowid";
 $csrc="l.nik,nama,ket";
 $where="";
 
@@ -397,20 +408,20 @@ function openformcallback(q,json){
 		$("#eprup").hide();
 		$("#bsav").show();
 	}else{
-		if(json['msgs'][0]['leader']=='<?php echo $s_NIK?>'){
+		if(json['msgs'][0]['leader']=='<?php echo $s_NIK?>' || <?php echo $s_LVL==0||$s_LVL==22?'true':'false'; ?>){
 			$("#eprup").show();
 			$(".reado").attr("readonly",false);
 		}else{
 			$("#eprup").hide();
 		}
 		$(".hideme").show();
-		
+		/*
 		if(json['msgs'][0]['status']!='pending'&&json['msgs'][0]['status']!='reject') {
 			$("#bdel").hide();
 			$("#bsav").hide();
 		}else{
 			$("#bsav").show();
-		}
+		}*/
 	}
 }
 </script>
