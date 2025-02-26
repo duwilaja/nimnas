@@ -26,6 +26,7 @@ $cols=base64_decode(post("cols",$conn));
 $where=base64_decode(post("where",$conn));
 $csrc=base64_decode(post("csrc",$conn));
 $cseq=base64_decode(post("cseq",$conn));
+$date=post("date",$conn);
 
 $grpcol=base64_decode(post("grpcol",$conn));
 $grpby=base64_decode(post("grpby",$conn));
@@ -123,6 +124,10 @@ if($str!=""){
 	}
 }
 
+if($date!=""){
+	$search=" and DATE(created) = '".$date."'";
+}
+
 /*total record, after search*/
 if($search!=""){
 $sqlcount=$grpcol==""?"select count(*) as cntstar from $tablename $search":"select count(*) as cntstar from (select distinct $grpcol from $tablename $search) mytbl";
@@ -212,12 +217,13 @@ while($row = fetch_row($result)){
 		$row[0]=$act;
 		$xx='-';
 	}
-	if($x=="hrrem"||$x=='myrem'){
+	if($x=="hrrem"||$x=='myrem'||$x=='rreim'){
 		if($row[7]!=''){
 			$act='<a title="Attachment" class="btn btn-sm btn-primary ripple" href="JavaScript:;" data-fancybox data-type="iframe" data-src="remattc/'.$row[7].'"><i class="fa fa-paperclip"</i></a>';
+			if($x=='rreim') $act='<a target="_blank" href="'.$app_url.'remattc/'.$row[7].'">'.$row[7].'</a>';
 			$row[7]=$act;
 		}
-		if($x=='myrem') $xx='-';
+		if($x=='myrem'||$x=='rreim') $xx='-';
 	}
 	if($x=="hrot"||$x=='myot'){
 		if($row[8]!=''){

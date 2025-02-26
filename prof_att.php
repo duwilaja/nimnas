@@ -50,20 +50,26 @@ include "inc.menutop.php";
 		
 				<div class="mb-3">
 					<div class="card-body">
+						<form method="post" target="_blank" action="r_absenx<?php echo $ext?>">
 						<div class="row">
 							<div class="col-md-2"><div class="input-group">
-								<input type="text" id="fdf" placeholder="From Date" class="form-control datepicker" value="<?php echo date('Y-m-d')?>">
+								<input type="text" name="df" id="fdf" placeholder="From Date" class="form-control datepicker" value="<?php echo date('Y-m-d')?>">
 								<div class="input-group-append"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
 							</div></div>
 							<div class="col-md-2"><div class="input-group">
-								<input type="text" id="fdt" placeholder="To Date" class="form-control datepicker">
+								<input type="text" name="dt" id="fdt" placeholder="To Date" class="form-control datepicker">
 								<div class="input-group-append"><span class="input-group-text"><i class="fa fa-calendar"></i></span></div>
 							</div></div>
-							&nbsp;&nbsp;&nbsp;
-							<button type="button" onclick="reloadtbl();" class="btn btn-primary col-md-1">Submit</button>
 							
+							<div class="col-md-1">
+							<button type="button" onclick="reloadtbl();" class="btn btn-primary">Refresh</button>
+							</div>
+							<div class="col-md-1">
+							<button type="button" onclick="this.form.submit();" class="btn btn-info">Download</button>
+							</div>
 							<input type="hidden" id="tname">
 						</div>
+						</form>
 					</div>
 				</div>
 				<div class="card">

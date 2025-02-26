@@ -1,5 +1,5 @@
 <?php 
-$restrict_lvl=array("0","1","2","22");
+//$restrict_lvl=array("0","1","2","22");
 
 include "inc.common.php";
 include "inc.session.php";
@@ -20,7 +20,10 @@ $where="1=1";
 if($df!='') $where.=" and dt>='$df'";
 if($dt!='') $where.=" and dt<='$dt'";
 if($nm!='') $where.=" and nama='$nm'";
-
+if($s_LVL!=0&&$s_LVL!=1&&$s_LVL!=2&&$s_LVL!=22){
+	$where.=" and l.nik='$s_NIK'";
+}
+	
 $sql="select dt,l.nik,nama,IF(TIME_TO_SEC(edin)>0,ADDTIME(edin,SEC_TO_TIME(tmd*60)),edin),reasonin,IF(TIME_TO_SEC(edout)>0,ADDTIME(edout,SEC_TO_TIME(tmd*60)),edout),reasonout,typ,photoin,photoout,latin,lngin,latout,lngout from hr_attend l left join hr_kary k on k.nik=l.nik where $where order by l.nik,dt";
 $recs=fetch_all(exec_qry($conn,$sql));
 
