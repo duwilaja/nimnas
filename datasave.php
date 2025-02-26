@@ -208,31 +208,43 @@ if($mn=='hratt'){
 }
 if($mn=='hrrem'||$mn=='myrem'){
 	if($s_LVL!="22"){
-		$fname=$s_NIK.strtotime("now");
-		$upload=upload_file("attc","remattc/",$fname);
-		$attc=$upload[0]?$upload[1]:"";
-		if($attc==''&&post('fattc')!='') $attc=post('fattc');
-		$stts=post('status')==''?'pending':post('status');
-		$fin=post('fin')==''?'pending':post('fin');
-		$res=crud($conn,"attc,status,fin","'$attc','$stts','$fin'");
-		$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
+		$ok=true;
+		if(isset($_FILES['attc'])){
+			if($_FILES['attc']['type']!='application/pdf') {$ok=false; $msgs='Attachment should be pdf';}
+		}
+		if($ok){
+			$fname=$s_NIK.strtotime("now");
+			$upload=upload_file("attc","remattc/",$fname);
+			$attc=$upload[0]?$upload[1]:"";
+			if($attc==''&&post('fattc')!='') $attc=post('fattc');
+			$stts=post('status')==''?'pending':post('status');
+			$fin=post('fin')==''?'pending':post('fin');
+			$res=crud($conn,"attc,status,fin","'$attc','$stts','$fin'");
+			$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
+		}
 	}else{
 		$msgs="Invalid authorization";
 	}
 }
 if($mn=='hrot'||$mn=='myot'){
 	if($s_LVL!="22"){
-		$fname=$s_NIK.strtotime("now");
-		$upload=upload_file("attc","otattc/",$fname);
-		$attc=$upload[0]?$upload[1]:"";
-		if($attc==''&&post('fattc')!='') $attc=post('fattc');
-		if($attc!=''||post('rowid')!=0){
-			$stts=post('status')==''?'pending':post('status');
-			$hr=post('hr')==''?'pending':post('hr');
-			$res=crud($conn,"attc,status,hr","'$attc','$stts','$hr'");
-			$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
-		}else{
-			$msgs="Attachment doesnt exist. ".$upload[1];
+		$ok=true;
+		if(isset($_FILES['attc'])){
+			if($_FILES['attc']['type']!='application/pdf') {$ok=false; $msgs='Attachment should be pdf';}
+		}
+		if($ok){
+			$fname=$s_NIK.strtotime("now");
+			$upload=upload_file("attc","otattc/",$fname);
+			$attc=$upload[0]?$upload[1]:"";
+			if($attc==''&&post('fattc')!='') $attc=post('fattc');
+			if($attc!=''||post('rowid')!=0){
+				$stts=post('status')==''?'pending':post('status');
+				$hr=post('hr')==''?'pending':post('hr');
+				$res=crud($conn,"attc,status,hr","'$attc','$stts','$hr'");
+				$code=$res[0]; $ttl=$res[1]; $msgs=$res[2];
+			}else{
+				$msgs="Attachment doesnt exist. ".$upload[1];
+			}
 		}
 	}else{
 		$msgs="Invalid authorization";
