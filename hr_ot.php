@@ -32,7 +32,7 @@ include "inc.db.php";
 
 $conn=connect();
 $wherloc=$mys_LOC==''?'':"where locid in ('$mys_LOC')";
-$rs=exec_qry($conn,"select locid,name from core_location $wherloc order by name");
+$rs=exec_qry($conn,"select nik,nama from hr_kary order by nama");
 $o_loc=fetch_all($rs);
 disconnect($conn);
 
@@ -55,8 +55,19 @@ disconnect($conn);
 		</div>
 		<!--End Page header-->
 		<div class="row">
-			<div class="col-xl-2">
-				<div class="small text-opacity-50 mb-2 text-whitex"><b>TANGGAL</b></div>
+			<div class="col-md-2">
+				<div class="small text-opacity-50 mb-2 text-whitex"><b>From</b></div>
+				<div class="mg-b-20">
+					<div class="input-group">
+						<div class="input-group-text border-end-0">
+							<i class="fe fe-calendar lh--9 op-6"></i>
+						</div>
+						<input class="form-control datepicker" id="df" placeholder="" type="text">
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="small text-opacity-50 mb-2 text-whitex"><b>To</b></div>
 				<div class="mg-b-20">
 					<div class="input-group">
 						<div class="input-group-text border-end-0">
@@ -66,15 +77,22 @@ disconnect($conn);
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-6">
-				<div class="small text-opacity-50 mb-2 text-whitex"><b>LOCATION</b></div>
-				<select class="form-control select2" id="loc">
-					<option value="">All LOCATION</option>
+			<div class="col-md-2">
+				<div class="small text-opacity-50 mb-2 text-whitex"><b>Status</b></div>
+				<select class="form-control select2" id="stat">
+					<option value="">All Status</option>
+					<?php echo options($o_remstt)?>
+					</select>
+			</div>
+			<div class="col-md-4">
+				<div class="small text-opacity-50 mb-2 text-whitex"><b>Employee</b></div>
+				<select class="form-control select2" id="niki">
+					<option value="">All Employee</option>
 					<?php echo options($o_loc)?>
 					</select>
 			</div>
-			<div class="col-xl-2 pt-3">
-				<button type="button" class="btn btn-primary my-2 btn-icon-text">Filter</button>
+			<div class="col-md-2 pt-3">
+				<button type="button" onclick="btnklik();" class="btn btn-primary my-2 btn-icon-text">Filter</button>
 			</div>
 		</div>
 		<div class="row">
@@ -329,7 +347,7 @@ $(document).ready(function(){
 			data: function (d) {
 				d.cols= '<?php echo base64_encode($cols); ?>',
 				d.tname= '<?php echo base64_encode($tname); ?>',
-				d.where= '<?php echo base64_encode($where); ?>',
+				d.where= getWhere(),
 				d.csrc= '<?php echo base64_encode($csrc); ?>',
 				d.x= '<?php echo $menu?>';
 			}
@@ -356,22 +374,39 @@ $(document).ready(function(){
 		}
     }});
 	
-	//datepicker();
+	datepicker();
 	//timepicker();
 	//selectpicker(true);
 	datetimepicker();
 	gettot();
 });
 
+function getWhere(){
+	var where="1=1";
+	where+=($("#stat").val()=='')?"":" and status='"+$("#stat").val()+"'";
+	where+=($("#df").val()=='')?"":" and submitted>='"+$("#df").val()+"'";
+	where+=($("#dt").val()=='')?"":" and submitted<='"+$("#dt").val()+" 23:59:59'";
+	where+=($("#niki").val()=='')?"":" and l.nik='"+$("#niki").val()+"'";
+	return btoa(where);
+}
+
+function btnklik(){
+	gettot();
+	reloadtbl();
+}
 function reloadtbl(){
 	mytbl.ajax.reload();
 }
 
 function gettot(){
+	$(".xtot").html("0");
+	$(".xpending").html("0");
+	$(".xapproved").html("0");
+	$(".xrejected").html("0");
 	$.ajax({
 		type: 'POST',
 		url: 'dataget'+ext,
-		data: {q:'ottot',dt:$("#dt").val(),loc:$("#loc").val()},
+		data: {q:'ottot',df:$("#df").val(),dt:$("#dt").val(),stat:$("#stat").val(),nik:$("#niki").val()},
 		success: function(data){
 			var json = JSON.parse(data);
 			if(json['code']=='200'){

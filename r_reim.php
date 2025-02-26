@@ -72,6 +72,7 @@ include "inc.menutop.php";
 										<th>Total</th>
 										<th>Remark</th>
 										<th>Finance</th>
+										<th>Attachment</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -105,7 +106,15 @@ $(document).ready(function(){
 		serverSide: true,
 		processing: true,
 		searching: false,
-		buttons: ['copy', 'csv'],
+		buttons: ['copy', 'csv',
+					{
+					text: 'Excel',
+					action: function ( e, dt, node, config ) {
+						//alert( 'Button activated' );
+						window.open('data:application/vnd.ms-excel,' + encodeURIComponent( document.getElementById('mytbl').outerHTML));
+					},
+					//exportOptions: { modifier: { page: 'all', search: 'none' } }
+				}],
 		lengthMenu: [[10,50,100,500,-1],["10","50","100","500","All"]],
 		ajax: {
 			type: 'POST',
@@ -116,7 +125,7 @@ $(document).ready(function(){
 				d.csrc= '<?php echo base64_encode($csrc); ?>',
 				d.grpby= '<?php echo base64_encode($grpby); ?>',
 				d.where= getWhere(),
-				d.x= '-';
+				d.x= 'rreim';
 			}
 		},
 		initComplete: function(){

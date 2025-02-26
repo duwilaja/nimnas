@@ -207,7 +207,7 @@ include "inc.foot.php";
 include "inc.js.php";
 
 $tname="hr_remb l left join hr_kary k on k.nik=l.nik";
-$cols="l.nik,nama,status,submitted,tot,des,attc,l.rowid";
+$cols="l.nik,nama,status,submitted,tot,des,fin,attc,l.rowid";
 $csrc="l.nik,nama,des";
 $where="l.nik='$s_NIK'";
 
