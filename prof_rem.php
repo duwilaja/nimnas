@@ -143,7 +143,7 @@ include "inc.menutop.php";
 				<input type="text" id="des" name="des" placeholder="..." class="form-control">
 			</div>
 			<div class="form-group col-md-6">
-				<label>Attachment</label>
+				<label>Attachment (PDF)</label>
 				<input type="file" id="attcx" name="attc" placeholder="..." class="form-control">
 			</div>
 		  </div>
