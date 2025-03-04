@@ -94,7 +94,7 @@ $tnamex="core_node n left join core_status_sla s on n.host=s.host";
 $cols="n.host,n.name,n.net,n.typ,sec_to_time(sum(downtime+uptime)) as t,sec_to_time(sum(uptime)) as ut,sec_to_time(sum(downtime)) as d,'0' as x,sum(uptime) as u,sum(downtime+uptime) as t";
 $grpby="n.host,n.name,n.net,n.typ,x";
 $grpcol="n.host,n.name,n.net,n.typ";
-$where=""; $clso="n.host,n.name";
+$where=""; $csrc="n.host,n.name";
 if($mys_LOC!=''){ //session loc
 	$where.= "loc in ('$mys_LOC')";
 }
@@ -123,6 +123,7 @@ $(document).ready(function(){
 				d.grpby= '<?php echo base64_encode($grpby); ?>',
 				d.grpcol= '<?php echo base64_encode($grpcol); ?>',
 				d.where= '<?php echo base64_encode($where); ?>',
+				d.csrc= '<?php echo base64_encode($csrc); ?>',
 				d.fdf= get_dt($("#df").val()),
 				d.fdt= get_dt($("#dt").val()),
 				d.x= '<?php echo $menu?>';
