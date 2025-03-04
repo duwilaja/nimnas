@@ -94,7 +94,7 @@ $tnamex="core_node n left join core_status_sla s on n.host=s.host";
 $cols="n.host,n.name,n.net,n.typ,sec_to_time(sum(downtime+uptime)) as t,sec_to_time(sum(uptime)) as ut,sec_to_time(sum(downtime)) as d,'0' as x,sum(uptime) as u,sum(downtime+uptime) as t";
 $grpby="n.host,n.name,n.net,n.typ,x";
 $grpcol="n.host,n.name,n.net,n.typ";
-$where=""; $clso="";
+$where=""; $clso="n.host,n.name";
 if($mys_LOC!=''){ //session loc
 	$where.= "loc in ('$mys_LOC')";
 }
@@ -111,7 +111,7 @@ $(document).ready(function(){
 	mytbl = $("#mytbl").DataTable({
 		serverSide: true,
 		processing: true,
-		searching: false,
+		searching: true,
 		buttons: ['copy', 'csv'],
 		lengthMenu: [[10,50,100,500,-1],["10","50","100","500","All"]],
 		ajax: {
