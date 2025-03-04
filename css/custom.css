@@ -36,3 +36,117 @@ a.dttbl{
 .sk-cube-grid{
 	margin: 10px auto;
 }
+
+
+/* Style Login Page */
+.login-page {
+  background-image: url("../img/background-login-mobile.png");
+}
+
+.form-login {
+  background: url("../img/background-login-mobile-white.png");
+}
+
+.sub-text {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.content-login-2 {
+  padding-bottom: 2rem !important;
+  height: 30vh;
+}
+
+.content-login-1 {
+  display: none;
+}
+
+#wave-left-1,
+#wave-left-2,
+#wave-left-3 {
+  display: none;
+}
+
+#wave-right-1,
+#wave-right-2 {
+  display: none;
+}
+
+@media only screen and (min-width: 425px) {
+  .login-page {
+    background-image: url("../img/background-login-tablet.png");
+  }
+  .form-login {
+    background: url("../img/background-login-tablet-white.png");
+  }
+  .sub-text {
+    color: #ffffff;
+    font-size: 25px;
+    font-weight: 600;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .login-page {
+    background-size: contain;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+  .form-login {
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  #wave-right-1,
+  #wave-right-2 {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .login-page {
+    background-image: url("../img/background-login.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+  }
+  .form-login {
+    padding-left: 0 !important;
+    background: #e5f3ff;
+  }
+  .content-login-1 {
+    display: block;
+  }
+  #wave-right-1,
+  #wave-right-2 {
+    display: block;
+  }
+
+  #wave-left-1,
+  #wave-left-2,
+  #wave-left-3 {
+    display: block;
+  }
+
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Ensure it's on top of other content */
+  opacity: 1; /* Fully visible */
+  pointer-events: auto; /* Allow interaction */
+  transition: opacity 1s; /* No delay on transition */
+}
+
+.overlay.hidden {
+  opacity: 0; /* Fully transparent */
+  pointer-events: none; /* Prevent interaction while hidden */
+}
